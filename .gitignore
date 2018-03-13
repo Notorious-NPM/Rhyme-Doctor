@@ -1,3 +1,13 @@
+# npm
 node_modules
 package-lock.json
+
+# Yarn
 yarn.lock
+yarn-error.log
+
+# macOS
+.DS_Store
+
+# Webpack
+client/dist/bundle.js
