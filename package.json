@@ -4,7 +4,7 @@
   "description": "Web app that helps a user compose song lyrics.",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack -w"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +24,8 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "sequelize": "^4.36.1",
-    "webpack": "^4.1.1"
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.11"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
