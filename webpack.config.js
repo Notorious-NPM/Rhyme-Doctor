@@ -1,24 +1,24 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, './client/src'),
+  entry: ['babel-polyfill', path.join(__dirname, './client/src/index.jsx')],
   output: {
-    path: path.resolve(__dirname, './client/dist'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, './client/dist'),
+    filename: 'bundle.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js[x]?/,
+        test: /\.js[x]?$/, // Looks ugly without the character class.
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: ['react', 'env']
-        }
-      }
-    ]
+          presets: ['react', 'env', 'stage-0'],
+        },
+      },
+    ],
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx'],
+  },
 };

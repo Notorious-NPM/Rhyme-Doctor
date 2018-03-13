@@ -1,5 +1,8 @@
 parser: babel-eslint
 extends: airbnb
+rules:
+  no-console:
+    off
 globals:
   document: false
   window: false
