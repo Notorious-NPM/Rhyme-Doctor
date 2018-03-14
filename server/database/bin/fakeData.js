@@ -168,42 +168,46 @@ const userLikesData = [
 
 const followsData = [
   {
-    user_id: 1,
-    follow_id: 2
+    follower_id: 1,
+    followee_id: 2
   },
   {
-    user_id: 1,
-    follow_id: 3
+    follower_id: 2,
+    followee_id: 1
   },
   {
-    user_id: 1,
-    follow_id: 4
+    follower_id: 3,
+    followee_id: 4
   },
   {
-    user_id: 2,
-    follow_id: 1
+    follower_id: 4,
+    followee_id: 5
   },
   {
-    user_id: 2,
-    follow_id: 4
+    follower_id: 5,
+    followee_id: 6
   },
   {
-    user_id: 2,
-    follow_id: 5
+    follower_id: 6,
+    followee_id: 5
+  },
+  {
+    follower_id: 4,
+    followee_id: 6
   }
 ];
 
 const reportUsersData = [
   {
-    user_id: 1,
+    reporter_id: 1,
     reportee_id: 1
   },
   {
-    user_id: 2,
+    reporter_id: 2,
     reportee_id: 1
   },
   {
-    user_id: 3,
+    reporter_id: 3,
     reportee_id: 1
   }
 ];

@@ -8,9 +8,7 @@ const User_Like = db.define('user_like', {},
   underscored: true
 })
 
-User_Like.belongsTo(User);
-User_Like.belongsTo(Rap_Post);
-Rap_Post.hasMany(User_Like);
-User.hasMany(User_Like);
+User.belongsToMany(Rap_Post, { through: User_Like });
+Rap_Post.belongsToMany(User, { through: User_Like });
 
 module.exports = User_Like;
