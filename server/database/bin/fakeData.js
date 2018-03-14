@@ -2,7 +2,7 @@ const User = require('../models/user.js');
 const Rap_Post = require('../models/rap_post.js');
 const Comment = require('../models/comment.js');
 const Follow = require('../models/follow.js');
-const Report_User = require('../models/report_user.js');
+const Report_Post = require('../models/report_post.js');
 const User_Like = require('../models/user_like.js');
 
 /** 
@@ -197,18 +197,18 @@ const followsData = [
   }
 ];
 
-const reportUsersData = [
+const reportPostData = [
   {
-    reporter_id: 1,
-    reportee_id: 1
+    user_id: 1,
+    rap_post_id: 1
   },
   {
-    reporter_id: 2,
-    reportee_id: 1
+    user_id: 2,
+    rap_post_id: 1
   },
   {
-    reporter_id: 3,
-    reportee_id: 1
+    user_id: 3,
+    rap_post_id: 1
   }
 ];
 
@@ -232,7 +232,7 @@ User.sync({force: false}).then(() => {
       return createFollowsTable();
     })
     .then(() => {
-      return createReportUsersTable();
+      return createReportPostTable();
     })
   });
   
@@ -272,9 +272,9 @@ const createFollowsTable = () => {
   });
 }
 
-const createReportUsersTable = () => {
-  Report_User.sync({force: false}).then(() => {
-    return Report_User.bulkCreate(reportUsersData)
+const createReportPostTable = () => {
+  Report_Post.sync({force: false}).then(() => {
+    return Report_Post.bulkCreate(reportPostData)
       .then(() => {
         console.log('updated follows')
       });

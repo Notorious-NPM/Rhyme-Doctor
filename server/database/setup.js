@@ -4,7 +4,7 @@ const Rap_Post = require('./models/rap_post.js');
 const Comment = require('./models/comment.js');
 const User_Like = require('./models/user_like.js');
 const Follow = require('./models/follow.js');
-const Report_User = require('./models/report_user.js');
+const Report_Post = require('./models/report_post.js');
 
 db.sync({ force: true })
   .then(() => {
