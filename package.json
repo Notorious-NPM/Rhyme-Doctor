@@ -4,16 +4,9 @@
   "description": "Web app that helps a user compose song lyrics.",
   "main": "server/bin/entry.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "jest",
-    "setup:server": "node server",
-    "build": "webpack -w"
-||||||| merged common ancestors
-    "build": "webpack -w"
-=======
     "build": "webpack -w",
-    "start": "node server/bin/entry.js"
->>>>>>> master
+    "start": "node server/bin/entry.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
