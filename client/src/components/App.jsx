@@ -1,28 +1,22 @@
 import React from 'react';
-import store from '../redux/store.js'; // eslint-disable-line
+
+import store from '../redux/store.js';
+import Paragraph from './text/Paragraph.jsx';
 
 class App extends React.Component { // eslint-disable-line
   constructor(props) { // eslint-disable-line
     super(props);
-  }
-
-  upvote = () => { // eslint-disable-line
-    store.dispatch({
-      type: 'upvote',
-    });
-  }
-
-  downvote = () => { // eslint-disable-line
-    store.dispatch({
-      type: 'downvote',
+    this.state = store.getState();
+    console.log(this.state);
+    store.subscribe(() => {
+      this.state = store.getState();
     });
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.upvote}>Up</button>
-        <button onClick={this.downvote}>Down</button>
+        <Paragraph text={this.state.text} />
       </div>
     );
   }
