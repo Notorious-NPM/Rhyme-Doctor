@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "8"
+services:
+  - mysql
+before_script:
+  - mysql -u root -e 'CREATE DATABASE RhymeDoctor;'
+  - sleep 10
+script:
+  - yarn build &
+  - sleep 10
+  - yarn start &
+  - sleep 10
