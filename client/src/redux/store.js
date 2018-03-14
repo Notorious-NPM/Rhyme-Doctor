@@ -38,7 +38,6 @@ const reducer = (state = {
   '10, 12': 'firebrick',
   '11, 12': 'firebrick',
 }, action) => {
-  console.log(action);
   switch (action.type) {
     case 'highlight':
       state[`${action.body.x}, ${action.body.y}`] = action.body.color;

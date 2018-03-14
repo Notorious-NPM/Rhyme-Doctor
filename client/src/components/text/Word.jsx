@@ -10,7 +10,7 @@ import store from '../../redux/store.js';
 class Word extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
     this.state = { highlighted: `${props.x}, ${props.y}` in store.getState() };
     if (this.state.highlighted) {
       this.state.color = store.getState()[`${props.x}, ${props.y}`];
@@ -31,8 +31,6 @@ class Word extends React.Component {
 
   color = (e) => {
     e.preventDefault();
-    console.log('yo');
-    console.log(this);
     const payload = {
       type: 'highlight',
       body: {
@@ -41,7 +39,6 @@ class Word extends React.Component {
         color: 'red',
       },
     };
-    console.log(payload);
     store.dispatch(payload);
   }
 
