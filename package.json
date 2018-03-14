@@ -4,6 +4,8 @@
   "description": "Web app that helps a user compose song lyrics.",
   "main": "server/index.js",
   "scripts": {
+    "test": "jest",
+    "setup:server": "node server",
     "build": "webpack -w"
   },
   "author": "",
