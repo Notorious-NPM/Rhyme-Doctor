@@ -1,3 +1,4 @@
+import axios from 'axios';
 import APIKEY from '../../../config.js';
 
 const findRhymeCtrl = () => {
@@ -6,6 +7,7 @@ const findRhymeCtrl = () => {
 
 const findSynCtrl = () => {
   //find synonym of word
+
 }
 
 const findPronunciationCtrl = () => {
