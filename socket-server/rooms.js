@@ -9,7 +9,7 @@ export default class Rooms {
     if (!room) {
       room = new Map();
       room.set('id', roomId);
-      room.set('text', startingText(title));
+      room.set('text', startingText(title)); // eslint-disable-line
       this.store.set(roomId, room);
     }
     return room;
