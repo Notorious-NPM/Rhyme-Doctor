@@ -1,4 +1,14 @@
 import APIKEY from '../../../config.js';
-import axios from 'axios';
 
-export const rhymeController = () => {axios.get('https://wordsapiv1.p.mashape.com/words/wind/pronunciation'), APIKEY});
+const findRhymeCtrl = () => {
+  //find rhyme of word
+}
+
+const findSynCtrl = () => {
+  //find synonym of word
+}
+
+const findPronunciationCtrl = () => {
+  //find pronunciation of word
+}
+export {findRhymeCtrl, findSynCtrl, findPronunciationCtrl}
