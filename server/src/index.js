@@ -6,8 +6,8 @@ import middleware from './middleware';
 const port = process.env.PORT || 3000;
 const server = express();
 
-console.log('hi');
-console.log(middleware);
+// console.log('hi');
+// console.log(middleware);
 server.use(...middleware); // is this the right syntax?
 server.use('/api', router);
 server.use(express.static(path.join(__dirname, '../../client/dist')));

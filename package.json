@@ -2,9 +2,10 @@
   "name": "rhyme-doctor",
   "version": "1.0.0",
   "description": "Web app that helps a user compose song lyrics.",
-  "main": "server/index.js",
+  "main": "server/bin/entry.js",
   "scripts": {
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "start": "node server/bin/entry.js"
   },
   "author": "",
   "license": "ISC",
