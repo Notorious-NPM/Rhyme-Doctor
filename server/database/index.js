@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 
-const sequelize = new Sequelize('instagram', 'root', null, {
+const db = new Sequelize('RhymeDoctor', 'root', null, {
   host: 'localhost',
   port: 3306,
   dialect: 'mysql',
@@ -17,8 +17,10 @@ const sequelize = new Sequelize('instagram', 'root', null, {
   }
 });
 
-sequelize.authenticate().then(function() {
+db.authenticate().then(function() {
   console.log('You are connected to mysql Database on localhost');
 }).catch(function(err) {
   console.log('Something went wrong, unable to connect to database: ', err);
 });
+
+module.exports = db;
