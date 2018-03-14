@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 const Sequelize = require('sequelize');
 const User = require('./user.js');
 const Rap_Post = require('./rap_post.js');
@@ -7,12 +9,11 @@ const Comment = db.define('comment', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   text: Sequelize.STRING,
-},
-{
-  underscored: true
+}, {
+  underscored: true,
 });
 
 Comment.belongsTo(Rap_Post);

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars, camelcase */
+
 const db = require('./index.js');
 const User = require('./models/user.js');
 const Rap_Post = require('./models/rap_post.js');
@@ -12,4 +14,4 @@ db.sync({ force: true })
   })
   .catch(() => {
     console.log('error syncing database');
-  })
+  });

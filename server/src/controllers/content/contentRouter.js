@@ -1,20 +1,21 @@
 import express from 'express';
-const router = express.Router();
 import { createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl } from './contentCtrl';
 
+const router = express.Router();
+
 router.route('/createpost')
-  .post(createPostCtrl)
+  .post(createPostCtrl);
 
 router.route('/deletePost')
-  .delete(deletePostCtrl)
+  .delete(deletePostCtrl);
 
 router.route('/comment')
-  .post(commentCtrl)
+  .post(commentCtrl);
 
 router.route('/uncomment')
-  .delete(uncommentCtrl)
+  .delete(uncommentCtrl);
 
 router.route('/report')
-  .post(reportCtrl)
+  .post(reportCtrl);
 
 export default router;
