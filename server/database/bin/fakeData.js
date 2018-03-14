@@ -1,0 +1,278 @@
+const User = require('../models/user.js');
+const Rap_Post = require('../models/rap_post.js');
+const Comment = require('../models/comment.js');
+const Follow = require('../models/follow.js');
+const Report_User = require('../models/report_user.js');
+const User_Like = require('../models/user_like.js');
+
+/** 
+ * Start data
+*/
+const usersData = [
+  {
+    name: "bob",
+    password: '1234'
+  },
+  {
+    name: "carol",
+    password: '123'
+  },
+  {
+    name: "ben",
+    password: '1234fd'
+  },
+  {
+    name: "carl",
+    password: '1234as'
+  },
+  {
+    name: "jen",
+    password: '1234we'
+  },
+  {
+    name: "Samuel Hong",
+    password: '1234qwe'
+  }
+];
+
+const postsData = [
+  {
+    text: 'hey ray',
+    user_id: 1,
+    like_count: 3
+  },
+  {
+    text: 'hey ray',
+    user_id: 2,
+    like_count: 0
+  },
+  {
+    text: 'hey ray',
+    user_id: 3,
+    like_count: 0
+  },
+  {
+    text: 'hey ray',
+    user_id: 4,
+    like_count: 0
+  },
+  {
+    text: 'hey ray',
+    user_id: 1,
+    like_count: 0
+  },
+  {
+    text: 'hey ray',
+    user_id: 5,
+    like_count: 0
+  },
+  {
+    text: 'hey ray',
+    user_id: 6,
+    like_count: 0
+  },
+  {
+    text: 'hey ray',
+    user_id: 6,
+    like_count: 0
+  },
+  {
+    text: 'hey ray',
+    user_id: 4,
+    like_count: 0
+  }
+];
+
+const commentsData = [
+  {
+    text: 'how is it going?',
+    user_id: 1,
+    rap_post_id: 1
+  },
+  {
+    text: 'not good',
+    user_id: 2,
+    rap_post_id: 1
+  },
+  {
+    text: 'how is it going?',
+    user_id: 3,
+    rap_post_id: 2
+  },
+  {
+    text: 'well',
+    user_id: 4,
+    rap_post_id: 2
+  },
+  {
+    text: 'how is it going?',
+    user_id: 5,
+    rap_post_id: 3
+  },
+  {
+    text: 'better',
+    user_id: 1,
+    rap_post_id: 3
+  },
+  {
+    text: 'how is it going?',
+    user_id: 1,
+    rap_post_id: 5
+  },
+  {
+    text: 'stop asking please',
+    user_id: 1,
+    rap_post_id: 5
+  },
+  {
+    text: 'how is it going?',
+    user_id: 3,
+    rap_post_id: 6
+  },
+  {
+    text: 'bots',
+    user_id: 2,
+    rap_post_id: 6
+  },
+  {
+    text: 'how is it going?',
+    user_id: 1,
+    rap_post_id: 1
+  },
+  {
+    text: 'how is it going?',
+    user_id: 1,
+    rap_post_id: 1
+  },
+  {
+    text: 'how is it going?',
+    user_id: 1,
+    rap_post_id: 1
+  }
+];
+
+const userLikesData = [
+  {
+    user_id: 1,
+    rap_post_id: 1
+  },
+  {
+    user_id: 2,
+    rap_post_id: 1
+  },
+  {
+    user_id: 3,
+    rap_post_id: 1
+  }
+];
+
+const followsData = [
+  {
+    user_id: 1,
+    follow_id: 2
+  },
+  {
+    user_id: 1,
+    follow_id: 3
+  },
+  {
+    user_id: 1,
+    follow_id: 4
+  },
+  {
+    user_id: 2,
+    follow_id: 1
+  },
+  {
+    user_id: 2,
+    follow_id: 4
+  },
+  {
+    user_id: 2,
+    follow_id: 5
+  }
+];
+
+const reportUsersData = [
+  {
+    user_id: 1,
+    reportee_id: 1
+  },
+  {
+    user_id: 2,
+    reportee_id: 1
+  },
+  {
+    user_id: 3,
+    reportee_id: 1
+  }
+];
+
+/** 
+ * End start data
+*/
+
+User.sync({force: false}).then(() => {
+  return User.bulkCreate(usersData)
+    .then(() => {
+      console.log('updated users');
+      return createPostsTable();
+    })
+    .then(() => {
+      return createCommentsTable();
+    })
+    .then(() => {
+      return createLikesTable();
+    })
+    .then(() => {
+      return createFollowsTable();
+    })
+    .then(() => {
+      return createReportUsersTable();
+    })
+  });
+  
+const createPostsTable = () => {
+  Rap_Post.sync({force: false}).then(() => {
+    return Rap_Post.bulkCreate(postsData)
+      .then(() => {
+        console.log('updated posts')
+      })
+  });
+}
+
+const createCommentsTable = () => {
+  Comment.sync({force: false}).then(() => {
+    return Comment.bulkCreate(commentsData)
+      .then(() => {
+        console.log('updated comments')
+      })
+  });
+}
+
+const createLikesTable = () => {
+  User_Like.sync({force: false}).then(() => {
+    return User_Like.bulkCreate(userLikesData)
+      .then(() => {
+        console.log('updated user likes')
+      });
+  });
+}
+
+const createFollowsTable = () => {
+  Follow.sync({force: false}).then(() => {
+    return Follow.bulkCreate(followsData)
+      .then(() => {
+        console.log('updated follows')
+      });
+  });
+}
+
+const createReportUsersTable = () => {
+  Report_User.sync({force: false}).then(() => {
+    return Report_User.bulkCreate(reportUsersData)
+      .then(() => {
+        console.log('updated follows')
+      });
+  });
+}
