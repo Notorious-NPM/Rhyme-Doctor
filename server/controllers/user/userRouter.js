@@ -1,19 +1,20 @@
 import express from 'express';
-const router = express.Router();
-import {loginCtrl, signupCtrl, followCtrl, unfollowCtrl} from './userCtrl';
+import { loginCtrl, signupCtrl, followCtrl, unfollowCtrl } from './userCtrl';
 
-//TODO: use middleware to authenticate users here
+const router = express.Router();
+
+// TODO: use middleware to authenticate users here
 
 router.route('/login')
-  .get(loginCtrl)
+  .get(loginCtrl);
 
 router.route('/signup')
-  .post(signupCtrl)
+  .post(signupCtrl);
 
 router.route('/follow')
-  .post(followCtrl)
+  .post(followCtrl);
 
 router.route('/unfollow')
-  .post(unfollowCtrl)
+  .post(unfollowCtrl);
 
 export default router;

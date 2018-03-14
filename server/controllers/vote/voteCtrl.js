@@ -1,11 +1,11 @@
-//need DB helpers
+// need DB helpers
 
 const upvoteCtrl = () => {
 
-}
+};
 
 const downvoteCtrl = () => {
-  
-}
 
-export {upvoteCtrl, downvoteCtrl} 
+};
+
+export { upvoteCtrl, downvoteCtrl };

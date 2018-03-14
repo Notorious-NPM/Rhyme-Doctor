@@ -5,13 +5,12 @@ const User = db.define('user', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   name: Sequelize.STRING,
-  password: Sequelize.STRING
-},
-{
-  underscored: true
+  password: Sequelize.STRING,
+}, {
+  underscored: true,
 });
 
 module.exports = User;

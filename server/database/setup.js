@@ -12,4 +12,4 @@ db.sync({ force: true })
   })
   .catch(() => {
     console.log('error syncing database');
-  })
+  });

@@ -7,12 +7,11 @@ const Comment = db.define('comment', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   text: Sequelize.STRING,
-},
-{
-  underscored: true
+}, {
+  underscored: true,
 });
 
 Comment.belongsTo(Rap_Post);

@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 
-
 const db = new Sequelize('RhymeDoctor', 'root', null, {
   host: 'localhost',
   port: 3306,
@@ -12,14 +11,14 @@ const db = new Sequelize('RhymeDoctor', 'root', null, {
     idle: 10000,
     handleDisconnects: true,
     define: {
-      timestamps: true
-    }
-  }
+      timestamps: true,
+    },
+  },
 });
 
-db.authenticate().then(function() {
+db.authenticate().then(() => {
   console.log('You are connected to mysql Database on localhost');
-}).catch(function(err) {
+}).catch((err) => {
   console.log('Something went wrong, unable to connect to database: ', err);
 });
 

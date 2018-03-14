@@ -1,12 +1,12 @@
 import express from 'express';
-import {upvoteCtrl, downvoteCtrl} from './userCtrl';
+import { upvoteCtrl, downvoteCtrl } from '../user/userCtrl';
 
 const router = express.Router();
 
 router.route('/upvote')
-  .put(upvoteCtrl)
+  .put(upvoteCtrl);
 
 router.route('/downvote')
-  .put(downvoteCtrl)
+  .put(downvoteCtrl);
 
 export default router;
