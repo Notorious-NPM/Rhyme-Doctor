@@ -5,7 +5,9 @@
   "main": "server/bin/entry.js",
   "scripts": {
     "build": "webpack -w",
-    "start": "node server/bin/entry.js"
+    "start": "node server/bin/entry.js",
+    "test": "jest",
+    "setup:server": "node server/src"
   },
   "author": "",
   "license": "ISC",
