@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+const { user, pass } = require('./config/config.js');
 
-const db = new Sequelize('RhymeDoctor', 'root', null, {
+const db = new Sequelize('RhymeDoctor', user, pass, {
   host: 'localhost',
   port: 3306,
   dialect: 'mysql',
