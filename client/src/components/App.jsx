@@ -3,8 +3,8 @@ import React from 'react';
 import store from '../redux/store.js';
 import Paragraph from './text/Paragraph.jsx';
 
-class App extends React.Component { // eslint-disable-line
-  constructor(props) { // eslint-disable-line
+class App extends React.Component {
+  constructor(props) {
     super(props);
     this.state = store.getState();
     store.subscribe(() => {

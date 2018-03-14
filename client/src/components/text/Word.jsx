@@ -29,11 +29,36 @@ class Word extends React.Component {
     });
   }
 
+  color = (e) => {
+    e.preventDefault();
+    console.log('yo');
+    console.log(this);
+    const payload = {
+      type: 'highlight',
+      body: {
+        x: this.props.x,
+        y: this.props.y,
+        color: 'red',
+      },
+    };
+    console.log(payload);
+    store.dispatch(payload);
+  }
+
   render() {
     const style = {
       color: this.state.highlighted ? this.state.color : 'black',
     };
-    return <span style={style}><b>{` ${this.props.word} `}</b></span>;
+    return (
+      <span /* eslint-disable-line */
+        role="button"
+        style={style}
+        onClick={this.color}
+        onKeyDown={this.color}
+      >
+        <b>{` ${this.props.word} `}</b>
+      </span>
+    );
   }
 }
 
