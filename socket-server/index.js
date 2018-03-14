@@ -1,5 +1,5 @@
 import http from 'http';
-import SocketIo from 'socket.io';
+import SocketIo from 'socket.io'; // eslint-disable-line
 
 import Rooms from './rooms';
 import clientEvents from './clientEvents';
@@ -15,9 +15,9 @@ io.on('connection', (client) => {
   const room = rooms.findOrCreate(roomId || 'default', roomName);
   client.join(room.get('id'));
 
-  for (let event of clientEvents) {
-    client.on(event, clientEvent[event].bind(null, { io, client, room}));
-  }
+  clientEvents.forEach((event) => {
+    client.on(event, clientEvents[event].bind(null, { io, client, room }));
+  });
 });
 
 const port = process.env.PORT || 3444;
