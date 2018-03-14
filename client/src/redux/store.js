@@ -32,6 +32,7 @@ const reducer = (state = {
   'Cause my strategy has to be tragedy, catastrophe
   And after this you'll call me your majesty
   My melody`,
+  '1, 2': 'blue',
 }, action) => state; // eslint-disable-line
 
 const store = Redux.createStore(reducer);
