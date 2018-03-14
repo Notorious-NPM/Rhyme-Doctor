@@ -66,7 +66,7 @@ const postsData = [
   {
     text: 'hey ray',
     user_id: 5,
-    like_count: 0
+    like_count: 0,
   },
   {
     text: 'hey ray',
@@ -89,7 +89,7 @@ const commentsData = [
   {
     text: 'how is it going?',
     user_id: 1,
-    rap_post_id: 1
+    rap_post_id: 1,
   },
   {
     text: 'not good',
@@ -249,7 +249,7 @@ const createCommentsTable = () => {
 };
 
 const createLikesTable = () => {
-  User_Like.sync({force: false}).then(() =>
+  User_Like.sync({ force: false }).then(() =>
     User_Like.bulkCreate(userLikesData)
       .then(() => {
         console.log('updated user likes');

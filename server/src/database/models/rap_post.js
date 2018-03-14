@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 const Sequelize = require('sequelize');
 const User = require('./user.js');
 const db = require('../');

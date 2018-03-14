@@ -1,3 +1,5 @@
+/* eslint-disable camelcase, no-unused-vars */
+
 const Sequelize = require('sequelize');
 const User = require('./user.js');
 const Rap_Post = require('./rap_post.js');
