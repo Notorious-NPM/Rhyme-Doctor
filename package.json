@@ -2,9 +2,10 @@
   "name": "rhyme-doctor",
   "version": "1.0.0",
   "description": "Web app that helps a user compose song lyrics.",
-  "main": "server/index.js",
+  "main": "server/bin/entry.js",
   "scripts": {
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "start": "node server/bin/entry.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,8 +19,11 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
+    "helmet": "^3.12.0",
     "mysql2": "^1.5.2",
+    "passport": "^0.4.0",
     "path": "^0.12.7",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
