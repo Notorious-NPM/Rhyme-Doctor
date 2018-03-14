@@ -5,7 +5,6 @@ import Line from './Line.jsx';
 
 const Paragraph = ({ text }) => {
   const lines = text.split('\n');
-  console.log(lines);
   return (
     <div>
       {lines.map((line, x) =>

@@ -7,7 +7,6 @@ class App extends React.Component { // eslint-disable-line
   constructor(props) { // eslint-disable-line
     super(props);
     this.state = store.getState();
-    console.log(this.state);
     store.subscribe(() => {
       this.state = store.getState();
     });

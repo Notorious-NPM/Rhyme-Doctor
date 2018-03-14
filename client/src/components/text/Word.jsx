@@ -10,8 +10,6 @@ import store from '../../redux/store.js';
 class Word extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
-    console.log(this);
     this.state = { highlighted: `${props.x}, ${props.y}` in store.getState() };
     if (this.state.highlighted) {
       this.state.color = store.getState()[`${props.x}, ${props.y}`];
