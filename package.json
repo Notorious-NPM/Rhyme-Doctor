@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack -w",
     "start": "node server/bin/entry.js",
-    "test": "jest",
-    "setup:server": "node server/src"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
