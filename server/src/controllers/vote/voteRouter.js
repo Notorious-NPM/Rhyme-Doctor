@@ -1,5 +1,5 @@
 import express from 'express';
-import { upvoteCtrl, downvoteCtrl } from '../user/userCtrl';
+import { upvoteCtrl, downvoteCtrl } from './voteCtrl';
 
 const router = express.Router();
 
