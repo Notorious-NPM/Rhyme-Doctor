@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 // https://redux.js.org/#the-gist
 
 import * as Redux from 'redux';
@@ -36,7 +37,21 @@ const reducer = (state = {
   '10, 6': 'firebrick',
   '10, 12': 'firebrick',
   '11, 12': 'firebrick',
-}, action) => state; // eslint-disable-line
+}, action) => {
+  switch (action.type) {
+    case 'highlight':
+      state[`${action.body.x}, ${action.body.y}`] = action.body.color;
+      return state;
+    case 'unhighlight':
+      delete state[`${action.body.x}, ${action.body.y}`];
+      return state;
+    case 'changetext':
+      state.text = action.body.text;
+      return state;
+    default:
+      return state;
+  }
+};
 
 const store = Redux.createStore(reducer);
 
