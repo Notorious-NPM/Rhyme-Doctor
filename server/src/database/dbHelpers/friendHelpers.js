@@ -1,19 +1,31 @@
 import Sequelize from 'sequelize';
 import Friends from '../models/friends';
 
+const { Op } = Sequelize;
+
 const addFriendHelper = ({ user_id, friend_id }) => {
   return Friends.create({
-    user_id: user_id,
-    friend_id: friend_id
+    user_id,
+    friend_id,
+  });
+};
+
+const queryFriendHelper = ({ user_id }) => {
+  user_id = Number(user_id);
+
+  return Friends.findAll({
+    where: {
+      [Op.or]: [{ user_id }, { friend_id: user_id }],
+    },
   });
 };
 
 const unFriendHelper = ({ user_id, friend_id }) => {
   Friends.destroy({
-    where: { user_id: user_id, friend_id: friend_id }
-  })
-    .then( result => res.status(200).send('deleted'))
-    .catch( err => res.status(200).send(err));
+    where: {
+      [Op.or]: [{ user_id, friend_id }, { user_id: friend_id, friend_id: user_id }],
+    },
+  });
 };
 
-export { addFriendHelper, unFriendHelper };
+export { addFriendHelper, queryFriendHelper, unFriendHelper };
