@@ -10,7 +10,7 @@ const addFriendHelper = ({ userID, friendID }) =>
   });
 
 const queryFriendHelper = ({ userID }) => {
-  userID = Number(userID);                    //eslint-disable-line
+  userID = Number(userID); // eslint-disable-line
 
   return Friends.findAll({
     where: {
