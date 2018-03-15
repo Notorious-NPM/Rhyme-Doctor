@@ -6,7 +6,14 @@ const findRhymeCtrl = () => {
 }
 
 const findSynCtrl = (req, res) => {
-  res.send(APIKEY);
+  axios
+    .get('https://wordsapiv1.p.mashape.com/words/lovely/synonyms', APIKEY)
+    .then((res2) => {
+      res.send(res2.data.synonyms);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 }
 
 const findPronunciationCtrl = () => {
