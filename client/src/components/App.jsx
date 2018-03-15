@@ -42,9 +42,9 @@ class App extends React.Component {
         <h3>Lyrics</h3>
         <Paragraph text={this.state.text} />
         <Friend />
-        <RapPost />
         <br /><br />
         <ThesaurusForm />
+        <RapPost />
       </div>
     );
   }
