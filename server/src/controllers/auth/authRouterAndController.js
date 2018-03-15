@@ -47,10 +47,9 @@ passport.deserializeUser((user, done) => {
 });
 
 router.route('/login')
-  .post(validate(userpass), passport.authenticate('local'), (req, res) => {
-    const status = req.isAuthenticated() ? 200 : 400;
-    res.status(status).end(req.message);
-  });
+  .post(validate(userpass), passport.authenticate('local', { failWithError: true }), (req, res, next) =>
+    res.status(200).end(req.message), (err, req, res, next) =>
+    res.status(400).end(req.message));
 
 router.route('/logout')
   .post((req, res) => {
