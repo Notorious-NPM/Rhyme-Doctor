@@ -19,7 +19,7 @@ const unfollowCtrl = () => {
 
 const addfriendCtrl = (req, res) => {
   // input: user_id and friend_id
-  // output: friendship
+  // output: friendship object
   addFriendHelper(req.body)
     .then(result => res.status(201).send(result))
     .catch(err => res.status(404).send(err));
@@ -27,7 +27,7 @@ const addfriendCtrl = (req, res) => {
 
 const queryfriendCtrl = (req, res) => {
   // input: user_id
-  // output: all friendships
+  // output: all friendships array
   queryFriendHelper(req.query)
     .then(result => res.status(201).send(result))
     .catch(err => res.status(404).send(err));
@@ -35,7 +35,7 @@ const queryfriendCtrl = (req, res) => {
 
 const unfriendCtrl = (req, res) => {
   // input: user_id and friend_id
-  // output: deleted friendship
+  // output: 'success' string
   unFriendHelper(req.body);
   res.status(201).send('success');
 };

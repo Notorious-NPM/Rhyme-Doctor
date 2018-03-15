@@ -3,27 +3,26 @@ import Friends from '../models/friends';
 
 const { Op } = Sequelize;
 
-const addFriendHelper = ({ user_id, friend_id }) => {
-  return Friends.create({
-    user_id,
-    friend_id,
+const addFriendHelper = ({ userID, friendID }) =>
+  Friends.create({
+    userID,
+    friendID,
   });
-};
 
-const queryFriendHelper = ({ user_id }) => {
-  user_id = Number(user_id);
+const queryFriendHelper = ({ userID }) => {
+  userID = Number(userID);                    //eslint-disable-line
 
   return Friends.findAll({
     where: {
-      [Op.or]: [{ user_id }, { friend_id: user_id }],
+      [Op.or]: [{ userID }, { friendID: userID }],
     },
   });
 };
 
-const unFriendHelper = ({ user_id, friend_id }) => {
+const unFriendHelper = ({ userID, friendID }) => {
   Friends.destroy({
     where: {
-      [Op.or]: [{ user_id, friend_id }, { user_id: friend_id, friend_id: user_id }],
+      [Op.or]: [{ userID, friendID }, { userID: friendID, friendID: userID }],
     },
   });
 };
