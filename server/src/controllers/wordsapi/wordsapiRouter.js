@@ -1,5 +1,5 @@
 import express from 'express';
-import { findRhymeCtrl, findSynCtrl, findPronunciationCtrl } from '../controllers/wordsapiCtrl.js';
+import { findRhymeCtrl, findSynCtrl, findPronunciationCtrl } from './wordsapiCtrl';
 
 const router = express.Router();
 

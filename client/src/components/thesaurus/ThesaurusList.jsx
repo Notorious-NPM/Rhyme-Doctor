@@ -1,26 +1,16 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 
-class ThesaurusList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <div>{this.props.synonyms.map(synonym => 
-          <div>{synonym}</div>
-        )}
-        </div>
-      </div>
-    );
-  }
-}
+const ThesaurusList = ({ synonyms }) => (
+  <div>
+    <div>
+      {synonyms.map(synonym => <div>{synonym}</div>)}
+    </div>
+  </div>
+);
 
 ThesaurusList.propTypes = {
-  synonym: PropTypes.string.isRequired,
+  synonyms: PropTypes.array.isRequired, // eslint-disable-line
 };
 
 export default ThesaurusList;
