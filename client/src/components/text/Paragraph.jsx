@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Line from './Line.jsx';
+import Line from './Line';
 
 const Paragraph = ({ text }) => {
   const lines = text.split('\n');

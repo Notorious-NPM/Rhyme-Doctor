@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import store from '../../redux/store.js';
+import store from '../../redux/store';
 
 /* const Word = ({ word, x, y }) => (
   <span>{` ${word} `}</span>

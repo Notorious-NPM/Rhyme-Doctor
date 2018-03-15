@@ -3,7 +3,7 @@ import React from 'react';
 import store from '../redux/store';
 import Login from './top/Login';
 import Paragraph from './text/Paragraph';
-import Friend from '../components/Buttons/Friend';
+import Friend from '../components/buttons/Friend';
 
 class App extends React.Component {
   constructor(props) {

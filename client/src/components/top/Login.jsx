@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
-import store from '../../redux/store.js';
+import store from '../../redux/store';
 
 const Login = () => {
   const submitHandler = (e) => {

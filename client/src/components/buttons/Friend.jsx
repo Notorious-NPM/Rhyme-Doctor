@@ -16,12 +16,11 @@ class Friend extends Component {
   }
 
   componentDidMount() {
-    // setState userid and friendlist and selecteduser info
     this.setState({ userID: 3, selectedUserID: 1 }); // eslint-disable-line
   }
 
   handleFriendButton(e) {
-    console.log(this.state);
+    // console.log(this.state);
     let action = e.target.value;
     const { userID, selectedUserID } = this.state;
     const payload = {
@@ -32,8 +31,8 @@ class Friend extends Component {
     action = action === 'De-Friend' ? 'delete' : 'post';
 
     axios[action]('/api/user/friend', payload)
-      .then(result => console.log('result of ', action, ' request is: ', result))
-      .catch(err => console.log(action, ' request error: ', err));
+      .then(result => console.log('result of', action, 'request is:', result))
+      .catch(err => console.log(action, 'request error:', err));
   }
 
   render() {
