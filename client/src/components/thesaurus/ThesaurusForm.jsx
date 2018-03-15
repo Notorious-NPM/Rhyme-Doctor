@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
+import ThesaurusList from './ThesaurusList.jsx';
 
 class ThesaurusForm extends React.Component {
   constructor(props) {
@@ -35,18 +38,17 @@ class ThesaurusForm extends React.Component {
         Find me a word:<br/>
         <input type="text" name="word" onChange={e => this.onChange(e)}></input><br/>
         <input type="submit" onClick={(e) => this.searchWord(e)}></input>
+        <br /><br />
       </form>
-      <div>{this.state.synonyms}
-      </div>
+      <ThesaurusList synonyms={this.state.synonyms}/>
     </div>
-  );
+    );
   }
 }
 
 
-// Line.propTypes = {
-//   line: PropTypes.string.isRequired,
-//   x: PropTypes.number.isRequired,
-// };
+ThesaurusForm.propTypes = {
+  synonyms: PropTypes.array.isRequired,
+};
 
 export default ThesaurusForm;
