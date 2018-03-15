@@ -7,7 +7,7 @@ import Paragraph from './text/Paragraph';
 import FriendsList from '../components/ButtonsAndTabs/FriendsList';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
 
-import RapPost from './rap-post/RapPost.jsx';
+// import RapPost from './rap-post/RapPost.jsx';
 
 
 class App extends React.Component {
@@ -43,7 +43,7 @@ class App extends React.Component {
         <h3>Lyrics</h3>
         <Paragraph text={this.state.text} />
         {/* <Friend /> */}
-        <RapPost />
+        {/* <RapPost /> */}
         <br /><br />
         <ThesaurusForm />
         <FriendsList />

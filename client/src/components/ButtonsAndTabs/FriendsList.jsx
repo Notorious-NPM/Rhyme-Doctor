@@ -11,9 +11,7 @@ class FriendsList extends Component {
   }
 
   componentDidMount() {
-    // axios request & algorithum to determine which friend is online
-    // make use of sockets to determine when last action was taken
-    // setstate with true/false and render
+    // upon login, nav, and click this tab, send socket to let all users know you're online
     axios
       .get(`/api/user/friend?userID=${1}`)
       .then(({ data }) => {
@@ -37,7 +35,7 @@ class FriendsList extends Component {
   render() {
     return (
       <div>
-        <button type="button" onClick={() => this.showState()}>*********</button>
+        <button type="button" onClick={() => this.showState()}>Show Friends</button>
         {/* <Chat /> */}
       </div>
 
