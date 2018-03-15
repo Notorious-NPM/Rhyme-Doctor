@@ -6,15 +6,14 @@ const findRhymeCtrl = () => {
 }
 
 const findSynCtrl = (req, res) => {
-  console.log(req.body);
-  // axios
-  //   .get('https://wordsapiv1.p.mashape.com/words/{word}/synonyms', APIKEY)
-  //   .then((res2) => {
-  //     res.send(res2.data.synonyms);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   })
+  axios
+    .get(`https://wordsapiv1.p.mashape.com/words/${req.query.word}/synonyms`, APIKEY)
+    .then((res2) => {
+      res.send(res2.data.synonyms);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 }
 
 const findPronunciationCtrl = () => {

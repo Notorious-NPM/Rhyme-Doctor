@@ -9,6 +9,7 @@ const router = express.Router();
 
 router
   .use('/auth', authRouter)
+<<<<<<< HEAD
   /* .use((req, res, next) => {
     if (req.isAuthenticated()) {
       next();
@@ -16,6 +17,15 @@ router
       res.status(403).end('You must be logged in to do this!');
     }
   }) */
+=======
+  // .use((req, res, next) => {
+  //   if (req.isAuthenticated()) {
+  //     next();
+  //   } else {
+  //     res.status(403).end('You must be logged in to do this!');
+  //   }
+  // })
+>>>>>>> findSynCtrl taking in submitted word
   .use('/user', userRouter)
   .use('/content', contentRouter)
   .use('/vote', voteRouter)
