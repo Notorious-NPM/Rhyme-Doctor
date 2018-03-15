@@ -3,11 +3,11 @@ const User = require('./user.js');
 const db = require('../');
 
 const Follow = db.define('follow', {
-  follower_id: {
+  followerID: {
     type: Sequelize.INTEGER,
     foreignKey: true,
   },
-  followee_id: {
+  followeeID: {
     type: Sequelize.INTEGER,
     foreignKey: true,
   },
@@ -15,7 +15,7 @@ const Follow = db.define('follow', {
   underscored: true,
 });
 
-User.belongsToMany(User, { as: 'follower', through: Follow, foreignKey: 'follower_id' });
-User.belongsToMany(User, { as: 'followee', through: Follow, foreignKey: 'followee_id' });
+User.belongsToMany(User, { as: 'follower', through: Follow, foreignKey: 'followerID' });
+User.belongsToMany(User, { as: 'followee', through: Follow, foreignKey: 'followeeID' });
 
 module.exports = Follow;
