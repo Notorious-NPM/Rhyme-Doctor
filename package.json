@@ -5,7 +5,9 @@
   "main": "server/bin/entry.js",
   "scripts": {
     "build": "webpack -w",
-    "start": "node server/bin/entry.js"
+    "start": "node server/bin/entry.js",
+    "demon": "nodemon server/bin/entry.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -18,12 +20,18 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "express-validation": "^1.0.2",
     "helmet": "^3.12.0",
+    "joi": "^13.1.2",
     "mysql2": "^1.5.2",
+    "nodemon": "^1.17.2",
     "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
@@ -42,7 +50,6 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.2",
-    "redux-devtools": "^3.4.1"
+    "jest": "^22.4.2"
   }
 }

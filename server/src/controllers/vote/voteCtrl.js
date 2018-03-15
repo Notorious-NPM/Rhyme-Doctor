@@ -1,7 +1,7 @@
 // need DB helpers
 
-const upvoteCtrl = () => {
-
+const upvoteCtrl = (req, res) => {
+  res.status(201).end('Woo voted!');
 };
 
 const downvoteCtrl = () => {
