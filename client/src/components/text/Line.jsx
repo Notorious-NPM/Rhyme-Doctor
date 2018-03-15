@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Word from './Word.jsx';
+import Word from './Word';
 
 const Line = ({ line, x }) => {
   line = line.split(' '); // eslint-disable-line
