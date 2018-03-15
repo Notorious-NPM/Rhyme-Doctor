@@ -20,14 +20,28 @@ class App extends React.Component {
     // console.log('hm');
     if (this.state.session) {
       return (
-        <div className="row">
-          <h2>You is logged in.</h2>
+        <div className="row center-block mx-auto">
+          <div
+            className="col text-center"
+            style={{
+              float: 'none',
+              margin: '0 auto',
+            }}
+          ><h2>You is logged in.</h2>
+          </div>
         </div>
       );
     }
     return (
-      <div className="row">
-        <Login />
+      <div className="row center-block mx-auto">
+        <div
+          className="col text-center"
+          style={{
+            float: 'none',
+            margin: '0 auto',
+          }}
+        ><Login />
+        </div>
       </div>
     );
   }
