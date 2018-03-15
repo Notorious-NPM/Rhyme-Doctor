@@ -62,7 +62,14 @@ class App extends React.Component {
         </div>
         <div className="row">
           <Textarea />
-          <Paragraph text={this.state.text} />
+          <Paragraph
+            className="text-center"
+            style={{
+              float: 'none',
+              margin: '0 auto',
+            }}
+            text={this.state.text}
+          />
         </div>
         <Friend />
       </div>

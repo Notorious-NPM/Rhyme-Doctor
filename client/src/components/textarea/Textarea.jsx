@@ -4,7 +4,7 @@ import $ from 'jquery';
 import store from '../../redux/store';
 
 const style = {
-  background: '#ffcc00',
+  // background: '#ffcc00',
 };
 
 const changeHandler = (e) => {
