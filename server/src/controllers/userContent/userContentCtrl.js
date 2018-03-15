@@ -1,14 +1,10 @@
-import Rap_Post from '../../database/models/rap_post';
-import User from '../../database/models/user';
+import { getUserPostsHelper } from '../../database/dbHelpers/userContentHelpers';
 
 const getUserPostsCtrl = (req, res) => {
   // Get all user posts
-  Rap_Post.findAll({
-    where: { user_id: req.params.user_id },
-    include: [User],
-  }).then((rapPosts) => {
-    res.status(200).send(rapPosts);
-  });
+  getUserPostsHelper(req.params)
+    .then(result => res.status(201).send(result))
+    .catch(err => res.status(404).send(err));
 };
 
 export { getUserPostsCtrl };
