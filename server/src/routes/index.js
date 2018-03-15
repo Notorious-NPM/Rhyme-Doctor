@@ -8,13 +8,13 @@ const router = express.Router();
 
 router
   .use('/auth', authRouter)
-  // .use((req, res, next) => {
-  //   if (req.isAuthenticated()) {
-  //     next();
-  //   } else {
-  //     res.status(403).end('You must be logged in to do this!');
-  //   }
-  // })
+  /* .use((req, res, next) => {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.status(403).end('You must be logged in to do this!');
+    }
+  }) */
   .use('/user', userRouter)
   .use('/content', contentRouter)
   .use('/vote', voteRouter);
