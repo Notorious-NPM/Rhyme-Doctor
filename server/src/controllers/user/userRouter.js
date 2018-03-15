@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginCtrl, signupCtrl, followCtrl, unfollowCtrl } from './userCtrl';
+import { loginCtrl, signupCtrl, followCtrl, unfollowCtrl, addfriendCtrl, queryfriendCtrl, unfriendCtrl } from './userCtrl';
 
 const router = express.Router();
 
@@ -16,5 +16,10 @@ router.route('/follow')
 
 router.route('/unfollow')
   .post(unfollowCtrl);
+
+router.route('/friend')
+  .get(queryfriendCtrl)
+  .post(addfriendCtrl)
+  .delete(unfriendCtrl);
 
 export default router;

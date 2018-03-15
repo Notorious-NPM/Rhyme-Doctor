@@ -3,6 +3,7 @@ import React from 'react';
 import store from '../redux/store.js';
 import Login from './top/Login.jsx';
 import Paragraph from './text/Paragraph.jsx';
+import Friend from '../components/Buttons/Friend';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class App extends React.Component {
         {this.navSwitch()}
         <h3>Lyrics</h3>
         <Paragraph text={this.state.text} />
+        <Friend />
       </div>
     );
   }
