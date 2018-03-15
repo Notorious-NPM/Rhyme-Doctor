@@ -3,6 +3,9 @@ import React from 'react';
 import store from '../redux/store.js';
 import Paragraph from './text/Paragraph.jsx';
 
+import RapPost from './rap-post/RapPost.jsx';
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
