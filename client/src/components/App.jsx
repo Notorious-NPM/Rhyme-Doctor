@@ -4,6 +4,7 @@ import store from '../redux/store';
 import Login from './top/Login';
 import Paragraph from './text/Paragraph';
 import Friend from '../components/buttons/Friend';
+import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
 
 import RapPost from './rap-post/RapPost.jsx';
 
@@ -42,6 +43,8 @@ class App extends React.Component {
         <Paragraph text={this.state.text} />
         <Friend />
         <RapPost />
+        <br /><br />
+        <ThesaurusForm />
       </div>
     );
   }
