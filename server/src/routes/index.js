@@ -3,7 +3,7 @@ import authRouter from '../controllers/auth/authRouter';
 import userRouter from '../controllers/user/userRouter';
 import contentRouter from '../controllers/content/contentRouter';
 import voteRouter from '../controllers/vote/voteRouter';
-import wordsapiRouter from '../../api/wordsapi/routes/wordsapiRouter';
+import wordsapiRouter from '../controllers/wordsapi/wordsapiRouter';
 
 const router = express.Router();
 
