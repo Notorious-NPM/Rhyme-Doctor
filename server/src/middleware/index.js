@@ -13,7 +13,11 @@ export default [
   }),
   bodyParser.json(),
   bodyParser.urlencoded({ extended: true }),
-  session({ secret: 'bad hamstring' }),
+  session({
+    secret: 'bad hamstring',
+    resave: false,
+    saveUninitialized: true,
+  }),
   passport.initialize(),
   passport.session(),
 ];
