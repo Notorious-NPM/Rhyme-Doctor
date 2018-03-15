@@ -35,7 +35,7 @@ class App extends React.Component {
     return (
       <div className="row center-block mx-auto">
         <div
-          className="col text-center"
+          className="col-md-2 text-center"
           style={{
             float: 'none',
             margin: '0 auto',
