@@ -2,12 +2,10 @@ import Sequelize from 'sequelize';
 import Friends from '../models/friends';
 
 const addFriendHelper = ({ user_id, friend_id }) => {
-  Friends.create({
+  return Friends.create({
     user_id: user_id,
     friend_id: friend_id
-  })
-    .then( result => res.status(201).send(result.dataValues))
-    .catch( err => console.log('addFriend error: ', err));
+  });
 };
 
 const unFriendHelper = ({ user_id, friend_id }) => {
