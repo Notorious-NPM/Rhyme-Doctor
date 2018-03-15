@@ -3,7 +3,8 @@ import React from 'react';
 import store from '../redux/store';
 import Login from './top/Login';
 import Paragraph from './text/Paragraph';
-import Friend from '../components/buttons/Friend';
+import Friend from './buttons/Friend';
+import Textarea from './textarea/Textarea';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends React.Component {
         {this.navSwitch()}
         <h3>Lyrics</h3>
         <Paragraph text={this.state.text} />
+        <Textarea />
         <Friend />
       </div>
     );
