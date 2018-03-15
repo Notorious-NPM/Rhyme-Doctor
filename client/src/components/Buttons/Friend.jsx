@@ -17,7 +17,7 @@ class Friend extends Component {
 
   componentDidMount() {
     // setState userid and friendlist and selecteduser info
-    this.setState({ user_id: 3, selectedUserID: 1 }); // eslint-disable-line
+    this.setState({ userID: 3, selectedUserID: 1 }); // eslint-disable-line
   }
 
   handleFriendButton(e) {
@@ -25,8 +25,8 @@ class Friend extends Component {
     let action = e.target.value;
     const { userID, selectedUserID } = this.state;
     const payload = {
-      user_id: userID,
-      friend_id: selectedUserID,
+      userID,
+      friendID: selectedUserID,
     };
 
     action = action === 'De-Friend' ? 'delete' : 'post';
