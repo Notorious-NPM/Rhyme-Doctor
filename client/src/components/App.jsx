@@ -14,7 +14,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div align="center">
+        <h5>Lyrics</h5>
         <Paragraph text={this.state.text} />
       </div>
     );
