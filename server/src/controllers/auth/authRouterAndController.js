@@ -51,7 +51,7 @@ router.route('/logout')
   });
 
 router.route('/signup')
-  .post(validate(userpass), (req, res) => {
+  .post(validate(userpass), (req, res, next) => {
     const { username, password } = req.body;
     User.findAll({
       where: {
@@ -61,16 +61,22 @@ router.route('/signup')
       if (users.length > 0) {
         res.status(409).end('That username is taken!');
       } else {
-        bcrypt.hash(password, (err, hash) => {
-          User.create({
-            name: username,
-            password: hash,
-          }).then((user) => {
-            res.status(201).end(`Successfully signed up with: ${user.name}!`);
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(password, salt, (err, hash) => { // eslint-disable-line
+            User.create({
+              name: username,
+              password: hash,
+            }).then(() => {
+              next();
+            });
           });
         });
       }
     });
+  }, passport.authenticate('local'), (req, res) => {
+    console.log('here');
+    console.log(res);
+    res.status(201).end(`Successfully signed up as: ${req.user.username}!`); // Hm...
   });
 
 export default router;
