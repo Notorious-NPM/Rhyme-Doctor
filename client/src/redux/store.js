@@ -4,6 +4,7 @@
 import * as Redux from 'redux';
 
 const reducer = (state = {
+  session: false,
   text: `I'm not a regular competitor, first rhyme editor
   Melody arranger, poet et cetera
   Extra events, the grand finale like bonus
@@ -39,6 +40,9 @@ const reducer = (state = {
   '11, 12': 'firebrick',
 }, action) => {
   switch (action.type) {
+    case 'sessionlogin':
+      state.session = true;
+      return state;
     case 'highlight':
       state[`${action.body.x}, ${action.body.y}`] = action.body.color;
       return state;

@@ -1,24 +1,46 @@
 import React from 'react';
 
-import store from '../redux/store.js';
-import Paragraph from './text/Paragraph.jsx';
-import Friend from '../components/Buttons/Friend';
+import store from '../redux/store';
+import Login from './top/Login';
+import Paragraph from './text/Paragraph';
+import Friend from '../components/buttons/Friend';
+import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = store.getState();
     store.subscribe(() => {
-      this.state = store.getState();
+      this.setState(store.getState());
+      // console.log(this.state);
     });
+  }
+
+  navSwitch = () => {
+    // console.log('hm');
+    if (this.state.session) {
+      return (
+        <div>
+          <h2>You is logged in.</h2>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <Login />
+      </div>
+    );
   }
 
   render() {
     return (
       <div align="center">
-        <h5>Lyrics</h5>
+        {this.navSwitch()}
+        <h3>Lyrics</h3>
         <Paragraph text={this.state.text} />
         <Friend />
+        <br /><br />
+        <ThesaurusForm />
       </div>
     );
   }

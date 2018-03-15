@@ -3,20 +3,22 @@ import authRouter from '../controllers/auth/authRouter';
 import userRouter from '../controllers/user/userRouter';
 import contentRouter from '../controllers/content/contentRouter';
 import voteRouter from '../controllers/vote/voteRouter';
+import wordsapiRouter from '../controllers/wordsapi/wordsapiRouter';
 
 const router = express.Router();
 
 router
   .use('/auth', authRouter)
-  // .use((req, res, next) => {
-  //   if (req.isAuthenticated()) {
-  //     next();
-  //   } else {
-  //     res.status(403).end('You must be logged in to do this!');
-  //   }
-  // })
+  /* .use((req, res, next) => {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.status(403).end('You must be logged in to do this!');
+    }
+  }) */
   .use('/user', userRouter)
   .use('/content', contentRouter)
-  .use('/vote', voteRouter);
+  .use('/vote', voteRouter)
+  .use('/word', wordsapiRouter);
 
 export default router;

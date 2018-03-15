@@ -25,9 +25,13 @@ router.route('/login')
       password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/), // Password must be alphanumeric and between 3 and 30 characters in length, inclusive.
     },
   }), passport.authenticate('local'), (req, res) => {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
-    res.status(200).end('Logged in!');
+    // console.log(req.user);
+    // console.log(req.isAuthenticated());
+    if (req.isAuthenticated()) {
+      res.status(200).end('Logged in!');
+    } else {
+      res.status(400).end('Invalid authentication!');
+    }
   });
 
 export default router;
