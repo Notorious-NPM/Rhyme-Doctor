@@ -1,5 +1,5 @@
 import express from 'express';
-import { createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl } from './contentCtrl';
+import { getPostsCtrl, createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl } from './contentCtrl';
 
 const router = express.Router();
 
@@ -8,6 +8,9 @@ router.route('/createpost')
 
 router.route('/deletePost')
   .delete(deletePostCtrl);
+
+router.route('/posts')
+  .get(getPostsCtrl);
 
 router.route('/comment')
   .post(commentCtrl);

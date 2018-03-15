@@ -6,6 +6,9 @@ import Paragraph from './text/Paragraph';
 import Friend from '../components/buttons/Friend';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
 
+import RapPost from './rap-post/RapPost.jsx';
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -39,6 +42,7 @@ class App extends React.Component {
         <h3>Lyrics</h3>
         <Paragraph text={this.state.text} />
         <Friend />
+        <RapPost />
         <br /><br />
         <ThesaurusForm />
       </div>
