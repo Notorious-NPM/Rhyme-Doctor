@@ -20,7 +20,7 @@ passport.use(new LocalStrategy({
     where: {
       name: username,
     },
-  }).then((users) => {
+  }).then((users) => { // eslint-disable-line
     if (users.length > 0) {
       bcrypt.compare(password, users[0].dataValues.password, (err, res) => {
         if (res) {
@@ -47,8 +47,8 @@ passport.deserializeUser((user, done) => {
 });
 
 router.route('/login')
-  .post(validate(userpass), passport.authenticate('local', { failWithError: true }), (req, res, next) =>
-    res.status(200).end(req.message), (err, req, res, next) =>
+  .post(validate(userpass), passport.authenticate('local', { failWithError: true }), (req, res, next) => // eslint-disable-line
+    res.status(200).end(req.message), (err, req, res, next) => // eslint-disable-line
     res.status(400).end(req.message));
 
 router.route('/logout')
