@@ -4,6 +4,7 @@ import store from '../redux/store';
 import Login from './top/Login';
 import Paragraph from './text/Paragraph';
 import Friend from '../components/buttons/Friend';
+import ThesaurusForm from './thesaurus/ThesaurusForm.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,7 +38,12 @@ class App extends React.Component {
         {this.navSwitch()}
         <h3>Lyrics</h3>
         <Paragraph text={this.state.text} />
+<<<<<<< HEAD
         <Friend />
+=======
+        <br /><br />
+        <ThesaurusForm />
+>>>>>>> Create Thesaurus component folder with form & list
       </div>
     );
   }
