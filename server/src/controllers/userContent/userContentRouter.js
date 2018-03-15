@@ -1,9 +1,9 @@
 import express from 'express';
-import { getUserPostsCtrl } from './userContentCtrl';
+import getUserPostsCtrl from './userContentCtrl';
 
 const router = express.Router();
 
-router.route('/:user_id')
+router.route('/:userId')
   .get(getUserPostsCtrl);
 
 // router.route('/signup')

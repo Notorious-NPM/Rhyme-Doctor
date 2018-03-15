@@ -1,12 +1,9 @@
-import Sequelize from 'sequelize';
-import Rap_Post from '../models/rap_post';
+import rapPost from '../models/rap_post';
 import User from '../models/user';
 
-const { Op } = Sequelize;
-
-const getUserPostsHelper = ({ user_id }) => Rap_Post.findAll({
-  where: { user_id },
+const getUserPostsHelper = ({ userId }) => rapPost.findAll({
+  where: { user_id: userId },
   include: [User],
 });
 
-export { getUserPostsHelper };
+export default getUserPostsHelper;
