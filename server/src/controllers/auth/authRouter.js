@@ -1,5 +1,3 @@
-/* globals LocalStrategy */
-
 import Joi from 'joi';
 import express from 'express';
 import passport from 'passport';
@@ -27,10 +25,9 @@ router.route('/login')
       password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/), // Password must be alphanumeric and between 3 and 30 characters in length, inclusive.
     },
   }), passport.authenticate('local'), (req, res) => {
-    req.session.regenerate(() => {
-      req.session.user = 'admin';
-      res.status(200).end('Logged in!');
-    });
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    res.status(200).end('Logged in!');
   });
 
 export default router;
