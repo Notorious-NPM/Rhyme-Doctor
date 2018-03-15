@@ -1,3 +1,5 @@
+/* eslint-disable no-else-return */
+
 import express from 'express';
 import passport from 'passport';
 import validate from 'express-validation';
@@ -20,20 +22,19 @@ passport.use(new LocalStrategy({
     },
   }).then((users) => {
     if (users.length > 0) {
-      console.log(users[0].dataValues);
       bcrypt.compare(password, users[0].dataValues.password, (err, res) => {
-        console.log(res);
         if (res) {
           req.message = `Successfully signed in as: ${users[0].dataValues.name}`;
-          console.log(req.message);
           return done(null, { username: users[0].dataValues.name });
+        } else {
+          req.message = 'Incorrect password!';
+          return done(null, false);
         }
-        req.message = 'Incorrect password!';
-        return done(null, false);
       });
+    } else {
+      req.message = 'No user with that username.';
+      return done(null, false);
     }
-    req.message = 'No user with that username.';
-    return done(null, false);
   });
 }));
 
@@ -47,13 +48,8 @@ passport.deserializeUser((user, done) => {
 
 router.route('/login')
   .post(validate(userpass), passport.authenticate('local'), (req, res) => {
-    console.log(req.isAuthenticated());
-    if (req.isAuthenticated()) {
-      console.log(req.message);
-      res.status(200).end(req.message);
-    } else {
-      res.status(400).end(req.message);
-    }
+    const status = req.isAuthenticated() ? 200 : 400;
+    res.status(status).end(req.message);
   });
 
 router.route('/logout')
