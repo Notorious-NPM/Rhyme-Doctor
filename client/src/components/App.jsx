@@ -4,6 +4,7 @@ import store from '../redux/store';
 import Login from './top/Login';
 import Paragraph from './text/Paragraph';
 import Friend from '../components/buttons/Friend';
+import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
 
 class App extends React.Component {
   constructor(props) {
@@ -38,6 +39,8 @@ class App extends React.Component {
         <h3>Lyrics</h3>
         <Paragraph text={this.state.text} />
         <Friend />
+        <br /><br />
+        <ThesaurusForm />
       </div>
     );
   }
