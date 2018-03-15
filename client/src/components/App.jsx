@@ -20,13 +20,13 @@ class App extends React.Component {
     // console.log('hm');
     if (this.state.session) {
       return (
-        <div>
+        <div className="row">
           <h2>You is logged in.</h2>
         </div>
       );
     }
     return (
-      <div>
+      <div className="row">
         <Login />
       </div>
     );
@@ -34,11 +34,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <div align="center">
+      <div>
         {this.navSwitch()}
-        <h3>Lyrics</h3>
-        <Paragraph text={this.state.text} />
-        <Textarea />
+        <div className="row">
+          <div
+            className="col text-center"
+            style={{
+              float: 'none',
+              margin: '0 auto',
+            }}
+          ><h3>Lyrics</h3>
+          </div>
+        </div>
+        <div className="row">
+          <Textarea />
+          <Paragraph text={this.state.text} />
+        </div>
         <Friend />
       </div>
     );

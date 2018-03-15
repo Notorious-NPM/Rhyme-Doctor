@@ -19,6 +19,7 @@ const changeHandler = (e) => {
 
 const Textarea = () => (
   <textarea
+    className="col form-control"
     id="lyrics"
     style={style}
     onChange={changeHandler}
