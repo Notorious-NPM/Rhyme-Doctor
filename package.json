@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack -w",
     "start": "node server/bin/entry.js",
+    "demon": "nodemon server/bin/entry.js",
     "test": "jest"
   },
   "author": "",
