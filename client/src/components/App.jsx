@@ -5,7 +5,6 @@ import Login from './top/Login';
 import Paragraph from './text/Paragraph';
 import Friend from '../components/buttons/Friend';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RapPost from './rap-post/RapPost.jsx';
 import Navbar from './navbar';
 
@@ -37,18 +36,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <div align="center">
-          <Navbar />
-          {this.navSwitch()}
-          <h3>Lyrics</h3>
-          <Paragraph text={this.state.text} />
-          <Friend />
-          <br /><br />
-          <ThesaurusForm />
-          <RapPost />
-        </div>
-      </MuiThemeProvider>
+      <div align="center">
+        <Navbar />
+        {this.navSwitch()}
+        <h3>Lyrics</h3>
+        <Paragraph text={this.state.text} />
+        <Friend />
+        <br /><br />
+        <ThesaurusForm />
+        <RapPost />
+      </div>
     );
   }
 }
