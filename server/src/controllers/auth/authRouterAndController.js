@@ -11,21 +11,29 @@ import userpass from './formValidation';
 const LocalStrategy = local.Strategy;
 const router = express.Router();
 
-passport.use(new LocalStrategy((username, password, done) => {
+passport.use(new LocalStrategy({
+  passReqToCallback: true,
+}, (req, username, password, done) => {
   User.findAll({
     where: {
       name: username,
     },
   }).then((users) => {
     if (users.length > 0) {
-      bcrypt.compare(password, users[0].password, (err, res) => {
+      console.log(users[0].dataValues);
+      bcrypt.compare(password, users[0].dataValues.password, (err, res) => {
+        console.log(res);
         if (res) {
-          return done(null, { username: users[0].name });
+          req.message = `Successfully signed in as: ${users[0].dataValues.name}`;
+          console.log(req.message);
+          return done(null, { username: users[0].dataValues.name });
         }
-        return done(null, false, { message: 'Incorrect password!' });
+        req.message = 'Incorrect password!';
+        return done(null, false);
       });
     }
-    return done(null, false, { message: 'No user with that username.' });
+    req.message = 'No user with that username.';
+    return done(null, false);
   });
 }));
 
@@ -38,11 +46,15 @@ passport.deserializeUser((user, done) => {
 });
 
 router.route('/login')
-  .post(validate(userpass), passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/',
-    failureFlash: true,
-  }));
+  .post(validate(userpass), passport.authenticate('local'), (req, res) => {
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()) {
+      console.log(req.message);
+      res.status(200).end(req.message);
+    } else {
+      res.status(400).end(req.message);
+    }
+  });
 
 router.route('/logout')
   .post((req, res) => {
@@ -51,7 +63,7 @@ router.route('/logout')
   });
 
 router.route('/signup')
-  .post(validate(userpass), (req, res, next) => {
+  .post(validate(userpass), (req, res) => {
     const { username, password } = req.body;
     User.findAll({
       where: {
@@ -66,17 +78,19 @@ router.route('/signup')
             User.create({
               name: username,
               password: hash,
-            }).then(() => {
-              next();
+            }).then((user) => {
+              req.login(user, (err) => { // eslint-disable-line
+                if (err) {
+                  res.status(500).end('Something went wrong with our authentication.');
+                } else {
+                  res.status(201).end(`Signed up as: ${user.name}`);
+                }
+              });
             });
           });
         });
       }
     });
-  }, passport.authenticate('local'), (req, res) => {
-    console.log('here');
-    console.log(res);
-    res.status(201).end(`Successfully signed up as: ${req.user.username}!`); // Hm...
   });
 
 export default router;
