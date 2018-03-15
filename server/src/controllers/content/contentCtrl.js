@@ -1,3 +1,6 @@
+import Rap_Post from '../../database/models/rap_post.js';
+import User from '../../database/models/user.js';
+
 // Need DB helpers
 
 const createPostCtrl = () => {
@@ -21,4 +24,12 @@ const reportCtrl = () => {
   // reports posts based on id
 };
 
-export { createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl };
+const getPostsCtrl = (req, res) => {
+  // Gets all rap posts. Joins user table to get associated data.
+  Rap_Post.findAll({ include: [User] })
+    .then((rapPost) => {
+      res.status(200).send(rapPost);
+    });
+};
+
+export { createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl, getPostsCtrl };

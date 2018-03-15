@@ -3,8 +3,12 @@ import React from 'react';
 import store from '../redux/store';
 import Login from './top/Login';
 import Paragraph from './text/Paragraph';
+// import Friend from '../components/ButtonsAndTabs/Friend';
 import FriendsList from '../components/ButtonsAndTabs/FriendsList';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
+
+import RapPost from './rap-post/RapPost.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -38,6 +42,8 @@ class App extends React.Component {
         {this.navSwitch()}
         <h3>Lyrics</h3>
         <Paragraph text={this.state.text} />
+        {/* <Friend /> */}
+        <RapPost />
         <br /><br />
         <ThesaurusForm />
         <FriendsList />
