@@ -50,14 +50,8 @@ class App extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div align="center">
-        <Navbar />
-||||||| merged common ancestors
-      <div align="center">
-=======
       <div>
->>>>>>> master
+        <Navbar />
         {this.navSwitch()}
         <div className="row">
           <div
