@@ -1,0 +1,18 @@
+.home-navbar {
+  border-bottom: 3px solid whitesmoke;
+}
+
+.editor-navbar {
+  text-align: right;
+  height: 100%;
+  display: flex; }
+  .editor-navbar ul {
+    display: block;
+    padding: 0;
+    margin: auto; }
+    @media (min-width: 768px) {
+      .editor-navbar ul {
+        margin-right: 30px; } }
+  .editor-navbar ul li {
+    display: inline;
+    margin-left: 30px; }
