@@ -1,8 +1,8 @@
 import React from 'react';
 
-import store from '../redux/store.js';
-import Login from './top/Login.jsx';
-import Paragraph from './text/Paragraph.jsx';
+import store from '../redux/store';
+import Login from './top/Login';
+import Paragraph from './text/Paragraph';
 import Friend from '../components/Buttons/Friend';
 
 class App extends React.Component {
@@ -11,12 +11,12 @@ class App extends React.Component {
     this.state = store.getState();
     store.subscribe(() => {
       this.setState(store.getState());
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 
   navSwitch = () => {
-    console.log('hm');
+    // console.log('hm');
     if (this.state.session) {
       return (
         <div>
