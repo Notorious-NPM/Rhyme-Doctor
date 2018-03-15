@@ -6,7 +6,7 @@ import Line from './Line';
 const Paragraph = ({ text }) => {
   const lines = text.split('\n');
   return (
-    <div>
+    <div className="col">
       {lines.map((line, x) =>
         <Line key={x} line={line} x={x} />)
       }
