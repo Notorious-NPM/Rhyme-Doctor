@@ -28,7 +28,7 @@ class RapPost extends React.Component {
   }
 
   render() {
-    let rapPosts = this.state.rapPosts;
+    let rapPosts = this.state.rapPosts || [];
     return (
       <div align="center">
         {rapPosts.map((rapPost, i) => <RapPostEntry rapPost={rapPost} key={i} />)}
