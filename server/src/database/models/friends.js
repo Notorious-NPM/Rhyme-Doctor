@@ -3,6 +3,11 @@ const User = require('./user.js');
 const db = require('../');
 
 const Friends = db.define('friends', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
   userID: {
     type: Sequelize.INTEGER,
     foreignKey: true,

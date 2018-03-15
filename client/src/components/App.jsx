@@ -5,6 +5,9 @@ import Login from './top/Login';
 import Paragraph from './text/Paragraph';
 import Friend from './buttons/Friend';
 import Textarea from './textarea/Textarea';
+import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
+import RapPost from './rap-post/RapPost';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -12,12 +15,10 @@ class App extends React.Component {
     this.state = store.getState();
     store.subscribe(() => {
       this.setState(store.getState());
-      // console.log(this.state);
     });
   }
 
   navSwitch = () => {
-    // console.log('hm');
     if (this.state.session) {
       return (
         <div className="row center-block mx-auto">
@@ -72,6 +73,9 @@ class App extends React.Component {
           />
         </div>
         <Friend />
+        <RapPost />
+        <br /><br />
+        <ThesaurusForm />
       </div>
     );
   }

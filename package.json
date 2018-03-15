@@ -7,7 +7,9 @@
     "build": "webpack -w",
     "start": "node server/bin/entry.js",
     "demon": "nodemon server/bin/entry.js",
-    "test": "jest"
+    "test": "jest",
+    "start-db": "node server/src/database/setup.js",
+    "create-data": "node server/src/database/bin/fakeData.js"
   },
   "author": "",
   "license": "ISC",
