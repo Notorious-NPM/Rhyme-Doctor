@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
 class ThesaurusForm extends React.Component {
   constructor(props) {
     super(props);
@@ -31,11 +30,15 @@ class ThesaurusForm extends React.Component {
 
   render() {
     return (
-    <form>
-      Find me a word:<br/>
-      <input type="text" name="word" onChange={e => this.onChange(e)}></input><br/>
-      <input type="submit" onClick={(e) => this.searchWord(e)}></input>
-    </form>
+    <div>
+      <form>
+        Find me a word:<br/>
+        <input type="text" name="word" onChange={e => this.onChange(e)}></input><br/>
+        <input type="submit" onClick={(e) => this.searchWord(e)}></input>
+      </form>
+      <div>{this.state.synonyms}
+      </div>
+    </div>
   );
   }
 }
