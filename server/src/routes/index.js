@@ -9,11 +9,11 @@ const router = express.Router();
 router
   .use('/auth', authRouter)
   .use((req, res, next) => {
-    // req.isAuthenicated() && next(); // eslint-disable-line
-    console.log(req.isAuthenticated);
-    console.log(req.user);
-    'user' in req && next(); // eslint-disable-line
-    res.status(403).end('You must be logged in to do this!');
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.status(403).end('You must be logged in to do this!');
+    }
   })
   .use('/user', userRouter)
   .use('/content', contentRouter)
