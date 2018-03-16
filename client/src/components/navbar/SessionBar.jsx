@@ -1,7 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import $ from 'jquery';
+
+import store from '../../redux/store';
+
+const logout = () => {
+  $.ajax({
+    url: '/api/auth/logout',
+    method: 'POST',
+    success() {
+      store.dispatch({ type: 'sessionlogout' });
+    },
+  });
+};
 
 const SessionBar = () => (
   <div>
@@ -34,7 +47,7 @@ const SessionBar = () => (
             <a className="nav-link" href="#">Signout</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Logout</a>
+            <a onClick={logout} className="nav-link" /* eslint-disable-line */ >Logout</a>
           </li>
         </ul>
       </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import store from '../redux/store';
 import Login from './top/Login';
+import Signup from './top/Signup';
 /* import Paragraph from './text/Paragraph';
 import Friend from './buttons/Friend';
 import Textarea from './textarea/Textarea';
@@ -12,8 +12,6 @@ import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
 import RapPost from './rap-post/RapPost'; */
 import Navbar from './navbar';
 import Home from './home';
-
-const history = createHistory();
 
 class App extends React.Component {
   constructor(props) {
@@ -82,6 +80,7 @@ class App extends React.Component {
           <Navbar /* history={history} */ />
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
         </div>
       </Router>
     );
