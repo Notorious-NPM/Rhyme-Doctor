@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 import store from '../redux/store';
 import Login from './top/Login';
@@ -6,10 +7,9 @@ import Paragraph from './text/Paragraph';
 import Friend from './buttons/Friend';
 import Textarea from './textarea/Textarea';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
-import RapPost from './rap-post/RapPost.jsx';
+import RapPost from './rap-post/RapPost';
 import Navbar from './navbar';
 import FriendChat from '../components/buttons/FriendChat';
-
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +17,20 @@ class App extends React.Component {
     this.state = store.getState();
     store.subscribe(() => {
       this.setState(store.getState());
+    });
+  }
+
+  componentDidMount() {
+    $.ajax({
+      method: 'GET',
+      url: '/api/auth/loggedin',
+      success(response) {
+        if (response === 'true') {
+          store.dispatch({
+            type: 'sessionlogin',
+          });
+        }
+      },
     });
   }
 

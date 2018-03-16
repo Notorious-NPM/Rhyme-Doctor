@@ -25,7 +25,7 @@ passport.use(new LocalStrategy({
       bcrypt.compare(password, users[0].dataValues.password, (err, res) => {
         if (res) {
           req.message = `Successfully signed in as: ${users[0].dataValues.name}`;
-          return done(null, { username: users[0].dataValues.name });
+          return done(null, { username: users[0].dataValues.name, id: users[0].dataValues.id });
         } else {
           req.message = 'Incorrect password!';
           return done(null, false);
@@ -45,6 +45,11 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+
+router.route('/loggedin')
+  .get((req, res) => {
+    res.status(200).end(req.isAuthenticated().toString());
+  });
 
 router.route('/login')
   .post(validate(userpass), passport.authenticate('local', { failWithError: true }), (req, res, next) => // eslint-disable-line
