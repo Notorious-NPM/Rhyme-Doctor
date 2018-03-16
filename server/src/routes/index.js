@@ -11,7 +11,7 @@ const router = express.Router();
 
 router
   .use('/auth', authRouter)
-  .use(gateway)
+  // .use(gateway)
   .use('/user', userRouter)
   .use('/content', contentRouter)
   .use('/vote', voteRouter)
