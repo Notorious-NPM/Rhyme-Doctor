@@ -1,7 +1,24 @@
-// need DB helpers
+import User from '../../database/models/user';
+import UserLike from '../../database/models/user_like';
+import RapPost from '../../database/models/rap_post';
 
-const upvoteCtrl = (req, res) => {
-  res.status(201).end('Woo voted!');
+
+const upvoteCtrl = async (req, res) => {
+  // Check to see if user already liked post
+  const [_, created] = await UserLike.findOrCreate({
+    where: {
+      user_id: req.user.id,
+      rap_post_id: req.body.rapPostId,
+    },
+  });
+
+  if (!created) {
+    res.status(409).send(JSON.stringify('Already liked'));
+  } else {
+    const rapPost = await RapPost.findById(Number(req.body.rapPostId));
+    rapPost.increment('like_count', { by: 1 });
+    res.status(201).send(JSON.stringify('Success!'));
+  }
 };
 
 const downvoteCtrl = () => {
