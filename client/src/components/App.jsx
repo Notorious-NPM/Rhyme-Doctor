@@ -1,6 +1,10 @@
 import React from 'react';
+<<<<<<< HEAD
 import $ from 'jquery';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+=======
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+>>>>>>> Routing to user profile page
 
 import store from '../redux/store';
 import Login from './top/Login';
@@ -8,10 +12,19 @@ import Signup from './top/Signup';
 /* import Paragraph from './text/Paragraph';
 import Friend from './buttons/Friend';
 import Textarea from './textarea/Textarea';
+<<<<<<< HEAD
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm'; */
 import RapPost from './rap-post/RapPost';
 import Navbar from './navbar';
 import Home from './home';
+=======
+import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
+import Navbar from './navbar';
+import RapPost from './rap-post/RapPost';
+import Profile from './user/Profile';
+import ProfileButton from './buttons/Profile';
+
+>>>>>>> Routing to user profile page
 
 class App extends React.Component {
   constructor(props) {
