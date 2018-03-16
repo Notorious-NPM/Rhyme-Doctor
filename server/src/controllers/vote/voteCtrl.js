@@ -7,7 +7,7 @@ const upvoteCtrl = async (req, res) => {
   // Check to see if user already liked post
   const [_, created] = await UserLike.findOrCreate({
     where: {
-      user_id: req.body.userId,
+      user_id: req.user.id,
       rap_post_id: req.body.rapPostId,
     },
   });
