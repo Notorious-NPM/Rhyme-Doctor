@@ -1,10 +1,14 @@
 import React from 'react';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import $ from 'jquery';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 =======
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 >>>>>>> Routing to user profile page
+=======
+import { BrowserRouter, Route } from 'react-router-dom';
+>>>>>>> Update user model to have like_count cache & updated fake data
 
 import store from '../redux/store';
 import Login from './top/Login';
@@ -19,8 +23,8 @@ import Navbar from './navbar';
 import Home from './home';
 =======
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
-import Navbar from './navbar';
 import RapPost from './rap-post/RapPost';
+import Navbar from './navbar';
 import Profile from './user/Profile';
 import ProfileButton from './buttons/Profile';
 

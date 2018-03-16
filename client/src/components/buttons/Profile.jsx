@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ProfileButton = () => (
   <Link id="profile" className="item" to="/profile">
-  Profile
+    Profile
   </Link>
 );
 

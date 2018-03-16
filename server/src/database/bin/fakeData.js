@@ -14,26 +14,32 @@ const usersData = [
   {
     name: 'bob',
     password: '1234',
+    like_count: '3',
   },
   {
     name: 'carol',
     password: '123',
+    like_count: '0',
   },
   {
     name: 'ben',
     password: '1234fd',
+    like_count: '0',
   },
   {
     name: 'carl',
     password: '1234as',
+    like_count: '0',
   },
   {
     name: 'jen',
     password: '1234we',
+    like_count: '0',
   },
   {
     name: 'Samuel Hong',
     password: '1234qwe',
+    like_count: '0',
   },
 ];
 
