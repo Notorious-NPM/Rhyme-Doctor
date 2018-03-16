@@ -52,32 +52,34 @@ class App extends React.Component {
     return (
       <div>
         <Navbar />
-        {this.navSwitch()}
-        <div className="row">
-          <div
-            className="col text-center"
-            style={{
-              float: 'none',
-              margin: '0 auto',
-            }}
-          ><h3>Lyrics</h3>
+        <div className="container-fluid">
+          {this.navSwitch()}
+          <div className="row">
+            <div
+              className="col text-center"
+              style={{
+                float: 'none',
+                margin: '0 auto',
+              }}
+            ><h3>Lyrics</h3>
+            </div>
           </div>
+          <div className="row">
+            <Textarea />
+            <Paragraph
+              className="text-center"
+              style={{
+                float: 'none',
+                margin: '0 auto',
+              }}
+              text={this.state.text}
+            />
+          </div>
+          <Friend />
+          <br /><br />
+          <ThesaurusForm />
+          <RapPost />
         </div>
-        <div className="row">
-          <Textarea />
-          <Paragraph
-            className="text-center"
-            style={{
-              float: 'none',
-              margin: '0 auto',
-            }}
-            text={this.state.text}
-          />
-        </div>
-        <Friend />
-        <br /><br />
-        <ThesaurusForm />
-        <RapPost />
       </div>
     );
   }
