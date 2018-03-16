@@ -3,11 +3,15 @@ import Friends from '../models/friends';
 
 const { Op } = Sequelize;
 
-const addFriendHelper = ({ userID, friendID }) =>
-  Friends.create({
+const addFriendHelper = ({ userID, friendID }) => {
+  const roomID = (Math.random() * 100000).toString();
+
+  return Friends.create({
     userID,
     friendID,
+    roomID,
   });
+};
 
 const queryFriendHelper = ({ userID }) => {
   userID = Number(userID); // eslint-disable-line

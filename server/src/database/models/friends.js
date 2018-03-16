@@ -16,6 +16,10 @@ const Friends = db.define('friends', {
     type: Sequelize.INTEGER,
     foreignKey: true,
   },
+  roomID: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
 }, {
   underscored: true,
 });
