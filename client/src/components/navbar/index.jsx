@@ -8,10 +8,10 @@ const Navbar = () => {
         <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">Home</a>
+              <a className="nav-link" href="/home">Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Top/News Feed</a>
+              <a className="nav-link" href="/feed">Top/News Feed</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Profile</a>
@@ -30,10 +30,10 @@ const Navbar = () => {
         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">Signout</a>
+              <a className="nav-link" href="/signout">Signout</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Logout</a>
+              <a className="nav-link" href="/logout">Logout</a>
             </li>
           </ul>
         </div>
