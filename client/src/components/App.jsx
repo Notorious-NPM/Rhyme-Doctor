@@ -1,14 +1,19 @@
 import React from 'react';
 import $ from 'jquery';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 
 import store from '../redux/store';
 import Login from './top/Login';
-import Paragraph from './text/Paragraph';
+/* import Paragraph from './text/Paragraph';
 import Friend from './buttons/Friend';
 import Textarea from './textarea/Textarea';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
-import RapPost from './rap-post/RapPost';
+import RapPost from './rap-post/RapPost'; */
 import Navbar from './navbar';
+import Home from './home';
+
+const history = createHistory();
 
 class App extends React.Component {
   constructor(props) {
@@ -33,7 +38,7 @@ class App extends React.Component {
     });
   }
 
-  navSwitch = () => {
+  /* navSwitch = () => {
     if (this.state.session) {
       return (
         <div className="row center-block mx-auto">
@@ -60,41 +65,25 @@ class App extends React.Component {
         </div>
       </div>
     );
-  }
+  } */
 
   render() {
     return (
-      <div>
-        <Navbar />
-        <div className="container-fluid">
-          {this.navSwitch()}
-          <div className="row">
-            <div
-              className="col text-center"
-              style={{
-                float: 'none',
-                margin: '0 auto',
-              }}
-            ><h3>Lyrics</h3>
-            </div>
-          </div>
-          <div className="row">
-            <Textarea />
-            <Paragraph
-              className="text-center"
-              style={{
-                float: 'none',
-                margin: '0 auto',
-              }}
-              text={this.state.text}
-            />
-          </div>
-          <Friend />
-          <br /><br />
-          <ThesaurusForm />
-          <RapPost />
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </ul>
+          <Navbar history={history} />
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
         </div>
-      </div>
+      </Router>
     );
   }
 }

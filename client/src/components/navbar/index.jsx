@@ -1,14 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './navbar.css';
 
-const Navbar = () => {
+const Navbar = (/* { history } */) => {
   return (
     <div>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">Home</a>
+              {/* <a onCLick={() => history.push('/')} className="nav-link" href="#">Home</a> */}
+              <Link className="nav-link" to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              {/* <a onCLick={() => history.push('/login')} className="nav-link" href="#">Login</a> */}
+              <Link className="nav-link" to="/login">Login</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Top/News Feed</a>
