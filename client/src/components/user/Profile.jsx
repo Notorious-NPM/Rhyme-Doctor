@@ -1,10 +1,14 @@
 import React from 'react';
-import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import UserPosts from './UserPosts';
 
-const Profile = () => (
-  <div>
-      Meow
-  </div>
-);
+class Profile extends React.Component {
+  render() {
+    return (
+      <div>
+        <UserPosts />
+      </div>
+    );
+  }
+}
 
 export default Profile;
