@@ -10,6 +10,7 @@ class RapPost extends React.Component {
     store.subscribe(() => {
       this.state = store.getState();
     });
+    this.getRapPosts = this.getRapPosts.bind(this);
   }
 
   componentDidMount = () => {
@@ -31,7 +32,11 @@ class RapPost extends React.Component {
     let rapPosts = this.state.rapPosts || [];
     return (
       <div align="center">
-        {rapPosts.map((rapPost, i) => <RapPostEntry rapPost={rapPost} key={i} />)}
+        {rapPosts.map((rapPost, i) => (<RapPostEntry
+          rapPost={rapPost}
+          key={i}
+          getRapPosts={this.getRapPosts}
+        />))}
       </div>
     );
   }
