@@ -7,7 +7,7 @@ class FriendChat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userID: 1,
+      userID: 8,
       friendsList: {},
       socket: null,
       selectedChat: null,
@@ -15,12 +15,11 @@ class FriendChat extends Component {
   }
 
   // Notes:
-  // on click friend, create random string for user and clicked user and 
+  // on click friend, create random string for user and clicked user
 
   componentDidMount() {
-    // upon login, nav, and click this tab, send socket to let all users know you're online
     axios
-      .get(`/api/user/friend?userID=${1}`)
+      .get(`/api/user/friend`)
       .then(({ data }) => {
         const friendsList = {};
         data.forEach((friendship) => {
@@ -65,12 +64,6 @@ class FriendChat extends Component {
   showState() {
     console.log(this.state);
   }
-
-  // emitEvent() {
-  //   const { socket } = this.state;
-
-  //   socket.emit('client.enter');
-  // }
 
   render() {
     const { friendsList, userID, selectedChat } = this.state;

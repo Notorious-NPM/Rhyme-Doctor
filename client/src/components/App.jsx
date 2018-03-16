@@ -76,11 +76,11 @@ class App extends React.Component {
               text={this.state.text}
             />
           </div>
-          <Friend />
+          {/* <Friend /> */}
           <br /><br />
           <ThesaurusForm />
           {/* <RapPost /> */}
-          <FriendChat />
+          {this.state.session && <FriendChat />}
         </div>
       </div>
     );

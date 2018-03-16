@@ -20,9 +20,9 @@ class Chat extends Component {
       },
     });
 
-    await this.socket.on('server.sendMsg', (data) => {
-      console.log(data);
-      // this.setState({ messages: [...this.state.messages, data????]})
+    await this.socket.on('server.sendMsg', ({ msg }) => {
+      // console.log(data);
+      this.setState({ messages: [...this.state.messages, msg] });
     });
 
     this.setState({ socket: this.socket }) // eslint-disable-line
@@ -30,8 +30,6 @@ class Chat extends Component {
 
   sendMsg(e) {
     e.preventDefault();
-    console.log(this.state);
-    console.log(this.props);
     // this.setState({ messages: [...this.state.messages, this.state.msg] });
     const { userID } = this.props;
     const { socket } = this.state;
@@ -45,7 +43,6 @@ class Chat extends Component {
 
   updateMsg(e) {
     let msg = e.target.value;
-    msg = this.props.userID + msg;
     this.setState({ msg });
   }
 
@@ -56,8 +53,10 @@ class Chat extends Component {
 
       <div className="container">
         display chat here
-        {this.state.messages.map(msg =>
-          <div>{msg}</div>)}
+        <div className="chatDisplay">
+          {this.state.messages.map(msg =>
+            <div>{msg}</div>)}
+        </div>
         <br />
         <form onSubmit={e => this.sendMsg(e)}>
           <input type="text" onChange={e => this.updateMsg(e)} />
