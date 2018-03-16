@@ -9,6 +9,7 @@
     "demon": "nodemon server/bin/entry.js",
     "test": "jest",
     "start-db": "node server/src/database/setup.js",
+    "start-socket": "node socket-server/bin/entry.js",
     "create-data": "node server/src/database/bin/fakeData.js"
   },
   "author": "",
@@ -43,6 +44,8 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "sequelize": "^4.36.1",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11"
   },
