@@ -1,14 +1,6 @@
 // need DB helpers
 import { addFriendHelper, queryFriendHelper, unFriendHelper } from '../../database/dbHelpers/friendHelpers';
 
-const loginCtrl = () => {
-  // username/password exists ? return userinfo : declines request
-};
-
-const signupCtrl = () => {
-  // username/password exists ? declines request : registers and returns userinfo
-};
-
 const followCtrl = () => {
   // user/follow id exists ? declines request : registers follow request
 };
@@ -22,12 +14,14 @@ const addfriendCtrl = (req, res) => {
   // output: friendship object
   addFriendHelper(req.body)
     .then(result => res.status(201).send(result))
-    .catch(err => res.status(404).send(err));
+    .catch(err => res.status(201).send(err));
 };
 
 const queryfriendCtrl = (req, res) => {
   // input: user_id
   // output: all friendships array
+  console.log('reached query friend ctrl');
+  console.log(req.user.username); // name
   queryFriendHelper(req.query)
     .then(result => res.status(201).send(result))
     .catch(err => res.status(404).send(err));
@@ -41,8 +35,6 @@ const unfriendCtrl = (req, res) => {
 };
 
 export {
-  loginCtrl,
-  signupCtrl,
   followCtrl,
   unfollowCtrl,
   addfriendCtrl,
