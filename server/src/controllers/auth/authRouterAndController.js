@@ -25,7 +25,7 @@ passport.use(new LocalStrategy({
       bcrypt.compare(password, users[0].dataValues.password, (err, res) => {
         if (res) {
           req.message = `Successfully signed in as: ${users[0].dataValues.name}`;
-          return done(null, { username: users[0].dataValues.name });
+          return done(null, { username: users[0].dataValues.name, id: users[0].dataValues.id });
         } else {
           req.message = 'Incorrect password!';
           return done(null, false);

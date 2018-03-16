@@ -10,11 +10,11 @@ const style = {
 };
 
 const changeHandler = (e) => {
-  console.log(e.target.value);
+  // console.log(e.target.value);
   store.dispatch({
     type: 'changetext',
     body: {
-      text: $('#lyrics').val(),
+      text: e.target.value,
     },
   });
 };
