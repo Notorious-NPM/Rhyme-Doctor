@@ -71,15 +71,15 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <ul>
+          {/* <ul>
             <li>
               <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/login">Login</Link>
             </li>
-          </ul>
-          <Navbar history={history} />
+          </ul> */}
+          <Navbar /* history={history} */ />
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
         </div>
