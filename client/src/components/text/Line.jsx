@@ -5,6 +5,7 @@ import Word from './Word';
 
 const Line = ({ line, x }) => {
   line = line.split(' '); // eslint-disable-line
+  console.log(line);
   return (
     <div>
       {line.map((word, y) =>
