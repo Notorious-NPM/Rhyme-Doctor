@@ -5,10 +5,9 @@ import Login from './top/Login';
 import Paragraph from './text/Paragraph';
 // import Friend from '../components/ButtonsAndTabs/Friend';
 import FriendsList from '../components/ButtonsAndTabs/FriendsList';
+import Textarea from './textarea/Textarea';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
-
-// import RapPost from './rap-post/RapPost.jsx';
-
+import RapPost from './rap-post/RapPost';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,32 +15,63 @@ class App extends React.Component {
     this.state = store.getState();
     store.subscribe(() => {
       this.setState(store.getState());
-      // console.log(this.state);
     });
   }
 
   navSwitch = () => {
-    // console.log('hm');
     if (this.state.session) {
       return (
-        <div>
-          <h2>You is logged in.</h2>
+        <div className="row center-block mx-auto">
+          <div
+            className="col text-center"
+            style={{
+              float: 'none',
+              margin: '0 auto',
+            }}
+          ><h2>You is logged in.</h2>
+          </div>
         </div>
       );
     }
     return (
-      <div>
-        <Login />
+      <div className="row center-block mx-auto">
+        <div
+          className="col-md-2 text-center"
+          style={{
+            float: 'none',
+            margin: '0 auto',
+          }}
+        ><Login />
+        </div>
       </div>
     );
   }
 
   render() {
     return (
-      <div align="center">
+      <div>
         {this.navSwitch()}
-        <h3>Lyrics</h3>
-        <Paragraph text={this.state.text} />
+        <div className="row">
+          <div
+            className="col text-center"
+            style={{
+              float: 'none',
+              margin: '0 auto',
+            }}
+          ><h3>Lyrics</h3>
+          </div>
+        </div>
+        <div className="row">
+          <Textarea />
+          <Paragraph
+            className="text-center"
+            style={{
+              float: 'none',
+              margin: '0 auto',
+            }}
+            text={this.state.text}
+          />
+        </div>
         {/* <Friend /> */}
         {/* <RapPost /> */}
         <br /><br />
