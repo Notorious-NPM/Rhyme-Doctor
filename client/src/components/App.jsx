@@ -6,7 +6,8 @@ import Paragraph from './text/Paragraph';
 import Friend from './buttons/Friend';
 import Textarea from './textarea/Textarea';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
-import RapPost from './rap-post/RapPost';
+import RapPost from './rap-post/RapPost.jsx';
+import Navbar from './navbar';
 
 
 class App extends React.Component {
@@ -50,32 +51,35 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.navSwitch()}
-        <div className="row">
-          <div
-            className="col text-center"
-            style={{
-              float: 'none',
-              margin: '0 auto',
-            }}
-          ><h3>Lyrics</h3>
+        <Navbar />
+        <div className="container-fluid">
+          {this.navSwitch()}
+          <div className="row">
+            <div
+              className="col text-center"
+              style={{
+                float: 'none',
+                margin: '0 auto',
+              }}
+            ><h3>Lyrics</h3>
+            </div>
           </div>
+          <div className="row">
+            <Textarea />
+            <Paragraph
+              className="text-center"
+              style={{
+                float: 'none',
+                margin: '0 auto',
+              }}
+              text={this.state.text}
+            />
+          </div>
+          <Friend />
+          <br /><br />
+          <ThesaurusForm />
+          <RapPost />
         </div>
-        <div className="row">
-          <Textarea />
-          <Paragraph
-            className="text-center"
-            style={{
-              float: 'none',
-              margin: '0 auto',
-            }}
-            text={this.state.text}
-          />
-        </div>
-        <Friend />
-        <RapPost />
-        <br /><br />
-        <ThesaurusForm />
       </div>
     );
   }
