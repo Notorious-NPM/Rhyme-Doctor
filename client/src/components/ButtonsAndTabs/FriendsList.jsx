@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import io from 'socket.io';
 
 class FriendsList extends Component {
   constructor(props) {
@@ -9,6 +10,9 @@ class FriendsList extends Component {
       friendsList: {},
     };
   }
+
+  // Notes:
+  // on click friend, create random string for user and clicked user and 
 
   componentDidMount() {
     // upon login, nav, and click this tab, send socket to let all users know you're online
@@ -26,6 +30,20 @@ class FriendsList extends Component {
         this.setState({ friendsList }) // eslint-disable-line
       })
       .catch(err => console.log('Friend componentMount error: ', err));
+  }
+
+  createSocketConnection() {
+    const roomID = (Math.floor(Math.random() * 10000)).toString();
+
+    console.log(roomID);
+    console.log(typeof roomID);
+
+    this.socket = io('http://localhost:3444',{
+      query: {
+        roomId: roomID,
+        title: 'friend chat',
+      },
+    });
   }
 
   showState() {
