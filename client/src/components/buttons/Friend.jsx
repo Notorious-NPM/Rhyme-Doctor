@@ -45,7 +45,7 @@ class Friend extends Component {
     axios[action]('/api/user/friend', payload)
       .then(result => console.log('result of ', action, ' request is: ', result))
       .catch(err => console.log(action, ' request error: ', err));
-    
+
     const { friendsList } = this.state;
     if (action === 'delete') {
       delete friendsList[selectedUserID];
