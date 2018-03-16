@@ -3,7 +3,7 @@ import getUserPostsCtrl from './userContentCtrl';
 
 const router = express.Router();
 
-router.route('/:userId')
+router.route('/')
   .get(getUserPostsCtrl);
 
 // router.route('/signup')
