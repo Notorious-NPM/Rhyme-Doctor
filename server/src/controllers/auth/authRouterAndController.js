@@ -46,6 +46,11 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
+router.route('/loggedin')
+  .get((req, res) => {
+    res.status(200).end(req.isAuthenticated().toString());
+  });
+
 router.route('/login')
   .post(validate(userpass), passport.authenticate('local', { failWithError: true }), (req, res, next) => // eslint-disable-line
     res.status(200).end(req.message), (err, req, res, next) => // eslint-disable-line

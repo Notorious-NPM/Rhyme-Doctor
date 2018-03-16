@@ -17,6 +17,11 @@ const Login = () => {
         store.dispatch({ type: 'sessionlogin' });
         console.log(res);
       },
+      error({ responseText }) {
+        console.log('yoyo');
+        // console.log(res);
+        alert(responseText); // eslint-disable-line
+      },
     });
   };
   return (

@@ -5,6 +5,8 @@ import store from '../../redux/store';
 
 const style = {
   // background: '#ffcc00',
+  // padding: '50px 50px 50px 50px',
+  margin: '20px 20px 20px 20px',
 };
 
 const changeHandler = (e) => {
