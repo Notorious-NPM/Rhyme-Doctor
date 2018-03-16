@@ -1,11 +1,16 @@
+import express from 'express';
 import http from 'http';
-import SocketIo from 'socket.io'; // eslint-disable-line
+import SocketIo from 'socket.io';
 
 import Rooms from './rooms';
 import clientEvents from './clientEvents';
 
-const server = http.createServer();
+const app = express();
+const server = http.createServer(app);
 const io = SocketIo(server);
+
+// the above should work
+
 const rooms = new Rooms(io);
 
 io.on('connection', (client) => {
