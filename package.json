@@ -9,7 +9,7 @@
     "demon": "nodemon server/bin/entry.js",
     "test": "jest",
     "start-db": "node server/src/database/setup.js",
-    "start-socket": "node socket-server/bin/entry.js",
+    "start-socket": "nodemon socket-server/bin/entry.js",
     "create-data": "node server/src/database/bin/fakeData.js"
   },
   "author": "",
