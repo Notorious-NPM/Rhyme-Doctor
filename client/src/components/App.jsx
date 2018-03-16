@@ -70,7 +70,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="container-fluid">
           {/* <ul>
             <li>
               <Link to="/">Home</Link>
