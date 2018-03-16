@@ -4,4 +4,10 @@ const serverEnterResponse = ({ io, room }, payload) => {
     .emit('server.enter', payload);
 };
 
-export { serverEnterResponse };
+const serverSendMsgResponse = ({ io, room }, payload) => {
+  io
+    .in(room.get('id'))
+    .emit('server.sendMsg', payload);
+};
+
+export { serverEnterResponse, serverSendMsgResponse };

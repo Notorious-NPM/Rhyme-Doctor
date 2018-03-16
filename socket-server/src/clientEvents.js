@@ -1,5 +1,6 @@
 import {
   serverEnterResponse,
+  serverSendMsgResponse,
 } from './serverEvents';
 
 const clientEnter = ({ io, room }, payload) => {
@@ -11,8 +12,18 @@ const clientEnter = ({ io, room }, payload) => {
   }
 };
 
+const clientMsg = ({ io, room }, payload) => {
+  console.log('successfully heard client.Msg');
+  try {
+    serverSendMsgResponse({ io, room }, payload);
+  } catch (err) {
+    console.log('clientEnter error: ', err);
+  }
+};
+
 const clientEmitters = {
   'client.enter': clientEnter,
+  'client.sendMsg': clientMsg,
 };
 
 export default clientEmitters;
