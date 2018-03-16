@@ -8,6 +8,7 @@ import Textarea from './textarea/Textarea';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm';
 import RapPost from './rap-post/RapPost.jsx';
 import Navbar from './navbar';
+import FriendChat from '../components/buttons/FriendChat';
 
 
 class App extends React.Component {
@@ -78,7 +79,8 @@ class App extends React.Component {
           <Friend />
           <br /><br />
           <ThesaurusForm />
-          <RapPost />
+          {/* <RapPost /> */}
+          <FriendChat />
         </div>
       </div>
     );
