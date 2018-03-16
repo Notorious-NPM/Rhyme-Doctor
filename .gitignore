@@ -11,6 +11,7 @@ yarn-error.log
 
 # Webpack
 client/dist/bundle.js
+client/dist/1.bundle.js
 
 # Config
 config.js
