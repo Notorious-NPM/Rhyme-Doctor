@@ -1,3 +1,9 @@
+const startingText = func =>
+`function ${func}() {
+
+}
+`;
+
 export default class Rooms {
   constructor(io) {
     this.io = io;

@@ -1,5 +1,7 @@
-const FILL_ME_IN = () => {
-  // Place emitters here
+const serverEnterResponse = ({ io, room }, payload) => {
+  io
+    .in(room.get('id'))
+    .emit('server.enter', payload);
 };
 
-export default FILL_ME_IN;
+export { serverEnterResponse };
