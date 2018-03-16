@@ -13,15 +13,12 @@ const addFriendHelper = ({ userID, friendID }) => {
   });
 };
 
-const queryFriendHelper = ({ userID }) => {
-  userID = Number(userID); // eslint-disable-line
-
-  return Friends.findAll({
+const queryFriendHelper = userID =>
+  Friends.findAll({
     where: {
       [Op.or]: [{ userID }, { friendID: userID }],
     },
   });
-};
 
 const unFriendHelper = ({ userID, friendID }) => {
   Friends.destroy({

@@ -20,9 +20,7 @@ const addfriendCtrl = (req, res) => {
 const queryfriendCtrl = (req, res) => {
   // input: user_id
   // output: all friendships array
-  console.log('reached query friend ctrl');
-  console.log(req.user.username); // name
-  queryFriendHelper(req.query)
+  queryFriendHelper(req.user.id)
     .then(result => res.status(201).send(result))
     .catch(err => res.status(404).send(err));
 };
