@@ -10,6 +10,7 @@ const createPostCtrl = (req, res) => {
   Rap_Post.create({
     text: req.body.text,
     user_id: req.user.id,
+    username: req.user.username,
   }).then((lyrics) => {
     res.status(201).end(`Posted: ${lyrics.text.substr(0, 20)}... successfully!`);
   });
@@ -49,7 +50,7 @@ const getCommentsCtrl = async (req, res) => {
 
 const getPostsCtrl = async (req, res) => {
   // Gets all rap posts. Joins user table to get associated data.
-  const rapPost = await RapPost.findAll({ include: [User] });
+  const rapPost = await RapPost.findAll();
   res.status(200).send(rapPost);
 };
 

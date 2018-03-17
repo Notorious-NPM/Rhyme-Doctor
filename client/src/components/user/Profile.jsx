@@ -19,12 +19,12 @@ class Profile extends React.Component {
   getUserData = async () => {
     try {
       const userData = await axios.get('api/profile');
-      // console.log(userData.data.name);
-      this.setState({
-        userPosts: userData.data.rap_posts,
-        username: userData.data.name,
-        likeCount: userData.data.like_count,
-      });
+      console.log(userData);
+      // this.setState({
+      //   userPosts: userData.data.rap_posts,
+      //   username: userData.data.name,
+      //   likeCount: userData.data.like_count,
+      // });
     } catch (err) {
       console.log('Failed to get user posts');
     }

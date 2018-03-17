@@ -6,7 +6,12 @@ const getUserPostsHelper = ({ id }) => User.findOne({
   where: {
     id,
   },
-  include: [rapPost, User],
+  include: [{
+    model: rapPost,
+    include: [
+      User,
+    ],
+  }],
 });
 
 export default getUserPostsHelper;
