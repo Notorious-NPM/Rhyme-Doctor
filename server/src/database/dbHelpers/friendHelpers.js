@@ -42,7 +42,6 @@ const queryFriendHelper = userID =>
     }],
   });
 
-
 const unFriendHelper = (userID, friendID) => {
   Friends.destroy({
     where: {
