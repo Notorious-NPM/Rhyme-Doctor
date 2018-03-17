@@ -18,7 +18,6 @@ const Friends = db.define('friends', {
   },
   roomID: {
     type: Sequelize.STRING,
-    unique: true,
   },
 }, {
   underscored: true,
