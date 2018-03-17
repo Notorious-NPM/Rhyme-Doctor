@@ -1,5 +1,5 @@
 import express from 'express';
-import { getPostsCtrl, createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl } from './contentCtrl';
+import { getCommentsCtrl, getPostsCtrl, createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl } from './contentCtrl';
 
 const router = express.Router();
 
@@ -11,6 +11,9 @@ router.route('/deletePost')
 
 router.route('/posts')
   .get(getPostsCtrl);
+
+router.route('/comments/:rapPostId')
+  .get(getCommentsCtrl);
 
 router.route('/comment')
   .post(commentCtrl);
