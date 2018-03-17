@@ -58,7 +58,7 @@ class RapPostEntry extends React.Component {
       <div>
         <p>{this.props.rapPost.text}</p>
         <br />
-        <p>By {this.props.rapPost.user.name} | <button onClick={() => this.likeRapPost()}>Like</button> Like Count: {this.props.rapPost.like_count}</p>
+        <p>By {this.props.rapPost.username} | <button onClick={() => this.likeRapPost()}>Like</button> Like Count: {this.props.rapPost.like_count}</p>
         <br />
         <button onClick={() => this.getComments()}>Show Comments</button>
         {this.state.showComments ? <Comments
