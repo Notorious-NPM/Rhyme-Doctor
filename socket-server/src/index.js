@@ -1,11 +1,16 @@
+import express from 'express';
 import http from 'http';
-import SocketIo from 'socket.io'; // eslint-disable-line
+import SocketIo from 'socket.io';
 
 import Rooms from './rooms';
 import clientEvents from './clientEvents';
 
-const server = http.createServer();
+const app = express();
+const server = http.createServer(app);
 const io = SocketIo(server);
+
+// the above should work
+
 const rooms = new Rooms(io);
 
 io.on('connection', (client) => {
@@ -13,9 +18,10 @@ io.on('connection', (client) => {
   // connection takes in a roomId and roomName
   const { roomId, roomName } = client.handshake.query;
   const room = rooms.findOrCreate(roomId || 'default', roomName);
+  console.log(client.handshake.query);
   client.join(room.get('id'));
 
-  clientEvents.forEach((event) => {
+  Object.keys(clientEvents).forEach((event) => {
     client.on(event, clientEvents[event].bind(null, { io, client, room }));
   });
 });
