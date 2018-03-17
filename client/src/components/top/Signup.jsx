@@ -1,14 +1,16 @@
+/* Much DRY violations... */
+
 import React from 'react';
 import $ from 'jquery';
 
 import store from '../../redux/store';
 
-const Login = () => {
+const Signup = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     $.ajax({
       method: 'POST',
-      url: '/api/auth/login',
+      url: '/api/auth/signup',
       data: {
         username: $('#username').val(),
         password: $('#password').val(),
@@ -47,4 +49,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

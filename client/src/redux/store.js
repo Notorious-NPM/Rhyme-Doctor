@@ -43,6 +43,9 @@ const reducer = (state = {
     case 'sessionlogin':
       state.session = true;
       return state;
+    case 'sessionlogout':
+      state.session = false;
+      return state;
     case 'highlight':
       state[`${action.body.x}, ${action.body.y}`] = action.body.color;
       return state;
