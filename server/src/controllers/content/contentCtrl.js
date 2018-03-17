@@ -24,7 +24,7 @@ const commentCtrl = async (req, res) => {
   const { text, username, postId } = req.body;
   const user = await User.findOne({ where: { name: username } });
   const comment = await Comment.create({ user_id: user.dataValues.id, rap_post_id: postId, text: text });
-  res.status(204).send(comment);
+  res.status(201).send(comment);
 };
 
 const uncommentCtrl = () => {
