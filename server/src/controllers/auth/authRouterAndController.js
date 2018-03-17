@@ -33,7 +33,7 @@ passport.use(new LocalStrategy({
     }
   } else {
     req.message = 'No user with that username.';
-    return done(null, false);   
+    return done(null, false);
   }
 }));
 
