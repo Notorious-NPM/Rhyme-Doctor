@@ -8,6 +8,8 @@ class Profile extends React.Component {
     super();
     this.state = {
       userPosts: [],
+      username: '',
+      likeCount: '',
     };
   }
   componentDidMount() {
@@ -16,20 +18,22 @@ class Profile extends React.Component {
 
   getUserData = async () => {
     try {
-      const userPosts = await axios.get('api/profile');
+      const userData = await axios.get('api/profile');
+      // console.log(userData.data.name);
       this.setState({
-        userPosts: userPosts.data,
+        userPosts: userData.data.rap_posts,
+        username: userData.data.name,
+        likeCount: userData.data.like_count,
       });
-      console.log(this.state);
     } catch (err) {
-      alert('Failed to get user posts');
+      console.log('Failed to get user posts');
     }
   }
 
   render() {
     return (
       <div>
-        <Stats />
+        <Stats username={this.state.username} likeCount={this.state.likeCount} />
         <UserPosts userPosts={this.state.userPosts} />
       </div>
     );
