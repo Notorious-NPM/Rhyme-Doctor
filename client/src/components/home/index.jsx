@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
@@ -7,6 +8,22 @@ import store from '../../redux/store';
 const centerStyle = {
   float: 'none',
   margin: '0 auto',
+};
+
+const clickHandler = () => {
+  $.ajax({
+    method: 'POST',
+    url: '/api/content/post',
+    data: {
+      text: $('#lyrics').val(),
+    },
+    success(res) {
+      console.log(res);
+    },
+    error(res) {
+      alert(res); // eslint-disable-line
+    },
+  });
 };
 
 class Home extends React.Component {
@@ -30,6 +47,11 @@ class Home extends React.Component {
         <div className="row">
           <Textarea />
           <Paragraph className="text-center" style={centerStyle} text={this.state.text} />
+        </div>
+        <div className="row">
+          <div className="col-md-2">
+            <button className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
+          </div>
         </div>
       </div>
     );
