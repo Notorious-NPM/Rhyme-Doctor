@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.route('/')
   .get(getUserPostsCtrl);
+// .get(getUserStatsCtrl);
 
 // router.route('/signup')
 //   .post(signupCtrl);

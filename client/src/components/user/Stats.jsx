@@ -1,22 +1,24 @@
 import React from 'react';
 import axios from 'axios';
-import 
+
+import store from '../../redux/store';
 
 class Stats extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     likes: '',
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = store.getState();
+    store.subscribe(() => {
+      this.setState(store.getState());
+    });
+  }
 
   // componentDidMount() {
   //   this.getUserPosts();
   // }
 
-  // getUserLikes = async () => {
+  // getUserStats = async () => {
   //   try {
-  //     const userPosts = await axios.get('api/profile');
+  //     const userStats = await axios.get('api/profile');
   //     this.setState({
   //       userPosts: userPosts.data,
   //     });

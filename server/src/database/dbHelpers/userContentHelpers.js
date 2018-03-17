@@ -2,9 +2,9 @@ import rapPost from '../models/rap_post';
 import User from '../models/user';
 
 // Testing
-const getUserPostsHelper = () => rapPost.findAll({
+const getUserPostsHelper = ({ id }) => rapPost.findAll({
   where: {
-    user_id: 1,
+    user_id: id,
   },
   include: [User],
 });
