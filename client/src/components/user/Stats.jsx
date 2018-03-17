@@ -1,35 +1,37 @@
 import React from 'react';
 import axios from 'axios';
+import 
 
 class Stats extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      likes: '',
-    };
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     likes: '',
+  //   };
+  // }
 
-  componentDidMount() {
-    this.getUserPosts();
-  }
+  // componentDidMount() {
+  //   this.getUserPosts();
+  // }
 
-  getUserLikes = async () => {
-    try {
-      const userPosts = await axios.get('api/profile');
-      this.setState({
-        userPosts: userPosts.data,
-      });
-    } catch (err) {
-      alert('Failed to get user posts');
-    }
-  }
+  // getUserLikes = async () => {
+  //   try {
+  //     const userPosts = await axios.get('api/profile');
+  //     this.setState({
+  //       userPosts: userPosts.data,
+  //     });
+  //   } catch (err) {
+  //     alert('Failed to get user posts');
+  //   }
+  // }
 
   render() {
-    const userPosts = this.state.userPosts || [];
     return (
-      <div align="center">
-        {/* Hello */}
-        {userPosts.map((userPost, i) => <RapPostEntry rapPost={userPost} key={i} />)}
+      <div className="card">
+        <div className="container">
+          <h4><b>John Doe</b></h4>
+          <p>Architect & Engineer</p>
+        </div>
       </div>
     );
   }
