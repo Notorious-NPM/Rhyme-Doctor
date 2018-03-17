@@ -5,6 +5,7 @@ import RapPost from '../../database/models/rap_post';
 
 const upvoteCtrl = async (req, res) => {
   // Check to see if user already liked post
+  // res.send(console.log(req.body));
   const [_, created] = await UserLike.findOrCreate({
     where: {
       user_id: req.user.id,
