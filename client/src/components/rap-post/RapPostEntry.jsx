@@ -31,7 +31,6 @@ class RapPostEntry extends React.Component {
       'http://localhost:3000/api/vote/upvote',
       { rapPostId: this.props.rapPost.id },
     );
-    console.log(status.data);
     this.props.getRapPosts();
   }
 

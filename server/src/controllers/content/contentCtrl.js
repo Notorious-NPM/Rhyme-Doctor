@@ -50,9 +50,7 @@ const getCommentsCtrl = async (req, res) => {
 
 const getPostsCtrl = async (req, res) => {
   // Gets all rap posts. Joins user table to get associated data.
-  const rapPost = await RapPost.findAll({
-    attributes: { exclude: ['user_id'] },
-  });
+  const rapPost = await RapPost.findAll();
   res.status(200).send(rapPost);
 };
 

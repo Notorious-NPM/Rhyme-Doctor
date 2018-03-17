@@ -1,26 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-// import store from '../../redux/store';
+const Stats = props => (
+  <div className="card">
+    <div className="container">
+      <h4><b>{props.username}</b></h4>
+      <p>Likes: {props.likeCount}</p>
+    </div>
+  </div>
+);
 
-class Stats extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.state = store.getState();
-    // store.subscribe(() => {
-    //   this.setState(store.getState());
-    // });
-  }
-  
-  render() {
-    return (
-      <div className="card">
-        <div className="container">
-          <h4><b>{this.props.username}</b></h4>
-          <p>Likes: {this.props.likeCount}</p>
-        </div>
-      </div>
-    );
-  }
-}
+Stats.propTypes = {
+  username: PropTypes.string.isRequired,
+  likeCount: PropTypes.number.isRequired,
+};
 
 export default Stats;
