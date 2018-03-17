@@ -1,6 +1,7 @@
-import Rap_Post from '../../database/models/rap_post.js';
+import RapPost from '../../database/models/rap_post.js';
 import User from '../../database/models/user.js';
-
+import Comment from '../../database/models/comment.js';
+import sequelize from '../../database';
 // Need DB helpers
 
 const createPostCtrl = (req, res) => {
@@ -18,8 +19,12 @@ const deletePostCtrl = () => {
   // finds and deletes content
 };
 
-const commentCtrl = () => {
+const commentCtrl = async (req, res) => {
   // adds comment based on post id - no limit
+  const { text, username, postId } = req.body;
+  const user = await User.findOne({ where: { name: username } });
+  const comment = await Comment.create({ user_id: user.dataValues.id, rap_post_id: postId, text: text });
+  res.status(201).send(comment);
 };
 
 const uncommentCtrl = () => {
@@ -30,12 +35,30 @@ const reportCtrl = () => {
   // reports posts based on id
 };
 
-const getPostsCtrl = (req, res) => {
-  // Gets all rap posts. Joins user table to get associated data.
-  Rap_Post.findAll({ include: [User] })
-    .then((rapPost) => {
-      res.status(200).send(rapPost);
-    });
+const getCommentsCtrl = async (req, res) => {
+  // Gets comments for rap post.
+  const comments = await sequelize.query(
+    `select users.name, text
+    from comments join users
+    where users.id=user_id
+    and rap_post_id=${req.params.rapPostId}`,
+    { type: sequelize.QueryTypes.SELECT },
+  );
+  res.status(200).send(comments);
 };
 
-export { createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl, getPostsCtrl };
+const getPostsCtrl = async (req, res) => {
+  // Gets all rap posts. Joins user table to get associated data.
+  const rapPost = await RapPost.findAll({ include: [User] });
+  res.status(200).send(rapPost);
+};
+
+export {
+  getCommentsCtrl,
+  createPostCtrl,
+  deletePostCtrl,
+  commentCtrl,
+  uncommentCtrl,
+  reportCtrl,
+  getPostsCtrl,
+};

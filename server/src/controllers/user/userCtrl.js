@@ -1,14 +1,6 @@
 // need DB helpers
 import { addFriendHelper, queryFriendHelper, unFriendHelper } from '../../database/dbHelpers/friendHelpers';
 
-const loginCtrl = () => {
-  // username/password exists ? return userinfo : declines request
-};
-
-const signupCtrl = () => {
-  // username/password exists ? declines request : registers and returns userinfo
-};
-
 const followCtrl = () => {
   // user/follow id exists ? declines request : registers follow request
 };
@@ -18,31 +10,42 @@ const unfollowCtrl = () => {
 };
 
 const addfriendCtrl = (req, res) => {
-  // input: user_id and friend_id
-  // output: friendship object
-  addFriendHelper(req.body)
+  addFriendHelper(req.user.id, req.body.friendID)
     .then(result => res.status(201).send(result))
-    .catch(err => res.status(404).send(err));
+    .catch(err => res.status(201).send(err));
 };
 
 const queryfriendCtrl = (req, res) => {
-  // input: user_id
-  // output: all friendships array
-  queryFriendHelper(req.query)
-    .then(result => res.status(201).send(result))
-    .catch(err => res.status(404).send(err));
+  queryFriendHelper(req.user.id)
+    .then((results) => {
+      const friends = results.dataValues.friend;
+      const friendsArr = [];
+      friends.forEach(({ dataValues }) => {
+        const friendInfo = {};
+        // console.log('**: ', dataValues.friends.dataValues);
+        friendInfo.name = dataValues.name;
+        // friendInfo.friendID = dataValues.id;
+        friendInfo.roomID = dataValues.friends.dataValues.roomID;
+        friendsArr.push(friendInfo);
+      });
+      console.log('Friends array: ', friendsArr);
+      res.status(201).send(friendsArr);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send(err);
+    });
 };
 
 const unfriendCtrl = (req, res) => {
   // input: user_id and friend_id
   // output: 'success' string
-  unFriendHelper(req.body);
+
+  unFriendHelper(req.user.id, req.body.friendID);
   res.status(201).send('success');
 };
 
 export {
-  loginCtrl,
-  signupCtrl,
   followCtrl,
   unfollowCtrl,
   addfriendCtrl,

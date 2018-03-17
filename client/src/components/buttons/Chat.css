@@ -1,0 +1,16 @@
+.container {
+  border: 1px solid black;
+  width: 250px;
+  height: 300px;
+}
+
+.chatDisplay {
+  width: 200px;
+  height: 250px;
+}
+
+form {
+  position: relative;
+  width: 80%;
+  bottom: 0;
+}

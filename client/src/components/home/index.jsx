@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
+import FriendChat from '../../components/buttons/FriendChat';
 import store from '../../redux/store';
 
 const centerStyle = {
@@ -53,6 +54,7 @@ class Home extends React.Component {
             <button className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
           </div>
         </div>
+        {this.state.session && <FriendChat />}
       </div>
     );
   }
