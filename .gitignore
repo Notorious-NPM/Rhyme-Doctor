@@ -10,13 +10,7 @@ yarn-error.log
 .DS_Store
 
 # Webpack
-<<<<<<< HEAD
-bundle.js
-=======
-client/dist/bundle.js
-client/dist/1.bundle.js
-client/dist/0.bundle.js
->>>>>>> master
+*bundle.js
 
 # Config
 config.js
