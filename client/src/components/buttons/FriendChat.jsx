@@ -21,7 +21,9 @@ class FriendChat extends Component {
         const friendsList = [];
         data.forEach(friend =>{
           console.log(friend);
-          friendsList.push([friend.friendID, friend.name, friend.roomID]);
+          console.log('hello')
+          friendsList.push([friend.name, friend.roomID]);
+          // friendsList.push([friend.friendID, friend.name, friend.roomID]);
         })
  
         this.setState({ friendsList }) // eslint-disable-line
@@ -39,21 +41,22 @@ class FriendChat extends Component {
       },
     });
 
-    await this.socket.emit('client.enter', { userID: this.state.userID });
+    // await this.socket.emit('client.enter', { userID: this.state.userID });
 
     this.setState({ socket: this.socket });
 
-    this.socket.on('server.enter', ({ userID }) => {
-      const { friendsList } = this.state;
-      if (friendsList[userID]) {
-        friendsList[userID][1] = true;
-        this.setState({ friendsList });
-      }
-    });
+    // this.socket.on('server.enter', ({ userID }) => {
+    //   const { friendsList } = this.state;
+    //   if (friendsList[userID]) {
+    //     friendsList[userID][1] = true;
+    //     this.setState({ friendsList });
+    //   }
+    // });
   }
 
   changeSelectedChat(friendName, roomID) {
-    this.setState({ selectedChat: [friendName, roomID] });
+    this.setState({ selectedChat: false });
+    setTimeout(() => this.setState({ selectedChat: [friendName, roomID] }), 0);
   }
 
   showState() {
@@ -61,7 +64,7 @@ class FriendChat extends Component {
   }
 
   render() {
-    const { friendsList, userID, selectedChat } = this.state;
+    const { friendsList, selectedChat } = this.state;
 
     return (
       <div>
@@ -74,14 +77,14 @@ class FriendChat extends Component {
         </button>
         <ul>
           {friendsList.map(friend =>
-            <li onClick={() => this.changeSelectedChat(friend[1], friend[2])}>{friend[1]}</li>)}
+            <li onClick={() => this.changeSelectedChat(friend[0], friend[1])}>{friend[0]}</li>)}
         </ul>
         <br />
         <button type="button" onClick={() => this.showState()}>Show State</button>
         <br />
         {/* <Chat /> */}
        
-        {selectedChat && <Chat userID={userID} friendName={selectedChat[0]} roomID={selectedChat[1]} />}
+        {selectedChat && <Chat friendName={selectedChat[0]} roomID={selectedChat[1]} />}
       </div>
 
     );

@@ -22,14 +22,14 @@ const addFriendHelper = (userID, friendID) => {
 
 const queryFriendHelper = userID =>
   // Friends.create({
-  //   userID: 7,
-  //   friendID: 8,
-  //   roomID: 'one',
+  //   userID: 8,
+  //   friendID: 9,
+  //   roomID: 'two',
   // });
   // Friends.create({
-  //   userID: 8,
-  //   friendID: 7,
-  //   roomID: 'one',
+  //   userID: 9,
+  //   friendID: 8,
+  //   roomID: 'two',
   // });
 
   User.findOne({

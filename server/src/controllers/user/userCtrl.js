@@ -22,11 +22,13 @@ const queryfriendCtrl = (req, res) => {
       const friendsArr = [];
       friends.forEach(({ dataValues }) => {
         const friendInfo = {};
+        // console.log('**: ', dataValues.friends.dataValues);
         friendInfo.name = dataValues.name;
-        friendInfo.friendID = dataValues.id;
-        friendInfo.roomID = dataValues.roomID;
+        // friendInfo.friendID = dataValues.id;
+        friendInfo.roomID = dataValues.friends.dataValues.roomID;
         friendsArr.push(friendInfo);
       });
+      console.log('Friends array: ', friendsArr);
       res.status(201).send(friendsArr);
     })
     .catch((err) => {
