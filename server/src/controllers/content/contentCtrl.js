@@ -3,9 +3,15 @@ import User from '../../database/models/user.js';
 import sequelize from '../../database';
 // Need DB helpers
 
-const createPostCtrl = () => {
+const createPostCtrl = (req, res) => {
   // optional: check if first few lines match what's already in our DB
   // create content
+  Rap_Post.create({
+    text: req.body.text,
+    user_id: req.user.id,
+  }).then((lyrics) => {
+    res.status(201).end(`Posted: ${lyrics.text.substr(0, 20)}... successfully!`);
+  });
 };
 
 const deletePostCtrl = () => {

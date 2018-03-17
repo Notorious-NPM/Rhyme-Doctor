@@ -3,7 +3,7 @@ import { getCommentsCtrl, getPostsCtrl, createPostCtrl, deletePostCtrl, commentC
 
 const router = express.Router();
 
-router.route('/createpost')
+router.route('/post') // be RESTful...
   .post(createPostCtrl);
 
 router.route('/deletePost')

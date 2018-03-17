@@ -3,6 +3,10 @@ extends: airbnb
 rules:
   no-console:
     off
+  camelcase:
+    off
+  import/extensions:
+    off
   react/no-array-index-key:
     off
 globals:
