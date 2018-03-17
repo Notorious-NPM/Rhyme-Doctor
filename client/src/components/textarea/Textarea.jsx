@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 
 import store from '../../redux/store';
 
