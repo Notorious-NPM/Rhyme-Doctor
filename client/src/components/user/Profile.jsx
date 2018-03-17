@@ -14,17 +14,29 @@ class Profile extends React.Component {
   }
   componentDidMount() {
     this.getUserData();
+    this.getUserPosts();
   }
 
   getUserData = async () => {
     try {
       const userData = await axios.get('api/profile');
-      console.log(userData);
-      // this.setState({
-      //   userPosts: userData.data.rap_posts,
-      //   username: userData.data.name,
-      //   likeCount: userData.data.like_count,
-      // });
+      this.setState({
+        username: userData.data.name,
+        likeCount: userData.data.like_count,
+      });
+      console.log('meow', userData);
+    } catch (err) {
+      console.log('Failed to get user posts');
+    }
+  }
+
+  getUserPosts = async () => {
+    try {
+      const userPosts = await axios.get('api/profile/posts');
+      this.setState({
+        userPosts: userPosts.data,
+      });
+      // console.log('!!!!', userPosts);
     } catch (err) {
       console.log('Failed to get user posts');
     }

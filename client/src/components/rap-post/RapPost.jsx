@@ -23,7 +23,6 @@ class RapPost extends React.Component {
       this.setState({
         rapPosts: rapPosts.data,
       });
-      console.log('!!!!', rapPosts);
     } catch (err) {
       console.log('Failed to get rap posts.');
     }

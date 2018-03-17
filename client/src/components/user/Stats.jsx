@@ -10,9 +10,7 @@ class Stats extends React.Component {
     //   this.setState(store.getState());
     // });
   }
-
   
-
   render() {
     return (
       <div className="card">

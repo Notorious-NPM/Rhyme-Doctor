@@ -7,7 +7,7 @@ import sequelize from '../../database';
 const createPostCtrl = (req, res) => {
   // optional: check if first few lines match what's already in our DB
   // create content
-  Rap_Post.create({
+  RapPost.create({
     text: req.body.text,
     user_id: req.user.id,
     username: req.user.username,
