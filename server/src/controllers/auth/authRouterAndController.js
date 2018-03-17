@@ -5,6 +5,7 @@ import passport from 'passport';
 import validate from 'express-validation';
 import local from 'passport-local';
 import bcrypt from 'bcrypt';
+import Promise from 'bluebird';
 
 import User from '../../database/models/user';
 
@@ -13,29 +14,27 @@ import userpass from './formValidation';
 const LocalStrategy = local.Strategy;
 const router = express.Router();
 
+const compare = Promise.promisify(bcrypt.compare);
+const genSalt = Promise.promisify(bcrypt.genSalt);
+const hash = Promise.promisify(bcrypt.hash);
+
 passport.use(new LocalStrategy({
   passReqToCallback: true,
-}, (req, username, password, done) => {
-  User.findAll({
-    where: {
-      name: username,
-    },
-  }).then((users) => { // eslint-disable-line
-    if (users.length > 0) {
-      bcrypt.compare(password, users[0].dataValues.password, (err, res) => {
-        if (res) {
-          req.message = `Successfully signed in as: ${users[0].dataValues.name}`;
-          return done(null, { username: users[0].dataValues.name, id: users[0].dataValues.id });
-        } else {
-          req.message = 'Incorrect password!';
-          return done(null, false);
-        }
-      });
+}, async (req, username, password, done) => {
+  const user = await User.findOne({ where: { name: username } });
+  if (user) {
+    const result = await compare(password, user.dataValues.password);
+    if (result) {
+      req.message = `Successfully signed in as: ${user.dataValues.name}`;
+      return done(null, { username: user.dataValues.name, id: user.dataValues.id });
     } else {
-      req.message = 'No user with that username.';
+      req.message = 'Incorrect password!';
       return done(null, false);
     }
-  });
+  } else {
+    req.message = 'No user with that username.';
+    return done(null, false);
+  }
 }));
 
 passport.serializeUser((user, done) => {
@@ -63,34 +62,23 @@ router.route('/logout')
   });
 
 router.route('/signup')
-  .post(validate(userpass), (req, res) => {
+  .post(validate(userpass), async (req, res) => {
     const { username, password } = req.body;
-    User.findAll({
-      where: {
-        name: username,
-      },
-    }).then((users) => {
-      if (users.length > 0) {
-        res.status(409).end('That username is taken!');
-      } else {
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(password, salt, (err, hash) => { // eslint-disable-line
-            User.create({
-              name: username,
-              password: hash,
-            }).then((user) => {
-              req.login(user, (err) => { // eslint-disable-line
-                if (err) {
-                  res.status(500).end('Something went wrong with our authentication.');
-                } else {
-                  res.status(201).end(`Signed up as: ${user.name}`);
-                }
-              });
-            });
-          });
-        });
-      }
-    });
+    const user = await User.findOne({ where: { name: username } });
+    if (user) {
+      res.status(409).end('That username is taken!');
+    } else {
+      const salt = await genSalt(10);
+      const hashedPassword = await hash(password, salt);
+      const createdUser = await User.create({ name: username, password: hashedPassword });
+      req.login(createdUser, (err) => {
+        if (err) {
+          res.status(500).end('Something went wrong with our authentication.');
+        } else {
+          res.status(201).end(`Signed up as: ${createdUser.name}`);
+        }
+      });
+    }
   });
 
 export default router;
