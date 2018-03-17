@@ -46,16 +46,19 @@ const usersData = [
 const postsData = [
   {
     text: 'hey ray',
+    username: 'bob',
     user_id: 1,
     like_count: 3,
   },
   {
     text: 'hey ray',
+    username: 'carol',
     user_id: 2,
     like_count: 0,
   },
   {
     text: 'hey ray',
+    username: 'ben',
     user_id: 3,
     like_count: 0,
   },
@@ -66,26 +69,31 @@ const postsData = [
   },
   {
     text: 'hey ray',
+    username: 'bob',
     user_id: 1,
     like_count: 0,
   },
   {
     text: 'hey ray',
+    username: 'jen',
     user_id: 5,
     like_count: 0,
   },
   {
     text: 'hey ray',
+    username: 'Samuel Hong',
     user_id: 6,
     like_count: 0,
   },
   {
     text: 'hey ray',
+    username: 'Samuel Hong',
     user_id: 6,
     like_count: 0,
   },
   {
     text: 'hey ray',
+    username: 'carl',
     user_id: 4,
     like_count: 0,
   },
@@ -94,11 +102,13 @@ const postsData = [
 const commentsData = [
   {
     text: 'how is it going?',
+    username: 'bob',
     user_id: 1,
     rap_post_id: 1,
   },
   {
     text: 'not good',
+    username: 'carol',
     user_id: 2,
     rap_post_id: 1,
   },
@@ -109,51 +119,61 @@ const commentsData = [
   },
   {
     text: 'well',
+    username: 'carl',
     user_id: 4,
     rap_post_id: 2,
   },
   {
     text: 'how is it going?',
+    username: 'jen',
     user_id: 5,
     rap_post_id: 3,
   },
   {
     text: 'better',
+    username: 'bob',
     user_id: 1,
     rap_post_id: 3,
   },
   {
     text: 'how is it going?',
+    username: 'bob',
     user_id: 1,
     rap_post_id: 5,
   },
   {
     text: 'stop asking please',
+    username: 'bob',
     user_id: 1,
     rap_post_id: 5,
   },
   {
     text: 'how is it going?',
+    username: 'ben',
     user_id: 3,
     rap_post_id: 6,
   },
   {
     text: 'bots',
+    username: 'carol',
     user_id: 2,
     rap_post_id: 6,
   },
   {
     text: 'how is it going?',
+    username: 'bob',
     user_id: 1,
     rap_post_id: 1,
   },
   {
     text: 'how is it going?',
+    username: 'bob',
     user_id: 1,
     rap_post_id: 1,
   },
   {
     text: 'how is it going?',
+    username: 'bob',
     user_id: 1,
     rap_post_id: 1,
   },
