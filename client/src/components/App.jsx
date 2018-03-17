@@ -10,6 +10,7 @@ import Friend from './buttons/Friend';
 import Textarea from './textarea/Textarea';
 import ThesaurusForm from '../components/thesaurus/ThesaurusForm'; */
 import RapPost from './rap-post/RapPost';
+import Profile from './user/Profile';
 import Navbar from './navbar';
 import Home from './home';
 
@@ -81,6 +82,7 @@ class App extends React.Component {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/profile" component={Profile} />
           <Route path="/feed" component={RapPost} />
         </div>
       </Router>

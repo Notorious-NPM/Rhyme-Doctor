@@ -24,12 +24,12 @@ class RapPost extends React.Component {
         rapPosts: rapPosts.data,
       });
     } catch (err) {
-      alert('Failed to get rap posts.');
+      console.log('Failed to get rap posts.');
     }
   }
 
   render() {
-    let rapPosts = this.state.rapPosts || [];
+    const rapPosts = this.state.rapPosts || [];
     return (
       <div align="center">
         {rapPosts.map((rapPost, i) => (<RapPostEntry

@@ -28,7 +28,7 @@ const SessionBar = () => (
             <Link className="nav-link" to="/feed">Top/News Feed</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Profile</a>
+            <Link className="nav-link" to="/profile">Profile</Link>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">Subscriptions</a>
