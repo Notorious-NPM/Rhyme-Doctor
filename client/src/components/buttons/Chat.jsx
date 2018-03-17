@@ -10,6 +10,7 @@ class Chat extends Component {
       msg: '',
       messages: [],
       socket: null,
+      randomCode: (Math.random() * 666).toString(),
     };
   }
 
@@ -20,8 +21,13 @@ class Chat extends Component {
       },
     });
 
-    await this.socket.on('server.sendMsg', ({ msg }) => {
+    await this.socket.on('server.sendMsg', ({ msg, randomCode }) => {
       // console.log(data);
+      if (randomCode === this.state.randomCode) {
+        msg = 'Me: ' + msg;
+      } else {
+        msg = this.props.friendName + ': ' + msg;
+      }
       this.setState({ messages: [...this.state.messages, msg] });
     });
 
@@ -31,28 +37,21 @@ class Chat extends Component {
   sendMsg(e) {
     e.preventDefault();
     // this.setState({ messages: [...this.state.messages, this.state.msg] });
-    const { userID } = this.props;
-    const { socket } = this.state;
-    let { msg } = this.state;
-    msg = userID + ': ' + msg;
+    const { socket, randomCode, msg } = this.state;
 
-    socket.emit('client.sendMsg', { msg });
+    socket.emit('client.sendMsg', { msg, randomCode });
 
     e.target.reset();
   }
 
   updateMsg(e) {
-    let msg = e.target.value;
+    const msg = e.target.value;
     this.setState({ msg });
   }
 
   render() {
-    const { room, friendID } = this.props;
-
     return (
-
       <div className="container">
-        display chat here
         <div className="chatDisplay">
           {this.state.messages.map(msg =>
             <div>{msg}</div>)}
@@ -63,7 +62,7 @@ class Chat extends Component {
           <button type="submit">Send</button>
         </form>
       </div>
-    )
+    );
   }
 }
 

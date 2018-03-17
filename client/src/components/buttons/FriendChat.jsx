@@ -7,28 +7,23 @@ class FriendChat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userID: 8,
-      friendsList: {},
+      friendsList: [],
       socket: null,
       selectedChat: null,
     };
   }
 
-  // Notes:
-  // on click friend, create random string for user and clicked user
 
   componentDidMount() {
     axios
-      .get(`/api/user/friend`)
+      .get('/api/user/friend')
       .then(({ data }) => {
-        const friendsList = {};
-        data.forEach((friendship) => {
-          if (friendship.userID !== this.state.userID) {
-            friendsList[friendship.userID] = [friendship.roomID, false];
-          } else if (friendship.friendID !== this.state.userID) {
-            friendsList[friendship.friendID] = [friendship.roomID, false];
-          }
-        });
+        const friendsList = [];
+        data.forEach(friend =>{
+          console.log(friend);
+          friendsList.push([friend.friendID, friend.name, friend.roomID]);
+        })
+ 
         this.setState({ friendsList }) // eslint-disable-line
       })
       .catch(err => console.log('Friend componentMount error: ', err));
@@ -57,8 +52,8 @@ class FriendChat extends Component {
     });
   }
 
-  changeSelectedChat(friendID, roomID) {
-    this.setState({ selectedChat: [friendID, roomID] });
+  changeSelectedChat(friendName, roomID) {
+    this.setState({ selectedChat: [friendName, roomID] });
   }
 
   showState() {
@@ -70,14 +65,23 @@ class FriendChat extends Component {
 
     return (
       <div>
-        <button type="button" onClick={() => this.createSocketConnection()}>Show Friends</button>
+        <button
+          type="button"
+          onClick={() => this.createSocketConnection()}
+          data-toggle="dropdown"
+        >
+          Show Friends
+        </button>
+        <ul>
+          {friendsList.map(friend =>
+            <li onClick={() => this.changeSelectedChat(friend[1], friend[2])}>{friend[1]}</li>)}
+        </ul>
         <br />
         <button type="button" onClick={() => this.showState()}>Show State</button>
         <br />
         {/* <Chat /> */}
-        {Object.keys(friendsList).map(friendID =>
-          <div onClick={() => this.changeSelectedChat(friendID, friendsList[friendID][0])}>{friendID}</div>)}
-        {selectedChat && <Chat userID={userID} friendID={selectedChat[0]} roomID={selectedChat[1]} />}
+       
+        {selectedChat && <Chat userID={userID} friendName={selectedChat[0]} roomID={selectedChat[1]} />}
       </div>
 
     );
