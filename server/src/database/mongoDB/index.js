@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 mongoose.connect('mongodb://localhost/RhymeDoctor');
 
 const db = mongoose.connection;
@@ -7,8 +8,15 @@ db.once('open', () => console.log('db connection complete'));
 
 const personalRhymeSchema = mongoose.Schema({
   userID: Number,
-  word1: String,
-  word2: String,
+  rhymes: Object,
 });
 
-export default db;
+// example = {
+//   userID: 3,
+//   rhymes: {
+//     'eva': ['sucks', 'lame'],
+// }
+
+const PersonalRhyme = mongoose.model('PersonalRhyme', personalRhymeSchema);
+
+export { db, PersonalRhyme };
