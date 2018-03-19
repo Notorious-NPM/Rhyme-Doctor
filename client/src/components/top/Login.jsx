@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 import store from '../../redux/store';
 
-const Login = () => {
+const Login = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     $.ajax({
@@ -13,13 +13,11 @@ const Login = () => {
         username: $('#username').val(),
         password: $('#password').val(),
       },
-      success(res) {
+      success() {
         store.dispatch({ type: 'sessionlogin' });
-        console.log(res);
+        history.push('/');
       },
       error({ responseText }) {
-        console.log('yoyo');
-        // console.log(res);
         alert(responseText); // eslint-disable-line
       },
     });
