@@ -11,6 +11,12 @@ const personalRhymeSchema = mongoose.Schema({
   rhymes: Object,
 });
 
+const lyricsSchema = mongoose.Schema({
+  userID: Number,
+  userName: String,
+  lyrics: String,
+});
+
 // example = {
 //   userID: 3,
 //   rhymes: {
@@ -18,5 +24,6 @@ const personalRhymeSchema = mongoose.Schema({
 // }
 
 const PersonalRhyme = mongoose.model('PersonalRhyme', personalRhymeSchema);
+const Lyrics = mongoose.model('Lyrics', lyricsSchema);
 
-export { db, PersonalRhyme };
+export { db, PersonalRhyme, Lyrics };

@@ -1,6 +1,13 @@
 // accept mongoDB
 import { PersonalRhyme } from '../mongoDB/index';
 
+
+const queryPersonalRhyme = (userID, callback) => {
+  console.log('reached queryPersonalRhyme');
+
+  PersonalRhyme.find({ userID }).exec(callback);
+};
+
 const createPersonalRhyme = (userID, word1, word2) => {
   // check if user already is in mongo collection
     // if yes, check if either word1 or word2 is in rhymes property
@@ -10,6 +17,21 @@ const createPersonalRhyme = (userID, word1, word2) => {
       // if no, add property and other word into array
     // if no, add user to collection
 
+  queryPersonalRhyme(userID, (result) => {
+    console.log('create/query result: ', result);
+
+    if (result.length === 0) {
+      // create user/property and assign array
+    }
+    if (result.length > 0 && result.rhymes[word1]) {
+      // check if word2 exists in array
+    }
+    if (result.length > 0 && result.rhymes[word2]) {
+      // check if word1 exists in array
+    }
+    // otherwise do nothing
+  });
+
   const sickRhymes = new PersonalRhyme({
     userID,
     rhymes: {
@@ -18,10 +40,6 @@ const createPersonalRhyme = (userID, word1, word2) => {
   });
 
   sickRhymes.save(() => console.log('sickRhymes saved to PersonaRhymes table'));
-};
-
-const queryPersonalRhyme = (userID, word) => {
-  console.log('reached queryPersonalRhyme');
 };
 
 export { createPersonalRhyme, queryPersonalRhyme };
