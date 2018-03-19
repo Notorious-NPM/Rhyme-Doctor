@@ -18,7 +18,7 @@ const reducer = (state = {
   All they can go get is me a glass of Moet
   A hard time, sip your juice and watch a smooth poet
 `,
-  '0, 3': 'red',
+  /* '0, 3': 'red',
   '0, 4': 'red',
   '0, 7': 'red',
   '1, 5': 'red',
@@ -37,7 +37,7 @@ const reducer = (state = {
   '10, 5': 'firebrick',
   '10, 6': 'firebrick',
   '10, 12': 'firebrick',
-  '11, 12': 'firebrick',
+  '11, 12': 'firebrick', */
 }, action) => {
   switch (action.type) {
     case 'sessionlogin':
@@ -45,6 +45,9 @@ const reducer = (state = {
       return state;
     case 'sessionlogout':
       state.session = false;
+      return state;
+    case 'straighthighlight':
+      state[action.body.coord] = action.body.color;
       return state;
     case 'highlight':
       state[`${action.body.x}, ${action.body.y}`] = action.body.color;
