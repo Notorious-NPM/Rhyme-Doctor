@@ -26,10 +26,10 @@ const crayons = [
 
 const lyrics =
 
-`Circulate us in the vein, set to ride the cracks on your at
-Like a novocaine, I train to ease any bat
-Yeah, get your wig loose, I relieve sat
-The path to my lesson is the highway to jello`;
+`Circulate us in the vein, set to ride the cracks on your brain
+Like a novocaine, I train to ease any paiun
+Yeah, get your wig loose, I relieve tension
+The path to my lesson is the highway to heaven`;
 
 const API = word =>
   new Promise((resolve) => {
