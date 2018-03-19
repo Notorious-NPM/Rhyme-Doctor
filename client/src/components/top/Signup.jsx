@@ -5,7 +5,7 @@ import $ from 'jquery';
 
 import store from '../../redux/store';
 
-const Signup = () => {
+const Signup = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     $.ajax({
@@ -17,11 +17,9 @@ const Signup = () => {
       },
       success(res) {
         store.dispatch({ type: 'sessionlogin' });
-        console.log(res);
+        history.push('/');
       },
       error({ responseText }) {
-        console.log('yoyo');
-        // console.log(res);
         alert(responseText); // eslint-disable-line
       },
     });

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import io from 'socket.io-client/dist/socket.io';
 
 import('./Chat.css');

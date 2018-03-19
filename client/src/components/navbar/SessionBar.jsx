@@ -44,9 +44,6 @@ const SessionBar = () => (
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a className="nav-link" href="#">Signout</a>
-          </li>
-          <li className="nav-item">
             <a onClick={logout} className="nav-link" /* eslint-disable-line */ >Logout</a>
           </li>
         </ul>
