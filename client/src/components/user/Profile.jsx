@@ -46,7 +46,7 @@ class Profile extends React.Component {
     return (
       <div>
         <Stats username={this.state.username} likeCount={this.state.likeCount} />
-        <UserPosts userPosts={this.state.userPosts} />
+        <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} />
       </div>
     );
   }
