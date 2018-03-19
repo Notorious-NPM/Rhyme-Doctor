@@ -1,22 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 import store from '../../redux/store';
 
-const logout = () => {
+const logout = (history) => {
   $.ajax({
     url: '/api/auth/logout',
     method: 'POST',
     success() {
       store.dispatch({ type: 'sessionlogout' });
+      history.push('/');
     },
   });
 };
 
-const SessionBar = () => (
+const SessionBar = ({ history }) => (
   <div>
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
@@ -44,7 +45,7 @@ const SessionBar = () => (
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a onClick={logout} className="nav-link" /* eslint-disable-line */ >Logout</a>
+            <a onClick={() => logout(history)} className="nav-link" /* eslint-disable-line */ >Logout</a>
           </li>
         </ul>
       </div>
