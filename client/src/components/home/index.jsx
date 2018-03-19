@@ -30,12 +30,23 @@ const clickHandler = () => {
 const hitHandler = () => {
   $.ajax({
     method: 'POST',
-    url: 'localhost:3001/parse',
+    url: 'http://localhost:3001/parse',
     data: {
       text: $('#lyrics').val(),
     },
     success(res) {
       console.log(res);
+      const colors = JSON.parse(res);
+      const coords = Object.keys(colors);
+      coords.forEach((coord) => {
+        store.dispatch({
+          type: 'straighthighlight',
+          body: {
+            coord,
+            color: colors[coord],
+          },
+        });
+      });
     },
     error(res) {
       alert(res); // eslint-disable-line
