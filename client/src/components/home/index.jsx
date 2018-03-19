@@ -29,6 +29,22 @@ const clickHandler = () => {
   });
 };
 
+const hitHandler = () => {
+  $.ajax({
+    method: 'POST',
+    url: 'localhost:3001/parse',
+    data: {
+      text: $('#lyrics').val(),
+    },
+    success(res) {
+      console.log(res);
+    },
+    error(res) {
+      alert(res); // eslint-disable-line
+    },
+  });
+};
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -54,6 +70,9 @@ class Home extends React.Component {
         <div className="row">
           <div className="col-md-2">
             <button className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
+          </div>
+          <div className="col-md-2">
+            <button className="btn btn-outline-primary" onClick={hitHandler}>Hit API</button>
           </div>
         </div>
         FriendChat
