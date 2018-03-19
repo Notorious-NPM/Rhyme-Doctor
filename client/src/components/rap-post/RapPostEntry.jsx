@@ -35,11 +35,14 @@ class RapPostEntry extends React.Component {
   }
 
   reportPost = async () => {
-    const status = await axios.post(
-      'http://localhost:3000/api/content/report',
-      { rapPostId: this.props.rapPost.id },
-    );
-    console.log(status.statusText);
+    try {
+      const status = await axios.post(
+        'http://localhost:3000/api/content/report',
+        { rapPostId: this.props.rapPost.id },
+      );
+    } catch (err) {
+      console.log('Report was already submitted');
+    }
   }
 
   createComment = (e) => {
