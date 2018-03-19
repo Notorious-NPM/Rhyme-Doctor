@@ -3,6 +3,24 @@ import substrings from 'common-substrings';
 import API_KEY from './config';
 
 const fillString = '#';
+const crayons = [
+  '#FF861F',
+  '#FBE870',
+  '#C5E17A',
+  '#76D7EA',
+  '#03BB85',
+  '#8FD8D8',
+  '#FFCBA4',
+  '#CD919E',
+  '#FA9D5A',
+  '#F4FA9F',
+  '#6CDAE7',
+  '#FFC1CC',
+  '#CC99BA',
+  '#EBE1C2',
+  '#DCCCD7',
+  '#708EB3',
+];
 
 const lyrics = `I have some jello
 it makes me mellow
@@ -22,8 +40,10 @@ const API = word =>
 const parse = (text) => {
   const lines = text.split('\n');
   const APIcalls = [];
+  const colors = [];
   const words = lines.map((line) => {
     const wordsInLine = line.split(' ');
+    colors.push(null);
     return wordsInLine[wordsInLine.length - 1];
   });
   words.forEach((word) => {
@@ -39,16 +59,32 @@ const parse = (text) => {
         }
         return fillString; // ah... coupling
       });
-      const rhymes = [];
+      // const rhymes = [];
+      let crayon = 0;
+      let dirtyBrush = false;
       for (let i = 0; i < rip.length - 1; i += 1) {
         for (let k = i + 1; k < rip.length; k += 1) {
-          if (k - i > 2) {
+          /* if (k - i > 2) {
             break;
+          } */
+          const [score] = substrings.weigh([rip[i], rip[k]]);
+          console.log(score);
+          console.log(!colors[i] && !colors[k] && parseInt(score.weight, 10) > 4);
+          if (score.weight > 4) {
+            if (!colors[i]) {
+              colors[i] = crayons[crayon];
+            }
+            if (!colors[k]) {
+              colors[k] = crayons[crayon];
+            }
+            dirtyBrush = true;
           }
-          rhymes.push([[words[i], words[k]], JSON.stringify(substrings.weigh([rip[i], rip[k]]))]);
+        }
+        if (dirtyBrush) {
+          crayon += 1;
         }
       }
-      console.log(rhymes);
+      console.log(colors);
     });
 };
 
