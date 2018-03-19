@@ -257,7 +257,10 @@ User.sync({ force: false }).then(() =>
     .then(() =>
       createFollowsTable())
     .then(() =>
-      createReportPostTable()));
+      createReportPostTable())
+    .then(() => {
+      process.exit();
+    }));
 
 const createPostsTable = () =>
   Rap_Post.sync({ force: false }).then(() =>
