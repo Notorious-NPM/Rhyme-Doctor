@@ -23,9 +23,9 @@ const crayons = [
 ];
 
 const lyrics = `I have some jello
-it makes me mellow
+it makes me red
 I am an HR fellow
-Finished shit on hello`;
+Finished shit on bed`;
 
 const API = word =>
   new Promise((resolve) => {
@@ -57,20 +57,18 @@ const parse = (text) => {
         } else if (pronunciation) {
           return pronunciation;
         }
-        return fillString; // ah... coupling
+        return fillString;
       });
-      // const rhymes = [];
       let crayon = 0;
       let dirtyBrush = false;
       for (let i = 0; i < rip.length - 1; i += 1) {
         for (let k = i + 1; k < rip.length; k += 1) {
           /* if (k - i > 2) {
             break;
-          } */
-          const [score] = substrings.weigh([rip[i], rip[k]]);
-          console.log(score);
-          console.log(!colors[i] && !colors[k] && parseInt(score.weight, 10) > 4);
-          if (score.weight > 4) {
+          } */ // Chains...
+          const [score] = substrings.weigh([rip[i], rip[k]], { minLength: 2 });
+          console.log(rip[i], rip[k], score);
+          if (score && score.weight > 3) {
             if (!colors[i]) {
               colors[i] = crayons[crayon];
             }
@@ -84,6 +82,7 @@ const parse = (text) => {
           crayon += 1;
         }
       }
+      console.log(words);
       console.log(colors);
     });
 };
