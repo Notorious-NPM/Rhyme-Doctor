@@ -1,5 +1,5 @@
 import express from 'express';
-import { getCommentsCtrl, getPostsCtrl, createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl } from './contentCtrl';
+import { getCommentsCtrl, getPostsCtrl, createPostCtrl, deletePostCtrl, commentCtrl, uncommentCtrl, reportCtrl, getPostCtrl } from './contentCtrl';
 
 const router = express.Router();
 
