@@ -33,6 +33,7 @@ class RapPostEntry extends React.Component {
     );
     if (this.props.onProfile) {
       this.props.getUserPosts();
+      this.props.getUserData();
     } else {
       this.props.getRapPosts();
     }
