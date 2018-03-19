@@ -13,6 +13,7 @@ const Rap_Post = db.define('rap_post', {
   username: Sequelize.STRING,
   text: Sequelize.TEXT,
   like_count: { type: Sequelize.INTEGER, defaultValue: 0 },
+  report_count: { type: Sequelize.INTEGER, defaultValue: 0 },
 }, {
   underscored: true,
 });
