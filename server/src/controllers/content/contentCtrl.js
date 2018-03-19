@@ -81,5 +81,4 @@ export {
   uncommentCtrl,
   reportCtrl,
   getPostsCtrl,
-  getPostCtrl,
 };
