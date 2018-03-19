@@ -7,7 +7,7 @@
     "build": "webpack -w",
     "start": "node server/bin/entry.js",
     "demon": "nodemon server/bin/entry.js",
-    "start:engine": "node rhyme-engine/bin/entry.js",
+    "start:engine": "nodemon rhyme-engine/bin/entry.js",
     "test": "jest",
     "setup:db": "node server/src/database/setup.js",
     "start:socket": "node socket-server/bin/entry.js",
