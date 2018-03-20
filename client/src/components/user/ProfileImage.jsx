@@ -1,4 +1,7 @@
 import React from 'react';
+import Dropzone from 'react-dropzone';
+import axios from 'axios';
+
 
 class ProfileImage extends React.Component {
   constructor(props) {
@@ -6,13 +9,17 @@ class ProfileImage extends React.Component {
   }
 
   render() {
-    const userPosts = this.props.userPosts || [];
     return (
-      <div align="center">
-        {userPosts.map((userPost, i) => <RapPostEntry rapPost={userPost} key={i} getUserPosts={this.props.getUserPosts} getUserData={this.props.getUserData} onProfile />).reverse()}
-      </div>
+      <Dropzone
+        // onDrop={this.handleDrop}
+        multiple
+        accept="image/*"
+        // style={styles.dropzone}
+      >
+        <p>Drop your files or click here to upload</p>
+            </Dropzone>
     );
   }
 }
 
-export default UserPosts;
+export default ProfileImage;
