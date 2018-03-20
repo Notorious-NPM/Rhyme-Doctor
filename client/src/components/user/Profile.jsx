@@ -11,9 +11,10 @@ class Profile extends React.Component {
       userPosts: [],
       username: '',
       likeCount: '',
+      image: '',
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     this.getUserData();
     this.getUserPosts();
   }
@@ -24,8 +25,9 @@ class Profile extends React.Component {
       this.setState({
         username: userData.data.name,
         likeCount: userData.data.like_count,
+        image: userData.data.image,
       });
-      console.log('meow', userData);
+      console.log('state', this.state);
     } catch (err) {
       console.log('Failed to get user posts');
     }
@@ -43,10 +45,11 @@ class Profile extends React.Component {
   }
 
   render() {
+    // let pic = this.state.pic;
     return (
       <div>
         <Stats username={this.state.username} likeCount={this.state.likeCount} />
-        <ProfileImage />
+        <ProfileImage image={this.state.image} />
         <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} />
       </div>
     );

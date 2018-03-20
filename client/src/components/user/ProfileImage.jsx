@@ -5,8 +5,8 @@ import API_KEY from './config';
 
 
 class ProfileImage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       image: '',
       showChangePic: false,
@@ -14,9 +14,21 @@ class ProfileImage extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    // get User
+  componentWillMount() {
+    console.log(this.props); 
   }
+
+  // getUserData = async () => {
+  //   try {
+  //     const userData = await axios.get('api/profile');
+  //     this.setState({
+  //       image: userData.data.image,
+  //     });
+  //     console.log('state', this.state);
+  //   } catch (err) {
+  //     console.log('Failed to get user posts');
+  //   }
+  // }
 
   handleDrop = (files) => {
     const uploaders = files.map((file) => {
@@ -47,16 +59,26 @@ class ProfileImage extends React.Component {
   render() {
     const url = this.state.url;
     return (
-      <div>
-        <Dropzone
+            <div>
+        {!this.state.image && (<Dropzone
           onDrop={this.handleDrop}
           multiple
           accept="image/*"
         >
           <p>Drop your files or click here to upload</p>
-        </Dropzone>
+        </Dropzone>)}
         {this.state.image && (<img src={this.state.image} alt="sup" />)}
       </div>
+      // <div>
+      //   {!this.state.image && (<Dropzone
+      //     onDrop={this.handleDrop}
+      //     multiple
+      //     accept="image/*"
+      //   >
+      //     <p>Drop your files or click here to upload</p>
+      //   </Dropzone>)}
+      //   {this.state.image && (<img src={this.state.image} alt="sup" />)}
+      // </div>
     );
   }
 }
