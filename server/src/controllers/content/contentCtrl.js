@@ -11,7 +11,7 @@ const createPostCtrl = (req, res) => {
   RapPost.create({
     text: req.body.text,
     user_id: req.user.id,
-    username: req.user.username,
+    username: req.user.name,
   }).then((lyrics) => {
     res.status(201).end(`Posted: ${lyrics.text.substr(0, 20)}... successfully!`);
   });
