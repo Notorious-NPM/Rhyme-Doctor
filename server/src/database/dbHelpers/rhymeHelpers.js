@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 import PersonalRhymes from '../models/personalRhymes';
+import AllRhymes from '../models/savedRhymes';
 
 const { Op } = Sequelize;
 
@@ -18,4 +19,17 @@ const searchPersonalRhymes = (userID, word1, word2) =>
     },
   });
 
-export { createPersonalRhymes, searchPersonalRhymes };
+const createNewRhyme = (word1, word2) =>
+  AllRhymes.create({
+    word1,
+    word2,
+  });
+
+const searchSavedRhymes = (word1, word2) =>
+  AllRhymes.findAll({
+    where: {
+      [Op.or]: [{ word1, word2 }, { word1: word2, word2: word1 }],
+    },
+  });
+
+export { createPersonalRhymes, searchPersonalRhymes, createNewRhyme, searchSavedRhymes };
