@@ -82,16 +82,20 @@ const parse = text =>
             const [score] = substrings.weigh([rip[i], rip[k]], { minLength: 2 });
             console.log(rip[i], rip[k], score);
             if (score && score.weight > 3) {
-              if (!colors[i] && !colors[k]) {
-                colors[i] = crayons[crayon];
-                colors[k] = crayons[crayon];
-                dirtyBrush = true;
-              } else if (!colors[k]) {
-                colors[k] = colors[i];
-                dirtyBrush = true;
-              } else if (!colors[i]) {
-                colors[i] = colors[k];
-                dirtyBrush = true;
+              const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
+                               && rip[k].indexOf(score.name) === rip[k].length - score.name.length;
+              if (endRhyme) {
+                if (!colors[i] && !colors[k]) {
+                  colors[i] = crayons[crayon];
+                  colors[k] = crayons[crayon];
+                  dirtyBrush = true;
+                } else if (!colors[k]) {
+                  colors[k] = colors[i];
+                  dirtyBrush = true;
+                } else if (!colors[i]) {
+                  colors[i] = colors[k];
+                  dirtyBrush = true;
+                }
               }
             }
           }
