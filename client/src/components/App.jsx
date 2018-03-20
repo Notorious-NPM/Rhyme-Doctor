@@ -13,6 +13,7 @@ import RapPost from './rap-post/RapPost';
 import Profile from './user/Profile';
 import Navbar from './navbar';
 import Home from './home';
+import './app.css';
 
 class App extends React.Component {
   constructor(props) {
