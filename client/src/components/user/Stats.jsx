@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Stats = props => (
-  <div className="card">
-    <div className="container">
+  <div>
+    <div>
       <h4><b>{props.username}</b></h4>
       <p>Likes: {props.likeCount}</p>
     </div>
