@@ -5,8 +5,6 @@ import API_KEY from './config';
 const IPA_VOWELS = ['e', 'æ', 'ʌ', 'ʊ', 'ɒ', 'ə', 'i', 'ɜ', 'ɛ', 'ɔ', 'u', 'ɑ', 'ɪə', 'eə', 'eɪ', 'ɔɪ', 'aɪ', 'əʊ', 'aʊ'];
 
 const fillString = '#';
-// https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors#Standard_colors
-// https://en.wikipedia.org/wiki/List_of_Crayola_colored_pencil_colors
 const crayons = [
   '#FF861F', // Orange
   '#FBE870', // Yellow
@@ -92,31 +90,33 @@ const parse = text =>
               break;
             }
             console.log(rip[i], rip[k]);
-            const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 2 });
+            const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 1 });
             console.log(commonSubstrings);
             let score;
             for (let j = 0; j < commonSubstrings.length; j += 1) {
               if (isVowel(commonSubstrings[j])) {
                 score = commonSubstrings[j];
+                console.log(score);
                 break;
               }
             }
-            // console.log(rip[i], rip[k], score);
-            if (score && score.weight > 3) {
+            if (score && score.weight > 1) {
               /* const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
                                && rip[k].indexOf(score.name) === rip[k].length - score.name.length; */ // eslint-disable-line
               // if (endRhyme) {
-              if (!colors[i] && !colors[k]) {
-                colors[i] = crayons[crayon];
-                colors[k] = crayons[crayon];
-                dirtyBrush = true;
-              } else if (!colors[k]) {
-                colors[k] = colors[i];
-                dirtyBrush = true;
-              } else if (!colors[i]) {
-                colors[i] = colors[k];
-                dirtyBrush = true;
-              }
+                /* eslint-disable */ // eslint-disable-line
+                if (!colors[i] && !colors[k]) {
+                  colors[i] = crayons[crayon];
+                  colors[k] = crayons[crayon];
+                  dirtyBrush = true;
+                } else if (!colors[k]) {
+                  colors[k] = colors[i];
+                  dirtyBrush = true;
+                } else if (!colors[i]) {
+                  colors[i] = colors[k];
+                  dirtyBrush = true;
+                }
+                /* eslint-enable */
               // }
             }
           }
@@ -125,12 +125,8 @@ const parse = text =>
             crayon += 1;
           }
         }
-        console.log(words);
-        // console.log(colors);
         resolve([coords, colors]);
       });
   });
-
-// parse(lyrics);
 
 export default parse;
