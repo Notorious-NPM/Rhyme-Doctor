@@ -9,6 +9,7 @@ const User = db.define('user', {
   },
   name: Sequelize.STRING,
   password: Sequelize.STRING,
+  image: Sequelize.STRING,
   like_count: { type: Sequelize.INTEGER, defaultValue: 0 },
 }, {
   underscored: true,
