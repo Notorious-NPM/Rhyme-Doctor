@@ -70,7 +70,7 @@ class RapPostEntry extends React.Component {
         <div className="card w-50">
           <div className="card-body">
             <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span class="badge badge-light">{this.props.rapPost.like_count}</span></button></p>
-            <button className="btn btn-primary" onClick={() => this.reportPost()}>Report Post</button>
+            <button className="badge badge-warning" onClick={() => this.reportPost()}>Report Post</button>
             <h5 className="card-title">By {this.props.rapPost.username}</h5>
             <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
             <button className="btn btn-primary" onClick={() => this.getComments()}>Show Comments</button>
@@ -82,7 +82,7 @@ class RapPostEntry extends React.Component {
             comments={this.state.comments}
           /> : null}
         </div>
-        
+
       </div>
     );
   }
