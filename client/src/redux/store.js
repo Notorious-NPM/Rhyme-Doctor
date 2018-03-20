@@ -40,6 +40,12 @@ const reducer = (state = {
   '11, 12': 'firebrick', */
 }, action) => {
   switch (action.type) {
+    case 'wipeboard':
+      state = {
+        text: state.text,
+        session: state.session,
+      };
+      return state;
     case 'sessionlogin':
       state.session = true;
       return state;

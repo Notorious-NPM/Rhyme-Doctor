@@ -40,6 +40,7 @@ const hitHandler = () => {
       console.log(res);
       const colors = JSON.parse(res);
       const coords = Object.keys(colors);
+      store.dispatch({ type: 'wipeboard' });
       coords.forEach((coord) => {
         store.dispatch({
           type: 'straighthighlight',

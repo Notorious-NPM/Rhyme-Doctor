@@ -12,7 +12,6 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 
 app.post('/parse', async (req, res) => {
-  console.log(req.body.text);
   const [coords, colors] = await parse(req.body.text);
   const colorings = {};
   coords.forEach((coord, index) => {

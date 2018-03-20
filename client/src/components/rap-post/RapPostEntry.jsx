@@ -32,7 +32,12 @@ class RapPostEntry extends React.Component {
       'http://localhost:3000/api/vote/upvote',
       { rapPostId: this.props.rapPost.id },
     );
-    this.props.getRapPosts();
+    if (this.props.onProfile) {
+      this.props.getUserPosts();
+      this.props.getUserData();
+    } else {
+      this.props.getRapPosts();
+    }
   }
 
   reportPost = async () => {

@@ -1,10 +1,10 @@
 import unirest from 'unirest';
 import substrings from 'common-substrings';
-import API_KEY from './config';
+import ALTERNATE_KEY from './config';
+
+const IPA_VOWELS = ['e', 'æ', 'ʌ', 'ʊ', 'ɒ', 'ə', 'i', 'ɜ', 'ɛ', 'ɔ', 'u', 'ɑ', 'ɪə', 'eə', 'eɪ', 'ɔɪ', 'aɪ', 'əʊ', 'aʊ'];
 
 const fillString = '#';
-// https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors#Standard_colors
-// https://en.wikipedia.org/wiki/List_of_Crayola_colored_pencil_colors
 const crayons = [
   '#FF861F', // Orange
   '#FBE870', // Yellow
@@ -24,23 +24,20 @@ const crayons = [
   '#708EB3', // Metallic Blue
 ];
 
-/* const lyrics = `I'm not a regular competitor, first rhyme editor
-Melody arranger, poet etcetera
-Extra events, the grand finale like bonus
-I am the man they call the microphonist
-With wisdom, which means wise words being spoken
-Too many at one time, watch the mic start smoking
-I came to express the rap I manifest
-Stand in my way, and I'll veto all the word's protest
-Emcees that wanna be best, they're gonna
-Be dissed if they don't get from in front of
-All they can go get is me a glass of Moet
-A hard time, sip your juice and watch a smooth poet`; */
+const isVowel = ({ name }) => {
+  for (let i = 0; i < IPA_VOWELS.length; i += 1) {
+    const [score] = substrings.weigh([name, IPA_VOWELS[i]], { minLength: 1 });
+    if (score && score.weight > 1) { // Toy with this... 3 is too strict?
+      return true;
+    }
+  }
+  return false;
+};
 
 const API = word =>
   new Promise((resolve) => {
     unirest.get(`https://wordsapiv1.p.mashape.com/words/${word}/pronunciation`)
-      .header('X-Mashape-Key', API_KEY)
+      .header('X-Mashape-Key', ALTERNATE_KEY)
       .header('X-Mashape-Host', 'wordsapiv1.p.mashape.com')
       .end((response) => {
         resolve(response.body);
@@ -54,16 +51,21 @@ const parse = text =>
     const colors = [];
     const coords = [];
     const words = [];
+    const jump = [];
     lines.forEach((line, x) => {
       const wordsByComma = line.split(',');
       let accumLength = 0;
-      wordsByComma.forEach((subline) => {
+      jump[x] = 2;
+      wordsByComma.forEach((subline, y) => {
         let wordsInLine = subline.split(' ');
         wordsInLine = wordsInLine.filter(word => word !== '');
         colors.push(null);
         coords.push(`${x}, ${accumLength + (wordsInLine.length - 1)}`);
         accumLength += wordsInLine.length;
         words.push(wordsInLine[wordsInLine.length - 1]);
+        if (y !== wordsByComma.length - 1) {
+          jump[x] += 1;
+        }
       });
     });
     words.forEach((word) => {
@@ -83,15 +85,22 @@ const parse = text =>
         let dirtyBrush = false;
         for (let i = 0; i < rip.length - 1; i += 1) {
           for (let k = i + 1; k < rip.length; k += 1) {
-            if (k - i > 2) {
+            if (k - i > jump[i]) {
               break;
             }
-            const [score] = substrings.weigh([rip[i], rip[k]], { minLength: 2 });
-            console.log(rip[i], rip[k], score);
-            if (score && score.weight > 3) {
-              const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
-                               && rip[k].indexOf(score.name) === rip[k].length - score.name.length;
+            const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 1 });
+            let score;
+            for (let j = 0; j < commonSubstrings.length; j += 1) {
+              if (isVowel(commonSubstrings[j])) {
+                score = commonSubstrings[j];
+                break;
+              }
+            }
+            if (score && score.weight > 1) { // Revisit later, either 1 or 3.
+              /* const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
+                               && rip[k].indexOf(score.name) === rip[k].length - score.name.length; */ // eslint-disable-line
               // if (endRhyme) {
+                /* eslint-disable */ // eslint-disable-line
                 if (!colors[i] && !colors[k]) {
                   colors[i] = crayons[crayon];
                   colors[k] = crayons[crayon];
@@ -103,7 +112,8 @@ const parse = text =>
                   colors[i] = colors[k];
                   dirtyBrush = true;
                 }
-              //   }
+                /* eslint-enable */
+              // }
             }
           }
           if (dirtyBrush) {
@@ -111,12 +121,8 @@ const parse = text =>
             crayon += 1;
           }
         }
-        console.log(words);
-        console.log(colors);
         resolve([coords, colors]);
       });
   });
-
-// parse(lyrics);
 
 export default parse;
