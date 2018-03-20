@@ -14,6 +14,4 @@ const User = db.define('user', {
   underscored: true,
 });
 
-// User.belongsTo(Rap_Post);
-
 module.exports = User;
