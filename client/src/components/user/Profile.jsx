@@ -45,11 +45,11 @@ class Profile extends React.Component {
   }
 
   render() {
-    // let pic = this.state.pic;
+    // const { props } = this.props;   
     return (
       <div>
         <Stats username={this.state.username} likeCount={this.state.likeCount} />
-        <ProfileImage image={this.state.image} />
+        {this.props ? <ProfileImage image={this.state.image} /> :null }
         <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} />
       </div>
     );
