@@ -18,6 +18,7 @@ class ProfileImage extends React.Component {
     this.setState ({
       image: this.props.image
     })
+    console.log('statsi', this.state);
   }
 
   handleDrop = (files) => {

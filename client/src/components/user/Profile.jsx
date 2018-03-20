@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserPosts from './UserPosts';
 import Stats from './Stats';
 import ProfileImage from './ProfileImage';
+import Bio from './Bio';
 
 class Profile extends React.Component {
   constructor() {
@@ -12,6 +13,7 @@ class Profile extends React.Component {
       username: '',
       likeCount: '',
       image: '',
+      received: false,
     };
   }
   componentWillMount() {
@@ -26,8 +28,8 @@ class Profile extends React.Component {
         username: userData.data.name,
         likeCount: userData.data.like_count,
         image: userData.data.image,
+        received: true
       });
-      console.log('state', this.state);
     } catch (err) {
       console.log('Failed to get user posts');
     }
@@ -45,11 +47,11 @@ class Profile extends React.Component {
   }
 
   render() {
-    // const { props } = this.props;   
     return (
       <div>
         <Stats username={this.state.username} likeCount={this.state.likeCount} />
-        {this.props ? <ProfileImage image={this.state.image} /> :null }
+        {this.state.received ? <ProfileImage image={this.state.image} /> :null }
+        <Bio />
         <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} />
       </div>
     );
