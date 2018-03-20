@@ -27,7 +27,6 @@ const crayons = [
 const isVowel = ({ name }) => {
   for (let i = 0; i < IPA_VOWELS.length; i += 1) {
     const [score] = substrings.weigh([name, IPA_VOWELS[i]], { minLength: 1 });
-    console.log(name, IPA_VOWELS[i], score);
     if (score && score.weight > 1) { // Toy with this... 3 is too strict?
       return true;
     }
@@ -89,18 +88,15 @@ const parse = text =>
             if (k - i > jump[i]) {
               break;
             }
-            console.log(rip[i], rip[k]);
             const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 1 });
-            console.log(commonSubstrings);
             let score;
             for (let j = 0; j < commonSubstrings.length; j += 1) {
               if (isVowel(commonSubstrings[j])) {
                 score = commonSubstrings[j];
-                console.log(score);
                 break;
               }
             }
-            if (score && score.weight > 1) {
+            if (score && score.weight > 3) {
               /* const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
                                && rip[k].indexOf(score.name) === rip[k].length - score.name.length; */ // eslint-disable-line
               // if (endRhyme) {
