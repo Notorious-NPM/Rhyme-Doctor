@@ -4,6 +4,8 @@ import $ from 'jquery';
 import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
 import FriendChat from '../../components/buttons/FriendChat';
+import PersonalRhymes from '../../components/buttons/PersonalRhymes';
+import ThesaurusForm from '../thesaurus/ThesaurusForm';
 import store from '../../redux/store';
 
 const centerStyle = {
@@ -83,7 +85,14 @@ class Home extends React.Component {
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={hitHandler}>Hit API</button>
           </div>
         </div>
+        FriendChat
         {this.state.session && <FriendChat />}
+        <hr />
+        Thesaurus
+        {this.state.session && <ThesaurusForm />}
+        <hr />
+        PersonalRhymes
+        {this.state.session && <PersonalRhymes />}
       </div>
     );
   }

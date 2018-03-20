@@ -32,6 +32,8 @@ class Chat extends Component {
     });
 
     this.setState({ socket: this.socket }) // eslint-disable-line
+
+    setTimeout(() => document.getElementById('selectedChat').style.width = "250px", 0);
   }
 
   sendMsg(e) {
@@ -51,7 +53,7 @@ class Chat extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" id="selectedChat">
         <div className="chatDisplay">
           {this.state.messages.map(msg =>
             <div>{msg}</div>)}
