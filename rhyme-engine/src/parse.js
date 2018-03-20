@@ -103,7 +103,7 @@ const parse = text =>
                   colors[i] = colors[k];
                   dirtyBrush = true;
                 }
-              //   }
+              // }
             }
           }
           if (dirtyBrush) {
