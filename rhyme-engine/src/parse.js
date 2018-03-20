@@ -1,6 +1,6 @@
 import unirest from 'unirest';
 import substrings from 'common-substrings';
-import API_KEY from './config';
+import ALTERNATE_KEY from './config';
 
 const IPA_VOWELS = ['e', 'æ', 'ʌ', 'ʊ', 'ɒ', 'ə', 'i', 'ɜ', 'ɛ', 'ɔ', 'u', 'ɑ', 'ɪə', 'eə', 'eɪ', 'ɔɪ', 'aɪ', 'əʊ', 'aʊ'];
 
@@ -37,7 +37,7 @@ const isVowel = ({ name }) => {
 const API = word =>
   new Promise((resolve) => {
     unirest.get(`https://wordsapiv1.p.mashape.com/words/${word}/pronunciation`)
-      .header('X-Mashape-Key', API_KEY)
+      .header('X-Mashape-Key', ALTERNATE_KEY)
       .header('X-Mashape-Host', 'wordsapiv1.p.mashape.com')
       .end((response) => {
         resolve(response.body);
