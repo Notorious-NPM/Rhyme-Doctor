@@ -2,6 +2,8 @@ import unirest from 'unirest';
 import substrings from 'common-substrings';
 import API_KEY from './config';
 
+const IPA_VOWELS = ['e', 'æ', 'ʌ', 'ʊ', 'ɒ', 'ə', 'i', 'ɜ', 'ɔ', 'u', 'ɑ', 'ɪə', 'eə', 'eɪ', 'ɔɪ', 'aɪ', 'əʊ', 'aʊ'];
+
 const fillString = '#';
 // https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors#Standard_colors
 // https://en.wikipedia.org/wiki/List_of_Crayola_colored_pencil_colors
@@ -86,12 +88,23 @@ const parse = text =>
             if (k - i > 2) {
               break;
             }
+            console.log(substrings.weigh([rip[i], rip[k]], { minLength: 2 }));
             const [score] = substrings.weigh([rip[i], rip[k]], { minLength: 2 });
             console.log(rip[i], rip[k], score);
             if (score && score.weight > 3) {
-              const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
-                               && rip[k].indexOf(score.name) === rip[k].length - score.name.length;
+              let vowel = false;
+              IPA_VOWELS.forEach((IPA_VOWEL) => {
+                console.log(score.name, IPA_VOWEL);
+                const [vowelScore] = substrings.weigh([score.name, IPA_VOWEL], { minLength: 1 });
+                console.log(vowelScore);
+                if (vowelScore && vowelScore.weight > 1) { // Toy with this... 3 is too strict?
+                  vowel = true;
+                }
+              });
+              /* const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
+                               && rip[k].indexOf(score.name) === rip[k].length - score.name.length; */ // eslint-disable-line
               // if (endRhyme) {
+              if (vowel) {
                 if (!colors[i] && !colors[k]) {
                   colors[i] = crayons[crayon];
                   colors[k] = crayons[crayon];
@@ -103,6 +116,7 @@ const parse = text =>
                   colors[i] = colors[k];
                   dirtyBrush = true;
                 }
+              }
               // }
             }
           }
