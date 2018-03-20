@@ -49,12 +49,18 @@ const API = word =>
 
 const parse = text =>
   new Promise((resolve) => {
-    const lines = text.split('\n');
+    const linesByNewline = text.split('\n');
+    let linesByRhyme = [];
+    linesByNewline.forEach((line) => {
+      const linesByComma = line.split(line.split(','));
+      linesByRhyme = linesByRhyme.concat(linesByComma);
+    });
     const APIcalls = [];
     const colors = [];
     const coords = [];
-    const words = lines.map((line, index) => {
-      const wordsInLine = line.split(' ');
+    const words = linesByRhyme.map((line, index) => {
+      let wordsInLine = line.split(' ');
+      wordsInLine = wordsInLine.filter(word => word !== '');
       colors.push(null);
       coords.push(`${index}, ${wordsInLine.length - 1}`);
       return wordsInLine[wordsInLine.length - 1];
