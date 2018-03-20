@@ -3,16 +3,16 @@ import User from '../models/user';
 
 // Testing
 
-const getUserDataHelper = ({ username }) => User.findOne({
+const getUserDataHelper = ({ id }) => User.findOne({
   where: {
-    name: username,
+    id,
   },
   attributes: { exclude: ['password', 'id'] },
 });
 
-const getUserPostsHelper = ({ username }) => rapPost.findAll({
+const getUserPostsHelper = ({ id }) => rapPost.findAll({
   where: {
-    username,
+    user_id: id,
   },
 });
 
