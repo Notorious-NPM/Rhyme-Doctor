@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUserDataCtrl, getUserPostsCtrl } from './userContentCtrl';
+import { getUserDataCtrl, getUserPostsCtrl, addImageCtrl } from './userContentCtrl';
 
 const router = express.Router();
 
@@ -8,6 +8,9 @@ router.route('/')
 
 router.route('/posts')
   .get(getUserPostsCtrl);
+
+router.route('/image')
+  .put(addImageCtrl);
 
 
 export default router;

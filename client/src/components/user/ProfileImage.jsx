@@ -22,7 +22,6 @@ class ProfileImage extends React.Component {
     const uploaders = files.map((file) => {
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('tags', 'codeinfuse, medium, gist');
       formData.append('upload_preset', 'hkhkmnpg');
       formData.append('api_key', API_KEY);
       formData.append('timestamp', (Date.now() / 1000) | 0);
@@ -32,14 +31,15 @@ class ProfileImage extends React.Component {
       }).then((response) => {
         const data = response.data;
         const fileURL = data.secure_url;
+        axios.put('api/profile/image', { image: fileURL });
         this.setState({
           image: fileURL,
         });
+        console.log(data);
       });
     });
 
     axios.all(uploaders).then(() => {
-      // ... perform after upload is successful operation
       console.log('done', this.state);
     });
   }
@@ -55,7 +55,7 @@ class ProfileImage extends React.Component {
         >
           <p>Drop your files or click here to upload</p>
         </Dropzone>
-        {/* {this.state.url && (<img src={this.state.url} />)} */}
+        {this.state.image && (<img src={this.state.image} alt="sup" />)}
       </div>
     );
   }
