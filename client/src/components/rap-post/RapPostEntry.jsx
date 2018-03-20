@@ -54,7 +54,7 @@ class RapPostEntry extends React.Component {
       'http://localhost:3000/api/content/comment',
       {
         text: this.state.myComment,
-        username: this.props.rapPost.user.name,
+        username: this.props.rapPost.username,
         postId: this.props.rapPost.id,
       },
     );
@@ -66,18 +66,21 @@ class RapPostEntry extends React.Component {
   render() {
     return (
       <div>
-        <p>{this.props.rapPost.text}</p>
-        <br />
-        <p>By {this.props.rapPost.username} | <button onClick={() => this.likeRapPost()}>Like</button> Like Count: {this.props.rapPost.like_count}</p>
-        <br />
-        <button onClick={() => this.getComments()}>Show Comments</button>
-        <button onClick={() => this.reportPost()}>Report Post</button>
-        {this.state.showComments ? <Comments
-          postComment={this.postComment}
-          createComment={this.createComment}
-          myComment={this.state.myComment}
-          comments={this.state.comments}
-        /> : null}
+        <div className="card w-50">
+          <div className="card-body">
+            <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like</button> Like Count: {this.props.rapPost.like_count}</p>
+            <button className="btn btn-primary" onClick={() => this.reportPost()}>Report Post</button>
+            <h5 className="card-title">By {this.props.rapPost.username}</h5>
+            <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div>{line}</div>)}</p>
+            <button className="btn btn-primary" onClick={() => this.getComments()}>Show Comments</button>
+          </div>
+          {this.state.showComments ? <Comments
+            postComment={this.postComment}
+            createComment={this.createComment}
+            myComment={this.state.myComment}
+            comments={this.state.comments}
+          /> : null}
+        </div>
       </div>
     );
   }
