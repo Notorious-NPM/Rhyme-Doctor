@@ -80,10 +80,8 @@ class Home extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-2">
-            <button className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
-          </div>
-          <div className="col-md-2">
-            <button className="btn btn-outline-primary" onClick={hitHandler}>Hit API</button>
+            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
+            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={hitHandler}>Hit API</button>
           </div>
         </div>
         FriendChat
