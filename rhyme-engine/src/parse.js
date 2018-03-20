@@ -49,21 +49,22 @@ const API = word =>
 
 const parse = text =>
   new Promise((resolve) => {
-    const linesByNewline = text.split('\n');
-    let linesByRhyme = [];
-    linesByNewline.forEach((line) => {
-      const linesByComma = line.split(line.split(','));
-      linesByRhyme = linesByRhyme.concat(linesByComma);
-    });
+    const lines = text.split('\n');
     const APIcalls = [];
     const colors = [];
     const coords = [];
-    const words = linesByRhyme.map((line, index) => {
-      let wordsInLine = line.split(' ');
-      wordsInLine = wordsInLine.filter(word => word !== '');
-      colors.push(null);
-      coords.push(`${index}, ${wordsInLine.length - 1}`);
-      return wordsInLine[wordsInLine.length - 1];
+    const words = [];
+    lines.forEach((line, x) => {
+      const wordsByComma = line.split(',');
+      let accumLength = 0;
+      wordsByComma.forEach((subline) => {
+        let wordsInLine = subline.split(' ');
+        wordsInLine = wordsInLine.filter(word => word !== '');
+        colors.push(null);
+        coords.push(`${x}, ${accumLength + (wordsInLine.length - 1)}`);
+        accumLength += wordsInLine.length;
+        words.push(wordsInLine[wordsInLine.length - 1]);
+      });
     });
     words.forEach((word) => {
       APIcalls.push(API(word));
@@ -90,7 +91,7 @@ const parse = text =>
             if (score && score.weight > 3) {
               const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
                                && rip[k].indexOf(score.name) === rip[k].length - score.name.length;
-              if (endRhyme) {
+              // if (endRhyme) {
                 if (!colors[i] && !colors[k]) {
                   colors[i] = crayons[crayon];
                   colors[k] = crayons[crayon];
@@ -102,7 +103,7 @@ const parse = text =>
                   colors[i] = colors[k];
                   dirtyBrush = true;
                 }
-              }
+              //   }
             }
           }
           if (dirtyBrush) {
