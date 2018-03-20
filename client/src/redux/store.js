@@ -48,6 +48,7 @@ const reducer = (state = {
       return state;
     case 'sessionlogin':
       state.session = true;
+      state.user = action.body.username;
       return state;
     case 'sessionlogout':
       state.session = false;
