@@ -53,11 +53,18 @@ const parse = text =>
     const APIcalls = [];
     const colors = [];
     const coords = [];
-    const words = lines.map((line, index) => {
-      const wordsInLine = line.split(' ');
-      colors.push(null);
-      coords.push(`${index}, ${wordsInLine.length - 1}`);
-      return wordsInLine[wordsInLine.length - 1];
+    const words = [];
+    lines.forEach((line, x) => {
+      const wordsByComma = line.split(',');
+      let accumLength = 0;
+      wordsByComma.forEach((subline) => {
+        let wordsInLine = subline.split(' ');
+        wordsInLine = wordsInLine.filter(word => word !== '');
+        colors.push(null);
+        coords.push(`${x}, ${accumLength + (wordsInLine.length - 1)}`);
+        accumLength += wordsInLine.length;
+        words.push(wordsInLine[wordsInLine.length - 1]);
+      });
     });
     words.forEach((word) => {
       APIcalls.push(API(word));
@@ -82,17 +89,21 @@ const parse = text =>
             const [score] = substrings.weigh([rip[i], rip[k]], { minLength: 2 });
             console.log(rip[i], rip[k], score);
             if (score && score.weight > 3) {
-              if (!colors[i] && !colors[k]) {
-                colors[i] = crayons[crayon];
-                colors[k] = crayons[crayon];
-                dirtyBrush = true;
-              } else if (!colors[k]) {
-                colors[k] = colors[i];
-                dirtyBrush = true;
-              } else if (!colors[i]) {
-                colors[i] = colors[k];
-                dirtyBrush = true;
-              }
+              const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
+                               && rip[k].indexOf(score.name) === rip[k].length - score.name.length;
+              // if (endRhyme) {
+                if (!colors[i] && !colors[k]) {
+                  colors[i] = crayons[crayon];
+                  colors[k] = crayons[crayon];
+                  dirtyBrush = true;
+                } else if (!colors[k]) {
+                  colors[k] = colors[i];
+                  dirtyBrush = true;
+                } else if (!colors[i]) {
+                  colors[i] = colors[k];
+                  dirtyBrush = true;
+                }
+              //   }
             }
           }
           if (dirtyBrush) {
