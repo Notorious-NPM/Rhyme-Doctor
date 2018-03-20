@@ -2,7 +2,7 @@ import unirest from 'unirest';
 import substrings from 'common-substrings';
 import API_KEY from './config';
 
-const IPA_VOWELS = ['e', 'æ', 'ʌ', 'ʊ', 'ɒ', 'ə', 'i', 'ɜ', 'ɔ', 'u', 'ɑ', 'ɪə', 'eə', 'eɪ', 'ɔɪ', 'aɪ', 'əʊ', 'aʊ'];
+const IPA_VOWELS = ['e', 'æ', 'ʌ', 'ʊ', 'ɒ', 'ə', 'i', 'ɜ', 'ɛ', 'ɔ', 'u', 'ɑ', 'ɪə', 'eə', 'eɪ', 'ɔɪ', 'aɪ', 'əʊ', 'aʊ'];
 
 const fillString = '#';
 // https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors#Standard_colors
@@ -26,18 +26,16 @@ const crayons = [
   '#708EB3', // Metallic Blue
 ];
 
-/* const lyrics = `I'm not a regular competitor, first rhyme editor
-Melody arranger, poet etcetera
-Extra events, the grand finale like bonus
-I am the man they call the microphonist
-With wisdom, which means wise words being spoken
-Too many at one time, watch the mic start smoking
-I came to express the rap I manifest
-Stand in my way, and I'll veto all the word's protest
-Emcees that wanna be best, they're gonna
-Be dissed if they don't get from in front of
-All they can go get is me a glass of Moet
-A hard time, sip your juice and watch a smooth poet`; */
+const isVowel = ({ name }) => {
+  for (let i = 0; i < IPA_VOWELS.length; i += 1) {
+    const [score] = substrings.weigh([name, IPA_VOWELS[i]], { minLength: 1 });
+    console.log(name, IPA_VOWELS[i], score);
+    if (score && score.weight > 1) { // Toy with this... 3 is too strict?
+      return true;
+    }
+  }
+  return false;
+};
 
 const API = word =>
   new Promise((resolve) => {
@@ -56,16 +54,21 @@ const parse = text =>
     const colors = [];
     const coords = [];
     const words = [];
+    const jump = [];
     lines.forEach((line, x) => {
       const wordsByComma = line.split(',');
       let accumLength = 0;
-      wordsByComma.forEach((subline) => {
+      jump[x] = 2;
+      wordsByComma.forEach((subline, y) => {
         let wordsInLine = subline.split(' ');
         wordsInLine = wordsInLine.filter(word => word !== '');
         colors.push(null);
         coords.push(`${x}, ${accumLength + (wordsInLine.length - 1)}`);
         accumLength += wordsInLine.length;
         words.push(wordsInLine[wordsInLine.length - 1]);
+        if (y !== wordsByComma.length - 1) {
+          jump[x] += 1;
+        }
       });
     });
     words.forEach((word) => {
@@ -85,37 +88,34 @@ const parse = text =>
         let dirtyBrush = false;
         for (let i = 0; i < rip.length - 1; i += 1) {
           for (let k = i + 1; k < rip.length; k += 1) {
-            if (k - i > 2) {
+            if (k - i > jump[i]) {
               break;
             }
-            console.log(substrings.weigh([rip[i], rip[k]], { minLength: 2 }));
-            const [score] = substrings.weigh([rip[i], rip[k]], { minLength: 2 });
-            console.log(rip[i], rip[k], score);
+            console.log(rip[i], rip[k]);
+            const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 2 });
+            console.log(commonSubstrings);
+            let score;
+            for (let j = 0; j < commonSubstrings.length; j += 1) {
+              if (isVowel(commonSubstrings[j])) {
+                score = commonSubstrings[j];
+                break;
+              }
+            }
+            // console.log(rip[i], rip[k], score);
             if (score && score.weight > 3) {
-              let vowel = false;
-              IPA_VOWELS.forEach((IPA_VOWEL) => {
-                console.log(score.name, IPA_VOWEL);
-                const [vowelScore] = substrings.weigh([score.name, IPA_VOWEL], { minLength: 1 });
-                console.log(vowelScore);
-                if (vowelScore && vowelScore.weight > 1) { // Toy with this... 3 is too strict?
-                  vowel = true;
-                }
-              });
               /* const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
                                && rip[k].indexOf(score.name) === rip[k].length - score.name.length; */ // eslint-disable-line
               // if (endRhyme) {
-              if (vowel) {
-                if (!colors[i] && !colors[k]) {
-                  colors[i] = crayons[crayon];
-                  colors[k] = crayons[crayon];
-                  dirtyBrush = true;
-                } else if (!colors[k]) {
-                  colors[k] = colors[i];
-                  dirtyBrush = true;
-                } else if (!colors[i]) {
-                  colors[i] = colors[k];
-                  dirtyBrush = true;
-                }
+              if (!colors[i] && !colors[k]) {
+                colors[i] = crayons[crayon];
+                colors[k] = crayons[crayon];
+                dirtyBrush = true;
+              } else if (!colors[k]) {
+                colors[k] = colors[i];
+                dirtyBrush = true;
+              } else if (!colors[i]) {
+                colors[i] = colors[k];
+                dirtyBrush = true;
               }
               // }
             }
@@ -126,7 +126,7 @@ const parse = text =>
           }
         }
         console.log(words);
-        console.log(colors);
+        // console.log(colors);
         resolve([coords, colors]);
       });
   });
