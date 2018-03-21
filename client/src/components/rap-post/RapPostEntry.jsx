@@ -14,6 +14,7 @@ class RapPostEntry extends React.Component {
       alert: false,
       alertStatus: '',
       alertMessage: '',
+      timer: undefined,
     };
   }
 
@@ -87,7 +88,12 @@ class RapPostEntry extends React.Component {
       alertStatus: status,
       alertMessage: message,
     });
-    setTimeout(() => this.setState({ alert: false }), 3000);
+    if (this.state.timer) {
+      clearTimeout(this.state.timer);
+    }
+    this.setState({ 
+      timer: setTimeout(() => this.setState({ alert: false }), 3000),
+    });
   }
 
   render() {
