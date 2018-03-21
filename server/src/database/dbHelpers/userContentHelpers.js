@@ -3,12 +3,25 @@ import User from '../models/user';
 
 // Testing
 
-const getUserDataHelper = ({ id }) => User.findOne({
-  where: {
-    id,
-  },
-  attributes: { exclude: ['password', 'id'] },
-});
+const getUserDataHelper = ({ id, name }) => {
+  if (id) {
+    console.log('*** queried user')
+    return User.findOne({
+      where: {
+        id,
+      },
+      attributes: { exclude: ['password', 'id'] },
+    });
+  } else if (name) {
+    console.log('*** quried selected user');
+    return User.findOne({
+      where: {
+        name,
+      },
+      attributes: { exclude: ['password', 'id'] },
+    });
+  }
+};
 
 const getUserPostsHelper = ({ id }) => rapPost.findAll({
   where: {
