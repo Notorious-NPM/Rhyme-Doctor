@@ -59,12 +59,19 @@ const addfriendCtrl = async (req, res) => {
   res.status(201).send('new friendship created');
 };
 
-const unfriendCtrl = (req, res) => {
-  // input: user_id and friend_id
-  // output: 'success' string
+const unfriendCtrl = async (req, res) => {
+  let friend;
+  if (req.user.id) {
+    friend = await User.findOne({
+      where: {
+        name: req.body.username,
+      },
+      attributes: { exclude: ['password'] },
+    });
+  }
 
-  unFriendHelper(req.user.id, req.body.friendID);
-  res.status(201).send('success');
+  await unFriendHelper(req.user.id, friend.dataValues.id);
+  res.status(201).send('friendship dissolved');
 };
 
 export {

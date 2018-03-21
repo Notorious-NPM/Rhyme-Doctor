@@ -13,7 +13,7 @@ const addFriendHelper = (userID, friendID) => {
     roomID,
   });
 
-  return Friends.create({
+  Friends.create({
     userID,
     friendID,
     roomID,
@@ -48,7 +48,15 @@ const queryFriendHelper = userID =>
 const unFriendHelper = (userID, friendID) => {
   Friends.destroy({
     where: {
-      [Op.or]: [{ userID, friendID }, { userID: friendID, friendID: userID }],
+      userID: friendID,
+      friendID: userID,
+    },
+  });
+
+  Friends.destroy({
+    where: {
+      userID,
+      friendID,
     },
   });
 };
