@@ -1,0 +1,17 @@
+.user_name {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+}
+.comments-list .media {
+  border-bottom: 1px dotted #ccc;
+}
+.comments-title {
+  text-align: left;
+}
+.media-body {
+  text-align: left;
+}
+.comments {
+  margin: 0 1em 0 1em;
+}
