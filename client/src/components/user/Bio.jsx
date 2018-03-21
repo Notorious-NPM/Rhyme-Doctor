@@ -1,18 +1,19 @@
 import React from 'react';
-import Dropzone from 'react-dropzone';
 import axios from 'axios';
-import API_KEY from './config';
+import store from '../../redux/store';
 
 
 class Bio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      input: '',
-    };
+    this.state = store.getState();
+    store.subscribe(() => {
+      this.state = store.getState();
+    });
   }
   
   componentWillMount() {
+    console.log(this.state);
     this.setState ({
       bio: this.props.bio
     })
