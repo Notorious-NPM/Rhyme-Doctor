@@ -13,6 +13,7 @@ class ThesaurusForm extends React.Component {
   }
 
   onChange(e) {
+    e.preventDefault();
     const { name, value } = e.target;
     this.setState({
       [name]: value,
@@ -20,9 +21,10 @@ class ThesaurusForm extends React.Component {
   }
 
   searchWord(e) {
+    const word = this.state.word;
     e.preventDefault();
     axios
-      .get(`/api/word/synonym?word=${this.state.word}`)
+      .get('api/word/synonym', { params: { word } })
       .then((res) => {
         this.setState({
           synonyms: res.data,
