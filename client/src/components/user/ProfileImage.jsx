@@ -15,6 +15,7 @@ class ProfileImage extends React.Component {
   }
 
   componentWillMount() {
+    console.log('props', this.props);
     this.setState ({
       image: this.props.image
     })

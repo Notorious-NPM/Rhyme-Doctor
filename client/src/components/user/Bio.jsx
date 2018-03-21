@@ -13,11 +13,9 @@ class Bio extends React.Component {
   }
   
   componentWillMount() {
-    console.log(this.state);
     this.setState ({
       bio: this.props.bio
     })
-    // console.log(this.props);
   }
 
   onChange(e) {
@@ -54,6 +52,7 @@ class Bio extends React.Component {
             <button type="button" onClick={() => this.addBio()}>Submit</button>
           </div>)}
         {this.state.bio && (<div>{this.state.bio}</div>)}
+        {this.state.user ? <a href="#">Edit Bio</a> : null}
       </div>
     );
   }
