@@ -2,15 +2,22 @@ import { getUserPostsHelper, getUserDataHelper, addUserImageHelper, addUserBioHe
 
 const getUserPostsCtrl = (req, res) => {
   // Get all user posts
-  getUserPostsHelper(req.user)
+  let param = req.user;
+  if (req.user.id && req.query.name) {
+    param = req.query;
+  }
+  getUserPostsHelper(param)
     .then(result => res.status(200).send(result))
     .catch(err => res.status(404).send(err));
 };
 
-
 const getUserDataCtrl = (req, res) => {
   // Get all user data
-  getUserDataHelper(req.user)
+  let param = req.user;
+  if (req.user.id && req.query.name) {
+    param = req.query;
+  }
+  getUserDataHelper(param)
     .then(result => res.status(200).send(result))
     .catch(err => res.status(404).send(err));
 };

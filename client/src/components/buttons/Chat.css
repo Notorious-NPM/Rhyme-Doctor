@@ -18,6 +18,8 @@
 }
 
 #selectedChat {
+  background-color: white;
+  box-shadow: -5px 5px 15px 0px #BDBBB9;
   z-index: 1;
   position: fixed;
   padding: 0.5px;

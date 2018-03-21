@@ -3,18 +3,39 @@ import User from '../models/user';
 
 // Testing
 
-const getUserDataHelper = ({ id }) => User.findOne({
-  where: {
-    id,
-  },
-  attributes: { exclude: ['password', 'id'] },
-});
+const getUserDataHelper = ({ id, name }) => {
+  if (id) {
+    return User.findOne({
+      where: {
+        id,
+      },
+      attributes: { exclude: ['password', 'id'] },
+    });
+  } else if (name) {
+    return User.findOne({
+      where: {
+        name,
+      },
+      attributes: { exclude: ['password', 'id'] },
+    });
+  }
+};
 
-const getUserPostsHelper = ({ id }) => rapPost.findAll({
-  where: {
-    user_id: id,
-  },
-});
+const getUserPostsHelper = ({ id, name }) => {
+  if (id) {
+    return rapPost.findAll({
+      where: {
+        user_id: id,
+      },
+    });
+  } else if (name) {
+    return rapPost.findAll({
+      where: {
+        username: name,
+      },
+    });
+  }
+};
 
 const addUserImageHelper = async (userId, imageUrl) => {
   const user = await User.findById(userId);
