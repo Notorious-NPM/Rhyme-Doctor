@@ -22,7 +22,6 @@ class Chat extends Component {
     });
 
     await this.socket.on('server.sendMsg', ({ msg, randomCode }) => {
-      // console.log(data);
       if (randomCode === this.state.randomCode) {
         msg = 'Me: ' + msg;
       } else {
@@ -38,11 +37,8 @@ class Chat extends Component {
 
   sendMsg(e) {
     e.preventDefault();
-    // this.setState({ messages: [...this.state.messages, this.state.msg] });
     const { socket, randomCode, msg } = this.state;
-
     socket.emit('client.sendMsg', { msg, randomCode });
-
     e.target.reset();
   }
 
