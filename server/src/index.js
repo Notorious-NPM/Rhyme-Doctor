@@ -11,6 +11,7 @@ const server = express();
 server.use(...middleware); // is this the right syntax?
 server.use('/api', router);
 server.use(express.static(path.join(__dirname, '../../client/dist')));
+server.use(express.static(path.join(__dirname, '../../client/dropzone')));
 
 server.listen(port, () => {
   console.log('Rhyme Doctor is listening on port:', port);

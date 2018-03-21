@@ -28,9 +28,13 @@ class App extends React.Component {
       method: 'GET',
       url: '/api/auth/loggedin',
       success(response) {
-        if (response === 'true') {
+        response = JSON.parse(response); // eslint-disable-line
+        if (response.session) {
           store.dispatch({
             type: 'sessionlogin',
+            body: {
+              user: response.username,
+            },
           });
         }
       },
