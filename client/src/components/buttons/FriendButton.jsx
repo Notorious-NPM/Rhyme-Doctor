@@ -20,7 +20,7 @@ class FriendButton extends Component {
     axios
       .get('/api/user/checkFriendship', options)
       .then(({ data }) =>
-        console.log('Friend button data: ', data))
+        this.setState({ areFriends: JSON.parse(data) }))
       .catch(err => console.log('Friend componentMount error: ', err));
   }
 

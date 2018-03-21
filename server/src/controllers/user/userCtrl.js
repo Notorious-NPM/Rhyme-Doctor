@@ -31,14 +31,16 @@ const queryfriendCtrl = (req, res) => {
 };
 
 const checkFriendshipCtrl = (req, res) => {
+  console.log('checkFriendship data: ', req.user.id, ' and ', req.query.username);
+
   checkIfFriends(req.user.id, req.query.username)
-    .then((results) => {
-      console.log('checkFriendshipCtrl results: ', results);
-      res.status(201).send('response');
+    .then(({ dataValues }) => {
+      const result = req.query.username === dataValues.friend[0].dataValues.name;
+      res.status(200).send(result);
     })
     .catch((err) => {
       console.log(err);
-      res.status(404).send(err);
+      res.status(200).send('false');
     });
 };
 
@@ -52,7 +54,7 @@ const addfriendCtrl = async (req, res) => {
       attributes: { exclude: ['password'] },
     });
   }
-  
+
   await addFriendHelper(req.user.id, friend.dataValues.id);
   res.status(201).send('new friendship created');
 };
