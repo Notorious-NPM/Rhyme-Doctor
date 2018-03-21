@@ -27,7 +27,7 @@ class FriendChat extends Component {
  
         this.setState({ friendsList }) // eslint-disable-line
       })
-      .catch(err => console.log('Friend componentMount error: ', err));
+      .catch(err => console.log('FriendChat componentMount error: ', err));
   }
 
   changeSelectedChat(friendName, roomID) {
@@ -36,10 +36,6 @@ class FriendChat extends Component {
       this.setState({ selectedChat: [friendName, roomID] });
       document.getElementById('selectedChat').classList.remove('hide');
     }, 0);
-  }
-
-  showState() {
-    console.log(this.state);
   }
 
   openFriendList(e) {
@@ -72,10 +68,6 @@ class FriendChat extends Component {
         <div id="mySidenav" className="sidenav">
           <a href="#" onMouseEnter={e => this.openFriendList(e)}>Friends</a>
         </div>
-        ************
-        <br />
-        <br />
-        <button type="button" onClick={() => this.showState()}>Show State</button>
         <br />
         {selectedChat && <Chat className="hide" friendName={selectedChat[0]} roomID={selectedChat[1]} />}
       </div>

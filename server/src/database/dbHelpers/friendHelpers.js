@@ -13,80 +13,28 @@ const addFriendHelper = (userID, friendID) => {
     roomID,
   });
 
-  return Friends.create({
+  Friends.create({
     userID,
     friendID,
     roomID,
   });
 };
 
-const queryFriendHelper = userID => 
-  // Friends.create({
-  //   userID: 8,
-  //   friendID: 7,
-  //   roomID: 'two',
-  // });
-  // Friends.create({
-  //   userID: 7,
-  //   friendID: 8,
-  //   roomID: 'two',
-  // });
+const checkIfFriends = (userID, username) =>
+  User.findOne({
+    where: {
+      id: userID,
+    },
+    include: [{
+      model: User,
+      as: 'friend',
+      where: {
+        name: username,
+      },
+    }],
+  });
 
-  // Friends.create({
-  //   userID: 8,
-  //   friendID: 1,
-  //   roomID: 'two',
-  // });
-  // Friends.create({
-  //   userID: 1,
-  //   friendID: 8,
-  //   roomID: 'two',
-  // });
-
-  // Friends.create({
-  //   userID: 8,
-  //   friendID: 2,
-  //   roomID: 'two',
-  // });
-  // Friends.create({
-  //   userID: 2,
-  //   friendID: 8,
-  //   roomID: 'two',
-  // });
-
-  // Friends.create({
-  //   userID: 8,
-  //   friendID: 3,
-  //   roomID: 'two',
-  // });
-  // Friends.create({
-  //   userID: 3,
-  //   friendID: 8,
-  //   roomID: 'two',
-  // });
-
-  // Friends.create({
-  //   userID: 8,
-  //   friendID: 4,
-  //   roomID: 'two',
-  // });
-  // Friends.create({
-  //   userID: 4,
-  //   friendID: 8,
-  //   roomID: 'two',
-  // });
-
-  // Friends.create({
-  //   userID: 8,
-  //   friendID: 5,
-  //   roomID: 'two',
-  // });
-  // Friends.create({
-  //   userID: 5,
-  //   friendID: 8,
-  //   roomID: 'two',
-  // });
-
+const queryFriendHelper = userID =>
   User.findOne({
     where: {
       id: userID,
@@ -100,9 +48,17 @@ const queryFriendHelper = userID =>
 const unFriendHelper = (userID, friendID) => {
   Friends.destroy({
     where: {
-      [Op.or]: [{ userID, friendID }, { userID: friendID, friendID: userID }],
+      userID: friendID,
+      friendID: userID,
+    },
+  });
+
+  Friends.destroy({
+    where: {
+      userID,
+      friendID,
     },
   });
 };
 
-export { addFriendHelper, queryFriendHelper, unFriendHelper };
+export { addFriendHelper, queryFriendHelper, unFriendHelper, checkIfFriends };

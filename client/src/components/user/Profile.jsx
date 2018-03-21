@@ -4,10 +4,11 @@ import UserPosts from './UserPosts';
 import Stats from './Stats';
 import ProfileImage from './ProfileImage';
 import Bio from './Bio';
+import FriendButton from '../buttons/FriendButton';
 
 class Profile extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userPosts: [],
       username: '',
@@ -18,28 +19,34 @@ class Profile extends React.Component {
     };
   }
   componentWillMount() {
-    this.getUserData();
-    this.getUserPosts();
+    if (this.props.location.state) {
+      const { username } = this.props.location.state;
+      this.getUserData(username);
+      this.getUserPosts(username);
+    } else {
+      this.getUserData();
+      this.getUserPosts();
+    }
   }
 
-  getUserData = async () => {
+  getUserData = async (username) => {
     try {
-      const userData = await axios.get('api/profile');
+      const userData = username ? await axios.get('api/profile', { params: { name: username } }) : await axios.get('api/profile');
       this.setState({
         username: userData.data.name,
         likeCount: userData.data.like_count,
         image: userData.data.image,
-        bio: userData.data.bio, 
-        received: true
+        bio: userData.data.bio,
+        received: true,
       });
     } catch (err) {
       console.log('Failed to get user posts');
     }
   }
 
-  getUserPosts = async () => {
+  getUserPosts = async (username) => {
     try {
-      const userPosts = await axios.get('api/profile/posts');
+      const userPosts = username ? await axios.get('api/profile/posts', { params: { name: username } }) : await axios.get('api/profile/posts');
       this.setState({
         userPosts: userPosts.data,
       });
@@ -49,11 +56,14 @@ class Profile extends React.Component {
   }
 
   render() {
+    const { state } = this.props.location;
+
     return (
       <div>
         <Stats username={this.state.username} likeCount={this.state.likeCount} />
-        {this.state.received ? <ProfileImage image={this.state.image} /> :null }
-        {this.state.received ? <Bio username={this.state.username} bio={this.state.bio}/> :null }
+        {this.state.received && <ProfileImage image={this.state.image} />}
+        {this.state.received && <Bio username={this.state.username} bio={this.state.bio} />}
+        {state && <FriendButton username={state.username} />}
         <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} />
       </div>
     );

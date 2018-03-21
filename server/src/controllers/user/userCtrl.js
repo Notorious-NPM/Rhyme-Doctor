@@ -1,5 +1,6 @@
 // need DB helpers
-import { addFriendHelper, queryFriendHelper, unFriendHelper } from '../../database/dbHelpers/friendHelpers';
+import { addFriendHelper, queryFriendHelper, unFriendHelper, checkIfFriends } from '../../database/dbHelpers/friendHelpers';
+import User from '../../database/models/user';
 
 const followCtrl = () => {
   // user/follow id exists ? declines request : registers follow request
@@ -9,12 +10,6 @@ const unfollowCtrl = () => {
   // user/follow id exists ? registers unfollow request : declines request
 };
 
-const addfriendCtrl = (req, res) => {
-  addFriendHelper(req.user.id, req.body.friendID)
-    .then(result => res.status(201).send(result))
-    .catch(err => res.status(201).send(err));
-};
-
 const queryfriendCtrl = (req, res) => {
   queryFriendHelper(req.user.id)
     .then((results) => {
@@ -22,9 +17,7 @@ const queryfriendCtrl = (req, res) => {
       const friendsArr = [];
       friends.forEach(({ dataValues }) => {
         const friendInfo = {};
-        // console.log('**: ', dataValues.friends.dataValues);
         friendInfo.name = dataValues.name;
-        // friendInfo.friendID = dataValues.id;
         friendInfo.roomID = dataValues.friends.dataValues.roomID;
         friendsArr.push(friendInfo);
       });
@@ -37,12 +30,48 @@ const queryfriendCtrl = (req, res) => {
     });
 };
 
-const unfriendCtrl = (req, res) => {
-  // input: user_id and friend_id
-  // output: 'success' string
+const checkFriendshipCtrl = (req, res) => {
+  console.log('checkFriendship data: ', req.user.id, ' and ', req.query.username);
 
-  unFriendHelper(req.user.id, req.body.friendID);
-  res.status(201).send('success');
+  checkIfFriends(req.user.id, req.query.username)
+    .then(({ dataValues }) => {
+      const result = req.query.username === dataValues.friend[0].dataValues.name;
+      res.status(200).send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(200).send('false');
+    });
+};
+
+const addfriendCtrl = async (req, res) => {
+  let friend;
+  if (req.user.id) {
+    friend = await User.findOne({
+      where: {
+        name: req.body.username,
+      },
+      attributes: { exclude: ['password'] },
+    });
+  }
+
+  await addFriendHelper(req.user.id, friend.dataValues.id);
+  res.status(201).send('new friendship created');
+};
+
+const unfriendCtrl = async (req, res) => {
+  let friend;
+  if (req.user.id) {
+    friend = await User.findOne({
+      where: {
+        name: req.body.username,
+      },
+      attributes: { exclude: ['password'] },
+    });
+  }
+
+  await unFriendHelper(req.user.id, friend.dataValues.id);
+  res.status(201).send('friendship dissolved');
 };
 
 export {
@@ -51,4 +80,5 @@ export {
   addfriendCtrl,
   queryfriendCtrl,
   unfriendCtrl,
+  checkFriendshipCtrl,
 };
