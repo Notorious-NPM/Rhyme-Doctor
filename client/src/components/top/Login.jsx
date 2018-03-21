@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import $ from 'jquery';
 
 import store from '../../redux/store';
@@ -50,10 +49,6 @@ const Login = ({ history }) => {
       </div>
     </div>
   );
-};
-
-Login.propTypes = {
-  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default Login;

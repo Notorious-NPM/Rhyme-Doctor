@@ -30,7 +30,6 @@ class App extends React.Component {
       success(response) {
         response = JSON.parse(response); // eslint-disable-line
         if (response.session) {
-          console.log(response);
           store.dispatch({
             type: 'sessionlogin',
             body: {
