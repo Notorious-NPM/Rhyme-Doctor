@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Comments from './comments';
+import Alert from '../alert';
 import './rapPost.css';
 
 class RapPostEntry extends React.Component {
@@ -10,6 +11,10 @@ class RapPostEntry extends React.Component {
       comments: [],
       showComments: false,
       myComment: '',
+      alert: false,
+      alertStatus: '',
+      alertMessage: '',
+      timer: undefined,
     };
   }
 
@@ -28,15 +33,21 @@ class RapPostEntry extends React.Component {
   }
 
   likeRapPost = async () => {
-    const status = await axios.put(
-      'http://localhost:3000/api/vote/upvote',
-      { rapPostId: this.props.rapPost.id },
-    );
-    if (this.props.onProfile) {
-      this.props.getUserPosts();
-      this.props.getUserData();
-    } else {
-      this.props.getRapPosts();
+    try {
+      const status = await axios.put(
+        'http://localhost:3000/api/vote/upvote',
+        { rapPostId: this.props.rapPost.id },
+      );
+      this.activateAlert('success', 'You liked this rap post!');
+      if (this.props.onProfile) {
+        this.props.getUserPosts();
+        this.props.getUserData();
+      } else {
+        this.props.getRapPosts();
+      }
+    } catch (err) {
+      console.log('Post was already liked');
+      this.activateAlert('warning', 'Rap post was already liked');
     }
   }
 
@@ -46,8 +57,10 @@ class RapPostEntry extends React.Component {
         'http://localhost:3000/api/content/report',
         { rapPostId: this.props.rapPost.id },
       );
+      this.activateAlert('success', 'Report was successfully submitted');
     } catch (err) {
       console.log('Report was already submitted');
+      this.activateAlert('warning', 'Report was already submitted');
     }
   }
 
@@ -69,13 +82,28 @@ class RapPostEntry extends React.Component {
     this.getComments(false);
   }
 
+  activateAlert = (status, message) => {
+    this.setState({
+      alert: true,
+      alertStatus: status,
+      alertMessage: message,
+    });
+    if (this.state.timer) {
+      clearTimeout(this.state.timer);
+    }
+    this.setState({
+      timer: setTimeout(() => this.setState({ alert: false }), 3000),
+    });
+  }
+
   render() {
     return (
       <div>
         <div className="card w-50">
           <div className="card-body">
+            {this.state.alert ? <Alert message={this.state.alertMessage} status={this.state.alertStatus} /> : null}
             <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span class="badge badge-light">{this.props.rapPost.like_count}</span></button></p>
-            <button className="btn btn-primary" onClick={() => this.reportPost()}>Report Post</button>
+            <button className="badge badge-warning" onClick={() => this.reportPost()}>Report Post</button>
             <h5 className="card-title">By {this.props.rapPost.username}</h5>
             <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
             <button className="btn btn-primary" onClick={() => this.getComments()}>Show Comments</button>
@@ -87,6 +115,7 @@ class RapPostEntry extends React.Component {
             comments={this.state.comments}
           /> : null}
         </div>
+
       </div>
     );
   }

@@ -18,7 +18,7 @@ const upvoteCtrl = async (req, res) => {
   } else {
     const rapPost = await RapPost.findById(Number(req.body.rapPostId));
     rapPost.increment('like_count', { by: 1 });
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(rapPost.user_id);
     user.increment('like_count', { by: 1 });
     res.status(201).send(JSON.stringify('Success!'));
   }
