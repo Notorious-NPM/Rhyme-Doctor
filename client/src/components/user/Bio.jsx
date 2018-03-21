@@ -11,29 +11,39 @@ class Bio extends React.Component {
       this.state = store.getState();
     });
   }
-  
-  componentWillMount() {
-    this.setState ({
-      bio: this.props.bio
-    })
-  }
 
-  onChange(e) {
-    const { name, value } = e.target;
+  componentWillMount = () => {
+    console.log(this.state);
     this.setState({
-      [name]: value
+      bio: this.props.bio,
+      showEdit: false,
     });
   }
 
-  addBio = async() => {
+  onChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  addBio = async () => {
     const status = await axios.put(
       'api/profile/bio',
       { bio: this.state.input },
     );
-    this.setState ({
-      bio: this.state.input
-    })
+    this.setState({
+      bio: this.state.input,
+    });
   }
+
+  // editBio = (e) => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     showEdit: !this.state.showEdit,
+  //   });
+  //   console.log('state', this.state);
+  // }
 
   render() {
     return (
@@ -41,18 +51,18 @@ class Bio extends React.Component {
         Bio
         {!this.state.bio && (
           <div>
-            <textarea 
-              name="input" 
-              rows="3" 
-              maxLength="250" 
-              placeholder="Write your bio here (max 250 characters)" 
+            <textarea
+              name="input"
+              rows="3"
+              maxLength="250"
+              placeholder="Write your bio here (max 250 characters)"
               onChange={e => this.onChange(e)}
             />
-            <br/>
+            <br />
             <button type="button" onClick={() => this.addBio()}>Submit</button>
           </div>)}
         {this.state.bio && (<div>{this.state.bio}</div>)}
-        {this.state.user ? <a href="#">Edit Bio</a> : null}
+        {this.state.user === this.props.username ? <a>Edit Bio</a> : null}
       </div>
     );
   }
