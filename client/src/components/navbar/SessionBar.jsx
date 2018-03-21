@@ -3,14 +3,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import PropTypes from 'prop-types';
 import $ from 'jquery';
 
 import store from '../../redux/store';
 
 const history = createHistory();
 
-const logout = (history) => {
+const logout = () => {
   $.ajax({
     url: '/api/auth/logout',
     method: 'POST',
@@ -21,7 +20,7 @@ const logout = (history) => {
   });
 };
 
-const SessionBar = ({ history }) => {
+const SessionBar = () => {
   console.log(history);
   return (
     <div>
@@ -51,17 +50,13 @@ const SessionBar = ({ history }) => {
         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a onClick={() => logout(history)} className="nav-link" /* eslint-disable-line */ >Logout</a>
+              <a onClick={logout} className="nav-link" /* eslint-disable-line */ >Logout</a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
   );
-};
-
-SessionBar.propTypes = {
-  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default SessionBar;
