@@ -51,6 +51,7 @@ const reducer = (state = {
       state.user = action.body.username;
       return state;
     case 'sessionlogout':
+      delete state.user;
       state.session = false;
       return state;
     case 'straighthighlight':
