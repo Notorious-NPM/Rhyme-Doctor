@@ -20,6 +20,20 @@ const addFriendHelper = (userID, friendID) => {
   });
 };
 
+const checkIfFriends = (userID, username) =>
+  User.findOne({
+    where: {
+      id: userID,
+    },
+    include: [{
+      model: User,
+      as: 'friend',
+      where: {
+        name: username,
+      },
+    }],
+  });
+
 const queryFriendHelper = userID => 
   // Friends.create({
   //   userID: 8,
@@ -105,4 +119,4 @@ const unFriendHelper = (userID, friendID) => {
   });
 };
 
-export { addFriendHelper, queryFriendHelper, unFriendHelper };
+export { addFriendHelper, queryFriendHelper, unFriendHelper, checkIfFriends };
