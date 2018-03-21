@@ -27,7 +27,7 @@ class FriendChat extends Component {
  
         this.setState({ friendsList }) // eslint-disable-line
       })
-      .catch(err => console.log('Friend componentMount error: ', err));
+      .catch(err => console.log('FriendChat componentMount error: ', err));
   }
 
   changeSelectedChat(friendName, roomID) {

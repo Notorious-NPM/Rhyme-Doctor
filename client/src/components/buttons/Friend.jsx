@@ -5,29 +5,22 @@ class Friend extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userID: 1,
-      selectedUserID: 3,
-      friendsList: {
-        2: true,
-      },
+      friends: false,
     };
   }
 
   componentDidMount() {
-    // need starting userID + selectedUserID.  MB as props so they're available before this?
+    const { username } = this.props;
+    const options = {
+      params: {
+        username,
+      },
+    };
+
     axios
-      .get(`/api/user/friend?userID=${1}`)
-      .then(({ data }) => {
-        const friendsList = {};
-        data.forEach((friendship) => {
-          if (friendship.userID === this.state.userID) {
-            friendsList[friendship.friendID] = true;
-          } else {
-            friendsList[friendship.userID] = true;
-          }
-        });
-        this.setState({ friendsList }) // eslint-disable-line
-      })
+      .get('/api/user/friend', options)
+      .then(({ data }) =>
+        console.log(data))
       .catch(err => console.log('Friend componentMount error: ', err));
   }
 
@@ -59,12 +52,12 @@ class Friend extends Component {
   }
 
   render() {
-    const { friendsList, selectedUserID } = this.state;
-    const action = friendsList[selectedUserID] ? 'De-Friend' : 'Add Friend';
+    // const { friendsList, selectedUserID } = this.state;
+    // const action = friendsList[selectedUserID] ? 'De-Friend' : 'Add Friend';
 
     return (
       <div>
-        <button type="button" value={action} onClick={e => this.handleFriendButton(e)}>{action}</button>
+        <button type="button" onClick={e => this.handleFriendButton(e)}>Friend</button>
       </div>
     );
   }
