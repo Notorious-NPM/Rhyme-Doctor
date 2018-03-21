@@ -9,6 +9,8 @@ rules:
     off
   react/no-array-index-key:
     off
+  react/prop-types:
+    off
 globals:
   document: false
   window: false
