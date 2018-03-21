@@ -20,11 +20,9 @@ class Profile extends React.Component {
   componentWillMount() {
     if (this.props.location.state) {
       const { username } = this.props.location.state;
-      console.log('*** reached Profile.jsx CWM: ', username);
       this.getUserData(username);
-      this.getUserPosts();
+      this.getUserPosts(username);
     } else {
-      console.log('*** reached Profile.jsx else');
       this.getUserData();
       this.getUserPosts();
     }
@@ -45,9 +43,9 @@ class Profile extends React.Component {
     }
   }
 
-  getUserPosts = async () => {
+  getUserPosts = async (username) => {
     try {
-      const userPosts = await axios.get('api/profile/posts');
+      const userPosts = username ? await axios.get('api/profile/posts', { params: { name: username } }) : await axios.get('api/profile/posts');
       this.setState({
         userPosts: userPosts.data,
       });
