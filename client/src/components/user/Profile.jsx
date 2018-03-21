@@ -6,8 +6,8 @@ import ProfileImage from './ProfileImage';
 import Bio from './Bio';
 
 class Profile extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userPosts: [],
       username: '',
@@ -18,19 +18,27 @@ class Profile extends React.Component {
     };
   }
   componentWillMount() {
-    this.getUserData();
-    this.getUserPosts();
+    if (this.props.location.state) {
+      const { username } = this.props.location.state;
+      console.log('*** reached Profile.jsx CWM: ', username);
+      this.getUserData(username);
+      this.getUserPosts();
+    } else {
+      console.log('*** reached Profile.jsx else');
+      this.getUserData();
+      this.getUserPosts();
+    }
   }
 
-  getUserData = async () => {
+  getUserData = async (username) => {
     try {
-      const userData = await axios.get('api/profile');
+      const userData = username ? await axios.get('api/profile', { params: { name: username } }) : await axios.get('api/profile');
       this.setState({
         username: userData.data.name,
         likeCount: userData.data.like_count,
         image: userData.data.image,
-        bio: userData.data.bio, 
-        received: true
+        bio: userData.data.bio,
+        received: true,
       });
     } catch (err) {
       console.log('Failed to get user posts');
