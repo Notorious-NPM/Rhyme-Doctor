@@ -11,7 +11,6 @@ const getUserPostsCtrl = (req, res) => {
     .catch(err => res.status(404).send(err));
 };
 
-
 const getUserDataCtrl = (req, res) => {
   // Get all user data
   let param = req.user;
