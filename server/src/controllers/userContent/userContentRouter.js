@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUserDataCtrl, getUserPostsCtrl, addImageCtrl } from './userContentCtrl';
+import { getUserDataCtrl, getUserPostsCtrl, addImageCtrl, addBioCtrl } from './userContentCtrl';
 
 const router = express.Router();
 
@@ -12,5 +12,7 @@ router.route('/posts')
 router.route('/image')
   .put(addImageCtrl);
 
+router.route('/bio')
+  .put(addBioCtrl);
 
 export default router;

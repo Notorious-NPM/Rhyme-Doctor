@@ -18,16 +18,17 @@ const getUserPostsHelper = ({ id }) => rapPost.findAll({
 
 const addUserImageHelper = async (userId, imageUrl) => {
   const user = await User.findById(userId);
-  // console.log(user);
-  user.update({ image: imageUrl }).then(function() {
+  user.update({ image: imageUrl }).then(() => {
     console.log('success!');
   });
 };
 
-// const rapPost = await RapPost.findById(Number(req.body.rapPostId));
-// rapPost.increment('like_count', { by: 1 });
-// const user = await User.findById(req.user.id);
-// user.increment('like_count', { by: 1 });
-// res.status(201).send(JSON.stringify('Success!'));
+const addUserBioHelper = async (userId, imageUrl) => {
+  const user = await User.findById(userId);
+  user.update({ bio: imageUrl }).then(() => {
+    console.log('success!');
+  });
+};
 
-export { getUserDataHelper, getUserPostsHelper, addUserImageHelper };
+
+export { getUserDataHelper, getUserPostsHelper, addUserImageHelper, addUserBioHelper };
