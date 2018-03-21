@@ -8,10 +8,11 @@ import sequelize from '../../database';
 const createPostCtrl = (req, res) => {
   // optional: check if first few lines match what's already in our DB
   // create content
+  console.log(req.user);
   RapPost.create({
     text: req.body.text,
     user_id: req.user.id,
-    username: req.user.name,
+    username: req.user.username,
   }).then((lyrics) => {
     res.status(201).end(`Posted: ${lyrics.text.substr(0, 20)}... successfully!`);
   });
@@ -39,7 +40,7 @@ const uncommentCtrl = () => {
 
 const reportCtrl = async (req, res) => {
   // reports posts based on id
-  const [_, created] = await ReportPost.findOrCreate({
+  const [_, created] = await ReportPost.findOrCreate({ // eslint-disable-line
     where: {
       user_id: req.user.id,
       rap_post_id: req.body.rapPostId,

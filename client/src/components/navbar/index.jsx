@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import NoSessionBar from './NoSessionBar';
 import SessionBar from './SessionBar';
@@ -16,8 +17,12 @@ class Navbar extends React.Component {
   }
 
   render() {
-    return this.state.session ? <SessionBar /> : <NoSessionBar />;
+    return this.state.session ? <SessionBar history={this.props.history} /> : <NoSessionBar />;
   }
 }
+
+Navbar.propTypes = {
+  history: PropTypes.object.isRequired, // eslint-disable-line
+};
 
 export default Navbar;
