@@ -91,7 +91,7 @@ class RapPostEntry extends React.Component {
     if (this.state.timer) {
       clearTimeout(this.state.timer);
     }
-    this.setState({ 
+    this.setState({
       timer: setTimeout(() => this.setState({ alert: false }), 3000),
     });
   }
