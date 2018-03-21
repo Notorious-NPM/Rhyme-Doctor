@@ -33,4 +33,5 @@ const addBioCtrl = (req, res) => {
     .catch(err => res.status(404).send(err));
 };
 
+
 export { getUserPostsCtrl, getUserDataCtrl, addImageCtrl, addBioCtrl };

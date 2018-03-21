@@ -13,6 +13,7 @@ class Profile extends React.Component {
       username: '',
       likeCount: '',
       image: '',
+      bio: '',
       received: false,
     };
   }
@@ -28,6 +29,7 @@ class Profile extends React.Component {
         username: userData.data.name,
         likeCount: userData.data.like_count,
         image: userData.data.image,
+        bio: userData.data.bio, 
         received: true
       });
     } catch (err) {
@@ -51,7 +53,7 @@ class Profile extends React.Component {
       <div>
         <Stats username={this.state.username} likeCount={this.state.likeCount} />
         {this.state.received ? <ProfileImage image={this.state.image} /> :null }
-        <Bio />
+        {this.state.received ? <Bio bio={this.state.bio}/> :null }
         <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} />
       </div>
     );

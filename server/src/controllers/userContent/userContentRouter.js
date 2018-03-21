@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUserDataCtrl, getUserPostsCtrl, addImageCtrl, addBioCtrl } from './userContentCtrl';
+import { getUserDataCtrl, getUserPostsCtrl, addImageCtrl, addBioCtrl, getBioCtrl } from './userContentCtrl';
 
 const router = express.Router();
 

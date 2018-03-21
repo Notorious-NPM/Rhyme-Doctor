@@ -8,8 +8,15 @@ class Bio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bio: '',
+      input: '',
     };
+  }
+  
+  componentWillMount() {
+    this.setState ({
+      bio: this.props.bio
+    })
+    // console.log(this.props);
   }
 
   onChange(e) {
@@ -22,44 +29,30 @@ class Bio extends React.Component {
   addBio = async() => {
     const status = await axios.put(
       'api/profile/bio',
-      { bio: this.state.bio },
+      { bio: this.state.input },
     );
+    this.setState ({
+      bio: this.state.input
+    })
   }
-
-  // componentWillMount() {
-  //   this.setState ({
-  //     image: this.props.image
-  //   })
-  // }
 
   render() {
     return (
       <div>
         Bio
+        {!this.state.bio && (
           <div>
-              <textarea 
-                name="bio" 
-                rows="3" 
-                maxLength="250" 
-                placeholder="Write your bio here (max 250 characters)" 
-                onChange={e => this.onChange(e)}
-              />
-              <br/>
-              <button type="button" onClick={() => this.addBio()}>Submit</button>
-          </div>
-        {/* {!this.state.bio && (
-          <div>
-              <textarea 
-                name="bio" 
-                rows="3" 
-                maxLength="250" 
-                placeholder="Write your bio here (max 250 characters)" 
-                onChange={e => this.onChange(e)}
-              />
-              <br/>
-              <button type="button">Submit</button>
-          </div>)} */}
-        {/* {this.state.image && (<img src={this.state.image} alt="sup" />)} */}
+            <textarea 
+              name="input" 
+              rows="3" 
+              maxLength="250" 
+              placeholder="Write your bio here (max 250 characters)" 
+              onChange={e => this.onChange(e)}
+            />
+            <br/>
+            <button type="button" onClick={() => this.addBio()}>Submit</button>
+          </div>)}
+        {this.state.bio && (<div>{this.state.bio}</div>)}
       </div>
     );
   }
