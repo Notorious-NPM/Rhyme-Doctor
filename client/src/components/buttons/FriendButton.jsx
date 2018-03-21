@@ -24,14 +24,14 @@ class FriendButton extends Component {
       .catch(err => console.log('Friend componentMount error: ', err));
   }
 
-  handleFriendButton(e) {
-    let action = e.target.value;
+  handleFriendButton() {
     const { username } = this.props;
+    const { areFriends } = this.state;
     let payload = {
       username,
     };
 
-    action = action === 'De-Friend' ? 'delete' : 'post';
+    const action = areFriends ? 'delete' : 'post';
     payload = action === 'delete' ? { data: payload } : payload;
 
     axios[action]('/api/user/friend', payload)
@@ -53,7 +53,7 @@ class FriendButton extends Component {
 
     return (
       <div>
-        <button type="button" onClick={e => this.handleFriendButton(e)}>{action}</button>
+        <button type="button" onClick={() => this.handleFriendButton()}>{action}</button>
       </div>
     );
   }
