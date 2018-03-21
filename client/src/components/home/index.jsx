@@ -85,10 +85,8 @@ class Home extends React.Component {
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={hitHandler}>Hit API</button>
           </div>
         </div>
-        FriendChat
         {this.state.session && <FriendChat />}
         <hr />
-        Thesaurus
         {this.state.session && <ThesaurusForm />}
         <hr />
         PersonalRhymes

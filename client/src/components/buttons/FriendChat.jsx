@@ -38,10 +38,6 @@ class FriendChat extends Component {
     }, 0);
   }
 
-  showState() {
-    console.log(this.state);
-  }
-
   openFriendList(e) {
     e.preventDefault();
     document.getElementById("friendList").style.height = "200px";
@@ -72,10 +68,6 @@ class FriendChat extends Component {
         <div id="mySidenav" className="sidenav">
           <a href="#" onMouseEnter={e => this.openFriendList(e)}>Friends</a>
         </div>
-        ************
-        <br />
-        <br />
-        <button type="button" onClick={() => this.showState()}>Show State</button>
         <br />
         {selectedChat && <Chat className="hide" friendName={selectedChat[0]} roomID={selectedChat[1]} />}
       </div>

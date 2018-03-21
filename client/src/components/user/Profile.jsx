@@ -4,6 +4,7 @@ import UserPosts from './UserPosts';
 import Stats from './Stats';
 import ProfileImage from './ProfileImage';
 import Bio from './Bio';
+import FriendButton from '../buttons/FriendButton';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -54,12 +55,21 @@ class Profile extends React.Component {
     }
   }
 
+  showState() {
+    console.log('Profile props: ', this.props);
+    console.log('Profile state: ', this.state);
+  }
+
   render() {
+    const { state } = this.props.location;
+
     return (
       <div>
         <Stats username={this.state.username} likeCount={this.state.likeCount} />
-        {this.state.received ? <ProfileImage image={this.state.image} /> :null }
-        {this.state.received ? <Bio username={this.state.username} bio={this.state.bio}/> :null }
+        {this.state.received && <ProfileImage image={this.state.image} />}
+        {this.state.received && <Bio username={this.state.username} bio={this.state.bio} />}
+        {state && <FriendButton username={state.username} />}
+        <button type="button" onClick={() => this.showState()}>****</button>
         <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} />
       </div>
     );

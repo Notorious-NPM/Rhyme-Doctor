@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Friend extends Component {
-  constructor(props) {
+class FriendButton extends Component {
+  constructor(props) { // this.props.username
     super(props);
     this.state = {
-      friends: false,
+      areFriends: false,
     };
   }
 
@@ -18,49 +18,45 @@ class Friend extends Component {
     };
 
     axios
-      .get('/api/user/friend', options)
+      .get('/api/user/checkFriendship', options)
       .then(({ data }) =>
-        console.log(data))
+        console.log('Friend button data: ', data))
       .catch(err => console.log('Friend componentMount error: ', err));
   }
 
   handleFriendButton(e) {
     let action = e.target.value;
-    const { userID, selectedUserID } = this.state;
+    const { username } = this.props;
     let payload = {
-      userID,
-      friendID: selectedUserID,
+      username,
     };
 
     action = action === 'De-Friend' ? 'delete' : 'post';
     payload = action === 'delete' ? { data: payload } : payload;
 
     axios[action]('/api/user/friend', payload)
-      .then(result => console.log('result of ', action, ' request is: ', result))
+      .then(({ data }) => console.log('result of ', action, ' request is: ', data))
       .catch(err => console.log(action, ' request error: ', err));
 
-    const { friendsList } = this.state;
     if (action === 'delete') {
-      delete friendsList[selectedUserID];
+      this.setState({ areFriends: false });
     }
 
     if (action === 'post') {
-      friendsList[selectedUserID] = true;
+      this.setState({ areFriends: true });
     }
-
-    this.setState({ friendsList });
   }
 
   render() {
-    // const { friendsList, selectedUserID } = this.state;
-    // const action = friendsList[selectedUserID] ? 'De-Friend' : 'Add Friend';
+    const { areFriends } = this.state;
+    const action = areFriends ? 'De-Friend' : 'Add Friend';
 
     return (
       <div>
-        <button type="button" onClick={e => this.handleFriendButton(e)}>Friend</button>
+        <button type="button" onClick={e => this.handleFriendButton(e)}>{action}</button>
       </div>
     );
   }
 }
 
-export default Friend;
+export default FriendButton;
