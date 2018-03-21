@@ -1,6 +1,7 @@
 /* Much DRY violations... */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import $ from 'jquery';
 
 import store from '../../redux/store';
@@ -15,8 +16,14 @@ const Signup = ({ history }) => {
         username: $('#username').val(),
         password: $('#password').val(),
       },
-      success(res) {
-        store.dispatch({ type: 'sessionlogin' });
+      success(response) {
+        const { username } = JSON.parse(response);
+        store.dispatch({
+          type: 'sessionlogin',
+          body: {
+            username,
+          },
+        });
         history.push('/');
       },
       error({ responseText }) {
@@ -45,6 +52,10 @@ const Signup = ({ history }) => {
       </div>
     </div>
   );
+};
+
+Signup.propTypes = {
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default Signup;

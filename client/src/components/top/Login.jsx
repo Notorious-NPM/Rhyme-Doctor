@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import $ from 'jquery';
 
 import store from '../../redux/store';
@@ -6,15 +7,21 @@ import store from '../../redux/store';
 const Login = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
+    const [username, password] = [$('#username').val(), $('#password').val()];
     $.ajax({
       method: 'POST',
       url: '/api/auth/login',
       data: {
-        username: $('#username').val(),
-        password: $('#password').val(),
+        username,
+        password,
       },
       success() {
-        store.dispatch({ type: 'sessionlogin' });
+        store.dispatch({
+          type: 'sessionlogin',
+          body: {
+            username,
+          },
+        });
         history.push('/');
       },
       error({ responseText }) {
@@ -43,6 +50,10 @@ const Login = ({ history }) => {
       </div>
     </div>
   );
+};
+
+Login.propTypes = {
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default Login;
