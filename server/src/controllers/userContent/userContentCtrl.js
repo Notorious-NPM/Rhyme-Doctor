@@ -11,11 +11,9 @@ const getUserPostsCtrl = (req, res) => {
 const getUserDataCtrl = (req, res) => {
   // Get all user data
   let param = req.user;
-  console.log('***** getUserDataCtrl: ', req.query.name);
-  if (req.query.name) {
+  if (req.user.id && req.query.name) {
     param = req.query;
   }
-  console.log('***** param: ', param);
   getUserDataHelper(param)
     .then(result => res.status(200).send(result))
     .catch(err => res.status(404).send(err));
