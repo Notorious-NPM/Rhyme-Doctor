@@ -16,4 +16,19 @@ const getUserPostsHelper = ({ id }) => rapPost.findAll({
   },
 });
 
-export { getUserDataHelper, getUserPostsHelper };
+const addUserImageHelper = async (userId, imageUrl) => {
+  const user = await User.findById(userId);
+  user.update({ image: imageUrl }).then(() => {
+    console.log('success!');
+  });
+};
+
+const addUserBioHelper = async (userId, imageUrl) => {
+  const user = await User.findById(userId);
+  user.update({ bio: imageUrl }).then(() => {
+    console.log('success!');
+  });
+};
+
+
+export { getUserDataHelper, getUserPostsHelper, addUserImageHelper, addUserBioHelper };
