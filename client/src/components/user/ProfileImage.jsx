@@ -15,10 +15,9 @@ class ProfileImage extends React.Component {
   }
 
   componentWillMount() {
-    console.log('props', this.props);
-    this.setState ({
-      image: this.props.image
-    })
+    this.setState({
+      image: this.props.image,
+    });
   }
 
   handleDrop = (files) => {
@@ -55,7 +54,7 @@ class ProfileImage extends React.Component {
           accept="image/*"
         >
           <p>Drop files or click to upload your profile pic</p>
-        </Dropzone>)}
+                               </Dropzone>)}
         {this.state.image && (<img src={this.state.image} alt="sup" />)}
       </div>
     );

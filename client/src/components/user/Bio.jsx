@@ -13,10 +13,11 @@ class Bio extends React.Component {
     });
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.setState({
       bio: this.props.bio,
-      showEdit: false,
+      showBio: true,
+      showButton: true,
     });
   }
 
@@ -38,18 +39,19 @@ class Bio extends React.Component {
   }
 
   editBio = (e) => {
-    // e.preventDefault();
-    // this.setState({
-    //   showEdit: !this.state.showEdit,
-    // });
-    console.log('state', this.state);
+    e.preventDefault();
+    this.setState({
+      showEdit: !this.state.showEdit,
+      showBio: !this.state.showBio,
+      showButton: !this.state.showButton,
+    });
   }
 
   render() {
     return (
       <div>
         Bio
-        {!this.state.bio && (
+        {(!this.state.bio || this.state.showEdit) && (
           <div>
             <textarea
               name="input"
@@ -61,8 +63,8 @@ class Bio extends React.Component {
             <br />
             <button type="button" onClick={() => this.addBio()}>Submit</button>
           </div>)}
-        {this.state.bio && (<div>{this.state.bio}</div>)}
-        {this.state.user === this.props.username ? <button>Edit Bio</button> : null}
+        {(this.state.bio && this.state.showBio) && (<div>{this.state.bio}</div>)}
+        {this.state.user === this.props.username ? <button onClick={e => this.editBio(e)}>Edit Bio</button> : null}
       </div>
     );
   }
