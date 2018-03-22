@@ -47,12 +47,11 @@ const API = word => // eslint-disable-line
 
 const fromSr = word =>
   new Promise((resolve) => {
-    // console.log(word);
     SyllaRhyme((sr) => {
-      const [first] = sr.pronunciation(word, 'ipa'); // First word for now.
-      console.log(word, first);
-      const pronunciation = first.replace(/ /g, '');
-      resolve(pronunciation);
+      let options = sr.pronunciation(word, 'ipa');
+      options = options.map(option => option.replace(/ /g, ''));
+      console.log(word, options);
+      resolve(options);
     });
   });
 
@@ -97,36 +96,97 @@ const parse = (text, strictness) =>
         let crayon = 0;
         let dirtyBrush = false;
         for (let i = 0; i < rip.length - 1; i += 1) {
-          for (let k = i + 1; k < rip.length; k += 1) {
-            if (k - i > jump[i]) {
-              break;
-            }
-            const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 1 });
-            let score;
-            for (let j = 0; j < commonSubstrings.length; j += 1) {
-              if (isVowel(commonSubstrings[j])) {
-                score = commonSubstrings[j];
-                break;
+          if (typeof rip[i] === 'object') {
+            for (let h = 0; h < rip[i].length; h += 1) {
+              for (let k = i + 1; k < rip.length; k += 1) {
+                let start = 0;
+                let length = 0;
+                if (k - i > jump[i]) {
+                  break;
+                }
+                if (typeof rip[k] === 'object') {
+                  length = rip[k].length; // eslint-disable-line
+                }
+                let compare;
+                if (length === 0) {
+                  compare = rip[k];
+                } else {
+                  compare = rip[k][start];
+                }
+                const commonSubstrings = substrings.weigh([rip[i][h], compare], { minLength: 1 });
+                let score;
+                for (let j = 0; j < commonSubstrings.length; j += 1) {
+                  if (isVowel(commonSubstrings[j])) {
+                    score = commonSubstrings[j];
+                    break;
+                  }
+                }
+                if (score && score.weight > strictness) {
+                  if (!colors[i] && !colors[k]) {
+                    colors[i] = crayons[crayon];
+                    colors[k] = crayons[crayon];
+                    dirtyBrush = true;
+                  } else if (!colors[k]) {
+                    colors[k] = colors[i];
+                    dirtyBrush = true;
+                  } else if (!colors[i]) {
+                    colors[i] = colors[k];
+                    dirtyBrush = true;
+                  }
+                }
+                if (!dirtyBrush) {
+                  if (start !== length) {
+                    start += 1;
+                    k -= 1; // l33t hax00r
+                  }
+                }
               }
             }
-            if (score && score.weight > strictness) { // Revisit later, either 1 or 3.
-              /* const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
-                               && rip[k].indexOf(score.name) === rip[k].length - score.name.length; */ // eslint-disable-line
-              // if (endRhyme) {
-                /* eslint-disable */ // eslint-disable-line
-                if (!colors[i] && !colors[k]) {
-                  colors[i] = crayons[crayon];
-                  colors[k] = crayons[crayon];
-                  dirtyBrush = true;
-                } else if (!colors[k]) {
-                  colors[k] = colors[i];
-                  dirtyBrush = true;
-                } else if (!colors[i]) {
-                  colors[i] = colors[k];
-                  dirtyBrush = true;
+          } else {
+            for (let h = 0; h < rip[i].length; h += 1) {
+              for (let k = i + 1; k < rip.length; k += 1) {
+                let start = 0;
+                let length = 0;
+                if (k - i > jump[i]) {
+                  break;
                 }
-                /* eslint-enable */
-              // }
+                if (typeof rip[k] === 'object') {
+                  length = rip[k].length; // eslint-disable-line
+                }
+                let compare;
+                if (length === 0) {
+                  compare = rip[k];
+                } else {
+                  compare = rip[k][start];
+                }
+                const commonSubstrings = substrings.weigh([rip[i], compare], { minLength: 1 });
+                let score;
+                for (let j = 0; j < commonSubstrings.length; j += 1) {
+                  if (isVowel(commonSubstrings[j])) {
+                    score = commonSubstrings[j];
+                    break;
+                  }
+                }
+                if (score && score.weight > strictness) {
+                  if (!colors[i] && !colors[k]) {
+                    colors[i] = crayons[crayon];
+                    colors[k] = crayons[crayon];
+                    dirtyBrush = true;
+                  } else if (!colors[k]) {
+                    colors[k] = colors[i];
+                    dirtyBrush = true;
+                  } else if (!colors[i]) {
+                    colors[i] = colors[k];
+                    dirtyBrush = true;
+                  }
+                }
+                if (!dirtyBrush) {
+                  if (start !== length) {
+                    start += 1;
+                    k -= 1; // l33t hax00r
+                  }
+                }
+              }
             }
           }
           if (dirtyBrush) {
