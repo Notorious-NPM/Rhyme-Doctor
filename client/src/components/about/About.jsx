@@ -58,30 +58,50 @@ const About = () => (
     <br />
     <div className="tech">
       <h4>Tech Stack</h4>
-      <br />
       <div className="images">
         <div className="image react">
           <img src="https://i.imgur.com/kEmE4cF.png" alt="react" />
-        </div>
-        <div className="image">
-          <img src="https://cdn.worldvectorlogo.com/logos/passport.svg" alt="passport" />
-        </div>
-        <div className="image">
-          <img src="https://cdn.worldvectorlogo.com/logos/mysql-5.svg" alt="mySql" />
         </div>
         <div className="image router">
           <img src="https://cdn.worldvectorlogo.com/logos/react-router.svg" alt="reactRouter" />
         </div>
         <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" alt="node" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/mysql-5.svg" alt="mySql" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/sequelize.svg" alt="sequelize" />
+        </div>
+        <div className="image wordsAPI">
+          <p>WORDSAPI</p>
+        </div>
+        <div className="image">
           <img src="https://cdn.worldvectorlogo.com/logos/socket-io.svg" alt="socket" />
         </div>
         <div className="image">
-          <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" alt="node" />
+          <img src="https://cdn.worldvectorlogo.com/logos/passport.svg" alt="passport" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/dropzone.svg" alt="dropzone" />
+        </div>
+        <div className="image">
+          <img src="https://res.cloudinary.com/demo/image/upload/e_shadow,x_13,y_13/cloudinary_icon.png" alt="cloudinary" />
+        </div>
+        <div className="image babel">
+          <img src="https://cdn.worldvectorlogo.com/logos/babel-10.svg" alt="babel" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/aws-ec2.svg" alt="aws" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/webpack-icon.svg" alt="webpack" />
         </div>
       </div>
     </div>
     <div>
-      Made at Hack Reactor
+      Made at <img className="hackreactor" src="https://media.glassdoor.com/sqll/843406/hack-reactor-squarelogo-1427844676793.png" alt="hackreactor" />
     </div>
   </div>
 );

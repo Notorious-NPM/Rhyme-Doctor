@@ -35,6 +35,7 @@
   height: 130px;
   float: left;
   margin-right: 2%;
+  margin-bottom: 2%;
 }
 .image.react { 
   width: 150px;
@@ -43,6 +44,21 @@
 
 .image.router {
   width: 200px;
+}
+
+.image.wordsAPI {
+  width: 200px;
+  line-height: 3;
+}
+
+.image.wordsAPI p {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 40px;
+}
+
+.image.babel {
+  width: 200px;
+  line-height: 4;
 }
 
 .image img {
@@ -62,4 +78,9 @@
 
 .whitespace {
   margin-bottom: 50px;
+}
+
+.hackreactor {
+  width: 20px;
+  height: 20px;
 }
