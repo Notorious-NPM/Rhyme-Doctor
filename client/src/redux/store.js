@@ -39,6 +39,7 @@ const reducer = (state = {
       state = {
         text: state.text,
         session: state.session,
+        strictness: state.strictness,
       };
       return state;
     case 'sessionlogin':

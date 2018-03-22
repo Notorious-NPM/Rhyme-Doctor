@@ -38,6 +38,14 @@ class Home extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.state = store.getState();
+    console.log(this.state);
+    store.subscribe(() => {
+      this.setState(store.getState());
+    });
+  }
+
   hitHandler = () => {
     const strictness = this.state.strictness === 'Strict' ? 3 : 1; // Other possible value is 'loose'.
     $.ajax({
@@ -113,7 +121,6 @@ class Home extends React.Component {
         <hr />
         {this.state.session && <ThesaurusForm />}
         <hr />
-        PersonalRhymes
         {this.state.session && <PersonalRhymes />}
       </div>
     );
