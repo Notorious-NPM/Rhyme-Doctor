@@ -33,7 +33,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="container-fluid">
+        <div>
           <Navbar />
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
