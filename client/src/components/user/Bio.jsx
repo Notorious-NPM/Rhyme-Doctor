@@ -63,7 +63,7 @@ class Bio extends React.Component {
             <br />
             <button className="btn btn-outline-primary" onClick={() => this.addBio()}>Submit</button>
           </div>)}
-        {(this.state.bio && this.state.showBio) && (<div className="row">{this.state.bio}</div>)}<br />
+        {(this.state.bio && this.state.showBio) && (<div className="row">{this.state.bio}</div>)}<br /><br />
         {this.state.user === this.props.username ? <button className="btn btn-outline-primary" onClick={e => this.editBio(e)}>Edit Bio</button> : null}
       </div>
     );
