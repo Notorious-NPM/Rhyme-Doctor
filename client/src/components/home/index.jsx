@@ -125,11 +125,6 @@ class Home extends React.Component {
           PersonalRhymes
             {this.state.session && <PersonalRhymes />}
           </div>
-          {this.state.session && <FriendChat />}
-          <hr />
-          {this.state.session && <ThesaurusForm />}
-          <hr />
-          {this.state.session && <PersonalRhymes />}
         </div>
       </div>
     );
