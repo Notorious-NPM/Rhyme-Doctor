@@ -48,7 +48,8 @@ const SessionBar = () => (
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a onClick={logout} className="nav-link" /* eslint-disable-line */ >Logout</a>
+            <Link className="nav-link" style={{ display: 'inline' }} to="/about">About</Link>
+            <a onClick={logout} style={{ display: 'inline' }} className="nav-link" /* eslint-disable-line */ >Logout</a>
           </li>
         </ul>
       </div>

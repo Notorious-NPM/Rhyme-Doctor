@@ -9,6 +9,7 @@ import RapPost from './rap-post/RapPost';
 import Profile from './user/Profile';
 import Navbar from './navbar';
 import Home from './home';
+import About from './about/About';
 import './app.css';
 
 class App extends React.Component {
@@ -40,6 +41,7 @@ class App extends React.Component {
           <Route path="/signup" component={Signup} />
           <Route path="/profile" component={Profile} />
           <Route path="/feed" component={RapPost} />
+          <Route path="/about" component={About} />
         </div>
       </Router>
     );

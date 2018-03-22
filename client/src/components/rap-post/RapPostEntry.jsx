@@ -111,7 +111,9 @@ class RapPostEntry extends React.Component {
               By{' '}
               <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link>
             </h5>
-            <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
+            <div className="rapText">
+              <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
+            </div>
             <button className="btn btn-primary" onClick={() => this.getComments()}>Show Comments</button>
           </div>
           {this.state.showComments ? <Comments
