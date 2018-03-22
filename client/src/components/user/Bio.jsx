@@ -39,7 +39,7 @@ class Bio extends React.Component {
   }
 
   editBio = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     this.setState({
       showEdit: !this.state.showEdit,
       showBio: !this.state.showBio,
@@ -49,10 +49,10 @@ class Bio extends React.Component {
 
   render() {
     return (
-      <div>
-        Bio
+      <div className="row">
+        About Me
         {(!this.state.bio || this.state.showEdit) && (
-          <div>
+          <div className="row">
             <textarea
               name="input"
               rows="3"
@@ -61,10 +61,10 @@ class Bio extends React.Component {
               onChange={e => this.onChange(e)}
             />
             <br />
-            <button type="button" onClick={() => this.addBio()}>Submit</button>
+            <button className="btn btn-outline-primary" onClick={() => this.addBio()}>Submit</button>
           </div>)}
-        {(this.state.bio && this.state.showBio) && (<div>{this.state.bio}</div>)}
-        {this.state.user === this.props.username ? <button onClick={e => this.editBio(e)}>Edit Bio</button> : null}
+        {(this.state.bio && this.state.showBio) && (<div className="row">{this.state.bio}</div>)}<br />
+        {this.state.user === this.props.username ? <button className="btn btn-outline-primary" onClick={e => this.editBio(e)}>Edit Bio</button> : null}
       </div>
     );
   }
