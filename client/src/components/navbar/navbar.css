@@ -1,1 +1,13 @@
 /* Nothing here as of yet */
+.bg-dark {
+  background-color: #ffff64!important;
+  border-bottom: 1px solid #000;
+}
+
+a {
+  color: #333!important;
+}
+
+.navbar-brand {
+  font-size: 25px;
+}
