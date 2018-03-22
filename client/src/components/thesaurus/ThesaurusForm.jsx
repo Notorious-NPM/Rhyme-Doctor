@@ -13,6 +13,7 @@ class ThesaurusForm extends React.Component {
   }
 
   onChange(e) {
+    e.preventDefault();
     const { name, value } = e.target;
     this.setState({
       [name]: value,
@@ -20,9 +21,10 @@ class ThesaurusForm extends React.Component {
   }
 
   searchWord(e) {
+    const { word } = this.state;
     e.preventDefault();
     axios
-      .get(`/api/word/synonym?word=${this.state.word}`)
+      .get('api/word/synonym', { params: { word } })
       .then((res) => {
         this.setState({
           synonyms: res.data,
@@ -32,14 +34,16 @@ class ThesaurusForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form>
-          Find me a word:<br />
-          <input type="text" name="word" onChange={e => this.onChange(e)} /><br />
-          <input type="submit" onClick={e => this.searchWord(e)} />
-          <br /><br />
-        </form>
-        <ThesaurusList synonyms={this.state.synonyms} />
+      <div className="row">
+        <div className="col-md-4">
+          <form className="form-group">
+            <label htmlFor="thesaurus">Thesaurus:{' '}
+              <input type="text" name="word" id="thesaurus" onChange={e => this.onChange(e)} />
+            </label>
+            {' '}<button className="btn btn-outline-primary btn-sm" onClick={e => this.searchWord(e)}>Submit</button>
+          </form>
+          <ThesaurusList synonyms={this.state.synonyms} />
+        </div>
       </div>
     );
   }

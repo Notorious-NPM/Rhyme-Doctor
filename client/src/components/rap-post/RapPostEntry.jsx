@@ -101,11 +101,11 @@ class RapPostEntry extends React.Component {
     const { username } = this.props.rapPost;
 
     return (
-      <div className="col-sm-6">
+      <div className="col-md-6">
         <div className="card">
           <div className="card-body">
             {this.state.alert ? <Alert message={this.state.alertMessage} status={this.state.alertStatus} /> : null}
-            <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span class="badge badge-light">{this.props.rapPost.like_count}</span></button></p>
+            <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span className="badge badge-light">{this.props.rapPost.like_count}</span></button></p>
             <button className="badge badge-warning" onClick={() => this.reportPost()}>Report Post</button>
             <h5 className="card-title">
               By{' '}
@@ -114,7 +114,7 @@ class RapPostEntry extends React.Component {
             <div className="rapText">
               <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
             </div>
-            <button className="btn btn-primary" onClick={() => this.getComments()}>Show Comments</button>
+            <button className="btn btn-primary btn-space" onClick={() => this.getComments()}>Show Comments</button>
           </div>
           {this.state.showComments ? <Comments
             postComment={this.postComment}

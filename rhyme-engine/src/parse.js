@@ -44,7 +44,7 @@ const API = word =>
       });
   });
 
-const parse = text =>
+const parse = (text, strictness) =>
   new Promise((resolve) => {
     const lines = text.split('\n');
     const APIcalls = [];
@@ -96,7 +96,7 @@ const parse = text =>
                 break;
               }
             }
-            if (score && score.weight > 3) { // Revisit later, either 1 or 3.
+            if (score && score.weight > strictness) { // Revisit later, either 1 or 3.
               /* const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
                                && rip[k].indexOf(score.name) === rip[k].length - score.name.length; */ // eslint-disable-line
               // if (endRhyme) {

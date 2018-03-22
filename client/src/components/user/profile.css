@@ -1,0 +1,45 @@
+.dropzone {
+  cursor: pointer
+}
+
+.container-img {
+  width: 210px;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: auto;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container-img:hover .image {
+  opacity: 0.3;
+}
+
+.container-img:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  width: 210px;
+  border-radius: .25em;
+  padding: 16px 32px;
+  cursor: pointer;
+}
