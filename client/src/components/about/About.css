@@ -1,0 +1,40 @@
+.aboutTop {
+  text-align: center;
+}
+
+.goal {
+  width: 70%;
+  margin: auto;
+}
+
+.challenges {
+  width: 80%;
+  margin: auto;
+}
+
+.contributor {
+  float: left;
+  text-align: center;
+  margin: 1%;
+  border: 1px solid blue;
+  padding: 15px;
+}
+
+.contributors.container {
+  border: 0px;
+  width: 100%;
+}
+
+
+.tech {
+  clear: left;
+  height: 200px;
+  width: 100%;
+  background-color: midnightblue;
+  color:  white;
+  font-size: 30px;
+}
+
+.whitespace {
+  margin-bottom: 50px;
+}
