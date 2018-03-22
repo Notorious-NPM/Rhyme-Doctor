@@ -5,7 +5,6 @@
 
 .card {
   margin: 1em;
-  margin-right: 0px;
 }
 
 .card-body {
@@ -14,7 +13,8 @@
 }
 
 .row {
-  width: 100%;
+  width: 80%;
+  margin: 0 10% 0 10%;
 }
 
 .col-sm-6 {
@@ -25,5 +25,9 @@
 .rapText {
   background-color: white;
   overflow: auto;
-  height: 400px;
+  height: 500px;
+}
+
+.btn-space {
+  margin-top: 0.5em;
 }
