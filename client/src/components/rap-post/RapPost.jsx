@@ -19,7 +19,7 @@ class RapPost extends React.Component {
 
   getRapPosts = async () => {
     try {
-      const rapPosts = await axios.get('http://localhost:3000/api/content/posts');
+      const rapPosts = await axios.get('/api/content/posts');
       this.setState({
         rapPosts: rapPosts.data,
       });
