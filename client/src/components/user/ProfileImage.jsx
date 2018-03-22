@@ -57,7 +57,7 @@ class ProfileImage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="col-2">
         {(!this.state.image || this.state.showChangePic) && (<Dropzone
           onDrop={this.handleDrop}
           multiple
