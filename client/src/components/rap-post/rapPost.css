@@ -5,11 +5,11 @@
 
 .card {
   margin: 1em;
+  background: #91A3B0;
 }
 
 .card-body {
   text-align: center;
-  background: #91A3B0;
 }
 
 .card-text {
