@@ -10,6 +10,7 @@ import Profile from './user/Profile';
 import Navbar from './navbar';
 import Home from './home';
 import About from './about/About';
+import Footer from './footer';
 import './app.css';
 
 class App extends React.Component {
@@ -42,6 +43,7 @@ class App extends React.Component {
           <Route path="/profile" component={Profile} />
           <Route path="/feed" component={RapPost} />
           <Route path="/about" component={About} />
+          <Footer />
         </div>
       </Router>
     );
