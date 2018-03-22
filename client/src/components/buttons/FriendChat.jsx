@@ -14,6 +14,7 @@ class FriendChat extends Component {
       socket: null,
       selectedChat: null,
       store: store.getState(),
+      setInactive: {},
     };
     store.subscribe(() => {
       this.state = store.getState();
@@ -41,6 +42,12 @@ class FriendChat extends Component {
       const domElement = document.getElementsByClassName(payload);
       if (domElement.length > 0) {
         domElement[0].style.backgroundColor = '#0EFF2E';
+        const { setInactive } = this.state;
+        if (setInactive[payload]) {
+          clearTimeout(setInactive[payload]);
+        }
+        setInactive[payload] = setTimeout(() => { domElement[0].style.backgroundColor = '#bbb'; }, 20000);
+        this.setState({ setInactive });
       }
     });
 
