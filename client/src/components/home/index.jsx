@@ -4,7 +4,6 @@ import $ from 'jquery';
 import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
 import FriendChat from '../../components/buttons/FriendChat';
-import PersonalRhymes from '../../components/buttons/PersonalRhymes';
 import ThesaurusForm from '../thesaurus/ThesaurusForm';
 import store from '../../redux/store';
 
@@ -43,6 +42,7 @@ class Home extends React.Component {
     console.log(this.state);
     store.subscribe(() => {
       this.setState(store.getState());
+      console.log(this.state);
     });
   }
 
@@ -107,21 +107,22 @@ class Home extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-6" style={{ margin: '5px' }}>
-            Compose as you normally would. But be aware: commas signify a word to be rhymed with, as does the end of a line. { /* eslint-disable-line */ }
+            {this.state.session ?
+             'Compose as you normally would. But be aware: commas signify a word to be rhymed with, as does the end of a line.' /* eslint-disable-line */
+             : 'Perhaps you\'d like to sign up...'}
           </div>
         </div>
+        {this.state.session &&
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-4">
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.hitHandler}>Hit API</button>
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.strictHandler}>{this.state.strictness}</button>
           </div>
-        </div>
+        </div>}
         {this.state.session && <FriendChat />}
         <hr />
         {this.state.session && <ThesaurusForm />}
-        <hr />
-        {this.state.session && <PersonalRhymes />}
       </div>
     );
   }
