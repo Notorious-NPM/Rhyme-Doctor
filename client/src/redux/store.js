@@ -12,6 +12,7 @@ const reducer = (state = {
   Plus, what a rush, catch another one flush
   Now you got a crush, making dames wanna blush
   I stomp out your campfire, liar, retire`,
+  strictness: 'Strict',
   /* '0, 3': 'red',
   '0, 4': 'red',
   '0, 7': 'red',
@@ -59,6 +60,9 @@ const reducer = (state = {
       return state;
     case 'changetext':
       state.text = action.body.text;
+      return state;
+    case 'changestrictness':
+      state.strictness = action.body.strictness;
       return state;
     default:
       return state;
