@@ -44,7 +44,7 @@ class Word extends React.Component {
 
   render() {
     const style = {
-      color: this.state.highlighted ? this.state.color : 'black',
+      color: this.state.highlighted ? this.state.color : '#cdd0d6',
     };
     return (
       <span /* eslint-disable-line */

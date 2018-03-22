@@ -8,6 +8,8 @@ import PersonalRhymes from '../../components/buttons/PersonalRhymes';
 import ThesaurusForm from '../thesaurus/ThesaurusForm';
 import store from '../../redux/store';
 
+import './home.css';
+
 const centerStyle = {
   float: 'none',
   margin: '0 auto',
@@ -95,33 +97,35 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col text-center" style={centerStyle}>
-            <h3 className="display-4">Lyrics</h3>
+      <div>
+        <div className="jumbotron" />
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col text-center" style={centerStyle} />
           </div>
-        </div>
-        <div className="row">
-          <Textarea />
-          <Paragraph className="text-center" style={centerStyle} text={this.state.text} />
-        </div>
-        <div className="row">
-          <div className="col-md-6" style={{ margin: '5px' }}>
+          <div className="row">
+            <Textarea />
+            <Paragraph className="text-center" style={centerStyle} text={this.state.text} />
+          </div>
+          <div className="row">
+            <div className="col-md-6" style={{ margin: '5px' }}>
             Compose as you normally would. But be aware: commas signify a word to be rhymed with, as does the end of a line. { /* eslint-disable-line */ }
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2">
+              <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
+              <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.hitHandler}>Hit API</button>
+              <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.strictHandler}>{this.state.strictness}</button>
+            </div>
+            {this.state.session && <FriendChat />}
+            <hr />
+            {this.state.session && <ThesaurusForm />}
+            <hr />
+          PersonalRhymes
+            {this.state.session && <PersonalRhymes />}
           </div>
         </div>
-        <div className="row">
-          <div className="col-md-2">
-            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
-            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.hitHandler}>Hit API</button>
-            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.strictHandler}>{this.state.strictness}</button>
-          </div>
-        </div>
-        {this.state.session && <FriendChat />}
-        <hr />
-        {this.state.session && <ThesaurusForm />}
-        <hr />
-        {this.state.session && <PersonalRhymes />}
       </div>
     );
   }
