@@ -37,15 +37,19 @@ class PersonalRhymes extends Component {
 
   render() {
     return (
-      <div>
-        <form onChange={e => this.handleChange(e)} onSubmit={e => this.saveRhyme(e)}>
-          I want
-          <input name="word1" type="text" />
-          to rhyme with
-          <input name="word2" type="text" />
-          <button type="submit">Submit</button>
-        </form>
-        <button type="button" onClick={() => this.showState()}>showState</button>
+      <div className="row">
+        <div className="col-md-6">
+          <label htmlFor="personalrhymes">Personal Rhymes:{' '}<br />
+            <form id="personalrhymes" className="form-group" onChange={e => this.handleChange(e)} onSubmit={e => this.saveRhyme(e)}>
+              I want:{' '}
+              <input name="word1" type="text" />
+              {' '}to rhyme with:{' '}
+              <input name="word2" type="text" />
+              {' '}<button className="btn btn-outline-primary btn-sm" type="submit">Submit</button>
+            </form>
+          </label>
+          {/* <button className="btn btn-outline-primary btn-sm" type="button" onClick={() => this.showState()}>showState</button> */} {/* eslint-disable-line */}
+        </div>
       </div>
     );
   }
