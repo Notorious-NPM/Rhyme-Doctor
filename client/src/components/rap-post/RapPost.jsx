@@ -31,7 +31,7 @@ class RapPost extends React.Component {
   render() {
     const rapPosts = this.state.rapPosts || [];
     return (
-      <div align="center">
+      <div className="row">
         {rapPosts.map((rapPost, i) => (<RapPostEntry
           rapPost={rapPost}
           key={i}
