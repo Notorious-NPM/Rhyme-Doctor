@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Chat from './Chat';
 import axios from 'axios';
 import io from 'socket.io-client/dist/socket.io';
+import store from '../../redux/store';
 
 import './FriendChat.css';
 
@@ -12,22 +13,45 @@ class FriendChat extends Component {
       friendsList: [],
       socket: null,
       selectedChat: null,
+      store: store.getState(),
+      setInactive: {},
     };
+    store.subscribe(() => {
+      this.state = store.getState();
+    });
   }
-
 
   componentDidMount() {
     axios
       .get('/api/user/friend')
       .then(({ data }) => {
         const friendsList = [];
-        data.forEach(friend =>{
-          friendsList.push([friend.name, friend.roomID]);
-        })
- 
+        data.forEach(friend =>
+          friendsList.push([friend.name, friend.roomID]));
         this.setState({ friendsList }) // eslint-disable-line
       })
       .catch(err => console.log('FriendChat componentMount error: ', err));
+
+    this.socket = io('http://localhost:3444', {
+      query: {
+        roomId: 'lobby',
+      },
+    });
+
+    this.socket.on('server.inLobby', (payload) => {
+      const domElement = document.getElementsByClassName(payload);
+      if (domElement.length > 0) {
+        domElement[0].style.backgroundColor = '#0EFF2E';
+        const { setInactive } = this.state;
+        if (setInactive[payload]) {
+          clearTimeout(setInactive[payload]);
+        }
+        setInactive[payload] = setTimeout(() => { domElement[0].style.backgroundColor = '#bbb'; }, 20000);
+        this.setState({ setInactive });
+      }
+    });
+
+    this.setState( { socket: this.socket }); // eslint-disable-line
   }
 
   changeSelectedChat(friendName, roomID) {
@@ -41,13 +65,16 @@ class FriendChat extends Component {
   openFriendList(e) {
     e.preventDefault();
     document.getElementById("friendList").style.height = "200px";
+
+    const { socket } = this.state;
+    socket.emit('client.inLobby', this.state.store.user);
   }
 
   closeFriendList() {
     document.getElementById("friendList").style.height = "0";
     this.setState({ selectedChat: false });
   }
-
+  
   render() {
     const { friendsList, selectedChat } = this.state;
 
@@ -59,7 +86,7 @@ class FriendChat extends Component {
             {friendsList.map(friend =>
               (
                 <div>
-                  <div className="dot" />
+                  <div className={`dot ${friend[0]}`} />
                   <div className="friend" onClick={() => this.changeSelectedChat(friend[0], friend[1])}>{friend[0]}</div>
                 </div>
               ))}
