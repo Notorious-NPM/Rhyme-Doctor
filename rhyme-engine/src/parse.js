@@ -1,10 +1,11 @@
 import unirest from 'unirest';
 import substrings from 'common-substrings';
+import SyllaRhyme from 'syllarhyme';
 import ALTERNATE_KEY from './config';
 
 const IPA_VOWELS = ['e', 'æ', 'ʌ', 'ʊ', 'ɒ', 'ə', 'i', 'ɜ', 'ɛ', 'ɔ', 'u', 'ɑ', 'ɪə', 'eə', 'eɪ', 'ɔɪ', 'aɪ', 'əʊ', 'aʊ'];
 
-const fillString = '#';
+// const fillString = '#';
 const crayons = [
   '#FF861F', // Orange
   '#FBE870', // Yellow
@@ -34,7 +35,7 @@ const isVowel = ({ name }) => {
   return false;
 };
 
-const API = word =>
+const API = word => // eslint-disable-line
   new Promise((resolve) => {
     unirest.get(`https://wordsapiv1.p.mashape.com/words/${word}/pronunciation`)
       .header('X-Mashape-Key', ALTERNATE_KEY)
@@ -42,6 +43,14 @@ const API = word =>
       .end((response) => {
         resolve(response.body);
       });
+  });
+
+const fromSr = word =>
+  new Promise((resolve) => {
+    SyllaRhyme((sr) => {
+      // const [first] = sr.pronunciation(word, 'ipa');
+      resolve(sr.pronunciation(word, 'ipa')[0]); // First word for now.
+    });
   });
 
 const parse = (text, strictness) =>
@@ -69,18 +78,19 @@ const parse = (text, strictness) =>
       });
     });
     words.forEach((word) => {
-      APIcalls.push(API(word));
+      APIcalls.push(fromSr(word)); // Switch here.
     });
     Promise.all(APIcalls)
       .then((data) => {
-        const rip = data.map(({ pronunciation }) => {
+        /* const rip = data.map(({ pronunciation }) => {
           if (typeof pronunciation === 'object' && 'all' in pronunciation) {
             return pronunciation.all;
           } else if (pronunciation) {
             return pronunciation;
           }
           return fillString;
-        });
+        }); */
+        const rip = data;
         let crayon = 0;
         let dirtyBrush = false;
         for (let i = 0; i < rip.length - 1; i += 1) {
