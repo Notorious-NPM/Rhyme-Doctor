@@ -57,7 +57,28 @@ const About = () => (
     </div>
     <br />
     <div className="tech">
-      Tech Stack
+      <h4>Tech Stack</h4>
+      <br />
+      <div className="images">
+        <div className="image react">
+          <img src="https://i.imgur.com/kEmE4cF.png" alt="react" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/passport.svg" alt="passport" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/mysql-5.svg" alt="mySql" />
+        </div>
+        <div className="image router">
+          <img src="https://cdn.worldvectorlogo.com/logos/react-router.svg" alt="reactRouter" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/socket-io.svg" alt="socket" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" alt="node" />
+        </div>
+      </div>
     </div>
     <div>
       Made at Hack Reactor
