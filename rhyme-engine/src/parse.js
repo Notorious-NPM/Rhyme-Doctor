@@ -95,12 +95,14 @@ const parse = (text, strictness) =>
         const rip = data;
         let crayon = 0;
         let dirtyBrush = false;
+        console.log(rip);
         for (let i = 0; i < rip.length - 1; i += 1) {
-          if (typeof rip[i] === 'object') {
+          if (typeof rip[i] === 'object' && rip[i].length > 1) {
             for (let h = 0; h < rip[i].length; h += 1) {
+              let start = 0;
+              let length = 0;
               for (let k = i + 1; k < rip.length; k += 1) {
-                let start = 0;
-                let length = 0;
+                // console.log('top');
                 if (k - i > jump[i]) {
                   break;
                 }
@@ -109,7 +111,7 @@ const parse = (text, strictness) =>
                 }
                 let compare;
                 if (length === 0) {
-                  compare = rip[k];
+                  compare = rip[k][0]; // eslint-disable-line
                 } else {
                   compare = rip[k][start];
                 }
@@ -143,48 +145,47 @@ const parse = (text, strictness) =>
               }
             }
           } else {
-            for (let h = 0; h < rip[i].length; h += 1) {
-              for (let k = i + 1; k < rip.length; k += 1) {
-                let start = 0;
-                let length = 0;
-                if (k - i > jump[i]) {
+            let start = 0;
+            let length = 0;
+            for (let k = i + 1; k < rip.length; k += 1) {
+              if (k - i > jump[i]) {
+                break;
+              }
+              if (typeof rip[k] === 'object' && rip[k].length > 1) {
+                length = rip[k].length; // eslint-disable-line
+              }
+              let compare;
+              if (length === 0) {
+                compare = rip[k][0]; // eslint-disable-line
+              } else {
+                compare = rip[k][start];
+              }
+              console.log(rip[i], compare);
+              const commonSubstrings = substrings.weigh([rip[i][0], compare], { minLength: 1 });
+              let score;
+              for (let j = 0; j < commonSubstrings.length; j += 1) {
+                if (isVowel(commonSubstrings[j])) {
+                  score = commonSubstrings[j];
                   break;
                 }
-                if (typeof rip[k] === 'object') {
-                  length = rip[k].length; // eslint-disable-line
+              }
+              if (score && score.weight > strictness) {
+                if (!colors[i] && !colors[k]) {
+                  colors[i] = crayons[crayon];
+                  colors[k] = crayons[crayon];
+                  dirtyBrush = true;
+                } else if (!colors[k]) {
+                  colors[k] = colors[i];
+                  dirtyBrush = true;
+                } else if (!colors[i]) {
+                  colors[i] = colors[k];
+                  dirtyBrush = true;
                 }
-                let compare;
-                if (length === 0) {
-                  compare = rip[k];
-                } else {
-                  compare = rip[k][start];
-                }
-                const commonSubstrings = substrings.weigh([rip[i], compare], { minLength: 1 });
-                let score;
-                for (let j = 0; j < commonSubstrings.length; j += 1) {
-                  if (isVowel(commonSubstrings[j])) {
-                    score = commonSubstrings[j];
-                    break;
-                  }
-                }
-                if (score && score.weight > strictness) {
-                  if (!colors[i] && !colors[k]) {
-                    colors[i] = crayons[crayon];
-                    colors[k] = crayons[crayon];
-                    dirtyBrush = true;
-                  } else if (!colors[k]) {
-                    colors[k] = colors[i];
-                    dirtyBrush = true;
-                  } else if (!colors[i]) {
-                    colors[i] = colors[k];
-                    dirtyBrush = true;
-                  }
-                }
-                if (!dirtyBrush) {
-                  if (start !== length) {
-                    start += 1;
-                    k -= 1; // l33t hax00r
-                  }
+              }
+              if (!dirtyBrush) {
+                if (start !== length) {
+                  start += 1;
+                  k -= 1; // l33t hax00r
                 }
               }
             }
