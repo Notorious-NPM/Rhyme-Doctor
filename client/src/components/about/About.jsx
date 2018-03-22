@@ -57,10 +57,13 @@ const About = () => (
     </div>
     <br />
     <div className="tech">
-      <h4>Tech Stack</h4>
+      <h4>Powered By</h4>
       <div className="images">
-        <div className="image react">
-          <img src="https://i.imgur.com/kEmE4cF.png" alt="react" />
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/react.svg" alt="react" />
+        </div>
+        <div className="image">
+          <img src="https://cdn.worldvectorlogo.com/logos/redux.svg" alt="redux" />
         </div>
         <div className="image router">
           <img src="https://cdn.worldvectorlogo.com/logos/react-router.svg" alt="reactRouter" />
@@ -86,7 +89,7 @@ const About = () => (
         <div className="image">
           <img src="https://cdn.worldvectorlogo.com/logos/dropzone.svg" alt="dropzone" />
         </div>
-        <div className="image">
+        <div className="image cloudinary">
           <img src="https://res.cloudinary.com/demo/image/upload/e_shadow,x_13,y_13/cloudinary_icon.png" alt="cloudinary" />
         </div>
         <div className="image babel">
