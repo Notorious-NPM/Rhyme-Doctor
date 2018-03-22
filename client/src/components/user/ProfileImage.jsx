@@ -21,6 +21,12 @@ class ProfileImage extends React.Component {
     });
   }
 
+  editPic() {
+    this.setState({
+      showChangePic: true,
+    });
+  }
+
   handleDrop = (files) => {
     const uploaders = files.map((file) => {
       const formData = new FormData();
@@ -42,6 +48,9 @@ class ProfileImage extends React.Component {
     });
 
     axios.all(uploaders).then(() => {
+      this.setState({
+        showChangePic: false,
+      });
       console.log('done', this.state);
     });
   }
@@ -49,18 +58,18 @@ class ProfileImage extends React.Component {
   render() {
     return (
       <div>
-        {!this.state.image && (<Dropzone
+        {(!this.state.image || this.state.showChangePic) && (<Dropzone
           onDrop={this.handleDrop}
           multiple
           accept="image/*"
         >
           <p>Drop files or click to upload your profile pic</p>
         </Dropzone>)}
-        {this.state.image && (
+        {(this.state.image && !this.state.showChangePic) && (
         <div className="container-img">
           <img src={this.state.image} alt="ProfilePic" className="image" />
           <div className="middle">
-            <div className="text">Change Picture</div>
+            <div className="text" onClick={() => this.editPic()}>Change Picture</div>
           </div>
         </div>
         )}
