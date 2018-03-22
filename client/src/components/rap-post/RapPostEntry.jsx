@@ -20,7 +20,7 @@ class RapPostEntry extends React.Component {
   }
 
   getComments = async (close = true) => {
-    const comments = await axios.get(`http://localhost:3000/api/content/comments/${this.props.rapPost.id}`);
+    const comments = await axios.get(`/api/content/comments/${this.props.rapPost.id}`);
     if (close) {
       this.setState({
         comments: comments.data,
@@ -36,7 +36,7 @@ class RapPostEntry extends React.Component {
   likeRapPost = async () => {
     try {
       const status = await axios.put(
-        'http://localhost:3000/api/vote/upvote',
+        '/api/vote/upvote',
         { rapPostId: this.props.rapPost.id },
       );
       this.activateAlert('success', 'You liked this rap post!');
@@ -55,7 +55,7 @@ class RapPostEntry extends React.Component {
   reportPost = async () => {
     try {
       const status = await axios.post(
-        'http://localhost:3000/api/content/report',
+        '/api/content/report',
         { rapPostId: this.props.rapPost.id },
       );
       this.activateAlert('success', 'Report was successfully submitted');
@@ -71,7 +71,7 @@ class RapPostEntry extends React.Component {
 
   postComment = async () => {
     const status = await axios.post(
-      'http://localhost:3000/api/content/comment',
+      '/api/content/comment',
       {
         text: this.state.myComment,
         username: this.props.rapPost.username,
