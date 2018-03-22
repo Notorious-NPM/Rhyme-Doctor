@@ -5,7 +5,7 @@ import ALTERNATE_KEY from './config';
 
 const IPA_VOWELS = ['e', 'æ', 'ʌ', 'ʊ', 'ɒ', 'ə', 'i', 'ɜ', 'ɛ', 'ɔ', 'u', 'ɑ', 'ɪə', 'eə', 'eɪ', 'ɔɪ', 'aɪ', 'əʊ', 'aʊ'];
 
-// const fillString = '#';
+const fillString = '#';
 const crayons = [
   '#FF861F', // Orange
   '#FBE870', // Yellow
@@ -51,6 +51,7 @@ const fromSr = word =>
       let options = sr.pronunciation(word, 'ipa');
       options = options.map(option => option.replace(/ /g, ''));
       console.log(word, options);
+      if (options.length === 0) options = [fillString];
       resolve(options);
     });
   });
