@@ -101,8 +101,8 @@ class RapPostEntry extends React.Component {
     const { username } = this.props.rapPost;
 
     return (
-      <div>
-        <div className="card w-50">
+      <div className="col-sm-6">
+        <div className="card">
           <div className="card-body">
             {this.state.alert ? <Alert message={this.state.alertMessage} status={this.state.alertStatus} /> : null}
             <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span class="badge badge-light">{this.props.rapPost.like_count}</span></button></p>

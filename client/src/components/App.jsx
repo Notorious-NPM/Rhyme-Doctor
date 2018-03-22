@@ -33,8 +33,16 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="container-fluid">
-          <Navbar />
+        <div>
+          {/* <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </ul> */}
+          <Navbar /* history={history} */ />
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
