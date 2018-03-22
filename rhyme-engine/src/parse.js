@@ -47,9 +47,12 @@ const API = word => // eslint-disable-line
 
 const fromSr = word =>
   new Promise((resolve) => {
+    // console.log(word);
     SyllaRhyme((sr) => {
-      // const [first] = sr.pronunciation(word, 'ipa');
-      resolve(sr.pronunciation(word, 'ipa')[0]); // First word for now.
+      const [first] = sr.pronunciation(word, 'ipa'); // First word for now.
+      console.log(word, first);
+      const pronunciation = first.replace(/ /g, '');
+      resolve(pronunciation);
     });
   });
 
