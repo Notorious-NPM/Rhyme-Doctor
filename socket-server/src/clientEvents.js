@@ -4,7 +4,7 @@ import {
 } from './serverEvents';
 
 const clientEnter = ({ io, room }, payload) => {
-  console.log('successfully heard client.enter');
+  console.log('successfully heard client.inLobby');
   try {
     serverEnterResponse({ io, room }, payload);
   } catch (err) {
@@ -22,7 +22,7 @@ const clientMsg = ({ io, room }, payload) => {
 };
 
 const clientEmitters = {
-  'client.enter': clientEnter,
+  'client.inLobby': clientEnter,
   'client.sendMsg': clientMsg,
 };
 
