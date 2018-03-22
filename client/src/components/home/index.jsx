@@ -32,12 +32,24 @@ const clickHandler = () => {
 const hitHandler = () => {
   $.ajax({
     method: 'POST',
-    url: 'localhost:3001/parse',
+    url: 'http://localhost:3001/parse',
     data: {
       text: $('#lyrics').val(),
     },
     success(res) {
       console.log(res);
+      const colors = JSON.parse(res);
+      const coords = Object.keys(colors);
+      store.dispatch({ type: 'wipeboard' });
+      coords.forEach((coord) => {
+        store.dispatch({
+          type: 'straighthighlight',
+          body: {
+            coord,
+            color: colors[coord],
+          },
+        });
+      });
     },
     error(res) {
       alert(res); // eslint-disable-line
@@ -69,16 +81,12 @@ class Home extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-2">
-            <button className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
-          </div>
-          <div className="col-md-2">
-            <button className="btn btn-outline-primary" onClick={hitHandler}>Hit API</button>
+            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
+            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={hitHandler}>Hit API</button>
           </div>
         </div>
-        FriendChat
         {this.state.session && <FriendChat />}
         <hr />
-        Thesaurus
         {this.state.session && <ThesaurusForm />}
         <hr />
         PersonalRhymes

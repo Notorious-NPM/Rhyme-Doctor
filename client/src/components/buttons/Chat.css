@@ -6,11 +6,45 @@
 
 .chatDisplay {
   width: 200px;
-  height: 250px;
+  height: 170px;
+  overflow: auto;
 }
 
-form {
-  position: relative;
+#selectedChat form {
+  position: absolute;
   width: 80%;
   bottom: 0;
+  margin-left: 5px;
+}
+
+#selectedChat {
+  background-color: white;
+  box-shadow: -5px 5px 15px 0px #BDBBB9;
+  z-index: 1;
+  position: fixed;
+  padding: 0.5px;
+  margin-bottom: 38px;
+  width: 0px;
+  height: 200px;
+  bottom: 0;
+  right: 200px;
+  transition: 0.5s;
+}
+
+#selectedChat form {
+  display: inline;
+  width: 250px;
+}
+
+#selectedChat input {
+  float: left;
+  height: 20px;
+  width: 180px;
+}
+
+#selectedChat button {
+  margin-left: 2px;
+  height: 20px;
+  width: 50px;
+  font-size: 15px;
 }

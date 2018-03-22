@@ -1,6 +1,7 @@
 import RapPost from '../../database/models/rap_post.js';
 import User from '../../database/models/user.js';
 import Comment from '../../database/models/comment.js';
+import ReportPost from '../../database/models/report_post.js';
 import sequelize from '../../database';
 // Need DB helpers
 
@@ -36,8 +37,22 @@ const uncommentCtrl = () => {
   // deletes content based on id
 };
 
-const reportCtrl = () => {
+const reportCtrl = async (req, res) => {
   // reports posts based on id
+  const [_, created] = await ReportPost.findOrCreate({ // eslint-disable-line
+    where: {
+      user_id: req.user.id,
+      rap_post_id: req.body.rapPostId,
+    },
+  });
+
+  if (!created) {
+    res.status(409).send(JSON.stringify('Already reported'));
+  } else {
+    const rapPost = await RapPost.findById(Number(req.body.rapPostId));
+    rapPost.increment('report_count', { by: 1 });
+    res.status(201).send(JSON.stringify('Success!'));
+  }
 };
 
 const getCommentsCtrl = async (req, res) => {

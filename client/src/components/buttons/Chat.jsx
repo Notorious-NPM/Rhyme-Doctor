@@ -22,7 +22,6 @@ class Chat extends Component {
     });
 
     await this.socket.on('server.sendMsg', ({ msg, randomCode }) => {
-      // console.log(data);
       if (randomCode === this.state.randomCode) {
         msg = 'Me: ' + msg;
       } else {
@@ -32,15 +31,14 @@ class Chat extends Component {
     });
 
     this.setState({ socket: this.socket }) // eslint-disable-line
+
+    setTimeout(() => document.getElementById('selectedChat').style.width = "250px", 0);
   }
 
   sendMsg(e) {
     e.preventDefault();
-    // this.setState({ messages: [...this.state.messages, this.state.msg] });
     const { socket, randomCode, msg } = this.state;
-
     socket.emit('client.sendMsg', { msg, randomCode });
-
     e.target.reset();
   }
 
@@ -51,7 +49,7 @@ class Chat extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" id="selectedChat">
         <div className="chatDisplay">
           {this.state.messages.map(msg =>
             <div>{msg}</div>)}

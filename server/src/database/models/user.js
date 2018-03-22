@@ -9,11 +9,11 @@ const User = db.define('user', {
   },
   name: Sequelize.STRING,
   password: Sequelize.STRING,
+  image: Sequelize.STRING,
+  bio: Sequelize.STRING(250),
   like_count: { type: Sequelize.INTEGER, defaultValue: 0 },
 }, {
   underscored: true,
 });
-
-// User.belongsTo(Rap_Post);
 
 module.exports = User;

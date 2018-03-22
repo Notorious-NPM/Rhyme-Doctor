@@ -1,7 +1,7 @@
 const serverEnterResponse = ({ io, room }, payload) => {
   io
     .in(room.get('id'))
-    .emit('server.enter', payload);
+    .emit('server.inLobby', payload);
 };
 
 const serverSendMsgResponse = ({ io, room }, payload) => {

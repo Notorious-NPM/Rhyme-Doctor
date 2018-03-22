@@ -15,8 +15,14 @@ const Signup = ({ history }) => {
         username: $('#username').val(),
         password: $('#password').val(),
       },
-      success(res) {
-        store.dispatch({ type: 'sessionlogin' });
+      success(response) {
+        const { username } = JSON.parse(response);
+        store.dispatch({
+          type: 'sessionlogin',
+          body: {
+            username,
+          },
+        });
         history.push('/');
       },
       error({ responseText }) {

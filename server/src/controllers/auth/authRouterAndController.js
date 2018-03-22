@@ -47,7 +47,16 @@ passport.deserializeUser((user, done) => {
 
 router.route('/loggedin')
   .get((req, res) => {
-    res.status(200).end(req.isAuthenticated().toString());
+    if (req.isAuthenticated()) {
+      res.status(200).end(JSON.stringify({
+        session: true,
+        username: req.user.username,
+      }));
+    } else {
+      res.status(200).end(JSON.stringify({
+        session: false,
+      }));
+    }
   });
 
 router.route('/login')
@@ -70,12 +79,14 @@ router.route('/signup')
     } else {
       const salt = await genSalt(10);
       const hashedPassword = await hash(password, salt);
-      const createdUser = await User.create({ name: username, password: hashedPassword });
-      req.login(createdUser, (err) => {
+      const { id, name: uname } = await User.create({ name: username, password: hashedPassword });
+      req.login({ id, username: uname }, (err) => {
         if (err) {
           res.status(500).end('Something went wrong with our authentication.');
         } else {
-          res.status(201).end(`Signed up as: ${createdUser.name}`);
+          res.status(201).end(JSON.stringify({
+            username: uname,
+          }));
         }
       });
     }
