@@ -5,19 +5,13 @@ import * as Redux from 'redux';
 
 const reducer = (state = {
   session: false,
-  text: `I'm not a regular competitor, first rhyme editor
-  Melody arranger, poet et cetera
-  Extra events, the grand finale like bonus
-  I am the man they call the microphonist
-  With wisdom, which means wise words being spoken
-  Too many at one time, watch the mic start smoking
-  I came to express the rap I manifest
-  Stand in my way, and I'll veto all the word's protest
-  Emcees that wanna be best, they're gonna
-  Be dissed if they don't get from in front of
-  All they can go get is me a glass of Moet
-  A hard time, sip your juice and watch a smooth poet
-`,
+  text: `Circulate us in the vein, set to ride the cracks on your brain
+  Like a novocaine, I train, to ease any pain
+  Yeah, get your wig loose, I relieve tension
+  The path to my lesson, is the highway to heaven
+  Plus, what a rush, catch another one flush
+  Now you got a crush, making dames wanna blush
+  I stomp out your campfire, liar, retire`,
   /* '0, 3': 'red',
   '0, 4': 'red',
   '0, 7': 'red',

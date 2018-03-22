@@ -47,7 +47,6 @@ passport.deserializeUser((user, done) => {
 
 router.route('/loggedin')
   .get((req, res) => {
-    console.log(req.user);
     if (req.isAuthenticated()) {
       res.status(200).end(JSON.stringify({
         session: true,
