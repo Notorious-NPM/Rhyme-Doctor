@@ -2,7 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import API_KEY from './config';
-import './profileImage.css';
+import './profile.css';
 
 
 class ProfileImage extends React.Component {
@@ -55,7 +55,7 @@ class ProfileImage extends React.Component {
           accept="image/*"
         >
           <p>Drop files or click to upload your profile pic</p>
-                               </Dropzone>)}
+        </Dropzone>)}
         {this.state.image && (
         <div className="container-img">
           <img src={this.state.image} alt="ProfilePic" className="image" />

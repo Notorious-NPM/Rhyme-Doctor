@@ -1,7 +1,7 @@
-/* .container {
-  position: relative;
-  width: 50%;
-} */
+.container-img {
+  /* position: relative; */
+  width: 210px;
+}
 
 .image {
   opacity: 1;
@@ -32,8 +32,10 @@ opacity: 1;
 }
 
 .text {
-background-color: #4CAF50;
+background-color: #007bff;
 color: white;
 font-size: 16px;
+width: 210px;
+border-radius: .25em;
 padding: 16px 32px;
 }
