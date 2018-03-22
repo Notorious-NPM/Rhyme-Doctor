@@ -3,9 +3,11 @@ import $ from 'jquery';
 
 import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
-import FriendChat from '../../components/buttons/FriendChat';
+import FriendChat from '../../components/buttons/FriendChat'; 
 import ThesaurusForm from '../thesaurus/ThesaurusForm';
 import store from '../../redux/store';
+
+import './home.css';
 
 const centerStyle = {
   float: 'none',
@@ -95,10 +97,11 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col text-center" style={centerStyle}>
-            <h3 className="display-4">Lyrics</h3>
+      <div>
+        <div className="jumbotron" />
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col text-center" style={centerStyle} />
           </div>
         </div>
         <div className="row">
