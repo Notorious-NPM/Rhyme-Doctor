@@ -21,7 +21,7 @@ class ThesaurusForm extends React.Component {
   }
 
   searchWord(e) {
-    const word = this.state.word;
+    const { word } = this.state;
     e.preventDefault();
     axios
       .get('api/word/synonym', { params: { word } })
