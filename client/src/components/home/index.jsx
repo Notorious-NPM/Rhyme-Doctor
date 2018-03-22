@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
-import FriendChat from '../../components/buttons/FriendChat'; 
+import FriendChat from '../../components/buttons/FriendChat';
 import ThesaurusForm from '../thesaurus/ThesaurusForm';
 import store from '../../redux/store';
 
