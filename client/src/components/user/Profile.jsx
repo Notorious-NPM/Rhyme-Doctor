@@ -10,6 +10,7 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currUser: '',
       userPosts: [],
       username: '',
       likeCount: '',
