@@ -122,6 +122,7 @@ class RapPostEntry extends React.Component {
             createComment={this.createComment}
             myComment={this.state.myComment}
             comments={this.state.comments}
+            username={this.props.username}
           /> : null}
         </div>
 

@@ -15,6 +15,11 @@ class RapPost extends React.Component {
 
   componentDidMount = () => {
     this.getRapPosts();
+    this.state = store.getState();
+    console.log(this.state);
+    store.subscribe(() => {
+      this.setState(store.getState());
+    });
   }
 
   getRapPosts = async () => {
@@ -40,6 +45,7 @@ class RapPost extends React.Component {
           rapPost={rapPost}
           key={i}
           getRapPosts={this.getRapPosts}
+          username={this.state.username}
         />))}
       </div>
     );
