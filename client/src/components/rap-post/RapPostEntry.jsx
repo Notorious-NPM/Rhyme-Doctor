@@ -16,11 +16,13 @@ class RapPostEntry extends React.Component {
       alertStatus: '',
       alertMessage: '',
       timer: undefined,
+      likes: this.props.rapPost.like_count,
     };
   }
 
   getComments = async (close = true) => {
-    const comments = await axios.get(`http://localhost:3000/api/content/comments/${this.props.rapPost.id}`);
+    const comments = await axios.get(`/api/content/comments/${this.props.rapPost.id}`);
+    console.log(comments);
     if (close) {
       this.setState({
         comments: comments.data,
@@ -36,7 +38,7 @@ class RapPostEntry extends React.Component {
   likeRapPost = async () => {
     try {
       const status = await axios.put(
-        'http://localhost:3000/api/vote/upvote',
+        '/api/vote/upvote',
         { rapPostId: this.props.rapPost.id },
       );
       this.activateAlert('success', 'You liked this rap post!');
@@ -44,7 +46,7 @@ class RapPostEntry extends React.Component {
         this.props.getUserPosts();
         this.props.getUserData();
       } else {
-        this.props.getRapPosts();
+        this.setState({ likes: this.state.likes + 1 });
       }
     } catch (err) {
       console.log('Post was already liked');
@@ -55,7 +57,7 @@ class RapPostEntry extends React.Component {
   reportPost = async () => {
     try {
       const status = await axios.post(
-        'http://localhost:3000/api/content/report',
+        '/api/content/report',
         { rapPostId: this.props.rapPost.id },
       );
       this.activateAlert('success', 'Report was successfully submitted');
@@ -71,7 +73,7 @@ class RapPostEntry extends React.Component {
 
   postComment = async () => {
     const status = await axios.post(
-      'http://localhost:3000/api/content/comment',
+      '/api/content/comment',
       {
         text: this.state.myComment,
         username: this.props.rapPost.username,
@@ -105,7 +107,7 @@ class RapPostEntry extends React.Component {
         <div className="card">
           <div className="card-body">
             {this.state.alert ? <Alert message={this.state.alertMessage} status={this.state.alertStatus} /> : null}
-            <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span className="badge badge-light">{this.props.rapPost.like_count}</span></button></p>
+            <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span className="badge badge-light">{this.state.likes}</span></button></p>
             <button className="badge badge-warning" onClick={() => this.reportPost()}>Report Post</button>
             <h5 className="card-title">
               By{' '}
@@ -121,6 +123,7 @@ class RapPostEntry extends React.Component {
             createComment={this.createComment}
             myComment={this.state.myComment}
             comments={this.state.comments}
+            username={this.props.username}
           /> : null}
         </div>
 
