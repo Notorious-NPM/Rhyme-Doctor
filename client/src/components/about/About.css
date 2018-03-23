@@ -12,12 +12,20 @@
   margin: auto;
 }
 
+.challenges h6 {
+  text-decoration: underline;
+}
+
 .contributor {
-  float: left;
+  display: inline-block;
   text-align: center;
   margin: 1%;
-  border: 1px solid blue;
+  border: 5px solid white;
   padding: 15px;
+  width: 250px;
+  height: 250px;
+  box-shadow: 2px 2px 10px white;
+  line-height: 1.5;
 }
 
 .contributors.container {
