@@ -34,9 +34,6 @@ const SessionBar = () => (
           <li className="nav-item">
             <Link className="nav-link" to="/profile">Profile</Link>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Subscriptions</a>
-          </li>
         </ul>
       </div>
       <div className="mx-auto order-0">

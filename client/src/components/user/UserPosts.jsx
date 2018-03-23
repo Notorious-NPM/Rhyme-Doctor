@@ -9,7 +9,7 @@ class UserPosts extends React.Component {
   render() {
     const userPosts = this.props.userPosts || [];
     return (
-      <div align="center">
+      <div className="row">
         {userPosts.map((userPost, i) => <RapPostEntry rapPost={userPost} key={i} getUserPosts={this.props.getUserPosts} getUserData={this.props.getUserData} onProfile />).reverse()}
       </div>
     );
