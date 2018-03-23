@@ -23,10 +23,9 @@ const deletePostCtrl = () => {
 
 const commentCtrl = async (req, res) => {
   // adds comment based on post id - no limit
-  const { text, username, postId } = req.body;
-  const user = await User.findOne({ where: { name: username } });
+  const { text, postId } = req.body;
   const comment = await Comment.create({
-    user_id: user.dataValues.id,
+    user_id: req.user.id,
     rap_post_id: postId,
     text,
   });
