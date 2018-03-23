@@ -54,7 +54,7 @@ const About = () => (
         </div>
       </div>
     </div>
-    <br />
+    <div className="whitespace" />
     <div className="tech">
       <h4>Powered By</h4>
       <div className="images">
