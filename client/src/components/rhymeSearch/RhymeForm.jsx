@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import RhymeList from './RhymeList';
 
-class RhymeSearch extends React.Component {
+class RhymeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,4 +49,4 @@ class RhymeSearch extends React.Component {
   }
 }
 
-export default RhymeSearch;
+export default RhymeForm;
