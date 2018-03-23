@@ -27,6 +27,7 @@
 }
 
 .rapText {
+  color: #676464;
   background-color: white;
   overflow: auto;
   height: 500px;
