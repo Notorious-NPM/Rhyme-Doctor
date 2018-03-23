@@ -33,7 +33,7 @@ class ProfileImage extends React.Component {
       formData.append('file', file);
       formData.append('upload_preset', 'hkhkmnpg');
       formData.append('api_key', API_KEY);
-      formData.append('timestamp', (Date.now() / 1000) | 0);
+      formData.append('timestamp', (Date.now() / 1000) || 0);
 
       return axios.post('https://api.cloudinary.com/v1_1/dkwbeount/image/upload', formData, {
         headers: { 'X-Requested-With': 'XMLHttpRequest' },
@@ -64,7 +64,7 @@ class ProfileImage extends React.Component {
           accept="image/*"
         >
           <p>Drop files or click to upload your profile pic</p>
-        </Dropzone>)}
+                                                             </Dropzone>)}
         {(this.state.image && !this.state.showChangePic) && (
         <div className="container-img">
           <img src={this.state.image} alt="ProfilePic" className="image" />
