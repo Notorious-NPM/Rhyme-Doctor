@@ -61,7 +61,6 @@ class Bio extends React.Component {
               placeholder="Write your bio here (max 250 characters)"
               onChange={e => this.onChange(e)}
             />
-            <br />
             <button className="btn btn-outline-primary" onClick={() => this.addBio()}>Submit</button>
           </div>)}
         {(this.state.bio || this.state.showBio) && (<div className="row">{this.state.bio}</div>)}<br /><br />

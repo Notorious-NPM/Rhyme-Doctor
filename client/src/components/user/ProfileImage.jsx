@@ -64,10 +64,10 @@ class ProfileImage extends React.Component {
           accept="image/*"
         >
           <p>Drop files or click to upload your profile pic</p>
-                                                             </Dropzone>)}
+        </Dropzone>)}
         {(this.state.image && !this.state.showChangePic) && (
         <div className="container-img">
-          <img src={this.state.image} alt="ProfilePic" className="image" />
+          <img src={this.state.image} alt="ProfilePic" className="image-prof" />
           <div className="middle">
             <div className="text" onClick={() => this.editPic()}>Change Picture</div>
           </div>
