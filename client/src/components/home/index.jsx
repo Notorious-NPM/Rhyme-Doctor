@@ -7,6 +7,7 @@ import FriendChat from '../../components/buttons/FriendChat';
 import ThesaurusForm from '../thesaurus/ThesaurusForm';
 import store from '../../redux/store';
 
+import location from '../../../../config';
 import './home.css';
 
 const centerStyle = {
@@ -52,7 +53,7 @@ class Home extends React.Component {
     const strictness = this.state.strictness === 'Strict' ? 3 : 1; // Other possible value is 'loose'.
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3001/parse',
+      url: `http://${location}:3001/parse`,
       data: {
         text: $('#lyrics').val(),
         strictness,

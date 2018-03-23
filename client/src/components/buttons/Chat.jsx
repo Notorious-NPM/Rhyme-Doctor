@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client/dist/socket.io';
 
+import location from '../../../../config';
+
 import('./Chat.css');
 
 class Chat extends Component {
@@ -15,7 +17,7 @@ class Chat extends Component {
   }
 
   async componentDidMount() {
-    this.socket = await io('localhost:3444', {
+    this.socket = await io(`http://${location}:3444, {
       query: {
         roomId: this.props.roomID,
       },
