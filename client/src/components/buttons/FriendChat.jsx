@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Chat from './Chat';
 import axios from 'axios';
 import io from 'socket.io-client/dist/socket.io';
+import Chat from './Chat';
 import store from '../../redux/store';
 
 import './FriendChat.css';
@@ -32,7 +32,7 @@ class FriendChat extends Component {
       })
       .catch(err => console.log('FriendChat componentMount error: ', err));
 
-    this.socket = io('http://localhost:3444', {
+    this.socket = io('localhost:3444', {
       query: {
         roomId: 'lobby',
       },
