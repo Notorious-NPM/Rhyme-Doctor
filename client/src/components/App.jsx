@@ -41,6 +41,7 @@ class App extends React.Component {
           <Route path="/signup" component={Signup} />
           <Route path="/profile" component={Profile} />
           <Route path="/feed" component={RapPost} />
+          <Route path="/subscriptions" render={()=><RapPost subscription={1} />} />
           <Route path="/about" component={About} />
         </div>
       </Router>
