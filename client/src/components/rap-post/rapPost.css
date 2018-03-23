@@ -14,6 +14,7 @@
 
 .card-text {
   color: #333;
+  cursor: pointer;
 }
 
 .row {

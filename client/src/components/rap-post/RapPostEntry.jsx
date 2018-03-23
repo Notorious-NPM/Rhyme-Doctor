@@ -18,6 +18,7 @@ class RapPostEntry extends React.Component {
       alertMessage: '',
       timer: undefined,
       likes: this.props.rapPost.like_count,
+      hidden: true,
     };
   }
 
@@ -100,9 +101,15 @@ class RapPostEntry extends React.Component {
     });
   }
 
+  triggerModal = () => {
+    this.setState({
+      hidden: !this.state.hidden,
+    });
+  }
+
   render() {
     const { username } = this.props.rapPost;
-
+    const rapText = this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>);
     return (
       <div className="col-md-6">
         <div className="card">
@@ -114,8 +121,8 @@ class RapPostEntry extends React.Component {
               By{' '}
               <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link>
             </h5>
-            <div className="rapText">
-              <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
+            <div className="rapText" onClick={() => this.triggerModal()}>
+              <p className="card-text">{rapText}</p>
             </div>
             <button className="btn btn-primary btn-space" onClick={() => this.getComments()}>Show Comments</button>
           </div>
@@ -127,7 +134,7 @@ class RapPostEntry extends React.Component {
             username={this.props.username}
           /> : null}
         </div>
-        <Modal />
+        <Modal name={username} rapText={rapText} hidden={this.state.hidden} triggerModal={this.triggerModal} />
       </div>
     );
   }
