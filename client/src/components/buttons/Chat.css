@@ -8,6 +8,7 @@
   width: 200px;
   height: 170px;
   overflow: auto;
+  color: #24A4E9;
 }
 
 #selectedChat form {
@@ -38,13 +39,13 @@
 
 #selectedChat input {
   float: left;
-  height: 20px;
+  height: 22px;
   width: 180px;
 }
 
 #selectedChat button {
   margin-left: 2px;
-  height: 20px;
+  height: 22px;
   width: 50px;
   font-size: 15px;
 }

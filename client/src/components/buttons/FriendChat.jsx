@@ -82,7 +82,7 @@ class FriendChat extends Component {
       <div>
         <div>
           <div id="friendList" className="friendList container">
-            <div className="friendList minimize"><div onClick={() => this.closeFriendList()}>X</div></div>
+            <div className="friendList minimize"><div onClick={() => this.closeFriendList()}>X{' '}</div></div>
             {friendsList.map(friend =>
               (
                 <div>
