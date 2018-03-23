@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Stats = props => (
-  <div>
+  <div className="row">
     <div>
       <h4><b>{props.username}</b></h4>
       <p>Likes: {props.likeCount}</p>

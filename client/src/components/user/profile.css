@@ -3,14 +3,14 @@
 }
 
 .container-img {
-  width: 210px;
+  width: 100%;
 }
 
-.image {
+.image-prof {
   opacity: 1;
   display: block;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   transition: .5s ease;
   backface-visibility: hidden;
 }
@@ -37,9 +37,13 @@
 .text {
   background-color: #007bff;
   color: white;
-  font-size: 16px;
-  width: 210px;
+  font-size: 14px;
+  width: 100%;
   border-radius: .25em;
   padding: 16px 32px;
   cursor: pointer;
+}
+
+.col-2 {
+  padding-top: 20px;
 }
