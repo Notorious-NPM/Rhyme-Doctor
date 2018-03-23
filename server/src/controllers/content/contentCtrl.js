@@ -83,7 +83,6 @@ const getFriendsPostsCtrl = async (req, res) => {
     { type: sequelize.QueryTypes.SELECT },
   );
   const friendsArr = friends.map(obj => obj.friendID);
-  console.log(friendsArr);
 
   const rapPost = await sequelize.query(
     `select * from rap_posts
