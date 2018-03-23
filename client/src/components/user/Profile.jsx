@@ -10,6 +10,7 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currUser: '',
       userPosts: [],
       username: '',
       likeCount: '',
@@ -60,9 +61,13 @@ class Profile extends React.Component {
 
     return (
       <div>
-        <Stats username={this.state.username} likeCount={this.state.likeCount} />
-        {this.state.received && <ProfileImage image={this.state.image} />}
-        {this.state.received && <Bio username={this.state.username} bio={this.state.bio} />}
+        <div className="row">
+          {this.state.received && <ProfileImage image={this.state.image} />}
+          <div className="col-md-6">
+            <Stats username={this.state.username} likeCount={this.state.likeCount} />
+            {this.state.received && <Bio username={this.state.username} bio={this.state.bio} />}
+          </div>
+        </div>
         {state && <FriendButton username={state.username} />}
         <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} />
       </div>
