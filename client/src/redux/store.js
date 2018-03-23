@@ -5,13 +5,22 @@ import * as Redux from 'redux';
 
 const reducer = (state = {
   session: false,
-  text: `Circulate us in the vein, set to ride the cracks on your brain
+  text: `C.L. Smooth:
+
+  Circulate us in the vein, set to ride the cracks on your brain
   Like a novocaine, I train, to ease any pain
   Yeah, get your wig loose, I relieve tension
   The path to my lesson, is the highway to heaven
   Plus, what a rush, catch another one flush
   Now you got a crush, making dames wanna blush
-  I stomp out your campfire, liar, retire`,
+  I stomp out your campfire, liar, retire
+
+  Example:
+
+  HRLA twenty, gave me plenty, of stuff to learn
+  I spurn, heavy, messy, lyrics, template strings and back ticks
+  My rhymes are so sick, I'm like John Wick, ladle the sauce, extra thick
+  These words will stick, colorful lyrics, I used the same word, like Nick`,
   strictness: 'Strict',
   /* '0, 3': 'red',
   '0, 4': 'red',

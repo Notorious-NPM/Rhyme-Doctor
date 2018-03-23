@@ -107,7 +107,7 @@ class Home extends React.Component {
         </div>
         <div className="row">
           <Textarea />
-          <Paragraph className="text-center" style={centerStyle} text={this.state.text} />
+          <Paragraph style={centerStyle} text={this.state.text} />
         </div>
         <div className="row">
           <div className="col-md-6" style={{ margin: '5px' }}>
