@@ -22,6 +22,7 @@ class RapPostEntry extends React.Component {
 
   getComments = async (close = true) => {
     const comments = await axios.get(`/api/content/comments/${this.props.rapPost.id}`);
+    console.log(comments);
     if (close) {
       this.setState({
         comments: comments.data,
