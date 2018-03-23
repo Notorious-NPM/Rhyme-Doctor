@@ -69,7 +69,11 @@ const getCommentsCtrl = async (req, res) => {
 
 const getPostsCtrl = async (req, res) => {
   // Gets all rap posts. Joins user table to get associated data.
-  const rapPost = await RapPost.findAll();
+  const rapPost = await sequelize.query(
+    'select * from rap_posts order by like_count desc;',
+    { type: sequelize.QueryTypes.SELECT },
+  );
+  console.log(rapPost);
   res.status(200).send(rapPost);
 };
 
