@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Comments from './comments';
 import Alert from '../alert';
+import Modal from '../modal';
 import { Link } from 'react-router-dom';
 import './rapPost.css';
 
@@ -124,7 +125,7 @@ class RapPostEntry extends React.Component {
             comments={this.state.comments}
           /> : null}
         </div>
-
+        <Modal />
       </div>
     );
   }
