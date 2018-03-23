@@ -40,6 +40,7 @@ class RapPost extends React.Component {
           rapPost={rapPost}
           key={i}
           getRapPosts={this.getRapPosts}
+          username={this.state.username}
         />))}
       </div>
     );

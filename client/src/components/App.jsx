@@ -24,7 +24,7 @@ class App extends React.Component {
           store.dispatch({
             type: 'sessionlogin',
             body: {
-              user: response.username,
+              username: response.username,
             },
           });
         }
