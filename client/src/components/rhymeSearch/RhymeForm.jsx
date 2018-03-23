@@ -1,14 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
-import ThesaurusList from './ThesaurusList';
+import RhymeList from './RhymeList';
 
-class ThesaurusForm extends React.Component {
+class RhymeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       word: '',
-      synonyms: [],
+      rhymes: [],
     };
   }
 
@@ -24,10 +24,10 @@ class ThesaurusForm extends React.Component {
     const { word } = this.state;
     e.preventDefault();
     axios
-      .get('api/word/synonym', { params: { word } })
+      .get('api/word/rhyme', { params: { word } })
       .then((res) => {
         this.setState({
-          synonyms: res.data,
+          rhymes: res.data,
         });
       });
   }
@@ -37,16 +37,16 @@ class ThesaurusForm extends React.Component {
       <div className="row">
         <div className="col-md-4">
           <form className="form-group">
-            <label htmlFor="thesaurus">Thesaurus:{' '}
-              <input type="text" name="word" id="thesaurus" onChange={e => this.onChange(e)} />
+            <label htmlFor="rhyme">Find a Rhyme:{' '}
+              <input type="text" name="word" id="rhyme" onChange={e => this.onChange(e)} />
             </label>
             {' '}<button className="btn btn-outline-primary btn-sm" onClick={e => this.searchWord(e)}>Submit</button>
           </form>
-          <ThesaurusList synonyms={this.state.synonyms} />
+          <RhymeList rhymes={this.state.rhymes} />
         </div>
       </div>
     );
   }
 }
 
-export default ThesaurusForm;
+export default RhymeForm;
