@@ -4,7 +4,12 @@ import $ from 'jquery';
 import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
 import FriendChat from '../../components/buttons/FriendChat';
+<<<<<<< HEAD
 import ThesaurusForm from '../thesaurus/ThesaurusForm';
+=======
+import PersonalRhymes from '../../components/buttons/PersonalRhymes';
+import RhymeForm from '../rhymeSearch/RhymeForm';
+>>>>>>> Updated thesaurus to rhyme search
 import store from '../../redux/store';
 
 import './home.css';
@@ -119,7 +124,9 @@ class Home extends React.Component {
             </div>
             {this.state.session && <FriendChat />}
             <hr />
-            {this.state.session && <ThesaurusForm />}
+            {this.state.session && <RhymeForm />}
+            <hr />
+            {this.state.session && <PersonalRhymes />}
           </div>
         </div>
       </div>
