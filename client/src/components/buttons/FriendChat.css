@@ -25,11 +25,14 @@
 }
 
 .friendList.minimize {
-  background: linear-gradient(to bottom, rgba(225,255,255,1) 0%,rgba(225,255,255,1) 7%,rgba(253,255,255,1) 10%,rgba(253,255,255,1) 10%,rgba(225,255,255,1) 12%,rgba(230,248,253,1) 30%,rgba(200,238,251,1) 54%,rgba(190,228,248,1) 75%,rgba(177,216,245,1) 100%);
+  background: linear-gradient(to bottom, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 4%,rgba(10,14,10,1) 28%,rgba(10,8,9,1) 100%);
   height: 15px;
   text-align: right;
   font-size: 10px;
+}
 
+.friendList.minimize div {
+  margin-right: 5px;
 }
 
 .friend {
@@ -38,6 +41,7 @@
   border: 1px solid black;
   padding: 0.5px;
   width: 199px;
+  color: #403F3F;
 }
 
 .hide {
@@ -51,7 +55,7 @@
   z-index: 1; /* Stay on top */
   bottom: 0; /* Stay at the bottom */
   right: 0;
-  background-color: #111; /* Black*/
+  background: linear-gradient(to bottom, rgba(149,149,149,1) 0%,rgba(13,13,13,1) 7%,rgba(1,1,1,1) 86%,rgba(1,1,1,1) 86%,rgba(1,1,1,1) 90%,rgba(10,10,10,1) 92%,rgba(10,10,10,1) 92%,rgba(10,10,10,1) 94%,rgba(27,27,27,1) 95%,rgba(27,27,27,1) 95%,rgba(56,56,56,1) 97%,rgba(56,56,56,1) 97%,rgba(56,56,56,1) 99%,rgba(78,78,78,1) 100%,rgba(78,78,78,1) 102%);
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 0; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -63,9 +67,10 @@
   text-align: right;
   text-decoration: none;
   font-size: 20px;
-  color: #818181;
+  color: #FFFFFF;
   display: block;
   transition: 0.3s;
+  color: yellow !important;
 }
 
 /* When you mouse over the navigation links, change their color */
