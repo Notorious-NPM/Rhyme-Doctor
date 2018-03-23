@@ -16,6 +16,7 @@ class RapPostEntry extends React.Component {
       alertStatus: '',
       alertMessage: '',
       timer: undefined,
+      likes: this.props.rapPost.like_count,
     };
   }
 
@@ -44,7 +45,7 @@ class RapPostEntry extends React.Component {
         this.props.getUserPosts();
         this.props.getUserData();
       } else {
-        this.props.getRapPosts();
+        this.setState({ likes: this.state.likes + 1 });
       }
     } catch (err) {
       console.log('Post was already liked');
@@ -105,7 +106,7 @@ class RapPostEntry extends React.Component {
         <div className="card">
           <div className="card-body">
             {this.state.alert ? <Alert message={this.state.alertMessage} status={this.state.alertStatus} /> : null}
-            <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span className="badge badge-light">{this.props.rapPost.like_count}</span></button></p>
+            <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span className="badge badge-light">{this.state.likes}</span></button></p>
             <button className="badge badge-warning" onClick={() => this.reportPost()}>Report Post</button>
             <h5 className="card-title">
               By{' '}
@@ -121,6 +122,7 @@ class RapPostEntry extends React.Component {
             createComment={this.createComment}
             myComment={this.state.myComment}
             comments={this.state.comments}
+            username={this.props.username}
           /> : null}
         </div>
 

@@ -24,7 +24,7 @@ class App extends React.Component {
           store.dispatch({
             type: 'sessionlogin',
             body: {
-              user: response.username,
+              username: response.username,
             },
           });
         }
@@ -42,6 +42,7 @@ class App extends React.Component {
           <Route path="/signup" component={Signup} />
           <Route path="/profile" component={Profile} />
           <Route path="/feed" component={RapPost} />
+          <Route path="/subscriptions" render={()=><RapPost subscription={1} />} />
           <Route path="/about" component={About} />
           <Footer />
         </div>

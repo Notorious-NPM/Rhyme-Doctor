@@ -19,7 +19,11 @@ class RapPost extends React.Component {
 
   getRapPosts = async () => {
     try {
-      const rapPosts = await axios.get('/api/content/posts');
+      let url = '/api/content/posts';
+      if (this.props.subscription === 1) {
+        url = '/api/content/friendsPosts';
+      }
+      const rapPosts = await axios.get(url);
       this.setState({
         rapPosts: rapPosts.data,
       });
@@ -36,6 +40,7 @@ class RapPost extends React.Component {
           rapPost={rapPost}
           key={i}
           getRapPosts={this.getRapPosts}
+          username={this.state.username}
         />))}
       </div>
     );
