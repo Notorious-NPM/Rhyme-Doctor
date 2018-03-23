@@ -17,7 +17,7 @@ class Chat extends Component {
   }
 
   async componentDidMount() {
-    this.socket = await io(`http://${location}:3444, {
+    this.socket = await io(`http://${location}:3444`, {
       query: {
         roomId: this.props.roomID,
       },
