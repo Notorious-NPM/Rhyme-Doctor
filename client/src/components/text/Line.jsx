@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Word from './Word';
 
 const Line = ({ line, x }) => {
-  if (line === '') return <div></div>;
   line = line.split(' '); // eslint-disable-line
   // console.log(line);
   return (
