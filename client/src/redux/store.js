@@ -29,6 +29,7 @@ const reducer = (state = {
   color: 'red',
 }, action) => {
   console.log(JSON.parse(localStorage.getItem(state.user)));
+  console.log(state.user);
   switch (action.type) {
     case 'wipeboard':
       state = {
@@ -42,12 +43,12 @@ const reducer = (state = {
     case 'sessionlogin':
       state.session = true;
       state.user = action.body.username;
-      browserSave(state);
+      // browserSave(state);
       return state;
     case 'sessionlogout':
       delete state.user;
       state.session = false;
-      browserSave(state);
+      // browserSave(state);
       return state;
     case 'straighthighlight':
       state[action.body.coord] = action.body.color;

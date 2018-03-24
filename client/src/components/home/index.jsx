@@ -43,10 +43,16 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.state = store.getState();
-    console.log(this.state);
+    // console.log(this.state);
+    store.dispatch({
+      type: 'browserrestore',
+      body: {
+        username: this.state.user,
+      },
+    });
     store.subscribe(() => {
       this.setState(store.getState());
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 

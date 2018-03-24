@@ -15,6 +15,12 @@ const logout = () => {
     method: 'POST',
     success() {
       store.dispatch({ type: 'sessionlogout' });
+      store.dispatch({
+        type: 'browserrestore',
+        body: {
+          username: 'anonymous',
+        },
+      });
       history.push('/');
     },
   });
