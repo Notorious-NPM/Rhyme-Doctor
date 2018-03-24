@@ -60,7 +60,8 @@ const getCommentsCtrl = async (req, res) => {
     `select users.name, text
     from comments join users
     where users.id=user_id
-    and rap_post_id=${req.params.rapPostId}`,
+    and rap_post_id=${req.params.rapPostId}
+    order by comments.created_at desc`,
     { type: sequelize.QueryTypes.SELECT },
   );
   res.status(200).send(comments);
