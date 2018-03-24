@@ -18,13 +18,14 @@ const Modal = (props) => {
               </div>
             </div>
             <div className="col-5 comments-col">
+              <div className="modal-header">
+                <h5 className="modal-title" id="modalLongTitle">Comments</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" onClick={() => props.triggerModal()}>&times;</span>
+                </button>
+              </div>
               <div className="row modal-row comments-row">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="modalLongTitle">Comments</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" onClick={() => props.triggerModal()}>&times;</span>
-                  </button>
-                </div>
+
                 <Comments
                   postComment={props.postComment}
                   createComment={props.createComment}

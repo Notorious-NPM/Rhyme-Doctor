@@ -62,7 +62,7 @@
 }
 .comments-row {
   overflow: auto;
-  height: 80%;
+  height: 70%;
 }
 .modal-row:after {
   content: "";
