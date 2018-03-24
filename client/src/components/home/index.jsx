@@ -5,8 +5,10 @@ import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
 import FriendChat from '../../components/buttons/FriendChat';
 import RhymeForm from '../rhymeSearch/RhymeForm';
+import ColorPicker from '../toolbar/ColorPicker';
 import store from '../../redux/store';
 
+import location from '../../../../config';
 import './home.css';
 
 const centerStyle = {
@@ -44,6 +46,7 @@ class Home extends React.Component {
     console.log(this.state);
     store.subscribe(() => {
       this.setState(store.getState());
+      console.log(this.state);
     });
   }
 
@@ -51,7 +54,7 @@ class Home extends React.Component {
     const strictness = this.state.strictness === 'Strict' ? 3 : 1; // Other possible value is 'loose'.
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3001/parse',
+      url: `http://${location}:3001/parse`,
       data: {
         text: $('#lyrics').val(),
         strictness,
@@ -102,26 +105,35 @@ class Home extends React.Component {
           <div className="row">
             <div className="col text-center" style={centerStyle} />
           </div>
-          <div className="row">
-            <Textarea />
-            <Paragraph className="text-center" style={centerStyle} text={this.state.text} />
-          </div>
-          <div className="row">
-            <div className="col-md-6" style={{ margin: '5px' }}>
-            Compose as you normally would. But be aware: commas signify a word to be rhymed with, as does the end of a line. { /* eslint-disable-line */ }
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-2">
-              <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
-              <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.hitHandler}>Hit API</button>
-              <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.strictHandler}>{this.state.strictness}</button>
-            </div>
-            {this.state.session && <FriendChat />}
-            <hr />
-            {this.state.session && <RhymeForm />}
+        </div>
+        <div className="row">
+          <Textarea />
+          <Paragraph className="text-center" style={centerStyle} text={this.state.text} />
+        </div>
+        <div className="row">
+          <div className="col-md-6" style={{ margin: '5px' }}>
+            {this.state.session ?
+             'Compose as you normally would. But be aware: commas signify a word to be rhymed with, as does the end of a line.' /* eslint-disable-line */
+             : 'Perhaps you\'d like to sign up...'}
           </div>
         </div>
+        {this.state.session &&
+        <div className="row">
+          <div className="col-md-4">
+            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
+            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.hitHandler}>Hit API</button>
+            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.strictHandler}>{this.state.strictness}</button>
+          </div>
+          <div className="col-md-2">
+            <span />
+          </div>
+          <div className="col-md-4">
+            {'Color Pad: '}<ColorPicker />
+          </div>
+        </div>}
+        {this.state.session && <FriendChat />}
+        <hr />
+        {this.state.session && <RhymeForm />}
       </div>
     );
   }

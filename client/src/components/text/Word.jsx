@@ -31,15 +31,24 @@ class Word extends React.Component {
 
   color = (e) => {
     e.preventDefault();
-    const payload = {
-      type: 'highlight',
-      body: {
-        x: this.props.x,
-        y: this.props.y,
-        color: 'red',
-      },
-    };
-    store.dispatch(payload);
+    if (this.state.highlighted) {
+      store.dispatch({
+        type: 'unhighlight',
+        body: {
+          x: this.props.x,
+          y: this.props.y,
+        },
+      });
+    } else {
+      const payload = {
+        type: 'highlight',
+        body: {
+          x: this.props.x,
+          y: this.props.y,
+        },
+      };
+      store.dispatch(payload);
+    }
   }
 
   render() {

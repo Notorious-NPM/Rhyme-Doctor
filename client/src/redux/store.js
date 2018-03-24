@@ -5,34 +5,24 @@ import * as Redux from 'redux';
 
 const reducer = (state = {
   session: false,
-  text: `Circulate us in the vein, set to ride the cracks on your brain
+  text: `C.L. Smooth:
+
+  Circulate us in the vein, set to ride the cracks on your brain
   Like a novocaine, I train, to ease any pain
   Yeah, get your wig loose, I relieve tension
   The path to my lesson, is the highway to heaven
   Plus, what a rush, catch another one flush
   Now you got a crush, making dames wanna blush
-  I stomp out your campfire, liar, retire`,
+  I stomp out your campfire, liar, retire
+
+  Example:
+
+  HRLA twenty, gave me plenty, of stuff to learn
+  I spurn, heavy, messy, lyrics, template strings and back ticks
+  My rhymes are so sick, I'm like John Wick, ladle the sauce, extra thick
+  These words will stick, colorful lyrics, I used the same word, like Nick`,
   strictness: 'Strict',
-  /* '0, 3': 'red',
-  '0, 4': 'red',
-  '0, 7': 'red',
-  '1, 5': 'red',
-  '1, 6': 'red',
-  '2, 8': 'blue',
-  '3, 9': 'blue',
-  '4, 9': 'green',
-  '5, 11': 'green',
-  '6, 5': 'brown',
-  '6, 9': 'brown',
-  '7, 12': 'brown',
-  '8, 4': 'orange',
-  '8, 8': 'orange',
-  '9, 10': 'orange',
-  '9, 11': 'orange',
-  '10, 5': 'firebrick',
-  '10, 6': 'firebrick',
-  '10, 12': 'firebrick',
-  '11, 12': 'firebrick', */
+  color: 'red',
 }, action) => {
   switch (action.type) {
     case 'wipeboard':
@@ -54,7 +44,7 @@ const reducer = (state = {
       state[action.body.coord] = action.body.color;
       return state;
     case 'highlight':
-      state[`${action.body.x}, ${action.body.y}`] = action.body.color;
+      state[`${action.body.x}, ${action.body.y}`] = state.color;
       return state;
     case 'unhighlight':
       delete state[`${action.body.x}, ${action.body.y}`];
@@ -64,6 +54,9 @@ const reducer = (state = {
       return state;
     case 'changestrictness':
       state.strictness = action.body.strictness;
+      return state;
+    case 'changecolor':
+      state.color = action.body.color;
       return state;
     default:
       return state;
