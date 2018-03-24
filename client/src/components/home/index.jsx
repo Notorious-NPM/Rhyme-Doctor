@@ -47,7 +47,7 @@ class Home extends React.Component {
     store.dispatch({
       type: 'browserrestore',
       body: {
-        username: this.state.user,
+        username: this.state.user ? this.state.user : 'anonymous',
       },
     });
     store.subscribe(() => {

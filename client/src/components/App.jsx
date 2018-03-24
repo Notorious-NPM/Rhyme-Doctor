@@ -34,10 +34,6 @@ class App extends React.Component {
               username: response.username,
             },
           });
-        } else {
-          store.dispatch({
-            type: 'sessionlogout',
-          });
         }
       },
     });
