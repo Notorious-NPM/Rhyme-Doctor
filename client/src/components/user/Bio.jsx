@@ -3,7 +3,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import store from '../../redux/store';
 
-
 class Bio extends React.Component {
   constructor(props) {
     super(props);
@@ -57,6 +56,7 @@ class Bio extends React.Component {
             <div id="bioedit" className="row" style={{ margin: '10px' }}>
               <textarea
                 className="form-control"
+                style={{ margin: '10px' }}
                 name="input"
                 rows="3"
                 maxLength="250"
@@ -67,7 +67,7 @@ class Bio extends React.Component {
             </div>))}
         </label>
         {(this.state.bio || this.state.showBio) && (<div className="row">{this.state.bio}</div>)}<br /><br />
-        {this.state.user === this.props.username ? <button className="btn btn-outline-primary" onClick={e => this.editBio(e)}>Edit Bio</button> : null}
+        {this.state.user === this.props.username && this.state.bio ? <button className="btn btn-outline-primary" onClick={e => this.editBio(e)}>Edit Bio</button> : null}
       </div>
     );
   }
