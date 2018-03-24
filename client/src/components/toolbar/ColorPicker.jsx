@@ -13,7 +13,12 @@ class ColorPicker extends React.Component {
   }
 
   clickHandler = (e) => {
-    console.log(e.target.style);
+    store.dispatch({
+      type: 'changecolor',
+      body: {
+        color: e.target.style.backgroundColor,
+      },
+    });
   }
 
   render() {
@@ -21,43 +26,49 @@ class ColorPicker extends React.Component {
       <div>
         <span
           style={{
-            padding: '10px',
+            padding: '20px',
             background: '#C62D42',
+            margin: '5px',
           }}
           onClick={this.clickHandler}
         />
         <span
           style={{
-            padding: '10px',
+            padding: '20px',
             background: '#E77200',
+            margin: '5px',
           }}
           onClick={this.clickHandler}
         />
         <span
           style={{
-            padding: '10px',
+            padding: '20px',
             background: '#4D8C57',
+            margin: '5px',
           }}
           onClick={this.clickHandler}
         />
         <span
           style={{
-            padding: '10px',
+            padding: '20px',
             background: '#2887C8',
+            margin: '5px',
           }}
           onClick={this.clickHandler}
         />
         <span
           style={{
-            padding: '10px',
+            padding: '20px',
             background: '#7070CC',
+            margin: '5px',
           }}
           onClick={this.clickHandler}
         />
         <span
           style={{
-            padding: '10px',
+            padding: '20px',
             background: '#8E3179',
+            margin: '5px',
           }}
           onClick={this.clickHandler}
         />
