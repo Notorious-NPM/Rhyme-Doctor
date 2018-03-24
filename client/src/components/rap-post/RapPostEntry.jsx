@@ -104,6 +104,7 @@ class RapPostEntry extends React.Component {
     this.setState({
       hidden: !this.state.hidden,
     });
+    this.getComments();
   }
 
   render() {
@@ -138,6 +139,10 @@ class RapPostEntry extends React.Component {
           rapText={rapText}
           hidden={this.state.hidden}
           triggerModal={this.triggerModal}
+          comments={this.state.comments}
+          postComment={this.postComment}
+          createComment={this.createComment}
+          myComment={this.state.myComment}
         />
       </div>
     );

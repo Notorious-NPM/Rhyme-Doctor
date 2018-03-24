@@ -7,7 +7,7 @@
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  /* overflow: auto; Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   color: black;
@@ -21,9 +21,10 @@
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  padding: 20px 0 20px 0;
   border: 1px solid #888;
   width: 100%; /* Could be more or less, depending on screen size */
+  height: 40em;
 }
 
 /* The Close Button */
@@ -39,4 +40,27 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.modal-col {
+  overflow: auto;
+}
+
+.btn-margin {
+  margin: 2% 2% 0 0;
+}
+
+/* Clear floats after the columns */
+.modal-row {
+  margin: 0 !important;
+  width: 100% !important;
+}
+.comments-row {
+  overflow: auto;
+  height: 80%;
+}
+.modal-row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
