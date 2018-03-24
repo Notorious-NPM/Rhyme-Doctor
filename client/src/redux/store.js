@@ -28,7 +28,7 @@ const reducer = (state = {
   strictness: 'Strict',
   color: 'red',
 }, action) => {
-  console.log(JSON.parse(localStorage.getItem(state.user)));
+  console.log(JSON.parse(localStorage.getItem('anonymous')));
   console.log(state.user);
   switch (action.type) {
     case 'wipeboard':

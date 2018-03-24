@@ -34,6 +34,13 @@ class App extends React.Component {
               username: response.username,
             },
           });
+        } else {
+          store.dispatch({
+            type: 'browserrestore',
+            body: {
+              username: 'anonymous',
+            },
+          });
         }
       },
     });
