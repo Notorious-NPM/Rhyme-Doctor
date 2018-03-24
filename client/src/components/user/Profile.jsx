@@ -6,11 +6,12 @@ import ProfileImage from './ProfileImage';
 import Bio from './Bio';
 import FriendButton from '../buttons/FriendButton';
 
+import store from '../../redux/store';
+
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currUser: '',
       userPosts: [],
       username: '',
       likeCount: '',
@@ -19,6 +20,7 @@ class Profile extends React.Component {
       received: false,
     };
   }
+
   componentWillMount() {
     if (this.props.location.state) {
       const { username } = this.props.location.state;
@@ -28,6 +30,13 @@ class Profile extends React.Component {
       this.getUserData();
       this.getUserPosts();
     }
+  }
+
+  componentDidMount() {
+    this.setState(store.getState());  // eslint-disable-line
+    store.subscribe(() => {
+      this.setState(store.getState());
+    });
   }
 
   getUserData = async (username) => {
@@ -62,14 +71,18 @@ class Profile extends React.Component {
     return (
       <div>
         <div className="row">
-          {this.state.received && <ProfileImage image={this.state.image} />}
+          {this.state.received && <ProfileImage image={this.state.image} user={state ? state.username : this.state.user} /> /* eslint-disable-line */ }
           <div className="col-md-6">
             <Stats username={this.state.username} likeCount={this.state.likeCount} />
             {this.state.received && <Bio username={this.state.username} bio={this.state.bio} />}
           </div>
         </div>
-        {state && <FriendButton username={state.username} />}
-        <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} />
+        <div className="row">
+          <div className="col-md-4">
+            {state && state.username !== this.state.user && <FriendButton className="btn btn-outline-primary" username={state.username} />}
+          </div>
+        </div>
+        <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} /> {/* eslint-disable-line */}
       </div>
     );
   }

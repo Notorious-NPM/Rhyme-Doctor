@@ -14,7 +14,7 @@ class Bio extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
+    this.setState({ // eslint-disable-line
       bio: this.props.bio,
       showBio: true,
       showButton: true,
@@ -29,7 +29,7 @@ class Bio extends React.Component {
   }
 
   addBio = async () => {
-    const status = await axios.put(
+    await axios.put(
       'api/profile/bio',
       { bio: this.state.input },
     );
@@ -72,7 +72,6 @@ class Bio extends React.Component {
 
 Bio.propTypes = {
   bio: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
 };
 
