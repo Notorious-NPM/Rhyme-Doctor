@@ -58,6 +58,9 @@ const reducer = (state = {
     case 'changecolor':
       state.color = action.body.color;
       return state;
+    case 'browserrestore':
+      Object.assign(state, action.body);
+      return state;
     default:
       return state;
   }

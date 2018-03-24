@@ -21,11 +21,20 @@ class App extends React.Component {
       success(response) {
         response = JSON.parse(response); // eslint-disable-line
         if (response.session) {
+          // Order for safety.
+          store.dispatch({
+            type: 'browserrestore',
+            body: JSON.parse(localStorage.getItem(response.username)),
+          });
           store.dispatch({
             type: 'sessionlogin',
             body: {
               username: response.username,
             },
+          });
+        } else {
+          store.dispatch({
+            type: 'sessionlogout',
           });
         }
       },
@@ -42,7 +51,7 @@ class App extends React.Component {
           <Route path="/signup" component={Signup} />
           <Route path="/profile" component={Profile} />
           <Route path="/feed" component={RapPost} />
-          <Route path="/subscriptions" render={()=><RapPost subscription={1} />} />
+          <Route path="/subscriptions" render={() => <RapPost subscription={1} />} />
           <Route path="/about" component={About} />
           <Footer />
         </div>
