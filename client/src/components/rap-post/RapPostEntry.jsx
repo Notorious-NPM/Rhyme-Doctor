@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Comments from './comments';
 import Alert from '../alert';
-import { Link } from 'react-router-dom';
 import './rapPost.css';
 
 class RapPostEntry extends React.Component {
@@ -36,7 +36,7 @@ class RapPostEntry extends React.Component {
 
   likeRapPost = async () => {
     try {
-      const status = await axios.put(
+      await axios.put(
         '/api/vote/upvote',
         { rapPostId: this.props.rapPost.id },
       );
@@ -55,7 +55,7 @@ class RapPostEntry extends React.Component {
 
   reportPost = async () => {
     try {
-      const status = await axios.post(
+      await axios.post(
         '/api/content/report',
         { rapPostId: this.props.rapPost.id },
       );
@@ -105,12 +105,12 @@ class RapPostEntry extends React.Component {
       <div className="col-md-6">
         <div className="card">
           <div className="card-body">
-            {this.state.alert ? <Alert message={this.state.alertMessage} status={this.state.alertStatus} /> : null}
+            {this.state.alert ? <Alert message={this.state.alertMessage} status={this.state.alertStatus} /> : null} {/* eslint-disable-line*/}
             <p><button className="btn btn-primary" onClick={() => this.likeRapPost()}>Like <span className="badge badge-light">{this.state.likes}</span></button></p>
             <button className="badge badge-warning" onClick={() => this.reportPost()}>Report Post</button>
             <h5 className="card-title">
               By{' '}
-              <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link>
+              <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link> {/* eslint-disable-line */}
             </h5>
             <div className="rapText">
               <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
