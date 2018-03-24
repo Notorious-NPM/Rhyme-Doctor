@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import $ from 'jquery'; // eslint-disable-line
 import Comments from './comments';
 import Alert from '../alert';
 import './rapPost.css';
@@ -114,6 +115,7 @@ class RapPostEntry extends React.Component {
             </h5>
             <div className="rapText">
               <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
+              {/* $.parseHTML(this.props.rapPost.text) */}
             </div>
             <button className="btn btn-primary btn-space" onClick={() => this.getComments()}>Show Comments</button>
           </div>

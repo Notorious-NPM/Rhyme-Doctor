@@ -8,7 +8,7 @@ import './text.css';
 const Paragraph = ({ text }) => {
   const lines = text.split('\n');
   return (
-    <div className="paragraph col" style={{ margin: '5px 5px 5px 5px' }} /* DRY... */ >
+    <div id="markedup" className="paragraph col" style={{ margin: '5px 5px 5px 5px' }} /* DRY... */ >
       {lines.map((line, x) =>
         <Line key={x} line={line} x={x} />)
       }

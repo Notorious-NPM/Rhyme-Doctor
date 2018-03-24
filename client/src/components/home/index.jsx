@@ -17,11 +17,12 @@ const centerStyle = {
 };
 
 const clickHandler = () => {
+  // console.log($('#markedup').html());
   $.ajax({
     method: 'POST',
     url: '/api/content/post',
     data: {
-      text: $('#lyrics').val(),
+      text: $('#markedup').html(), // $('#lyrics').val();
     },
     success(res) {
       console.log(res);
