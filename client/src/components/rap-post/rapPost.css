@@ -19,7 +19,11 @@
 
 .row {
   width: 80%;
-  margin: 3% 10% 0 10%;
+  margin: 0 10% 0 10%;
+}
+
+.rap-post-row {
+  margin-top: 3%;
 }
 
 .col-sm-6 {
@@ -31,7 +35,7 @@
   color: #676464;
   background-color: white;
   overflow: auto;
-  height: 500px;
+  height: 450px;
 }
 
 .btn-space {

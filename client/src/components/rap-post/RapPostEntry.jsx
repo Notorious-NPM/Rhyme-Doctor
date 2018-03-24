@@ -110,7 +110,7 @@ class RapPostEntry extends React.Component {
     const { username } = this.props.rapPost;
     const rapText = this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>);
     return (
-      <div className="col-md-6">
+      <div className="col-md-4">
         <div className="card">
           <div className="card-body">
             {this.state.alert ? <Alert message={this.state.alertMessage} status={this.state.alertStatus} /> : null}
@@ -133,7 +133,12 @@ class RapPostEntry extends React.Component {
             username={this.props.username}
           /> : null}
         </div>
-        <Modal name={username} rapText={rapText} hidden={this.state.hidden} triggerModal={this.triggerModal} />
+        <Modal
+          name={username}
+          rapText={rapText}
+          hidden={this.state.hidden}
+          triggerModal={this.triggerModal}
+        />
       </div>
     );
   }
