@@ -119,10 +119,19 @@ class RapPostEntry extends React.Component {
             <button className="badge badge-warning" onClick={() => this.reportPost()}>Report Post</button>
             <h5 className="card-title">
               By{' '}
-              <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link>
+              <Link to={{ pathname: '/profile', state: { username } }}>{username}</Link>
             </h5>
-            <div className="rapText" onClick={() => this.triggerModal()}>
-              <p className="card-text">{rapText}</p>
+            <div className="hover-card">
+
+              <div className="rapText" onClick={() => this.triggerModal()}>
+                <div className="middle">
+                  <div className="hidden-text">Click to expand</div>
+                </div>
+                <div className="hover-effect">
+                  <p className="card-text">{rapText}</p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
