@@ -18,8 +18,8 @@ const changeHandler = (e) => {
   });
   const browser = store.getState();
   const { user } = browser;
-  delete browser.session;
-  delete browser.user;
+  // delete browser.session;
+  // delete browser.user;
   localStorage.setItem(user, JSON.stringify(browser));
 };
 
