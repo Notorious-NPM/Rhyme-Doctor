@@ -24,7 +24,9 @@ class App extends React.Component {
           // Order for safety.
           store.dispatch({
             type: 'browserrestore',
-            body: JSON.parse(localStorage.getItem(response.username)),
+            body: {
+              username: response.username,
+            },
           });
           store.dispatch({
             type: 'sessionlogin',

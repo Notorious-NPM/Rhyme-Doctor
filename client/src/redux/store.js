@@ -3,6 +3,10 @@
 
 import * as Redux from 'redux';
 
+const browserSave = (state) => {
+  localStorage.setItem(state.user ? state.user : 'anonymous' /* ugh */, JSON.stringify(state));
+};
+
 const reducer = (state = {
   session: false,
   text: `C.L. Smooth:
@@ -24,44 +28,57 @@ const reducer = (state = {
   strictness: 'Strict',
   color: 'red',
 }, action) => {
+  console.log(JSON.parse(localStorage.getItem(state.user)));
   switch (action.type) {
     case 'wipeboard':
       state = {
         text: state.text,
         session: state.session,
+        user: state.user,
         strictness: state.strictness,
       };
+      browserSave(state);
       return state;
     case 'sessionlogin':
       state.session = true;
       state.user = action.body.username;
+      browserSave(state);
       return state;
     case 'sessionlogout':
       delete state.user;
       state.session = false;
+      browserSave(state);
       return state;
     case 'straighthighlight':
       state[action.body.coord] = action.body.color;
+      browserSave(state);
       return state;
     case 'highlight':
       state[`${action.body.x}, ${action.body.y}`] = state.color;
+      browserSave(state);
       return state;
     case 'unhighlight':
       delete state[`${action.body.x}, ${action.body.y}`];
+      browserSave(state);
       return state;
     case 'changetext':
       state.text = action.body.text;
+      browserSave(state);
       return state;
     case 'changestrictness':
       state.strictness = action.body.strictness;
+      browserSave(state);
       return state;
     case 'changecolor':
       state.color = action.body.color;
+      browserSave(state);
       return state;
     case 'browserrestore':
-      Object.assign(state, action.body);
+      Object.assign(state, JSON.parse(localStorage.getItem(action.body.username)));
+      browserSave(state);
       return state;
     default:
+      browserSave(state); // lol
       return state;
   }
 };

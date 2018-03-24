@@ -16,11 +16,11 @@ const changeHandler = (e) => {
       text: e.target.value,
     },
   });
-  const browser = store.getState();
-  const { user } = browser;
+  // const browser = store.getState();
+  // const { user } = browser;
   // delete browser.session;
   // delete browser.user;
-  localStorage.setItem(user, JSON.stringify(browser));
+  // localStorage.setItem(user, JSON.stringify(browser));
 };
 
 const Textarea = () => (
