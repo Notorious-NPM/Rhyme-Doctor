@@ -36,7 +36,6 @@ class Word extends React.Component {
       body: {
         x: this.props.x,
         y: this.props.y,
-        color: 'red',
       },
     };
     store.dispatch(payload);

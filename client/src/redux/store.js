@@ -22,26 +22,7 @@ const reducer = (state = {
   My rhymes are so sick, I'm like John Wick, ladle the sauce, extra thick
   These words will stick, colorful lyrics, I used the same word, like Nick`,
   strictness: 'Strict',
-  /* '0, 3': 'red',
-  '0, 4': 'red',
-  '0, 7': 'red',
-  '1, 5': 'red',
-  '1, 6': 'red',
-  '2, 8': 'blue',
-  '3, 9': 'blue',
-  '4, 9': 'green',
-  '5, 11': 'green',
-  '6, 5': 'brown',
-  '6, 9': 'brown',
-  '7, 12': 'brown',
-  '8, 4': 'orange',
-  '8, 8': 'orange',
-  '9, 10': 'orange',
-  '9, 11': 'orange',
-  '10, 5': 'firebrick',
-  '10, 6': 'firebrick',
-  '10, 12': 'firebrick',
-  '11, 12': 'firebrick', */
+  color: 'red',
 }, action) => {
   switch (action.type) {
     case 'wipeboard':
@@ -63,7 +44,7 @@ const reducer = (state = {
       state[action.body.coord] = action.body.color;
       return state;
     case 'highlight':
-      state[`${action.body.x}, ${action.body.y}`] = action.body.color;
+      state[`${action.body.x}, ${action.body.y}`] = state.color;
       return state;
     case 'unhighlight':
       delete state[`${action.body.x}, ${action.body.y}`];
@@ -73,6 +54,9 @@ const reducer = (state = {
       return state;
     case 'changestrictness':
       state.strictness = action.body.strictness;
+      return state;
+    case 'changecolor':
+      state.color = action.body.color;
       return state;
     default:
       return state;

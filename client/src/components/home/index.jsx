@@ -5,6 +5,7 @@ import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
 import FriendChat from '../../components/buttons/FriendChat';
 import RhymeForm from '../rhymeSearch/RhymeForm';
+import ColorPicker from '../toolbar/ColorPicker';
 import store from '../../redux/store';
 
 import location from '../../../../config';
@@ -122,6 +123,12 @@ class Home extends React.Component {
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.hitHandler}>Hit API</button>
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.strictHandler}>{this.state.strictness}</button>
+          </div>
+          <div className="col-md-2">
+            <span />
+          </div>
+          <div className="col-md-4">
+            <ColorPicker />
           </div>
         </div>}
         {this.state.session && <FriendChat />}
