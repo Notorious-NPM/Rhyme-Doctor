@@ -3,13 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Comments from './comments';
 import Alert from '../alert';
-<<<<<<< HEAD
 import Modal from '../modal';
-import { Link } from 'react-router-dom';
-||||||| merged common ancestors
-import { Link } from 'react-router-dom';
-=======
->>>>>>> master
 import './rapPost.css';
 
 class RapPostEntry extends React.Component {
