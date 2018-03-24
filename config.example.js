@@ -1,4 +1,4 @@
-const location = '';
+const location = 'localhost';
 
 export default location;
 
