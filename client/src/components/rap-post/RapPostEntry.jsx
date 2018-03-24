@@ -124,15 +124,7 @@ class RapPostEntry extends React.Component {
             <div className="rapText" onClick={() => this.triggerModal()}>
               <p className="card-text">{rapText}</p>
             </div>
-            <button className="btn btn-primary btn-space" onClick={() => this.getComments()}>Show Comments</button>
           </div>
-          {this.state.showComments ? <Comments
-            postComment={this.postComment}
-            createComment={this.createComment}
-            myComment={this.state.myComment}
-            comments={this.state.comments}
-            username={this.props.username}
-          /> : null}
         </div>
         <Modal
           name={username}

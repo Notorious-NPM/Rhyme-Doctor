@@ -42,8 +42,13 @@
   cursor: pointer;
 }
 
+/* Custom column behavior */
 .modal-col {
   overflow: auto;
+}
+
+.comments-col {
+  padding-right: 0 !important;
 }
 
 .btn-margin {
