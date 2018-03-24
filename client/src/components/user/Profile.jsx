@@ -79,7 +79,7 @@ class Profile extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-4">
-            {state && state.username !== this.state.user && <FriendButton className="btn btn-outline-primary" username={state.username} />}
+            {state && state.username !== this.state.user && <FriendButton username={state.username} /> /* eslint-disable-line */ }
           </div>
         </div>
         <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} /> {/* eslint-disable-line */}

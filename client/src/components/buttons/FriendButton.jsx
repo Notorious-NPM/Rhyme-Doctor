@@ -53,7 +53,7 @@ class FriendButton extends Component {
 
     return (
       <div>
-        <button type="button" onClick={() => this.handleFriendButton()}>{action}</button>
+        <button className="btn btn-outline-primary" type="button" onClick={() => this.handleFriendButton()}>{action}</button>
       </div>
     );
   }
