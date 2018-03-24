@@ -128,7 +128,7 @@ class Home extends React.Component {
             <span />
           </div>
           <div className="col-md-4">
-            <ColorPicker />
+            {'Color Pad: '}<ColorPicker />
           </div>
         </div>}
         {this.state.session && <FriendChat />}
