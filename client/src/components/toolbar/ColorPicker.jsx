@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+
 import React from 'react';
 
 import store from '../../redux/store';
@@ -17,35 +19,47 @@ class ColorPicker extends React.Component {
   render() {
     return (
       <div>
-        <span style={{
-          padding: '5px',
-          color: '#C62D42',
-        }}
+        <span
+          style={{
+            padding: '10px',
+            background: '#C62D42',
+          }}
+          onClick={this.clickHandler}
         />
-        <span style={{
-          padding: '5px',
-          color: '#E77200',
-        }}
+        <span
+          style={{
+            padding: '10px',
+            background: '#E77200',
+          }}
+          onClick={this.clickHandler}
         />
-        <span style={{
-          padding: '5px',
-          color: '#4D8C57',
-        }}
+        <span
+          style={{
+            padding: '10px',
+            background: '#4D8C57',
+          }}
+          onClick={this.clickHandler}
         />
-        <span style={{
-          padding: '5px',
-          color: '#2887C8',
-        }}
+        <span
+          style={{
+            padding: '10px',
+            background: '#2887C8',
+          }}
+          onClick={this.clickHandler}
         />
-        <span style={{
-          padding: '5px',
-          color: '#7070CC',
-        }}
+        <span
+          style={{
+            padding: '10px',
+            background: '#7070CC',
+          }}
+          onClick={this.clickHandler}
         />
-        <span style={{
-          padding: '5px',
-          color: '#8E3179',
-        }}
+        <span
+          style={{
+            padding: '10px',
+            background: '#8E3179',
+          }}
+          onClick={this.clickHandler}
         />
       </div>
     );
