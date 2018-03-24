@@ -40,6 +40,7 @@ const API = word =>
       .header('X-Mashape-Key', ALTERNATE_KEY)
       .header('X-Mashape-Host', 'wordsapiv1.p.mashape.com')
       .end((response) => {
+        console.log(word, response.body);
         resolve(response.body);
       });
   });
@@ -121,6 +122,8 @@ const parse = (text, strictness) =>
             crayon += 1;
           }
         }
+        console.log(coords);
+        console.log(colors);
         resolve([coords, colors]);
       });
   });

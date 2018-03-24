@@ -1,7 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import store from '../../redux/store.js';
 import RapPostEntry from './RapPostEntry.jsx';
-import axios from 'axios';
 
 class RapPost extends React.Component {
   constructor(props) {

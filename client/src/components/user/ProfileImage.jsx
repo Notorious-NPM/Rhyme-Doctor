@@ -4,6 +4,7 @@ import axios from 'axios';
 import API_KEY from './config';
 import './profile.css';
 
+import store from '../../redux/store';
 
 class ProfileImage extends React.Component {
   constructor(props) {
@@ -11,13 +12,19 @@ class ProfileImage extends React.Component {
     this.state = {
       image: '',
       showChangePic: false,
-      user: '',
     };
   }
 
   componentWillMount() {
     this.setState({
       image: this.props.image,
+    });
+  }
+
+  componentDidMount() {
+    this.setState(store.getState()); // eslint-disable-line
+    store.subscribe(() => {
+      this.setState(store.getState());
     });
   }
 
@@ -29,7 +36,7 @@ class ProfileImage extends React.Component {
 
   handleDrop = (files) => {
     const uploaders = files.map((file) => {
-      const formData = new FormData();
+      const formData = new FormData(); // eslint-disable-line
       formData.append('file', file);
       formData.append('upload_preset', 'hkhkmnpg');
       formData.append('api_key', API_KEY);
@@ -38,7 +45,7 @@ class ProfileImage extends React.Component {
       return axios.post('https://api.cloudinary.com/v1_1/dkwbeount/image/upload', formData, {
         headers: { 'X-Requested-With': 'XMLHttpRequest' },
       }).then((response) => {
-        const data = response.data;
+        const { data } = response;
         const fileURL = data.secure_url;
         axios.put('api/profile/image', { image: fileURL });
         this.setState({
@@ -58,19 +65,23 @@ class ProfileImage extends React.Component {
   render() {
     return (
       <div className="col-2">
-        {(!this.state.image || this.state.showChangePic) && (<Dropzone
-          onDrop={this.handleDrop}
-          multiple
-          accept="image/*"
-        >
-          <p>Drop files or click to upload your profile pic</p>
-        </Dropzone>)}
+        {(this.props.user === this.state.user)
+          && ((!this.state.image || this.state.showChangePic)
+          && (
+          <Dropzone
+            onDrop={this.handleDrop}
+            multiple
+            accept="image/*"
+          >
+            <p>Drop files or click to upload your profile pic</p>
+          </Dropzone>))}
         {(this.state.image && !this.state.showChangePic) && (
         <div className="container-img">
-          <img src={this.state.image} alt="ProfilePic" className="image-prof" />
-          <div className="middle">
-            <div className="text" onClick={() => this.editPic()}>Change Picture</div>
-          </div>
+          <img src={this.state.image} style={{ margin: '10px' }} alt="ProfilePic" className="image-prof" />
+          {this.props.user === this.state.user &&
+            <div className="middle">
+              <div className="text" onClick={() => this.editPic()}>Change Picture</div>
+            </div>}
         </div>
         )}
       </div>
