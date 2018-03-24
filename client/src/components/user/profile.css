@@ -7,6 +7,8 @@
 }
 
 .image-prof {
+  text-align: center !important;
+  margin: 0px 0px 10px 0px !important;
   opacity: 1;
   display: block;
   width: 100%;
@@ -46,4 +48,12 @@
 
 .col-2 {
   padding-top: 20px;
+}
+
+.col-md-2 {
+  text-align: center;
+}
+
+.col-md-6 {
+  padding-top: 30px;
 }
