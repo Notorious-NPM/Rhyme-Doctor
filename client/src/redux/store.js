@@ -3,11 +3,7 @@
 
 import * as Redux from 'redux';
 
-const browserSave = (state) => {
-  localStorage.setItem(state.user ? state.user : 'anonymous' /* ugh */, JSON.stringify(state));
-};
-
-const reducer = (state = {
+const DEFAULT = {
   session: false,
   text: `C.L. Smooth:
 
@@ -27,9 +23,15 @@ const reducer = (state = {
   These words will stick, colorful lyrics, I used the same word, like Nick`,
   strictness: 'Strict',
   color: 'red',
-}, action) => {
-  console.log(JSON.parse(localStorage.getItem('anonymous')));
-  console.log(state.user);
+};
+
+const browserSave = (state) => {
+  localStorage.setItem(state.user ? state.user : 'anonymous' /* ugh */, JSON.stringify(state));
+};
+
+const reducer = (state = Object.assign({}, DEFAULT), action) => {
+  // console.log(JSON.parse(localStorage.getItem('anonymous')));
+  // console.log(state.user);
   switch (action.type) {
     case 'wipeboard':
       state = {
@@ -77,6 +79,9 @@ const reducer = (state = {
     case 'browserrestore':
       Object.assign(state, JSON.parse(localStorage.getItem(action.body.username)));
       browserSave(state);
+      return state;
+    case 'wipestore':
+      state = Object.assign({}, DEFAULT);
       return state;
     default:
       browserSave(state); // lol
