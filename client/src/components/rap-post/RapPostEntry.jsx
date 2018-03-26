@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import $ from 'jquery'; // eslint-disable-line
-import Comments from './comments';
 import Alert from '../alert';
 import Modal from '../modal';
 import './rapPost.css';
@@ -122,11 +120,6 @@ class RapPostEntry extends React.Component {
               By{' '}
               <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link> {/* eslint-disable-line */}
             </h5>
-<<<<<<< HEAD
-            <div className="rapText">
-              <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
-              {/* $.parseHTML(this.props.rapPost.text) */}
-=======
             <div className="hover-card">
 
               <div className="rapText" onClick={() => this.triggerModal()}>
@@ -138,7 +131,6 @@ class RapPostEntry extends React.Component {
                 </div>
               </div>
 
->>>>>>> master
             </div>
           </div>
         </div>
