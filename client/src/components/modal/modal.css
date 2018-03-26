@@ -59,6 +59,7 @@
 .modal-row {
   margin: 0 !important;
   width: 100% !important;
+  height: 100%;
 }
 .comments-row {
   overflow: auto;
