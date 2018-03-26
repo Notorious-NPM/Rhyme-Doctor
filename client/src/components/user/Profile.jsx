@@ -69,7 +69,7 @@ class Profile extends React.Component {
     const { state } = this.props.location;
 
     return (
-      <div>
+      <div className="filler">
         <div className="row">
           {this.state.received && <ProfileImage image={this.state.image} user={state ? state.username : this.state.user} /> /* eslint-disable-line */ }
           <div className="col-md-6">
@@ -78,7 +78,7 @@ class Profile extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-md-2">
             {state && state.username !== this.state.user && <FriendButton username={state.username} /> /* eslint-disable-line */ }
           </div>
         </div>

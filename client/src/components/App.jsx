@@ -49,7 +49,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="app-container">
           <Navbar />
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
