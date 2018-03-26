@@ -3,6 +3,7 @@
 import React from 'react';
 
 import store from '../../redux/store';
+import './colorPicker.css';
 
 class ColorPicker extends React.Component {
   componentDidMount() {
@@ -23,7 +24,7 @@ class ColorPicker extends React.Component {
 
   render() {
     return (
-      <label htmlFor="colorpad">
+      <label className="colorpicker-padding" htmlFor="colorpad">
         <div id="colorpad">
           <span
             style={{
