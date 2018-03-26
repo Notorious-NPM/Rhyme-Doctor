@@ -42,7 +42,7 @@ class RhymeForm extends React.Component {
             </label>
             {' '}<button className="btn btn-outline-primary btn-sm" onClick={e => this.searchWord(e)}>Submit</button>
           </form>
-          <RhymeList rhymes={this.state.rhymes} />
+          {this.state.rhymes.length > 0 && <RhymeList rhymes={this.state.rhymes} />}
         </div>
       </div>
     );
