@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const RhymeList = ({ rhymes }) => (
   <div>
-    <div>
+    <div style={{ overflow: 'auto', height: '300px' }}>
       {rhymes.map(rhyme => <div>{rhyme}</div>)}
     </div>
   </div>
