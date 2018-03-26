@@ -16,26 +16,11 @@ const centerStyle = {
   margin: '0 auto',
 };
 
-const clickHandler = () => {
-  $.ajax({
-    method: 'POST',
-    url: '/api/content/post',
-    data: {
-      text: $('#lyrics').val(),
-    },
-    success(res) {
-      console.log(res);
-    },
-    error(res) {
-      alert(res); // eslint-disable-line
-    },
-  });
-};
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = store.getState();
+    this.state.posted = false;
     store.subscribe(() => {
       this.setState(store.getState());
     });
@@ -55,6 +40,26 @@ class Home extends React.Component {
       // console.log(this.state);
     });
   }
+
+
+  clickHandler = () => {
+    const context = this;
+    $.ajax({
+      method: 'POST',
+      url: '/api/content/post',
+      data: {
+        text: $('#lyrics').val(),
+      },
+      success(res) {
+        console.log(res);
+        context.setState({ posted: true });
+        setTimeout(() => context.setState({ posted: false }), 5000);
+      },
+      error(res) {
+        alert(res); // eslint-disable-line
+      },
+    });
+  };
 
   hitHandler = () => {
     const strictness = this.state.strictness === 'Strict' ? 3 : 1; // Other possible value is 'loose'.
@@ -104,6 +109,8 @@ class Home extends React.Component {
   };
 
   render() {
+    const { posted } = this.state;
+    const postText = posted ? 'Posted' : 'Post';
     return (
       <div>
         <div className="jumbotron" />
@@ -126,7 +133,7 @@ class Home extends React.Component {
         {this.state.session &&
         <div className="row">
           <div className="col-md-4">
-            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={clickHandler}>Post</button>
+            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.clickHandler}>{postText}</button>
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.hitHandler}>Hit API</button>
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.strictHandler}>{this.state.strictness}</button>
           </div>
