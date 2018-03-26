@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import $ from 'jquery'; // eslint-disable-line
 import Comments from './comments';
 import Alert from '../alert';
+import Modal from '../modal';
 import './rapPost.css';
 
 class RapPostEntry extends React.Component {
@@ -18,6 +19,7 @@ class RapPostEntry extends React.Component {
       alertMessage: '',
       timer: undefined,
       likes: this.props.rapPost.like_count,
+      hidden: true,
     };
   }
 
@@ -99,11 +101,18 @@ class RapPostEntry extends React.Component {
     });
   }
 
+  triggerModal = () => {
+    this.setState({
+      hidden: !this.state.hidden,
+    });
+    this.getComments();
+  }
+
   render() {
     const { username } = this.props.rapPost;
-
+    const rapText = this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>);
     return (
-      <div className="col-md-6">
+      <div className="col-md-4">
         <div className="card">
           <div className="card-body">
             {this.state.alert ? <Alert message={this.state.alertMessage} status={this.state.alertStatus} /> : null} {/* eslint-disable-line*/}
@@ -113,21 +122,36 @@ class RapPostEntry extends React.Component {
               By{' '}
               <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link> {/* eslint-disable-line */}
             </h5>
+<<<<<<< HEAD
             <div className="rapText">
               <p className="card-text">{this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>)}</p>
               {/* $.parseHTML(this.props.rapPost.text) */}
-            </div>
-            <button className="btn btn-primary btn-space" onClick={() => this.getComments()}>Show Comments</button>
-          </div>
-          {this.state.showComments ? <Comments
-            postComment={this.postComment}
-            createComment={this.createComment}
-            myComment={this.state.myComment}
-            comments={this.state.comments}
-            username={this.props.username}
-          /> : null}
-        </div>
+=======
+            <div className="hover-card">
 
+              <div className="rapText" onClick={() => this.triggerModal()}>
+                <div className="middle">
+                  <div className="hidden-text">Click to expand</div>
+                </div>
+                <div className="hover-effect">
+                  <p className="card-text">{rapText}</p>
+                </div>
+              </div>
+
+>>>>>>> master
+            </div>
+          </div>
+        </div>
+        <Modal
+          name={username}
+          rapText={rapText}
+          hidden={this.state.hidden}
+          triggerModal={this.triggerModal}
+          comments={this.state.comments}
+          postComment={this.postComment}
+          createComment={this.createComment}
+          myComment={this.state.myComment}
+        />
       </div>
     );
   }

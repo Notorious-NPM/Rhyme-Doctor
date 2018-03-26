@@ -18,3 +18,4 @@ rules:
 globals:
   document: false
   window: false
+  localStorage: false
