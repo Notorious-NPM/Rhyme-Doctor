@@ -10,6 +10,7 @@ class FriendButton extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     const { username } = this.props;
     const options = {
       params: {
