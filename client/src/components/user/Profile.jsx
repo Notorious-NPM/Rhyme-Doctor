@@ -30,6 +30,11 @@ class Profile extends React.Component {
       this.getUserData();
       this.getUserPosts();
     }
+    if (this.props.location.state.username) {
+      this.setState({
+        username: this.props.location.state.username,
+      });
+    }
   }
 
   componentDidMount() {
