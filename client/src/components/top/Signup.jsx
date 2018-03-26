@@ -31,7 +31,7 @@ const Signup = ({ history }) => {
     });
   };
   return (
-    <div className="container-fluid">
+    <div className="container-fluid filler">
       <div className="row center-block mx-auto">
         <div
           className="col-md-2 text-center"

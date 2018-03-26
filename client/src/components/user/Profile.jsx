@@ -69,7 +69,7 @@ class Profile extends React.Component {
     const { state } = this.props.location;
 
     return (
-      <div>
+      <div className="filler">
         <div className="row">
           {this.state.received && <ProfileImage image={this.state.image} user={state ? state.username : 'anonymous'} /> /* eslint-disable-line */ }
           <div className="col-md-6">
