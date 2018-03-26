@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Comments from './comments';
 import Alert from '../alert';
 import Modal from '../modal';
 import './rapPost.css';

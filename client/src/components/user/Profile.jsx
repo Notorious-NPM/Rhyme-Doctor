@@ -66,7 +66,24 @@ class Profile extends React.Component {
   }
 
   render() {
-    const { state } = this.props.location;
+    /**
+     * Explanation:
+     *
+     * When routing from RapPostEntry.jsx, we have this:
+     *  <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link>
+     *
+     * Now, this "username" property is present in both this.props.location.state
+     *  AND this.state. On hitting the Navbar's "Profile" button, we lose the "username"
+     *  property in this.props.location, but NOT in this.state.
+     *
+     * So, initially, this.state and this.props.location.state are identical, in regards
+     *  to the "username" property. But upon hitting "Profile" on the Navbar, while on
+     *  someone else's profile, we lose the "location" property, but keep the "username"
+     *  in state.
+     *
+     * Confusingly enough, this.state.user and this.state.username/this.props.location.username
+     *  are distinct. *shrugs*
+     */
 
     return (
       <div className="filler">
@@ -79,7 +96,7 @@ class Profile extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-2">
-            {state && state.username !== this.state.user && <FriendButton username={state.username} /> /* eslint-disable-line */ }
+            {this.state.username !== this.state.user && <FriendButton username={this.state.username} /> /* eslint-disable-line */ }
           </div>
         </div>
         <UserPosts userPosts={this.state.userPosts} getUserPosts={this.getUserPosts} getUserData={this.getUserData} /> {/* eslint-disable-line */}
