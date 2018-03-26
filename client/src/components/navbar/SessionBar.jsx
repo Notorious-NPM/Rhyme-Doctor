@@ -15,6 +15,7 @@ const logout = () => {
     method: 'POST',
     success() {
       store.dispatch({ type: 'sessionlogout' });
+      store.dispatch({ type: 'wipestore' });
       history.push('/');
     },
   });

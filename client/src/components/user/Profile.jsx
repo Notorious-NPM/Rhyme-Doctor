@@ -71,7 +71,7 @@ class Profile extends React.Component {
     return (
       <div className="filler">
         <div className="row">
-          {this.state.received && <ProfileImage image={this.state.image} user={state ? state.username : this.state.user} /> /* eslint-disable-line */ }
+          {this.state.received && <ProfileImage image={this.state.image} username={this.state.username} /> /* eslint-disable-line */ }
           <div className="col-md-6">
             <Stats username={this.state.username} likeCount={this.state.likeCount} />
             {this.state.received && <Bio username={this.state.username} bio={this.state.bio} />}
