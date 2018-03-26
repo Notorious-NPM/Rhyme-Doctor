@@ -63,6 +63,7 @@ class ProfileImage extends React.Component {
   }
 
   render() {
+    console.log('--------.', this.props, this.state);
     return (
       <div className="col-2">
         {(this.props.user === this.state.user)
