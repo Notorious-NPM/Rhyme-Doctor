@@ -3,7 +3,7 @@
 
 import * as Redux from 'redux';
 
-const reducer = (state = {
+const DEFAULT = {
   session: false,
   text: `C.L. Smooth:
 
@@ -23,42 +23,68 @@ const reducer = (state = {
   These words will stick, colorful lyrics, I used the same word, like Nick`,
   strictness: 'Strict',
   color: 'red',
-}, action) => {
+};
+
+const browserSave = (state) => {
+  localStorage.setItem(state.user ? state.user : 'anonymous' /* ugh */, JSON.stringify(state));
+};
+
+const reducer = (state = Object.assign({}, DEFAULT), action) => {
+  // console.log(JSON.parse(localStorage.getItem('anonymous')));
+  // console.log(state.user);
   switch (action.type) {
     case 'wipeboard':
       state = {
         text: state.text,
         session: state.session,
+        user: state.user,
         strictness: state.strictness,
       };
+      browserSave(state);
       return state;
     case 'sessionlogin':
       state.session = true;
       state.user = action.body.username;
+      // browserSave(state);
       return state;
     case 'sessionlogout':
       delete state.user;
       state.session = false;
+      // browserSave(state);
       return state;
     case 'straighthighlight':
       state[action.body.coord] = action.body.color;
+      browserSave(state);
       return state;
     case 'highlight':
       state[`${action.body.x}, ${action.body.y}`] = state.color;
+      browserSave(state);
       return state;
     case 'unhighlight':
       delete state[`${action.body.x}, ${action.body.y}`];
+      browserSave(state);
       return state;
     case 'changetext':
       state.text = action.body.text;
+      browserSave(state);
       return state;
     case 'changestrictness':
       state.strictness = action.body.strictness;
+      browserSave(state);
       return state;
     case 'changecolor':
       state.color = action.body.color;
+      browserSave(state);
+      return state;
+    case 'browserrestore':
+      Object.assign(state, JSON.parse(localStorage.getItem(action.body.username)));
+      browserSave(state);
+      return state;
+    case 'wipestore':
+      state = Object.assign({}, DEFAULT);
       return state;
     default:
+      browserSave(state); // lol
       return state;
   }
 };
