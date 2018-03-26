@@ -63,10 +63,9 @@ class ProfileImage extends React.Component {
   }
 
   render() {
-    console.log('--------.', this.props, this.state);
     return (
       <div className="col-2">
-        {(this.props.user === this.state.user)
+        {(this.props.username === this.state.user)
           && ((!this.state.image || this.state.showChangePic)
           && (
           <Dropzone
