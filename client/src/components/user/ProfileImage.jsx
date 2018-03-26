@@ -78,7 +78,7 @@ class ProfileImage extends React.Component {
         {(this.state.image && !this.state.showChangePic) && (
         <div className="container-img">
           <img src={this.state.image} style={{ margin: '10px' }} alt="ProfilePic" className="image-prof" />
-          {this.props.user === this.state.user &&
+          {this.props.username === this.state.user &&
             <div className="middle">
               <div className="text" onClick={() => this.editPic()}>Change Picture</div>
             </div>}
