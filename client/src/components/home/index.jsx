@@ -44,21 +44,26 @@ class Home extends React.Component {
 
   clickHandler = () => {
     const context = this;
-    $.ajax({
-      method: 'POST',
-      url: '/api/content/post',
-      data: {
-        text: $('#lyrics').val(),
-      },
-      success(res) {
-        console.log(res);
-        context.setState({ posted: true });
-        setTimeout(() => context.setState({ posted: false }), 5000);
-      },
-      error(res) {
-        alert(res); // eslint-disable-line
-      },
-    });
+    const submission = $('#lyrics').val();
+    if (submission !== '') {
+      $.ajax({
+        method: 'POST',
+        url: '/api/content/post',
+        data: {
+          text: $('#lyrics').val(),
+        },
+        success(res) {
+          console.log(res);
+          context.setState({ posted: true });
+          setTimeout(() => context.setState({ posted: false }), 5000);
+        },
+        error(res) {
+          alert(res); // eslint-disable-line
+        },
+      });
+    } else {
+      alert('No empty posts!');
+    } 
   };
 
   hitHandler = () => {
