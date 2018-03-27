@@ -41,7 +41,6 @@ class Home extends React.Component {
     });
   }
 
-
   clickHandler = () => {
     const context = this;
     const submission = $('#lyrics').val();
@@ -93,6 +92,25 @@ class Home extends React.Component {
         alert(res); // eslint-disable-line
       },
     });
+  };
+
+  makeJSONPost = () => {
+    const text = $('#lyrics').val();
+    const lines = text.split('\n');
+    const post = [];
+    lines.forEach((line, x) => {
+      const words = line.split(' ');
+      words.forEach((word, y) => {
+        if (`${x}, ${y}` in this.state) {
+          post.push({ word, color: this.state[`${x}, ${y}`] });
+        } else {
+          post.push(word);
+        }
+      });
+      post.push('\n');
+    });
+    post.pop(); // CHOMP
+    return JSON.stringify(post);
   };
 
   strictHandler = () => {

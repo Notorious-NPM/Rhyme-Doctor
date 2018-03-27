@@ -121,7 +121,6 @@ class RapPostEntry extends React.Component {
               <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link> {/* eslint-disable-line */}
             </h5>
             <div className="hover-card">
-
               <div className="rapText" onClick={() => this.triggerModal()}>
                 <div className="middle">
                   <div className="hidden-text">Click to expand</div>
