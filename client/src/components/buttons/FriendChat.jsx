@@ -16,6 +16,7 @@ class FriendChat extends Component {
       selectedChat: null,
       store: store.getState(),
       setInactive: {},
+      currentChatIndex: -1,
     };
     store.subscribe(() => {
       this.state = store.getState();
@@ -56,14 +57,17 @@ class FriendChat extends Component {
   }
 
   async changeSelectedChat(index) {
-    const { socket } = this.state;
-    const chats = document.getElementsByClassName('selectedChat');
+    const { socket, currentChatIndex } = this.state;
+    // this.setState({ currentChatIndex: index });
 
-    for (let i = 0; i < chats.length; i++) {
-      chats[i].classList.add('hide');
+    if (currentChatIndex >= 0) {
+      const currentChat = document.getElementById(`show-${currentChatIndex}`);
+      currentChat.style.width = '0px';
+      currentChat.classList.add('hide');
     }
 
     await socket.emit('client.selectedChat', index);
+    this.setState({ currentChatIndex: index });
   }
 
   openFriendList(e) {
@@ -76,13 +80,16 @@ class FriendChat extends Component {
 
   closeFriendList() {
     document.getElementById("friendList").style.height = "0";
-    const chats = document.getElementsByClassName('selectedChat');
+    const { currentChatIndex } = this.state;
 
-    for (let i = 0; i < chats.length; i++) {
-      chats[i].classList.add('hide');
+    if (currentChatIndex >= 0) {
+      const currentChat = document.getElementById(`show-${currentChatIndex}`);
+      currentChat.style.width = '0px';
+      currentChat.classList.add('hide');
+      this.setState({ currentChatIndex: -1 });
     }
   }
-  
+
   render() {
     const { friendsList, selectedChat, socket } = this.state;
 

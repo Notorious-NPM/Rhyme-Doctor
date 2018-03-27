@@ -1,6 +1,6 @@
 .container {
   border: 1px solid black;
-  width: 250px;
+  width: 0px;
   height: 300px;
 }
 
@@ -25,7 +25,6 @@
   position: fixed;
   padding: 0.5px;
   margin-bottom: 31px;
-  width: 0px;
   height: 200px;
   bottom: 0;
   right: 200px;
