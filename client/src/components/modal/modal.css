@@ -47,12 +47,45 @@
   overflow: auto;
 }
 
+.modal-header {
+  justify-content: normal !important;
+  height: 4em;
+  padding-top: 0;
+}
+
+.modal-title {
+  padding-top: 10px;
+}
+
+.name {
+  padding-left: 10px;
+}
+
 .comments-col {
   padding-right: 0 !important;
 }
 
+/* Custom behavior */
+
 .btn-margin {
   margin: 2% 2% 0 0;
+}
+
+.rap-text {
+  text-align: left;
+  padding: 0 3em 0 3em;
+}
+
+.img-thumb {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 25px;
+  width: auto;
+  height: auto;
+}
+
+.close {
+  margin: -0.8rem -0.8rem -0.8rem auto !important;
 }
 
 /* Clear floats after the columns */

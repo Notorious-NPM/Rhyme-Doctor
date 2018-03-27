@@ -1,5 +1,6 @@
 import React from 'react';
 import Comments from '../rap-post/comments';
+import { Link } from 'react-router-dom';
 import './modal.css';
 
 const Modal = (props) => {
@@ -11,9 +12,12 @@ const Modal = (props) => {
           <div className="row modal-row">
             <div className="col-7 modal-col">
               <div className="modal-header">
-                <h5 className="modal-title" id="modalLongTitle">By {props.name}</h5>
+                <img src={props.image} alt="ProfilePicThumb" className="img-thumb" />
+                <h5 className="modal-title name" id="modalLongTitle">
+                  <Link to={{ pathname: '/profile', state: { username: props.name }}}>{props.name}</Link> {/* eslint-disable-line */}
+                </h5>
               </div>
-              <div className="modal-body">
+              <div className="modal-body rap-text">
                 {props.rapText}
               </div>
             </div>
