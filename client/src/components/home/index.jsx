@@ -45,11 +45,12 @@ class Home extends React.Component {
     const context = this;
     const submission = $('#lyrics').val();
     if (submission !== '') {
+      const postJSON = this.makeJSONPost(submission);
       $.ajax({
         method: 'POST',
         url: '/api/content/post',
         data: {
-          text: submission,
+          text: postJSON,
         },
         success(res) {
           console.log(res);
@@ -94,8 +95,7 @@ class Home extends React.Component {
     });
   };
 
-  makeJSONPost = () => {
-    const text = $('#lyrics').val();
+  makeJSONPost = (text) => {
     const lines = text.split('\n');
     const post = [];
     lines.forEach((line, x) => {
