@@ -123,7 +123,6 @@ class RapPostEntry extends React.Component {
   render() {
     const rapText = this.parseText(this.props.rapPost.text);
     const { username } = this.props.rapPost;
-    console.log(rapText);
     return (
       <div className="col-md-4">
         <div className="card">
