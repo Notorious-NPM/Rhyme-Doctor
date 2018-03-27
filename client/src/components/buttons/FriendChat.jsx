@@ -13,7 +13,6 @@ class FriendChat extends Component {
     this.state = {
       friendsList: [],
       socket: null,
-      selectedChat: null,
       store: store.getState(),
       setInactive: {},
       currentChatIndex: -1,
@@ -58,7 +57,6 @@ class FriendChat extends Component {
 
   async changeSelectedChat(index) {
     const { socket, currentChatIndex } = this.state;
-    // this.setState({ currentChatIndex: index });
 
     if (currentChatIndex >= 0) {
       const currentChat = document.getElementById(`show-${currentChatIndex}`);
@@ -72,14 +70,14 @@ class FriendChat extends Component {
 
   openFriendList(e) {
     e.preventDefault();
-    document.getElementById("friendList").style.height = "200px";
+    document.getElementById('friendList').style.height = '200px';
 
     const { socket } = this.state;
     socket.emit('client.inLobby', this.state.store.user);
   }
 
   closeFriendList() {
-    document.getElementById("friendList").style.height = "0";
+    document.getElementById('friendList').style.height = '0';
     const { currentChatIndex } = this.state;
 
     if (currentChatIndex >= 0) {
@@ -91,7 +89,7 @@ class FriendChat extends Component {
   }
 
   render() {
-    const { friendsList, selectedChat, socket } = this.state;
+    const { friendsList, socket } = this.state;
 
     return (
       <div>
@@ -108,10 +106,9 @@ class FriendChat extends Component {
           </div>
         </div>
         <div id="mySidenav" className="sidenav">
-          <a href="#" onMouseEnter={e => this.openFriendList(e)}>Friends</a>
+          <a href="#" onMouseEnter={e => this.openFriendList(e)}>Friends</a>  {/*eslint-disable-line*/}
         </div>
         <br />
-        {/* {selectedChat && <Chat friendName={selectedChat[0]} roomID={selectedChat[1]} />} */}
         {friendsList.map((friend, index) =>
           (
             <div>
@@ -119,7 +116,6 @@ class FriendChat extends Component {
             </div>
           ))}
       </div>
-
     );
   }
 }
