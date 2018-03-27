@@ -62,8 +62,8 @@ class Home extends React.Component {
         },
       });
     } else {
-      alert('No empty posts!');
-    } 
+      alert('No empty posts!'); // eslint-disable-line
+    }
   };
 
   hitHandler = () => {
