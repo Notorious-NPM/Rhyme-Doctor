@@ -75,6 +75,7 @@ const parse = (text, strictness) =>
     Promise.all(APIcalls)
       .then((data) => {
         const rip = data.map(({ pronunciation }) => {
+          console.log(pronunciation);
           if (typeof pronunciation === 'object' && 'all' in pronunciation) {
             return pronunciation.all;
           } else if (pronunciation) {
