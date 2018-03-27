@@ -106,9 +106,24 @@ class RapPostEntry extends React.Component {
     this.getComments();
   }
 
+  parseText = (jsonString) => {
+    const rapObj = JSON.parse(jsonString);
+    const rapText = rapObj.map((word) => {
+      if (typeof word === 'object') {
+        return <span style={{ color: word.color }}>{`${word.word} `}</span>;
+      } else if (word === '\n') {
+        return <br />;
+      }
+      return <span>{`${word} `}</span>;
+    });
+
+    return rapText;
+  }
+
   render() {
+    const rapText = this.parseText(this.props.rapPost.text);
     const { username } = this.props.rapPost;
-    const rapText = this.props.rapPost.text.split('\n').map(line => <div className="rap-text">{line}</div>);
+    console.log(rapText);
     return (
       <div className="col-md-4">
         <div className="card">
@@ -126,7 +141,7 @@ class RapPostEntry extends React.Component {
                   <div className="hidden-text">Click to expand</div>
                 </div>
                 <div className="hover-effect">
-                  <p className="card-text">{rapText}</p>
+                  <p className="card-text rap-text">{rapText}</p>
                 </div>
               </div>
 
