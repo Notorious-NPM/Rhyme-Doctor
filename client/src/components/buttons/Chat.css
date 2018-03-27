@@ -1,6 +1,6 @@
 .container {
   border: 1px solid black;
-  width: 250px;
+  width: 0px;
   height: 300px;
 }
 
@@ -11,41 +11,44 @@
   color: #24A4E9;
 }
 
-#selectedChat form {
+.selectedChat form {
   position: absolute;
   width: 80%;
   bottom: 0;
   margin-left: 5px;
 }
 
-#selectedChat {
+.selectedChat {
   background-color: white;
   box-shadow: -5px 5px 15px 0px #BDBBB9;
   z-index: 1;
   position: fixed;
   padding: 0.5px;
   margin-bottom: 31px;
-  width: 0px;
   height: 200px;
   bottom: 0;
   right: 200px;
   transition: 0.5s;
 }
 
-#selectedChat form {
+.selectedChat form {
   display: inline;
   width: 250px;
 }
 
-#selectedChat input {
+.selectedChat input {
   float: left;
   height: 22px;
   width: 180px;
 }
 
-#selectedChat button {
+.selectedChat button {
   margin-left: 2px;
   height: 22px;
   width: 50px;
   font-size: 15px;
+}
+
+.hide {
+  display: none;
 }

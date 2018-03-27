@@ -15,6 +15,7 @@
   background-color: white;
   position: fixed;
   padding: 0.5px;
+  z-index: 2;
   margin-bottom: 31px;
   width: 200px;
   overflow: auto;
@@ -52,7 +53,7 @@
   height: 5%; /* 100% Full-height */
   width: 200px; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 3; /* Stay on top */
   bottom: 0; /* Stay at the bottom */
   right: 0;
   background: linear-gradient(to bottom, rgba(149,149,149,1) 0%,rgba(13,13,13,1) 7%,rgba(1,1,1,1) 86%,rgba(1,1,1,1) 86%,rgba(1,1,1,1) 90%,rgba(10,10,10,1) 92%,rgba(10,10,10,1) 92%,rgba(10,10,10,1) 94%,rgba(27,27,27,1) 95%,rgba(27,27,27,1) 95%,rgba(56,56,56,1) 97%,rgba(56,56,56,1) 97%,rgba(56,56,56,1) 99%,rgba(78,78,78,1) 100%,rgba(78,78,78,1) 102%);

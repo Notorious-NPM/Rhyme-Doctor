@@ -22,6 +22,7 @@ io.on('connection', (client) => {
   client.join(room.get('id'));
 
   Object.keys(clientEvents).forEach((event) => {
+    console.log('event is: ', event)
     client.on(event, clientEvents[event].bind(null, { io, client, room }));
   });
 });
