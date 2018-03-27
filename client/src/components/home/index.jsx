@@ -3,7 +3,6 @@ import $ from 'jquery';
 
 import Textarea from '../textarea/Textarea';
 import Paragraph from '../text/Paragraph';
-import FriendChat from '../../components/buttons/FriendChat';
 import RhymeForm from '../rhymeSearch/RhymeForm';
 import ColorPicker from '../toolbar/ColorPicker';
 import store from '../../redux/store';
@@ -144,7 +143,6 @@ class Home extends React.Component {
             {'Color Pad: '}<ColorPicker />
           </div>
         </div>}
-        {this.state.session && <FriendChat />}
         <hr />
         {this.state.session && <RhymeForm />}
       </div>
