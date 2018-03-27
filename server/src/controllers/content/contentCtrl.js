@@ -78,7 +78,7 @@ const getPostsCtrl = async (req, res) => {
             rap_posts.updated_at,
             user_id,
             image
-    from rap_posts join users where users.id = user_id
+    from rap_posts join users on users.id = user_id
     order by like_count desc;`,
     { type: sequelize.QueryTypes.SELECT },
   );
@@ -92,22 +92,23 @@ const getFriendsPostsCtrl = async (req, res) => {
     { type: sequelize.QueryTypes.SELECT },
   );
   const friendsArr = friends.map(obj => obj.friendID);
+  console.log('another test', friendsArr);
 
   const rapPost = await sequelize.query(
     `select rap_posts.id,
-            username, text,
+            username, 
+            text,
             rap_posts.like_count,
             report_count,
             rap_posts.created_at,
             rap_posts.updated_at,
             user_id,
             image
-    from rap_posts join users where users.id = user_id
+    from rap_posts join users on users.id = user_id
     where user_id in (${friendsArr})
     order by like_count desc;`,
     { type: sequelize.QueryTypes.SELECT },
   );
-  // console.log(rapPost);
   res.status(200).send(rapPost);
 };
 
