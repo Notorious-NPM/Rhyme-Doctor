@@ -94,6 +94,12 @@ class Home extends React.Component {
     });
   };
 
+  wipeHandler = () => {
+    store.dispatch({
+      type: 'wipeboard',
+    });
+  };
+
   makeJSONPost = (text) => {
     const lines = text.split('\n');
     const post = [];
@@ -158,6 +164,7 @@ class Home extends React.Component {
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.clickHandler}>{postText}</button>
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.hitHandler}>Hit API</button>
             <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.strictHandler}>{this.state.strictness}</button>
+            <button style={{ margin: '5px' }} className="btn btn-outline-primary" onClick={this.wipeHandler}>Wipe Canvas</button>
           </div>
           <div className="col-md-2">
             <span />
