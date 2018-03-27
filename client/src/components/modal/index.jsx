@@ -13,7 +13,7 @@ const Modal = (props) => {
               <div className="modal-header">
                 <h5 className="modal-title" id="modalLongTitle">By {props.name}</h5>
               </div>
-              <div className="modal-body">
+              <div className="modal-body rap-text">
                 {props.rapText}
               </div>
             </div>

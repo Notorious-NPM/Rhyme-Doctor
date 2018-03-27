@@ -14,7 +14,9 @@ const Comments = (props) => {
 
               <h4 className="media-heading user_name">{comment.name}</h4>
               {comment.text}
-              <p><small><a href="#">Like</a></small></p>
+              <br />
+              <br />
+              {/* <p><small><a href="#">Like</a></small></p> */}
             </div>
           </div>
         </div>))}
