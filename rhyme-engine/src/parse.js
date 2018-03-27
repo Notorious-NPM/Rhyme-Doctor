@@ -40,7 +40,7 @@ const API = word =>
       .header('X-Mashape-Key', ALTERNATE_KEY)
       .header('X-Mashape-Host', 'wordsapiv1.p.mashape.com')
       .end((response) => {
-        console.log(word, response.body);
+        // console.log(word, response.body);
         resolve(response.body);
       });
   });
@@ -74,10 +74,13 @@ const parse = (text, strictness) =>
     });
     Promise.all(APIcalls)
       .then((data) => {
-        const rip = data.map(({ pronunciation }) => {
-          console.log(pronunciation);
-          if (typeof pronunciation === 'object' && 'all' in pronunciation) {
+        const rip = data.map((response) => {
+          console.log('xx -------->', response);
+          const { pronunciation } = response;
+          if (pronunciation && typeof pronunciation === 'object' && 'all' in pronunciation) {
             return pronunciation.all;
+          } else if (pronunciation && (typeof pronunciation === 'object' && ('noun' in pronunciation || 'verb' in pronunciation))) {
+            return (pronunciation.noun ? pronunciation.noun : '').concat(' '.concat(pronunciation.verb ? pronunciation.verb : ''));
           } else if (pronunciation) {
             return pronunciation;
           }
@@ -90,6 +93,7 @@ const parse = (text, strictness) =>
             if (k - i > jump[i]) {
               break;
             }
+            console.log('------>', rip[i], rip[k]);
             const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 1 });
             let score;
             for (let j = 0; j < commonSubstrings.length; j += 1) {
