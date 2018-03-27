@@ -19,3 +19,4 @@ globals:
   document: false
   window: false
   localStorage: false
+  alert: false

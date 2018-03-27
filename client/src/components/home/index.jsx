@@ -40,24 +40,29 @@ class Home extends React.Component {
     });
   }
 
-
   clickHandler = () => {
     const context = this;
-    $.ajax({
-      method: 'POST',
-      url: '/api/content/post',
-      data: {
-        text: $('#lyrics').val(),
-      },
-      success(res) {
-        console.log(res);
-        context.setState({ posted: true });
-        setTimeout(() => context.setState({ posted: false }), 5000);
-      },
-      error(res) {
-        alert(res); // eslint-disable-line
-      },
-    });
+    const submission = $('#lyrics').val();
+    if (submission !== '') {
+      const postJSON = this.makeJSONPost(submission);
+      $.ajax({
+        method: 'POST',
+        url: '/api/content/post',
+        data: {
+          text: postJSON,
+        },
+        success(res) {
+          console.log(res);
+          context.setState({ posted: true });
+          setTimeout(() => context.setState({ posted: false }), 5000);
+        },
+        error(res) {
+          alert(res); // eslint-disable-line
+        },
+      });
+    } else {
+      alert('No empty posts!'); // eslint-disable-line
+    }
   };
 
   hitHandler = () => {
@@ -87,6 +92,24 @@ class Home extends React.Component {
         alert(res); // eslint-disable-line
       },
     });
+  };
+
+  makeJSONPost = (text) => {
+    const lines = text.split('\n');
+    const post = [];
+    lines.forEach((line, x) => {
+      const words = line.split(' ');
+      words.forEach((word, y) => {
+        if (`${x}, ${y}` in this.state) {
+          post.push({ word, color: this.state[`${x}, ${y}`] });
+        } else {
+          post.push(word);
+        }
+      });
+      post.push('\n');
+    });
+    post.pop(); // CHOMP
+    return JSON.stringify(post);
   };
 
   strictHandler = () => {
