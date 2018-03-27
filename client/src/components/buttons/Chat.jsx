@@ -19,9 +19,8 @@ class Chat extends Component {
   async componentDidMount() {
     const { mainSocket } = this.props;
     await mainSocket.on('server.selectedChat', (index) => {
-      console.log(document.getElementById(`show-${index}`));
       if (index === this.props.index) {
-        const chat = document.getElementById(`show-${index}`)
+        const chat = document.getElementById(`show-${index}`);
         chat.style.width = '250px';
         chat.classList.remove('hide');
       }

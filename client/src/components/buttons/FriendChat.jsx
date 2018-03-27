@@ -55,11 +55,15 @@ class FriendChat extends Component {
     this.setState( { socket: this.socket }); // eslint-disable-line
   }
 
-  changeSelectedChat(index) {
+  async changeSelectedChat(index) {
     const { socket } = this.state;
+    const chats = document.getElementsByClassName('selectedChat');
 
-    socket.emit('client.selectedChat', index);
-    console.log('sending changeSelectedChat: ', socket);
+    for (let i = 0; i < chats.length; i++) {
+      chats[i].classList.add('hide');
+    }
+
+    await socket.emit('client.selectedChat', index);
   }
 
   openFriendList(e) {
@@ -72,7 +76,11 @@ class FriendChat extends Component {
 
   closeFriendList() {
     document.getElementById("friendList").style.height = "0";
-    // this.setState({ selectedChat: false });
+    const chats = document.getElementsByClassName('selectedChat');
+
+    for (let i = 0; i < chats.length; i++) {
+      chats[i].classList.add('hide');
+    }
   }
   
   render() {
