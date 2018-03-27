@@ -11,14 +11,14 @@
   color: #24A4E9;
 }
 
-#selectedChat form {
+.selectedChat form {
   position: absolute;
   width: 80%;
   bottom: 0;
   margin-left: 5px;
 }
 
-#selectedChat {
+.selectedChat {
   background-color: white;
   box-shadow: -5px 5px 15px 0px #BDBBB9;
   z-index: 1;
@@ -32,20 +32,24 @@
   transition: 0.5s;
 }
 
-#selectedChat form {
+.selectedChat form {
   display: inline;
   width: 250px;
 }
 
-#selectedChat input {
+.selectedChat input {
   float: left;
   height: 22px;
   width: 180px;
 }
 
-#selectedChat button {
+.selectedChat button {
   margin-left: 2px;
   height: 22px;
   width: 50px;
   font-size: 15px;
+}
+
+.hide {
+  display: none;
 }

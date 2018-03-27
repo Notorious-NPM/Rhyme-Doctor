@@ -55,12 +55,11 @@ class FriendChat extends Component {
     this.setState( { socket: this.socket }); // eslint-disable-line
   }
 
-  changeSelectedChat(friendName, roomID) {
-    this.setState({ selectedChat: false });
-    setTimeout(() => {
-      this.setState({ selectedChat: [friendName, roomID] });
-      document.getElementById('selectedChat').classList.remove('hide');
-    }, 0);
+  changeSelectedChat(index) {
+    const { socket } = this.state;
+
+    socket.emit('client.selectedChat', index);
+    console.log('sending changeSelectedChat: ', socket);
   }
 
   openFriendList(e) {
@@ -73,22 +72,22 @@ class FriendChat extends Component {
 
   closeFriendList() {
     document.getElementById("friendList").style.height = "0";
-    this.setState({ selectedChat: false });
+    // this.setState({ selectedChat: false });
   }
   
   render() {
-    const { friendsList, selectedChat } = this.state;
+    const { friendsList, selectedChat, socket } = this.state;
 
     return (
       <div>
         <div>
           <div id="friendList" className="friendList container">
             <div className="friendList minimize"><div onClick={() => this.closeFriendList()}>X{' '}</div></div>
-            {friendsList.map(friend =>
+            {friendsList.map((friend, index) =>
               (
                 <div>
                   <div className={`dot ${friend[0]}`} />
-                  <div className="friend" onClick={() => this.changeSelectedChat(friend[0], friend[1])}>{friend[0]}</div>
+                  <div className="friend" onClick={() => this.changeSelectedChat(index)}>{friend[0]}</div>
                 </div>
               ))}
           </div>
@@ -97,7 +96,13 @@ class FriendChat extends Component {
           <a href="#" onMouseEnter={e => this.openFriendList(e)}>Friends</a>
         </div>
         <br />
-        {selectedChat && <Chat className="hide" friendName={selectedChat[0]} roomID={selectedChat[1]} />}
+        {/* {selectedChat && <Chat friendName={selectedChat[0]} roomID={selectedChat[1]} />} */}
+        {friendsList.map((friend, index) =>
+          (
+            <div>
+              <Chat friendName={friend[0]} roomID={friend[1]} index={index} mainSocket={socket} />
+            </div>
+          ))}
       </div>
 
     );

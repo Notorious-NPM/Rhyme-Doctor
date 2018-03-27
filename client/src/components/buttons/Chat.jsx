@@ -17,6 +17,16 @@ class Chat extends Component {
   }
 
   async componentDidMount() {
+    const { mainSocket } = this.props;
+    await mainSocket.on('server.selectedChat', (index) => {
+      console.log(document.getElementById(`show-${index}`));
+      if (index === this.props.index) {
+        const chat = document.getElementById(`show-${index}`)
+        chat.style.width = '250px';
+        chat.classList.remove('hide');
+      }
+    });
+
     this.socket = await io(`http://${location}:3444`, {
       query: {
         roomId: this.props.roomID,
@@ -33,8 +43,6 @@ class Chat extends Component {
     });
 
     this.setState({ socket: this.socket }) // eslint-disable-line
-
-    setTimeout(() => document.getElementById('selectedChat').style.width = "250px", 0);
   }
 
   sendMsg(e) {
@@ -50,8 +58,9 @@ class Chat extends Component {
   }
 
   render() {
+    const { index } = this.props;
     return (
-      <div className="container" id="selectedChat">
+      <div className="container selectedChat hide" id={`show-${index}`}>
         <div className="chatDisplay">
           {this.state.messages.map(msg =>
             <div>{msg}</div>)}
