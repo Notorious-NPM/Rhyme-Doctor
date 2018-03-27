@@ -11,7 +11,8 @@ const Modal = (props) => {
           <div className="row modal-row">
             <div className="col-7 modal-col">
               <div className="modal-header">
-                <h5 className="modal-title" id="modalLongTitle">By {props.name}</h5>
+                <img src={props.image} alt="ProfilePicThumb" className="img-thumb" />
+                <h5 className="modal-title name" id="modalLongTitle">{props.name}</h5>
               </div>
               <div className="modal-body rap-text">
                 {props.rapText}

@@ -156,6 +156,7 @@ class RapPostEntry extends React.Component {
           postComment={this.postComment}
           createComment={this.createComment}
           myComment={this.state.myComment}
+          image={this.props.rapPost.image}
         />
       </div>
     );
