@@ -10,4 +10,10 @@ const serverSendMsgResponse = ({ io, room }, payload) => {
     .emit('server.sendMsg', payload);
 };
 
-export { serverEnterResponse, serverSendMsgResponse };
+const serverSelectedChatResponse = ({ io, room }, payload) => {
+  io
+    .in(room.get('id'))
+    .emit('server.selectedChat', payload);
+};
+
+export { serverEnterResponse, serverSendMsgResponse, serverSelectedChatResponse };

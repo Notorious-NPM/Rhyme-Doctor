@@ -13,9 +13,9 @@ class FriendChat extends Component {
     this.state = {
       friendsList: [],
       socket: null,
-      selectedChat: null,
       store: store.getState(),
       setInactive: {},
+      currentChatIndex: -1,
     };
     store.subscribe(() => {
       this.state = store.getState();
@@ -55,51 +55,67 @@ class FriendChat extends Component {
     this.setState( { socket: this.socket }); // eslint-disable-line
   }
 
-  changeSelectedChat(friendName, roomID) {
-    this.setState({ selectedChat: false });
-    setTimeout(() => {
-      this.setState({ selectedChat: [friendName, roomID] });
-      document.getElementById('selectedChat').classList.remove('hide');
-    }, 0);
+  async changeSelectedChat(index) {
+    const { socket, currentChatIndex } = this.state;
+
+    if (currentChatIndex >= 0) {
+      const currentChat = document.getElementById(`show-${currentChatIndex}`);
+      currentChat.style.width = '0px';
+      currentChat.classList.add('hide');
+    }
+
+    await socket.emit('client.selectedChat', index);
+    this.setState({ currentChatIndex: index });
   }
 
   openFriendList(e) {
     e.preventDefault();
-    document.getElementById("friendList").style.height = "200px";
+    document.getElementById('friendList').style.height = '200px';
 
     const { socket } = this.state;
     socket.emit('client.inLobby', this.state.store.user);
   }
 
   closeFriendList() {
-    document.getElementById("friendList").style.height = "0";
-    this.setState({ selectedChat: false });
+    document.getElementById('friendList').style.height = '0';
+    const { currentChatIndex } = this.state;
+
+    if (currentChatIndex >= 0) {
+      const currentChat = document.getElementById(`show-${currentChatIndex}`);
+      currentChat.style.width = '0px';
+      currentChat.classList.add('hide');
+      this.setState({ currentChatIndex: -1 });
+    }
   }
-  
+
   render() {
-    const { friendsList, selectedChat } = this.state;
+    const { friendsList, socket } = this.state;
 
     return (
       <div>
         <div>
           <div id="friendList" className="friendList container">
             <div className="friendList minimize"><div onClick={() => this.closeFriendList()}>X{' '}</div></div>
-            {friendsList.map(friend =>
+            {friendsList.map((friend, index) =>
               (
                 <div>
                   <div className={`dot ${friend[0]}`} />
-                  <div className="friend" onClick={() => this.changeSelectedChat(friend[0], friend[1])}>{friend[0]}</div>
+                  <div className="friend" onClick={() => this.changeSelectedChat(index)}>{friend[0]}</div>
                 </div>
               ))}
           </div>
         </div>
         <div id="mySidenav" className="sidenav">
-          <a href="#" onMouseEnter={e => this.openFriendList(e)}>Friends</a>
+          <a href="#" onMouseEnter={e => this.openFriendList(e)}>Friends</a>  {/*eslint-disable-line*/}
         </div>
         <br />
-        {selectedChat && <Chat className="hide" friendName={selectedChat[0]} roomID={selectedChat[1]} />}
+        {friendsList.map((friend, index) =>
+          (
+            <div>
+              <Chat friendName={friend[0]} roomID={friend[1]} index={index} mainSocket={socket} />
+            </div>
+          ))}
       </div>
-
     );
   }
 }
