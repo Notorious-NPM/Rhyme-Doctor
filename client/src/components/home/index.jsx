@@ -50,7 +50,7 @@ class Home extends React.Component {
         method: 'POST',
         url: '/api/content/post',
         data: {
-          text: $('#lyrics').val(),
+          text: submission,
         },
         success(res) {
           console.log(res);
