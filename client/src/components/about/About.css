@@ -1,0 +1,109 @@
+.aboutTop {
+  text-align: center;
+}
+
+.goal {
+  width: 70%;
+  margin: auto;
+}
+
+.challenges {
+  width: 80%;
+  margin: auto;
+}
+
+.challenges h6 {
+  text-decoration: underline;
+}
+
+.contributor {
+  display: inline-block;
+  text-align: center;
+  margin: 1%;
+  border: 5px solid white;
+  padding: 15px;
+  width: 250px;
+  height: 250px;
+  box-shadow: 2px 2px 10px white;
+  line-height: 1.5;
+}
+
+.contributors.container {
+  border: 0px;
+  width: 100%;
+  padding: 0px;
+  height: auto;
+}
+
+.images {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+}
+.image.react { 
+  width: 130px;
+  height: 120px;
+}
+
+.image.router {
+  width: 150px;
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.image.wordsAPI {
+  width: 140px;
+  line-height: 3.5;
+}
+
+.image.wordsAPI p {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+}
+
+.image.cloudinary {
+  width: 120px;
+}
+
+.image.cloudinary img {
+  max-width: 90%;
+}
+
+.image.babel {
+  width: 160px;
+  line-height: 2.5;
+}
+
+.image img {
+  max-width: 80%;
+  max-height: 70%;
+}
+
+.tech {
+  clear: left;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: midnightblue;
+  color:  white;
+  font-size: 30px;
+}
+
+.tech h4 {
+  font-size: 20px;
+  text-shadow: 5px 5px 7px #000000;
+}
+
+.whitespace {
+  margin-bottom: 50px;
+}
+
+.hackreactor {
+  width: 25px;
+  height: 25px;
+}

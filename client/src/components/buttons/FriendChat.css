@@ -1,0 +1,85 @@
+.container {
+  border: 1px solid black;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin: 8px;
+  float: left;
+}
+
+.friendList.container {
+  background-color: white;
+  position: fixed;
+  padding: 0.5px;
+  margin-bottom: 31px;
+  width: 200px;
+  overflow: auto;
+  height: 0px;
+  bottom: 0;
+  right: 0;
+  transition: 0.5s;
+}
+
+.friendList.minimize {
+  background: linear-gradient(to bottom, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 4%,rgba(10,14,10,1) 28%,rgba(10,8,9,1) 100%);
+  height: 15px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.friendList.minimize div {
+  margin-right: 5px;
+}
+
+.friend {
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 64%,rgba(237,237,237,1) 43%);
+  text-align: center;
+  border: 1px solid black;
+  padding: 0.5px;
+  width: 199px;
+  color: #403F3F;
+}
+
+.hide {
+  display: none;
+}
+
+.sidenav {
+  height: 5%; /* 100% Full-height */
+  width: 200px; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  bottom: 0; /* Stay at the bottom */
+  right: 0;
+  background: linear-gradient(to bottom, rgba(149,149,149,1) 0%,rgba(13,13,13,1) 7%,rgba(1,1,1,1) 86%,rgba(1,1,1,1) 86%,rgba(1,1,1,1) 90%,rgba(10,10,10,1) 92%,rgba(10,10,10,1) 92%,rgba(10,10,10,1) 94%,rgba(27,27,27,1) 95%,rgba(27,27,27,1) 95%,rgba(56,56,56,1) 97%,rgba(56,56,56,1) 97%,rgba(56,56,56,1) 99%,rgba(78,78,78,1) 100%,rgba(78,78,78,1) 102%);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 0; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 5px 60px 5px 5px;
+  text-align: right;
+  text-decoration: none;
+  font-size: 20px;
+  color: #FFFFFF;
+  display: block;
+  transition: 0.3s;
+  color: yellow !important;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

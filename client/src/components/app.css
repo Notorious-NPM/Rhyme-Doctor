@@ -1,0 +1,19 @@
+html, body, .app-container {
+  height: 100%;
+}
+
+.filler {
+  min-height: 82%;
+}
+
+body {
+  font-family: 'Righteous', cursive;
+  color: #D7D7D7;
+  letter-spacing: 0.05rem;
+  background-color: #333;
+}
+
+.btn-outline-primary {
+  color: #D7D7D7;
+  border-color: #D7D7D7
+}

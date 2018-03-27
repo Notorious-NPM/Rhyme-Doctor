@@ -1,7 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import store from '../../redux/store.js';
 import RapPostEntry from './RapPostEntry.jsx';
-import axios from 'axios';
 
 class RapPost extends React.Component {
   constructor(props) {
@@ -19,23 +19,28 @@ class RapPost extends React.Component {
 
   getRapPosts = async () => {
     try {
-      const rapPosts = await axios.get('http://localhost:3000/api/content/posts');
+      let url = '/api/content/posts';
+      if (this.props.subscription === 1) {
+        url = '/api/content/friendsPosts';
+      }
+      const rapPosts = await axios.get(url);
       this.setState({
         rapPosts: rapPosts.data,
       });
     } catch (err) {
-      alert('Failed to get rap posts.');
+      console.log('Failed to get rap posts.');
     }
   }
 
   render() {
-    let rapPosts = this.state.rapPosts || [];
+    const rapPosts = this.state.rapPosts || [];
     return (
-      <div align="center">
+      <div className="row rap-post-row custom-filler">
         {rapPosts.map((rapPost, i) => (<RapPostEntry
           rapPost={rapPost}
           key={i}
           getRapPosts={this.getRapPosts}
+          username={this.state.username}
         />))}
       </div>
     );

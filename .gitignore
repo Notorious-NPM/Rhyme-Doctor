@@ -10,8 +10,10 @@ yarn-error.log
 .DS_Store
 
 # Webpack
-client/dist/bundle.js
-client/dist/1.bundle.js
+*bundle.js
 
 # Config
 config.js
+
+# VSCode
+.vscode

@@ -31,20 +31,29 @@ class Word extends React.Component {
 
   color = (e) => {
     e.preventDefault();
-    const payload = {
-      type: 'highlight',
-      body: {
-        x: this.props.x,
-        y: this.props.y,
-        color: 'red',
-      },
-    };
-    store.dispatch(payload);
+    if (this.state.highlighted) {
+      store.dispatch({
+        type: 'unhighlight',
+        body: {
+          x: this.props.x,
+          y: this.props.y,
+        },
+      });
+    } else {
+      const payload = {
+        type: 'highlight',
+        body: {
+          x: this.props.x,
+          y: this.props.y,
+        },
+      };
+      store.dispatch(payload);
+    }
   }
 
   render() {
     const style = {
-      color: this.state.highlighted ? this.state.color : 'black',
+      color: this.state.highlighted ? this.state.color : '#cdd0d6',
     };
     return (
       <span /* eslint-disable-line */

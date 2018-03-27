@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import $ from 'jquery';
 
 import store from '../../redux/store';
+
+const history = createHistory();
 
 const logout = () => {
   $.ajax({
@@ -12,13 +15,15 @@ const logout = () => {
     method: 'POST',
     success() {
       store.dispatch({ type: 'sessionlogout' });
+      store.dispatch({ type: 'wipestore' });
+      history.push('/');
     },
   });
 };
 
 const SessionBar = () => (
   <div>
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav id="nav" className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
@@ -28,10 +33,10 @@ const SessionBar = () => (
             <Link className="nav-link" to="/feed">Top/News Feed</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Profile</a>
+            <Link className="nav-link" to="/profile">Profile</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Subscriptions</a>
+            <Link className="nav-link" to="/subscriptions">Subscriptions</Link>
           </li>
         </ul>
       </div>
@@ -44,10 +49,10 @@ const SessionBar = () => (
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a className="nav-link" href="#">Signout</a>
-          </li>
-          <li className="nav-item">
-            <a onClick={logout} className="nav-link" /* eslint-disable-line */ >Logout</a>
+            <Link className="nav-link" style={{ display: 'inline' }} to="/about">About</Link>
+            <Link className="nav-link" to="/" style={{ display: 'inline' }}>
+              <a onClick={logout} style={{ display: 'inline' }} className="nav-link" /* eslint-disable-line */ >Logout</a>
+            </Link>
           </li>
         </ul>
       </div>

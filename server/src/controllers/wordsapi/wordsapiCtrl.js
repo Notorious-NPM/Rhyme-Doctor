@@ -1,23 +1,16 @@
 import axios from 'axios';
 import APIKEY from './config';
 
-const findRhymeCtrl = () => {
-  // find rhyme of word
-};
-
-const findSynCtrl = (req, res) => {
+const findRhymeCtrl = (req, res) => {
   axios
-    .get(`https://wordsapiv1.p.mashape.com/words/${req.query.word}/synonyms`, APIKEY)
+    .get(`https://wordsapiv1.p.mashape.com/words/${req.query.word}/rhymes`, APIKEY)
     .then((res2) => {
-      res.send(res2.data.synonyms);
+      res.send(res2.data.rhymes.all);
     })
     .catch((error) => {
       console.log(error);
     });
 };
 
-const findPronunciationCtrl = () => {
-  // find pronunciation of word
-};
 
-export { findRhymeCtrl, findSynCtrl, findPronunciationCtrl };
+export default findRhymeCtrl;

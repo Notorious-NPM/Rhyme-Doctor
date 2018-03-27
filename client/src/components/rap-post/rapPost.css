@@ -1,0 +1,77 @@
+.rap-text {
+  text-align: left;
+  padding: 0 3em 0 3em;
+}
+
+.card {
+  margin: 1em;
+  background: #91A3B0;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-text {
+  color: #333;
+  cursor: pointer;
+}
+
+.row {
+  width: 80%;
+  margin: 0 10% 0 10%;
+}
+
+.rap-post-row {
+  margin-top: 3%;
+}
+
+.btn-space {
+  margin-top: 0.5em;
+}
+
+.card-title {
+  color: #333;
+}
+
+.badge {
+  cursor: pointer;
+}
+
+/* Hidden text */
+.hidden-text {
+  display: none;
+}
+.rapText {
+  color: #676464;
+  background-color: white;
+  overflow: auto;
+  height: 450px;
+}
+
+.middle {
+  top: 6% !important;
+}
+
+.hover-card:hover .hidden-text {
+  display: block;
+}
+
+.hover-card:hover .hover-effect {
+  opacity: 0.6;
+}
+
+.hover-card:hover .middle {
+  opacity: 1;
+}
+
+.hidden-text {
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+.custom-filler {
+  min-height: 78%;
+}

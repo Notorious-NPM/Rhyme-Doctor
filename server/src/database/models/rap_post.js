@@ -10,8 +10,10 @@ const Rap_Post = db.define('rap_post', {
     primaryKey: true,
     autoIncrement: true,
   },
+  username: Sequelize.STRING,
   text: Sequelize.TEXT,
   like_count: { type: Sequelize.INTEGER, defaultValue: 0 },
+  report_count: { type: Sequelize.INTEGER, defaultValue: 0 },
 }, {
   underscored: true,
 });
