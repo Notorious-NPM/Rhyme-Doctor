@@ -129,6 +129,10 @@ class Home extends React.Component {
              'Compose as you normally would. But be aware: commas signify a word to be rhymed with, as does the end of a line.' /* eslint-disable-line */
              : 'Perhaps you\'d like to sign up...'}
           </div>
+          {this.state.session &&
+            <div className="col-md-4">
+              {'Color Pad: '}<ColorPicker />
+            </div>}
         </div>
         {this.state.session &&
         <div className="row">
@@ -139,10 +143,7 @@ class Home extends React.Component {
           </div>
           <div className="col-md-2">
             <span />
-          </div>
-          <div className="col-md-4">
-            {'Color Pad: '}<ColorPicker />
-          </div>
+          </div> 
         </div>}
         {this.state.session && <FriendChat />}
         <hr />
