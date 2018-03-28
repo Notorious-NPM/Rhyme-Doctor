@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 
 export default [
+  compression(),
   helmet(),
   cors({
     origin: '*',
@@ -21,5 +22,4 @@ export default [
   }),
   passport.initialize(),
   passport.session(),
-  compression(),
 ];
