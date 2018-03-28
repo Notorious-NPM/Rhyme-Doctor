@@ -103,7 +103,7 @@ const About = () => (
       </div>
     </div>
     <div>
-      Made at <img style={{ margin: '5px' }}className="hackreactor" src="http://static1.squarespace.com/static/522a22cbe4b04681b0bff826/t/581cc65fe4fcb5a68ecd940c/1478280803080/hrhq-avatar.png" alt="hackreactor" />
+      Made at <img style={{ margin: '5px', opacity: 0.5 }}className="hackreactor" src="https://media.glassdoor.com/sqll/843406/hack-reactor-squarelogo-1427844676793.png" alt="hackreactor" />
     </div>
   </div>
 );
