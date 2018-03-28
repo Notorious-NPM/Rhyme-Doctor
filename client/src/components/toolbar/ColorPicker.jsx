@@ -85,7 +85,7 @@ class ColorPicker extends React.Component {
           <span
             style={{
               padding: '20px',
-              background: '#00755E',
+              background: '#FBE870',
               margin: '5px',
             }}
             onClick={this.clickHandler}
