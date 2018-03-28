@@ -56,7 +56,7 @@ const About = () => (
     </div>
     <div className="whitespace" />
     <div className="tech">
-      <h4>Powered By</h4>
+      <h4 style={{ margin: '5px' }}>Powered By</h4>
       <div className="images">
         <div className="image">
           <img src="https://cdn.worldvectorlogo.com/logos/react.svg" alt="react" />
