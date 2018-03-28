@@ -56,7 +56,7 @@ class FriendChat extends Component {
   }
 
   async changeSelectedChat(index) {
-    const { socket, currentChatIndex } = this.state;
+    const { socket, currentChatIndex, store } = this.state;
 
     if (currentChatIndex >= 0) {
       const currentChat = document.getElementById(`show-${currentChatIndex}`);
@@ -64,7 +64,7 @@ class FriendChat extends Component {
       currentChat.classList.add('hide');
     }
 
-    await socket.emit('client.selectedChat', index);
+    await socket.emit('client.selectedChat', { index, user: store.user });
     this.setState({ currentChatIndex: index });
   }
 
@@ -88,11 +88,16 @@ class FriendChat extends Component {
     }
   }
 
+  showState = () => {
+    console.log(this.state);
+  }
+
   render() {
-    const { friendsList, socket } = this.state;
+    const { friendsList, socket, store } = this.state;
 
     return (
       <div>
+        <button type="button" onClick={this.showState}>*******</button>
         <div>
           <div id="friendList" className="friendList container">
             <div className="friendList minimize"><div onClick={() => this.closeFriendList()}>X{' '}</div></div>
@@ -112,7 +117,7 @@ class FriendChat extends Component {
         {friendsList.map((friend, index) =>
           (
             <div>
-              <Chat friendName={friend[0]} roomID={friend[1]} index={index} mainSocket={socket} />
+              <Chat user={store.user} friendName={friend[0]} roomID={friend[1]} index={index} mainSocket={socket} />
             </div>
           ))}
       </div>
