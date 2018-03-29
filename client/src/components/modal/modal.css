@@ -19,12 +19,18 @@
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #333;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px 0 20px 0;
   border: 1px solid #888;
   width: 100%; /* Could be more or less, depending on screen size */
   height: 40em;
+}
+
+.modal-header {
+  background: linear-gradient(to bottom, rgba(241,231,103,1) 6%,rgba(241,231,103,1) 36%,rgba(241,231,103,1) 36%,rgba(254,182,69,1) 98%);
+  padding-top: 5px;
+  margin-bottom: 3px;
 }
 
 /* The Close Button */
@@ -45,12 +51,17 @@
 /* Custom column behavior */
 .modal-col {
   overflow: auto;
+  padding-right: 5px;
 }
 
 .modal-header {
   justify-content: normal !important;
   height: 4em;
-  padding-top: 0;
+  padding-top: 2%;
+}
+
+.modal-header h5 {
+  font-size: 1.5rem;
 }
 
 .modal-title {
@@ -62,7 +73,7 @@
 }
 
 .comments-col {
-  padding-right: 0 !important;
+  padding-left: 15px;
 }
 
 /* Custom behavior */
@@ -73,7 +84,8 @@
 
 .rap-text {
   text-align: left;
-  padding: 0 3em 0 3em;
+  padding: 0 1em 0 1em !important;
+  height: 100%;
 }
 
 .img-thumb {
@@ -94,12 +106,28 @@
   width: 100% !important;
   height: 100%;
 }
+
+.modal-body {
+  background-color: white;
+}
+
 .comments-row {
   overflow: auto;
   height: 70%;
+  background-color: white;
 }
 .modal-row:after {
   content: "";
   display: table;
   clear: both;
+}
+
+.form-control {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  height: 80px;
+}
+
+.form-container {
+  width: 100%;
 }
