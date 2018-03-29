@@ -112,6 +112,7 @@ const parse = (text, options) =>
               break;
             }
             console.log('COMPARE:', rip[i], rip[k]);
+            console.log(options);
             const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: options.length }); // eslint-disable-line
             let score;
             for (let j = 0; j < commonSubstrings.length; j += 1) {

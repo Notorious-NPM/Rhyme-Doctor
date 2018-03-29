@@ -22,6 +22,7 @@ app.post('/parse', async (req, res) => {
     options.length = 1;
   }
   console.log('REQUEST:', req.body);
+  console.log(strictness);
   const [coords, colors] = await parse(text, options);
   const colorings = {};
   coords.forEach((coord, index) => {

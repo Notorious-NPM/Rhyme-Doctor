@@ -73,7 +73,7 @@ class Home extends React.Component {
         url: `http://${location}:3001/parse`,
         data: {
           text: lyrics,
-          strictiness: this.state.strictness,
+          strictness: this.state.strictness,
         },
         success(res) {
           const colors = JSON.parse(res);
