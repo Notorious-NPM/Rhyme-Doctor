@@ -7,8 +7,6 @@ import port from './config';
 
 const server = express();
 
-// console.log('hi');
-// console.log(middleware);
 server.use(...middleware); // is this the right syntax?
 server.use('/api', router);
 
