@@ -57,7 +57,7 @@ const parse = (text, strictness) =>
       }
       const wordsByComma = line.split(',');
       let accumLength = 0;
-      wordsByComma.forEach((subline, y) => {
+      wordsByComma.forEach((subline) => {
         let wordsInLine = subline.split(' ');
         wordsInLine = wordsInLine.filter(word => word !== '');
         colors.push(null);
@@ -72,8 +72,8 @@ const parse = (text, strictness) =>
         const normalized = word.replace(/[,.:;'"“”‘’()&?-]/g, ''); // Hypen either at the beginning or end, or escaped, i.e. \-
         APIcalls.push(API(normalized));
       } else {
-        APIcalls.push(new Promise((resolve, reject) => {
-          resolve(word);
+        APIcalls.push(new Promise((resolution) => {
+          resolution(word);
         }));
       }
     });
@@ -96,8 +96,16 @@ const parse = (text, strictness) =>
         let dirtyBrush = false;
         for (let i = 0; i < rip.length - 1; i += 1) {
           let lineBreakCount = 0;
+          if ('message' in rip[i]) {
+            continue; // eslint-disable-line
+          }
           for (let k = i + 1; k < rip.length; k += 1) {
-            if (rip[k
+            if ('message' in rip[k]) {
+              lineBreakCount += 1;
+            }
+            if (lineBreakCount > 1) {
+              break;
+            }
             console.log('COMPARE:', rip[i], rip[k]);
             const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 1 });
             let score;
