@@ -14,11 +14,18 @@ app.use(parser.json());
 app.post('/parse', async (req, res) => {
   const { text, strictness } = req.body;
   const options = {};
+  /**
+   * Strict: 4,2 ; 3,2
+   * Loose: 3,1 ; 1,1
+   */
   if (strictness === 'Strict') {
-    options.weight = 4;
+    options.weight = 3;
     options.length = 2;
   } else if (strictness === 'Loose') {
     options.weight = 3;
+    options.length = 1;
+  } else if (strictness === 'All') {
+    options.weight = 1;
     options.length = 1;
   }
   console.log('REQUEST:', req.body);

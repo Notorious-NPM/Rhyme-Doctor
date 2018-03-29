@@ -89,7 +89,7 @@ const parse = (text, options) =>
             return pronunciation.all;
           } else if (pronunciation && (typeof pronunciation === 'object' && ('noun' in pronunciation || 'verb' in pronunciation))) {
             return (pronunciation.noun ? pronunciation.noun : '').concat(' '.concat(pronunciation.verb ? pronunciation.verb : ''));
-          } else if (pronunciation) {
+          } else if (typeof pronunciation === 'string') {
             return pronunciation;
           } else if ('message' in response) {
             return response;

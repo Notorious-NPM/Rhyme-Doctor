@@ -134,6 +134,13 @@ class Home extends React.Component {
       store.dispatch({
         type: 'changestrictness',
         body: {
+          strictness: 'All',
+        },
+      });
+    } else if (this.state.strictness === 'All') {
+      store.dispatch({
+        type: 'changestrictness',
+        body: {
           strictness: 'Strict',
         },
       });
