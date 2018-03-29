@@ -24,9 +24,6 @@ app.post('/parse', async (req, res) => {
   } else if (strictness === 'Loose') {
     options.weight = 3;
     options.length = 1;
-  } else if (strictness === 'All') {
-    options.weight = 1;
-    options.length = 1;
   }
   console.log('REQUEST:', req.body);
   console.log(strictness);
