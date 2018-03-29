@@ -44,7 +44,7 @@ const API = word =>
       });
   });
 
-const parse = (text, strictness) =>
+const parse = (text, options) =>
   new Promise((resolve) => {
     const lines = text.split('\n');
     const APIcalls = [];
@@ -112,7 +112,7 @@ const parse = (text, strictness) =>
               break;
             }
             console.log('COMPARE:', rip[i], rip[k]);
-            const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 1 });
+            const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: options.length }); // eslint-disable-line
             let score;
             for (let j = 0; j < commonSubstrings.length; j += 1) {
               if (isVowel(commonSubstrings[j])) {
@@ -120,7 +120,7 @@ const parse = (text, strictness) =>
                 break;
               }
             }
-            if (score && score.weight > strictness) {
+            if (score && score.weight > options.weight) {
               if (!colors[i] && !colors[k]) {
                 colors[i] = crayons[crayon];
                 colors[k] = crayons[crayon];

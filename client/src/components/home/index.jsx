@@ -66,7 +66,6 @@ class Home extends React.Component {
   };
 
   hitHandler = () => {
-    const strictness = this.state.strictness === 'Strict' ? 3 : 1; // Other possible value is 'loose'.
     const lyrics = $('#lyrics').val();
     if (lyrics.split('\n').length < 25) {
       $.ajax({
@@ -74,7 +73,7 @@ class Home extends React.Component {
         url: `http://${location}:3001/parse`,
         data: {
           text: lyrics,
-          strictness,
+          strictiness: this.state.strictness,
         },
         success(res) {
           const colors = JSON.parse(res);

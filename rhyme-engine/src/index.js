@@ -13,8 +13,16 @@ app.use(parser.json());
 
 app.post('/parse', async (req, res) => {
   const { text, strictness } = req.body;
+  const options = {};
+  if (strictness === 'Strict') {
+    options.weight = 4;
+    options.length = 2;
+  } else if (strictness === 'Loose') {
+    options.weight = 3;
+    options.length = 1;
+  }
   console.log('REQUEST:', req.body);
-  const [coords, colors] = await parse(text, strictness);
+  const [coords, colors] = await parse(text, options);
   const colorings = {};
   coords.forEach((coord, index) => {
     colorings[coord] = colors[index];
