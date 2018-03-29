@@ -3,7 +3,7 @@ import path from 'path';
 import router from './routes';
 import middleware from './middleware';
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3421;
 const server = express();
 
 // console.log('hi');
