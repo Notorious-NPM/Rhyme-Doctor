@@ -66,7 +66,6 @@ class Home extends React.Component {
   };
 
   hitHandler = () => {
-    const strictness = this.state.strictness === 'Strict' ? 3 : 1; // Other possible value is 'loose'.
     const lyrics = $('#lyrics').val();
     if (lyrics.split('\n').length < 25) {
       $.ajax({
@@ -74,7 +73,7 @@ class Home extends React.Component {
         url: `http://${location}:3001/parse`,
         data: {
           text: lyrics,
-          strictness,
+          strictness: this.state.strictness,
         },
         success(res) {
           const colors = JSON.parse(res);
@@ -159,7 +158,7 @@ class Home extends React.Component {
         <div className="row">
           <div className="col-md-6" style={{ margin: '5px' }}>
             {this.state.session ?
-             'Compose as you normally would. But be aware: commas signify a word to be rhymed with, as does the end of a line.' /* eslint-disable-line */
+             'To indicate an internal rhyme, use a comma, to indicate an end rhyme, start a new line. Please avoid the use of punctuation.' /* eslint-disable-line */
              : 'Perhaps you\'d like to sign up...'}
           </div>
         </div>
