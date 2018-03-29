@@ -5,7 +5,7 @@ import Chat from './Chat';
 import store from '../../redux/store';
 
 import './FriendChat.css';
-import { location } from '../../../../config';
+import location from '../../../../config';
 
 class FriendChat extends Component {
   constructor(props) {

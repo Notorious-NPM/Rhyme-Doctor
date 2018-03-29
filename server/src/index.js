@@ -3,7 +3,7 @@ import path from 'path';
 import router from './routes';
 import middleware from './middleware';
 
-import { port } from '../../config';
+import port from './config';
 
 const server = express();
 
