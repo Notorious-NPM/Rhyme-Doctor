@@ -39,7 +39,7 @@ const Modal = (props) => {
                 />
               </div>
               <div className="row modal-row">
-                <div>
+                <div className="form-container">
                   <div className="form-group">
                     <textarea value={props.myComment} onChange={(e) => props.createComment(e)} className="form-control" rows="3" id="comment" placeholder="Add a comment..." />
                     <button className="btn btn-primary btn-margin" onClick={() => props.postComment()}>Submit</button>
