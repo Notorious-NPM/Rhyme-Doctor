@@ -95,6 +95,7 @@ const parse = (text, strictness) =>
         let dirtyBrush = false;
         for (let i = 0; i < rip.length - 1; i += 1) {
           for (let k = i + 1; k < rip.length; k += 1) {
+            console.log('JUMP', jump[i], jump[k]);
             if (k - i > jump[i]) {
               break;
             }

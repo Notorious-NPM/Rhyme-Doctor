@@ -159,7 +159,7 @@ class Home extends React.Component {
         <div className="row">
           <div className="col-md-6" style={{ margin: '5px' }}>
             {this.state.session ?
-             'Compose as you normally would. But be aware: commas signify a word to be rhymed with, as does the end of a line.' /* eslint-disable-line */
+             'To indicate an internal rhyme, use a comma, to indicate an end rhyme, start a new line. Please avoid the use of punctuation.' /* eslint-disable-line */
              : 'Perhaps you\'d like to sign up...'}
           </div>
         </div>
