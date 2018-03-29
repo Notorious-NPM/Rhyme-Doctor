@@ -57,7 +57,7 @@
 .modal-header {
   justify-content: normal !important;
   height: 4em;
-  padding-top: 0;
+  padding-top: 2%;
 }
 
 .modal-title {
@@ -69,7 +69,7 @@
 }
 
 .comments-col {
-  padding-right: 15 !important;
+  padding-left: 15px;
 }
 
 /* Custom behavior */
@@ -80,7 +80,8 @@
 
 .rap-text {
   text-align: left;
-  padding: 0 3em 0 3em;
+  padding: 0 1em 0 1em;
+  height: 100%;
 }
 
 .img-thumb {
