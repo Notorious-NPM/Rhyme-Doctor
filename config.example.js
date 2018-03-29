@@ -1,4 +1,5 @@
 const location = 'localhost';
+const port = 3000;
 
-export default location;
+export { location, port };
 

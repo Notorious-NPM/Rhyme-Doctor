@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client/dist/socket.io';
 
-import location from '../../../../config';
+import { location } from '../../../../config';
 
 import('./Chat.css');
 

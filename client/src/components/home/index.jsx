@@ -7,7 +7,7 @@ import RhymeForm from '../rhymeSearch/RhymeForm';
 import ColorPicker from '../toolbar/ColorPicker';
 import store from '../../redux/store';
 
-import location from '../../../../config';
+import { location } from '../../../../config';
 import './home.css';
 
 const centerStyle = {
