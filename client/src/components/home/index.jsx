@@ -73,7 +73,7 @@ class Home extends React.Component {
         method: 'POST',
         url: `http://${location}:3001/parse`,
         data: {
-          text: $('#lyrics').val(),
+          text: lyrics,
           strictness,
         },
         success(res) {
