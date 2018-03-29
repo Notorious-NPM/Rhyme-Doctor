@@ -32,6 +32,7 @@ class ColorPicker extends React.Component {
               background: '#C62D42',
               margin: '5px',
             }}
+            className="color-tab"
             onClick={this.clickHandler}
           />
           <span
@@ -40,6 +41,7 @@ class ColorPicker extends React.Component {
               background: '#E77200',
               margin: '5px',
             }}
+            className="color-tab"
             onClick={this.clickHandler}
           />
           <span
@@ -48,6 +50,7 @@ class ColorPicker extends React.Component {
               background: '#4D8C57',
               margin: '5px',
             }}
+            className="color-tab"
             onClick={this.clickHandler}
           />
           <span
@@ -56,6 +59,7 @@ class ColorPicker extends React.Component {
               background: '#2887C8',
               margin: '5px',
             }}
+            className="color-tab"
             onClick={this.clickHandler}
           />
           <span
@@ -64,6 +68,7 @@ class ColorPicker extends React.Component {
               background: '#7070CC',
               margin: '5px',
             }}
+            className="color-tab"
             onClick={this.clickHandler}
           />
           <span
@@ -72,6 +77,7 @@ class ColorPicker extends React.Component {
               background: '#8E3179',
               margin: '5px',
             }}
+            className="color-tab"
             onClick={this.clickHandler}
           />
           <span
@@ -80,6 +86,7 @@ class ColorPicker extends React.Component {
               background: '#93CCEA',
               margin: '5px',
             }}
+            className="color-tab"
             onClick={this.clickHandler}
           />
           <span
@@ -88,6 +95,7 @@ class ColorPicker extends React.Component {
               background: '#FBE870',
               margin: '5px',
             }}
+            className="color-tab"
             onClick={this.clickHandler}
           />
         </div>
