@@ -60,6 +60,10 @@
   padding-top: 2%;
 }
 
+.modal-header h5 {
+  font-size: 1.5rem;
+}
+
 .modal-title {
   padding-top: 10px;
 }
@@ -80,7 +84,7 @@
 
 .rap-text {
   text-align: left;
-  padding: 0 1em 0 1em;
+  padding: 0 1em 0 1em !important;
   height: 100%;
 }
 
@@ -122,4 +126,8 @@
   margin-top: 5px;
   margin-bottom: 0px;
   height: 80px;
+}
+
+.form-container {
+  width: 100%;
 }
