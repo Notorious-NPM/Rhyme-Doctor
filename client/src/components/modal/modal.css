@@ -122,12 +122,12 @@
   clear: both;
 }
 
-.form-control {
+.special-control {
   margin-top: 5px;
   margin-bottom: 0px;
   height: 80px;
 }
 
-.form-container {
+.special-container {
   width: 100%;
 }

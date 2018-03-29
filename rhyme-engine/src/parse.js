@@ -70,7 +70,9 @@ const parse = (text, strictness) =>
       });
     });
     words.forEach((word) => {
-      APIcalls.push(API(word));
+      const normalized = word.replace(/[,.:;'"“”‘’()&?-]/g, ''); // Hypen either at the beginning or end, or escaped, i.e. \-
+      console.log(normalized, word);
+      APIcalls.push(API(normalized));
     });
     Promise.all(APIcalls)
       .then((data) => {

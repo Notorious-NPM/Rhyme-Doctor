@@ -67,31 +67,36 @@ class Home extends React.Component {
 
   hitHandler = () => {
     const strictness = this.state.strictness === 'Strict' ? 3 : 1; // Other possible value is 'loose'.
-    $.ajax({
-      method: 'POST',
-      url: `http://${location}:3001/parse`,
-      data: {
-        text: $('#lyrics').val(),
-        strictness,
-      },
-      success(res) {
-        const colors = JSON.parse(res);
-        const coords = Object.keys(colors);
-        store.dispatch({ type: 'wipeboard' });
-        coords.forEach((coord) => {
-          store.dispatch({
-            type: 'straighthighlight',
-            body: {
-              coord,
-              color: colors[coord],
-            },
+    const lyrics = $('#lyrics').val();
+    if (lyrics.split('\n').length < 25) {
+      $.ajax({
+        method: 'POST',
+        url: `http://${location}:3001/parse`,
+        data: {
+          text: lyrics,
+          strictness,
+        },
+        success(res) {
+          const colors = JSON.parse(res);
+          const coords = Object.keys(colors);
+          store.dispatch({ type: 'wipeboard' });
+          coords.forEach((coord) => {
+            store.dispatch({
+              type: 'straighthighlight',
+              body: {
+                coord,
+                color: colors[coord],
+              },
+            });
           });
-        });
-      },
-      error(res) {
-        alert(res); // eslint-disable-line
-      },
-    });
+        },
+        error(res) {
+          alert(res); // eslint-disable-line
+        },
+      });
+    } else {
+      alert('Too many words! Consider shortening your submission.'); // eslint-disable-line
+    }
   };
 
   wipeHandler = () => {

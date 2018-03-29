@@ -74,6 +74,22 @@ class ColorPicker extends React.Component {
             }}
             onClick={this.clickHandler}
           />
+          <span
+            style={{
+              padding: '20px',
+              background: '#93CCEA',
+              margin: '5px',
+            }}
+            onClick={this.clickHandler}
+          />
+          <span
+            style={{
+              padding: '20px',
+              background: '#FBE870',
+              margin: '5px',
+            }}
+            onClick={this.clickHandler}
+          />
         </div>
       </label>
     );

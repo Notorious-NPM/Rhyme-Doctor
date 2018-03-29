@@ -97,7 +97,7 @@ class FriendChat extends Component {
 
     return (
       <div>
-        <button type="button" onClick={this.showState}>*******</button>
+        {/* <button type="button" onClick={this.showState}>*******</button> */}
         <div>
           <div id="friendList" className="friendList container">
             <div className="friendList minimize"><div onClick={() => this.closeFriendList()}>X{' '}</div></div>

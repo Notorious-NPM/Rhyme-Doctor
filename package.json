@@ -28,6 +28,7 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "common-substrings": "^1.0.2",
+    "compression": "^1.7.2",
     "cors": "^2.8.4",
     "css-loader": "^0.28.10",
     "express": "^4.16.3",

@@ -6,16 +6,16 @@ const About = () => (
   <div className="aboutTop">
     <div className="whitespace" />
     <div className="goal">
-      Welcome, and thank you for visiting our application!  We at Notorious NPM developed Rhyme
+      Welcome, and thank you for visiting our application! We at Notorious NPM developed Rhyme
       Doctor as a tool to assist people, amateur and professional alike, to create the sickest
-      lyrics and be able to share it with the world.  Simply type or paste your lyrics,
+      lyrics and be able to share it with the world. Simply type or paste your lyrics,
       click {'"Hit API"'}, and see the wonderful rhyme structure display before you.
     </div>
     <div className="whitespace" />
     <div className="challenges">
       <h6>Technical challenges/achievements</h6>
       We are proud to say that nothing like this has been realized before, especially not to the
-      extent where people can visualize the rhyme schemes of their lyrics.  Our experienced staff
+      extent where people can visualize the rhyme schemes of their lyrics. Our experienced staff
       here at Notorious NPM spent countless hours to deliver the elaborate architecture and
       algorithm of Rhyme Doctor that delivers rhythmic visualization at breakneck speeds.
       We hope that this tool will be of use to you and that you will enjoy your visit here!
@@ -25,28 +25,28 @@ const About = () => (
     <div className="contributors top">
       <div className="contributors container">
         <div className="contributor">
-          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato"/>
+          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato" />
           <br />
           Senior Software Engineer
           <br />
           Eva Laskowski
         </div>
         <div className="contributor">
-          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato"/>
+          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato" />
           <br />
           Senior Software Engineer
           <br />
           James Yen
         </div>
         <div className="contributor">
-          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato"/>
+          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato" />
           <br />
           Senior Software Engineer
           <br />
           Kin Chan
         </div>
         <div className="contributor">
-          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato"/>
+          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato" />
           <br />
           Senior Software Engineer
           <br />
@@ -56,7 +56,7 @@ const About = () => (
     </div>
     <div className="whitespace" />
     <div className="tech">
-      <h4>Powered By</h4>
+      <h4 style={{ margin: '5px' }}>Powered By</h4>
       <div className="images">
         <div className="image">
           <img src="https://cdn.worldvectorlogo.com/logos/react.svg" alt="react" />
@@ -103,7 +103,7 @@ const About = () => (
       </div>
     </div>
     <div>
-      Made at <img className="hackreactor" src="https://media.glassdoor.com/sqll/843406/hack-reactor-squarelogo-1427844676793.png" alt="hackreactor" />
+      Made at <img className="hackreactor" src="https://pbs.twimg.com/profile_images/793537459451596800/k6pD59ev_400x400.jpg" alt="hackreactor" />
     </div>
   </div>
 );

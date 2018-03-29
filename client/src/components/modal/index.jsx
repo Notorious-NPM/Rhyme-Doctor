@@ -39,9 +39,9 @@ const Modal = (props) => {
                 />
               </div>
               <div className="row modal-row">
-                <div className="form-container">
+                <div className="form-container special-container">
                   <div className="form-group">
-                    <textarea value={props.myComment} onChange={(e) => props.createComment(e)} className="form-control" rows="3" id="comment" placeholder="Add a comment..." />
+                    <textarea value={props.myComment} onChange={(e) => props.createComment(e)} className="form-control special-control" rows="3" id="comment" placeholder="Add a comment..." />
                     <button className="btn btn-primary btn-margin" onClick={() => props.postComment()}>Submit</button>
                     <button type="button" className="btn btn-secondary btn-margin" data-dismiss="modal" onClick={() => props.triggerModal()}>Close</button>
                   </div>
@@ -49,8 +49,6 @@ const Modal = (props) => {
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>

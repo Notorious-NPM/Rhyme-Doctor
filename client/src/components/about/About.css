@@ -104,6 +104,8 @@
 }
 
 .hackreactor {
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  border-radius: 10px;
 }
