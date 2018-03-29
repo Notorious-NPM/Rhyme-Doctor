@@ -72,17 +72,19 @@ class RapPostEntry extends React.Component {
   }
 
   postComment = async () => {
-    const status = await axios.post(
-      '/api/content/comment',
-      {
-        text: this.state.myComment,
-        username: this.props.rapPost.username,
-        postId: this.props.rapPost.id,
-      },
-    );
-    console.log(status.statusText);
-    this.setState({ myComment: '' });
-    this.getComments(false);
+    if (this.state.myComment) {
+      const status = await axios.post(
+        '/api/content/comment',
+        {
+          text: this.state.myComment,
+          username: this.props.rapPost.username,
+          postId: this.props.rapPost.id,
+        },
+      );
+      console.log(status.statusText);
+      this.setState({ myComment: '' });
+      this.getComments(false);
+    }
   }
 
   activateAlert = (status, message) => {
@@ -132,7 +134,7 @@ class RapPostEntry extends React.Component {
             <button className="badge badge-warning" onClick={() => this.reportPost()}>Report Post</button>
             <h5 className="card-title">
               By{' '}
-              <Link to={{ pathname: '/profile', state: { username }}}>{username}</Link> {/* eslint-disable-line */}
+              <Link to={{ pathname: '/profile', state: { username } }}>{username}</Link> {/* eslint-disable-line */}
             </h5>
             <div className="hover-card">
               <div className="rapText" onClick={() => this.triggerModal()}>
