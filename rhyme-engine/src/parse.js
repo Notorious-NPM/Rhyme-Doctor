@@ -54,6 +54,9 @@ const parse = (text, strictness) =>
     const words = [];
     const jump = [];
     lines.forEach((line, x) => {
+      while (/[^a-zA-Z]/.test(line.substring(line.length - 1))) {
+        line = line.substring(0, line.length - 1); // eslint-disable-line
+      }
       const wordsByComma = line.split(',');
       let accumLength = 0;
       jump[x] = 2;
