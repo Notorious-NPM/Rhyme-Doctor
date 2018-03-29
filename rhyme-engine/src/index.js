@@ -13,7 +13,7 @@ app.use(parser.json());
 
 app.post('/parse', async (req, res) => {
   const { text, strictness } = req.body;
-  console.log(req.body);
+  console.log('REQUEST:', req.body);
   const [coords, colors] = await parse(text, strictness);
   const colorings = {};
   coords.forEach((coord, index) => {

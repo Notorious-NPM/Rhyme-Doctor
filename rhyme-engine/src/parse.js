@@ -27,7 +27,7 @@ const crayons = [
 const isVowel = ({ name }) => {
   for (let i = 0; i < IPA_VOWELS.length; i += 1) {
     const [score] = substrings.weigh([name, IPA_VOWELS[i]], { minLength: 1 });
-    if (score && score.weight > 1) { // Toy with this... 3 is too strict?
+    if (score && score.weight > 1) {
       return true;
     }
   }
@@ -40,7 +40,6 @@ const API = word =>
       .header('X-Mashape-Key', ALTERNATE_KEY)
       .header('X-Mashape-Host', 'wordsapiv1.p.mashape.com')
       .end((response) => {
-        // console.log(word, response.body);
         resolve(response.body);
       });
   });
@@ -52,14 +51,12 @@ const parse = (text, strictness) =>
     const colors = [];
     const coords = [];
     const words = [];
-    const jump = [];
     lines.forEach((line, x) => {
       while (/[^a-zA-Z]/.test(line.substring(line.length - 1))) {
         line = line.substring(0, line.length - 1); // eslint-disable-line
       }
       const wordsByComma = line.split(',');
       let accumLength = 0;
-      jump[x] = 2;
       wordsByComma.forEach((subline, y) => {
         let wordsInLine = subline.split(' ');
         wordsInLine = wordsInLine.filter(word => word !== '');
@@ -67,20 +64,22 @@ const parse = (text, strictness) =>
         coords.push(`${x}, ${accumLength + (wordsInLine.length - 1)}`);
         accumLength += wordsInLine.length;
         words.push(wordsInLine[wordsInLine.length - 1]);
-        if (y !== wordsByComma.length - 1) {
-          jump[x] += 1;
-        }
       });
+      words.push({ x, message: '<LINEBREAK>' });
     });
     words.forEach((word) => {
-      const normalized = word.replace(/[,.:;'"“”‘’()&?-]/g, ''); // Hypen either at the beginning or end, or escaped, i.e. \-
-      console.log(normalized, word);
-      APIcalls.push(API(normalized));
+      if (typeof word === 'string') {
+        const normalized = word.replace(/[,.:;'"“”‘’()&?-]/g, ''); // Hypen either at the beginning or end, or escaped, i.e. \-
+        APIcalls.push(API(normalized));
+      } else {
+        APIcalls.push(new Promise((resolve, reject) => {
+          resolve(word);
+        }));
+      }
     });
     Promise.all(APIcalls)
       .then((data) => {
         const rip = data.map((response) => {
-          console.log('xx -------->', response);
           const { pronunciation } = response;
           if (pronunciation && typeof pronunciation === 'object' && 'all' in pronunciation) {
             return pronunciation.all;
@@ -88,18 +87,18 @@ const parse = (text, strictness) =>
             return (pronunciation.noun ? pronunciation.noun : '').concat(' '.concat(pronunciation.verb ? pronunciation.verb : ''));
           } else if (pronunciation) {
             return pronunciation;
+          } else if ('message' in response) {
+            return response;
           }
           return fillString;
         });
         let crayon = 0;
         let dirtyBrush = false;
         for (let i = 0; i < rip.length - 1; i += 1) {
+          let lineBreakCount = 0;
           for (let k = i + 1; k < rip.length; k += 1) {
-            console.log('JUMP', jump[i], jump[k]);
-            if (k - i > jump[i]) {
-              break;
-            }
-            console.log('------>', rip[i], rip[k]);
+            if (rip[k
+            console.log('COMPARE:', rip[i], rip[k]);
             const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: 1 });
             let score;
             for (let j = 0; j < commonSubstrings.length; j += 1) {
@@ -108,24 +107,18 @@ const parse = (text, strictness) =>
                 break;
               }
             }
-            if (score && score.weight > strictness) { // Revisit later, either 1 or 3.
-              /* const endRhyme = rip[i].indexOf(score.name) === rip[i].length - score.name.length
-                               && rip[k].indexOf(score.name) === rip[k].length - score.name.length; */ // eslint-disable-line
-              // if (endRhyme) {
-                /* eslint-disable */ // eslint-disable-line
-                if (!colors[i] && !colors[k]) {
-                  colors[i] = crayons[crayon];
-                  colors[k] = crayons[crayon];
-                  dirtyBrush = true;
-                } else if (!colors[k]) {
-                  colors[k] = colors[i];
-                  dirtyBrush = true;
-                } else if (!colors[i]) {
-                  colors[i] = colors[k];
-                  dirtyBrush = true;
-                }
-                /* eslint-enable */
-              // }
+            if (score && score.weight > strictness) {
+              if (!colors[i] && !colors[k]) {
+                colors[i] = crayons[crayon];
+                colors[k] = crayons[crayon];
+                dirtyBrush = true;
+              } else if (!colors[k]) {
+                colors[k] = colors[i];
+                dirtyBrush = true;
+              } else if (!colors[i]) {
+                colors[i] = colors[k];
+                dirtyBrush = true;
+              }
             }
           }
           if (dirtyBrush) {
@@ -133,8 +126,6 @@ const parse = (text, strictness) =>
             crayon += 1;
           }
         }
-        console.log(coords);
-        console.log(colors);
         resolve([coords, colors]);
       });
   });
