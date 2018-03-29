@@ -70,7 +70,8 @@ const parse = (text, strictness) =>
       });
     });
     words.forEach((word) => {
-      APIcalls.push(API(word));
+      const normalized = word.replace(/,.:;'"()&-?/g, '');
+      APIcalls.push(API(normalized));
     });
     Promise.all(APIcalls)
       .then((data) => {
