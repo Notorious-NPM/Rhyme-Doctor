@@ -65,9 +65,12 @@ const parse = (text, strictness) =>
         accumLength += wordsInLine.length;
         words.push(wordsInLine[wordsInLine.length - 1]);
       });
+      colors.push(null);
+      coords.push('derp'); // Not a colorable coordinate. 'words' must be kept in step with 'colors' and 'coords'.
       words.push({ x, message: '<LINEBREAK>' });
     });
     words.forEach((word) => {
+      console.log(word);
       if (typeof word === 'string') {
         const normalized = word.replace(/[,.:;'"“”‘’()&?-]/g, ''); // Hypen either at the beginning or end, or escaped, i.e. \-
         APIcalls.push(API(normalized));
@@ -81,6 +84,7 @@ const parse = (text, strictness) =>
       .then((data) => {
         const rip = data.map((response) => {
           const { pronunciation } = response;
+          console.log(response);
           if (pronunciation && typeof pronunciation === 'object' && 'all' in pronunciation) {
             return pronunciation.all;
           } else if (pronunciation && (typeof pronunciation === 'object' && ('noun' in pronunciation || 'verb' in pronunciation))) {
@@ -96,14 +100,15 @@ const parse = (text, strictness) =>
         let dirtyBrush = false;
         for (let i = 0; i < rip.length - 1; i += 1) {
           let lineBreakCount = 0;
-          if ('message' in rip[i]) {
+          if (typeof rip[i] === 'object' && 'message' in rip[i]) {
             continue; // eslint-disable-line
           }
           for (let k = i + 1; k < rip.length; k += 1) {
-            if ('message' in rip[k]) {
+            if (typeof rip[k] === 'object' && 'message' in rip[k]) {
               lineBreakCount += 1;
+              continue; // eslint-disable-line
             }
-            if (lineBreakCount > 1) {
+            if (lineBreakCount > 2) {
               break;
             }
             console.log('COMPARE:', rip[i], rip[k]);
