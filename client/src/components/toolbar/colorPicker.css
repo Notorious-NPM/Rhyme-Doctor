@@ -4,5 +4,8 @@
 
 .color-tab {
   cursor: pointer;
-  
+}
+
+.active-tab {
+  border-style: solid;
 }
