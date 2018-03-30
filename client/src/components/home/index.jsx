@@ -161,6 +161,10 @@ class Home extends React.Component {
              'To indicate an internal rhyme, use a comma, to indicate an end rhyme, start a new line. Please avoid the use of punctuation.' /* eslint-disable-line */
              : 'Perhaps you\'d like to sign up...'}
           </div>
+          {this.state.session &&
+            <div className="col-md-6">
+              <ColorPicker />
+            </div>}
         </div>
         {this.state.session &&
         <div className="row">
@@ -172,9 +176,6 @@ class Home extends React.Component {
           </div>
           <div className="col-md-2">
             <span />
-          </div>
-          <div className="col-md-6">
-            <ColorPicker />
           </div>
         </div>}
         <hr />
