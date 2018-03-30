@@ -173,8 +173,8 @@ class Home extends React.Component {
           <div className="col-md-2">
             <span />
           </div>
-          <div className="col-md-4">
-            {'Color Pad: '}<ColorPicker />
+          <div className="col-md-6">
+            <ColorPicker />
           </div>
         </div>}
         <hr />
