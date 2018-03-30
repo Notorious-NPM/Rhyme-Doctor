@@ -7,12 +7,10 @@ import port from './config';
 
 const server = express();
 
-server.use(...middleware); // is this the right syntax?
+server.use(...middleware);
 server.use('/api', router);
 
 server.use(express.static(path.join(__dirname, '../../client/dist')));
-server.use(express.static(path.join(__dirname, '../../client/dropzone')));
-
 server.use('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));
 });
