@@ -70,7 +70,6 @@ const parse = (text, options) =>
       words.push({ x, message: '<LINEBREAK>' });
     });
     words.forEach((word) => {
-      console.log(word);
       if (typeof word === 'string') {
         const normalized = word.replace(/[,.:;'"“”‘’()&?-]/g, ''); // Hypen either at the beginning or end, or escaped, i.e. \-
         APIcalls.push(API(normalized));
@@ -84,12 +83,11 @@ const parse = (text, options) =>
       .then((data) => {
         const rip = data.map((response) => {
           const { pronunciation } = response;
-          console.log(response);
           if (pronunciation && typeof pronunciation === 'object' && 'all' in pronunciation) {
             return pronunciation.all;
           } else if (pronunciation && (typeof pronunciation === 'object' && ('noun' in pronunciation || 'verb' in pronunciation))) {
             return (pronunciation.noun ? pronunciation.noun : '').concat(' '.concat(pronunciation.verb ? pronunciation.verb : ''));
-          } else if (pronunciation) {
+          } else if (typeof pronunciation === 'string') {
             return pronunciation;
           } else if ('message' in response) {
             return response;
@@ -112,7 +110,6 @@ const parse = (text, options) =>
               break;
             }
             console.log('COMPARE:', rip[i], rip[k]);
-            console.log(options);
             const commonSubstrings = substrings.weigh([rip[i], rip[k]], { minLength: options.length }); // eslint-disable-line
             let score;
             for (let j = 0; j < commonSubstrings.length; j += 1) {
