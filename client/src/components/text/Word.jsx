@@ -61,6 +61,7 @@ class Word extends React.Component {
         style={style}
         onClick={this.color}
         onKeyDown={this.color}
+        className="word"
       >
         <b>{` ${this.props.word} `}</b>
       </span>

@@ -1,3 +1,7 @@
 .paragraph {
   text-align: center
 }
+
+.word {
+  cursor: pointer;
+}

@@ -1,3 +1,11 @@
 .colorpicker-padding {
   padding: 2em 0 2em 0;
 }
+
+.color-tab {
+  cursor: pointer;
+}
+
+.active-tab {
+  border-style: solid;
+}
