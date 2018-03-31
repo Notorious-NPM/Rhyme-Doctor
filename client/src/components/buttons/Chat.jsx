@@ -26,7 +26,7 @@ class Chat extends Component {
       }
     });
 
-    this.socket = await io(`http://${location}:3444`, {
+    this.socket = await io(`https://${location}:3444`, {
       query: {
         roomId: this.props.roomID,
       },

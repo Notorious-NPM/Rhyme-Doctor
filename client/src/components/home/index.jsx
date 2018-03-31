@@ -70,7 +70,7 @@ class Home extends React.Component {
     if (lyrics.split('\n').length < 25) {
       $.ajax({
         method: 'POST',
-        url: `http://${location}:3001/parse`,
+        url: `https://${location}:3001/parse`,
         data: {
           text: lyrics,
           strictness: this.state.strictness,

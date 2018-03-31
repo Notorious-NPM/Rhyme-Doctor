@@ -1,10 +1,19 @@
 import express from 'express';
 import * as parser from 'body-parser';
 import cors from 'cors';
+import path from 'path';
+
+import https from 'https';
+import fs from 'fs';
+
+const options = {
+  key: fs.readFileSync(path.join(__dirname, '../../ssl-server/encryption/rhymedoctor.key')),
+  cert: fs.readFileSync(path.join(__dirname, '../../ssl-server/encryption/rhymedoctor.crt')),
+};
 
 import parse from './parse';
 
-const port = 3001;
+const port = 3002;
 
 const app = express();
 app.use(cors());
@@ -37,3 +46,6 @@ app.post('/parse', async (req, res) => {
 app.listen(port, () => {
   console.log('Rhyme Engine is listening on port:', port);
 });
+
+https.createServer(options, app).listen(3001);
+
