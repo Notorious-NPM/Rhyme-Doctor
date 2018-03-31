@@ -10,7 +10,9 @@ const server = express();
 server.use(...middleware);
 server.use('/api', router);
 
+server.use('/.well-known/pki-validation', express.static(path.join(__dirname, '../../client/ssl')));
 server.use(express.static(path.join(__dirname, '../../client/dist')));
+
 server.use('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));
 });
