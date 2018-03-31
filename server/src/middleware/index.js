@@ -2,7 +2,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const compression = require('compression');
-const forceSSL = require('express-force-ssl');
+// const forceSSL = require('express-force-ssl');
 
 const session = require('express-session');
 const passport = require('passport');
