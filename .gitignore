@@ -17,3 +17,7 @@ config.js
 
 # VSCode
 .vscode
+
+# SSL
+rhymedoctor.key
+rhymedoctor.crt
