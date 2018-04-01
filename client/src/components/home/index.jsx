@@ -75,7 +75,7 @@ class Home extends React.Component {
     } else {
       this.setState({ lastHit: new Date() });
     }
-    if (lyrics.split('\n').length < 25) {
+    if (lyrics.split('\n').length <= 16) {
       $.ajax({
         method: 'POST',
         url: `https://${location}:3001/parse`,
