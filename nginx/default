@@ -13,6 +13,10 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 
+    if ($scheme = http) {
+        return 301 https://$server_name$request_uri;
+    }
+
     # ssl on;
     ssl_certificate /etc/nginx/ssl/nginx.crt;
     ssl_certificate_key /etc/nginx/ssl/nginx.key;
