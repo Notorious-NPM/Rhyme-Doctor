@@ -1,6 +1,6 @@
 server {
     listen 80;
-    listen 443;
+    listen 443 default ssl;
 
     server_name rhymedoctor.fun;
 
@@ -13,7 +13,7 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 
-    ssl on;
+    # ssl on;
     ssl_certificate /etc/nginx/ssl/nginx.crt;
     ssl_certificate_key /etc/nginx/ssl/nginx.key;
 }
