@@ -72,6 +72,8 @@ class Home extends React.Component {
     } else if ((new Date()) - this.state.lastHit < 10000) {
       alert('Only one API request every 10 seconds.');
       return;
+    } else {
+      this.setState({ lastHit: new Date() });
     }
     if (lyrics.split('\n').length < 25) {
       $.ajax({
