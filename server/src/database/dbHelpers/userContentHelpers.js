@@ -1,5 +1,6 @@
 import rapPost from '../models/rap_post';
 import User from '../models/user';
+import sequelize from '../';
 
 // Testing
 
@@ -22,18 +23,37 @@ const getUserDataHelper = ({ id, name }) => {
 };
 
 const getUserPostsHelper = ({ id, name }) => {
+  console.log('IS THIS WORKING?', id, name);
   if (id) {
-    return rapPost.findAll({
-      where: {
-        user_id: id,
-      },
-    });
+    return sequelize.query(
+      `select rap_posts.id,
+              username, text,
+              rap_posts.like_count,
+              report_count,
+              rap_posts.created_at,
+              rap_posts.updated_at,
+              user_id,
+              image
+      from rap_posts join users on users.id = user_id
+      where user_id = ${id}
+      order by like_count asc;`,
+      { type: sequelize.QueryTypes.SELECT },
+    );
   } else if (name) {
-    return rapPost.findAll({
-      where: {
-        username: name,
-      },
-    });
+    return sequelize.query(
+      `select rap_posts.id,
+              username, text,
+              rap_posts.like_count,
+              report_count,
+              rap_posts.created_at,
+              rap_posts.updated_at,
+              user_id,
+              image
+      from rap_posts join users on users.id = user_id
+      where username = "${name}"
+      order by like_count asc;`,
+      { type: sequelize.QueryTypes.SELECT },
+    );
   }
 };
 

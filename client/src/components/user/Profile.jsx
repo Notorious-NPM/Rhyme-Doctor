@@ -65,6 +65,7 @@ class Profile extends React.Component {
       this.setState({
         userPosts: userPosts.data,
       });
+      console.log(userPosts.data);
     } catch (err) {
       console.log('Failed to get user posts');
     }

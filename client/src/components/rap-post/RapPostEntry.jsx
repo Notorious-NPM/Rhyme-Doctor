@@ -41,13 +41,8 @@ class RapPostEntry extends React.Component {
         '/api/vote/upvote',
         { rapPostId: this.props.rapPost.id },
       );
-      this.activateAlert('success', 'You liked this rap post!');
-      if (this.props.onProfile) {
-        this.props.getUserPosts();
-        this.props.getUserData();
-      } else {
-        this.setState({ likes: this.state.likes + 1 });
-      }
+      this.activateAlert('success', 'You liked this rap post!'); 
+      this.setState({ likes: this.state.likes + 1 });
     } catch (err) {
       console.log('Post was already liked');
       this.activateAlert('warning', 'Rap post was already liked');
