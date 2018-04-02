@@ -2,7 +2,7 @@ server {
     listen 80;
     listen 443 default ssl;
 
-    server_name rhymedoctor.fun;
+    server_name .rhymedoctor.fun;
 
     location / {
         proxy_pass https://localhost:8080;
