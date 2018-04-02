@@ -70,7 +70,7 @@ class Home extends React.Component {
     if (!this.state.lastHit) {
       this.setState({ lastHit: new Date() });
     } else if ((new Date()) - this.state.lastHit < 10000) {
-      alert('Only one API request every 10 seconds.');
+      alert('Only one API request every 10 seconds.'); // eslint-disable-line
       return;
     } else {
       this.setState({ lastHit: new Date() });
