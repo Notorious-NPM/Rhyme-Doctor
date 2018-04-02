@@ -67,10 +67,18 @@ class Home extends React.Component {
 
   hitHandler = () => {
     const lyrics = $('#lyrics').val();
-    if (lyrics.split('\n').length < 25) {
+    if (!this.state.lastHit) {
+      this.setState({ lastHit: new Date() });
+    } else if ((new Date()) - this.state.lastHit < 10000) {
+      alert('Only one API request every 10 seconds.');
+      return;
+    } else {
+      this.setState({ lastHit: new Date() });
+    }
+    if (lyrics.split('\n').length <= 16) {
       $.ajax({
         method: 'POST',
-        url: `http://${location}:3001/parse`,
+        url: `https://${location}:3001/parse`,
         data: {
           text: lyrics,
           strictness: this.state.strictness,

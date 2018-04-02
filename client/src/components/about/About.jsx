@@ -25,28 +25,28 @@ const About = () => (
     <div className="contributors top">
       <div className="contributors container">
         <div className="contributor">
-          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato" />
+          <img src="https://rhymedoctor.fun/elaskowski.jpeg" height="160" width="160" alt="potato" />
           <br />
           Senior Software Engineer
           <br />
           Eva Laskowski
         </div>
         <div className="contributor">
-          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato" />
+          <img src="https://rhymedoctor.fun/jameshyen.jpeg" height="160" width="160" alt="potato" />
           <br />
           Senior Software Engineer
           <br />
           James Yen
         </div>
         <div className="contributor">
-          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato" />
+          <img src="https://rhymedoctor.fun/kkchan.png" height="160" width="160" alt="potato" />
           <br />
           Senior Software Engineer
           <br />
           Kin Chan
         </div>
         <div className="contributor">
-          <img src="https://thumbs.dreamstime.com/t/super-cool-potato-character-cartoon-style-vector-illustration-95541644.jpg" alt="potato" />
+          <img src="https://rhymedoctor.fun/shong.jpeg" height="160" width="160" alt="potato" />
           <br />
           Senior Software Engineer
           <br />

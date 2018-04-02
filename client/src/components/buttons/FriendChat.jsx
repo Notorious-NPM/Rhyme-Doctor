@@ -33,7 +33,7 @@ class FriendChat extends Component {
       })
       .catch(err => console.log('FriendChat componentMount error: ', err));
 
-    this.socket = io(`http://${location}:3444`, {
+    this.socket = io(`https://${location}:3444`, {
       query: {
         roomId: 'lobby',
       },
