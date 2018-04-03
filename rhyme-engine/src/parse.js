@@ -72,11 +72,9 @@ const parse = (text, options) =>
     words.forEach((word) => {
       if (typeof word === 'string') {
         const normalized = word.replace(/[,.:;'"“”‘’()&?-]/g, ''); // Hyphen either at the beginning or end, or escaped, i.e. \-
-        // console.log(normalized);
         APIcalls.push(API(normalized));
       } else {
         APIcalls.push(new Promise((resolution) => {
-          // console.log(word);
           resolution(word);
         }));
       }
