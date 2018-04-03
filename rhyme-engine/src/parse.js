@@ -67,11 +67,11 @@ const parse = (text, options) =>
       });
       colors.push(null);
       coords.push('derp'); // Not a colorable coordinate. 'words' must be kept in step with 'colors' and 'coords'.
-      words.push({ x, message: '<LINEBREAK>' });
+      words.push({ x, message: '<LINEBREAK>', pronunciation: false });
     });
     words.forEach((word) => {
       if (typeof word === 'string') {
-        const normalized = word.replace(/[,.:;'"“”‘’()&?-]/g, ''); // Hypen either at the beginning or end, or escaped, i.e. \-
+        const normalized = word.replace(/[,.:;'"“”‘’()&?-]/g, ''); // Hyphen either at the beginning or end, or escaped, i.e. \-
         APIcalls.push(API(normalized));
       } else {
         APIcalls.push(new Promise((resolution) => {
@@ -82,17 +82,21 @@ const parse = (text, options) =>
     Promise.all(APIcalls)
       .then((data) => {
         const rip = data.map((response) => {
-          const { pronunciation } = response;
-          if (pronunciation && typeof pronunciation === 'object' && 'all' in pronunciation) {
-            return pronunciation.all;
-          } else if (pronunciation && (typeof pronunciation === 'object' && ('noun' in pronunciation || 'verb' in pronunciation))) {
-            return (pronunciation.noun ? pronunciation.noun : '').concat(' '.concat(pronunciation.verb ? pronunciation.verb : ''));
-          } else if (typeof pronunciation === 'string') {
-            return pronunciation;
-          } else if ('message' in response) {
-            return response;
+          try {
+            const { pronunciation } = response;
+            if (pronunciation && typeof pronunciation === 'object' && 'all' in pronunciation) {
+              return pronunciation.all;
+            } else if (pronunciation && (typeof pronunciation === 'object' && ('noun' in pronunciation || 'verb' in pronunciation))) {
+              return (pronunciation.noun ? pronunciation.noun : '').concat(' '.concat(pronunciation.verb ? pronunciation.verb : ''));
+            } else if (typeof pronunciation === 'string') {
+              return pronunciation;
+            } else if ('message' in response) {
+              return response;
+            }
+            return fillString;
+          } catch (error) {
+            return fillString;
           }
-          return fillString;
         });
         let crayon = 0;
         let dirtyBrush = false;

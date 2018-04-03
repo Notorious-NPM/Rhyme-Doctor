@@ -23,16 +23,29 @@ const changeHandler = (e) => {
   // localStorage.setItem(user, JSON.stringify(browser));
 };
 
-const Textarea = () => (
-  <textarea
-    className="col form-control"
-    id="lyrics"
-    style={style}
-    onChange={changeHandler}
-    placeholder="Lyrics..."
-    cols="30"
-    rows="5"
-  />
-);
+class Textarea extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = store.getState();
+    store.subscribe(() => {
+      this.setState(store.getState());
+    });
+  }
+
+  render() {
+    return (
+      <textarea
+        className="col form-control"
+        id="lyrics"
+        style={style}
+        onChange={changeHandler}
+        placeholder="Lyrics..."
+        value={this.state.text}
+        cols="30"
+        rows="5"
+      />
+    );
+  }
+}
 
 export default Textarea;

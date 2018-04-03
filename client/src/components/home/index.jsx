@@ -70,7 +70,7 @@ class Home extends React.Component {
     if (!this.state.lastHit) {
       this.setState({ lastHit: new Date() });
     } else if ((new Date()) - this.state.lastHit < 10000) {
-      alert('Only one API request every 10 seconds.');
+      alert('Only one API request every 10 seconds.'); // eslint-disable-line
       return;
     } else {
       this.setState({ lastHit: new Date() });
@@ -166,7 +166,7 @@ class Home extends React.Component {
         <div className="row">
           <div className="col-md-6" style={{ margin: '5px' }}>
             {this.state.session ?
-             'To indicate an internal rhyme, use a comma, to indicate an end rhyme, start a new line. Please avoid the use of punctuation.' /* eslint-disable-line */
+             'To indicate an internal rhyme, use a comma, to indicate an end rhyme, start a new line. Please avoid the use of unnecessary punctuation or spacing.' /* eslint-disable-line */
              : 'Perhaps you\'d like to sign up...'}
           </div>
         </div>
