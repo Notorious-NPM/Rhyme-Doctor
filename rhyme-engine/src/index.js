@@ -31,7 +31,7 @@ app.post('/parse', async (req, res) => {
     options.weight = 3;
     options.length = 2;
   } else if (strictness === 'Loose') {
-    options.weight = 3;
+    options.weight = 1;
     options.length = 1;
   }
   console.log('REQUEST:', req.body);
