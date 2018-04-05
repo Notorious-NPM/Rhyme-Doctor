@@ -30,8 +30,6 @@ const browserSave = (state) => {
 };
 
 const reducer = (state = Object.assign({}, DEFAULT), action) => {
-  // console.log(JSON.parse(localStorage.getItem('anonymous')));
-  // console.log(state.user);
   switch (action.type) {
     case 'wipeboard':
       state = {

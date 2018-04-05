@@ -23,7 +23,6 @@ const getUserDataHelper = ({ id, name }) => {
 };
 
 const getUserPostsHelper = ({ id, name }) => {
-  console.log('IS THIS WORKING?', id, name);
   if (id) {
     return sequelize.query(
       `select rap_posts.id,

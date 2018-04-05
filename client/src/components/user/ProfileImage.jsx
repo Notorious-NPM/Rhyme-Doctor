@@ -58,7 +58,6 @@ class ProfileImage extends React.Component {
       this.setState({
         showChangePic: false,
       });
-      console.log('done', this.state);
     });
   }
 
