@@ -9,18 +9,12 @@ const style = {
 };
 
 const changeHandler = (e) => {
-  // console.log(e.target.value);
   store.dispatch({
     type: 'changetext',
     body: {
       text: e.target.value,
     },
   });
-  // const browser = store.getState();
-  // const { user } = browser;
-  // delete browser.session;
-  // delete browser.user;
-  // localStorage.setItem(user, JSON.stringify(browser));
 };
 
 class Textarea extends React.Component {

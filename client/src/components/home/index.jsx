@@ -27,7 +27,6 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.state = store.getState();
-    console.log(this.state);
     store.dispatch({
       type: 'browserrestore',
       body: {
@@ -36,7 +35,6 @@ class Home extends React.Component {
     });
     store.subscribe(() => {
       this.setState(store.getState());
-      // console.log(this.state);
     });
   }
 
@@ -51,8 +49,7 @@ class Home extends React.Component {
         data: {
           text: postJSON,
         },
-        success(res) {
-          console.log(res);
+        success(res) { // eslint-disable-line
           context.setState({ posted: true });
           setTimeout(() => context.setState({ posted: false }), 5000);
         },
