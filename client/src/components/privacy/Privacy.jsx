@@ -3,7 +3,7 @@
 import React from 'react';
 
 const style = {
-  color: '#2a3439!important',
+  color: '#CCCCFF !important',
 };
 
 const Privacy = () => (
