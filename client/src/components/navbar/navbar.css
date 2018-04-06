@@ -4,8 +4,8 @@
   border-bottom: 1px solid #000;
 }
 
-custom-a-tag {
-  color: #333;
+a {
+  color: #333!important;
 }
 
 .navbar-brand {

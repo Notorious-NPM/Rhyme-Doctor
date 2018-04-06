@@ -19,12 +19,12 @@ class Footer extends React.Component {
           <small>&copy; Rhyme Doctor</small>
           <nav className="nav">
             <ul>
-              <li><a href="/" className="custom-a-tag">Home</a></li>
-              {this.state.session && <li><a href="/feed" className="custom-a-tag">Top/New Feed</a></li>}
-              {this.state.session && <li><a href="/profile" className="custom-a-tag">Profile</a></li>}
-              {this.state.session && <li><a href="/" className="custom-a-tag">Subscriptions</a></li>}
-              <li><a href="/about" className="custom-a-tag">About</a></li>
-              <li><a href="/privacy" className="custom-a-tag">Privacy Policy</a></li>
+              <li><a href="/">Home</a></li>
+              {this.state.session && <li><a href="/feed">Top/New Feed</a></li>}
+              {this.state.session && <li><a href="/profile">Profile</a></li>}
+              {this.state.session && <li><a href="/">Subscriptions</a></li>}
+              <li><a href="/about">About</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
             </ul>
           </nav>
         </footer>
