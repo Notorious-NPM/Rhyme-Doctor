@@ -3,9 +3,8 @@ import React from 'react';
 import './About.css';
 
 const About = () => (
-  <div className="container-fluid row aboutTop">
-    {/* 3<div className="whitespace" /> */}
-    <h4>About Us</h4>
+  <div className="aboutTop">
+    <div className="whitespace" />
     <div className="goal">
       Welcome, and thank you for visiting our application! We at Notorious NPM developed Rhyme
       Doctor as a tool to assist people, amateur and professional alike, to create the sickest
@@ -14,7 +13,7 @@ const About = () => (
     </div>
     <div className="whitespace" />
     <div className="challenges">
-      <h6>Technical Challenges and Achievements</h6>
+      <h6>Technical challenges/achievements</h6>
       We are proud to say that nothing like this has been realized before, especially not to the
       extent where people can visualize the rhyme schemes of their lyrics. Our experienced staff
       here at Notorious NPM spent countless hours to deliver the elaborate architecture and
