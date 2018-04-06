@@ -10,7 +10,7 @@ import './privacy.css';
 
 const Privacy = () => (
   <div className="container-fluid">
-    <div className="row">
+    <div className="row col-md-12">
       <h3>Privacy Policy</h3>
       <p>
         Notorious NPM built the Rhyme Doctor app as a Free app. This SERVICE is provided by Notorious NPM at no cost and is intended for use as is.
