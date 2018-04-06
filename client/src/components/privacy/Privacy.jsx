@@ -42,14 +42,14 @@ const Privacy = () => (
       </p>
       <h4>Service Providers</h4>
       <p>
-      We may employ third-party companies and individuals due to the following reasons:
+        We may employ third-party companies and individuals due to the following reasons:
         <ul>
           <li>To facilitate our Service;</li>
           <li>To provide the Service on our behalf;</li>
           <li>To perform Service-related services; or</li>
           <li>To assist us in analyzing how our Service is used.</li>
-          <li>We want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.</li>
         </ul>
+        We want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
       </p>
       <h4>Security</h4>
       <p>
