@@ -41,7 +41,7 @@ const SessionBar = () => (
         </ul>
       </div>
       <div className="mx-auto order-0">
-        <a className="navbar-brand mx-auto custom-a-tag" href="#">Rhyme Doctor</a>
+        <a className="navbar-brand mx-auto" href="#">Rhyme Doctor</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
           <span className="navbar-toggler-icon" />
         </button>
