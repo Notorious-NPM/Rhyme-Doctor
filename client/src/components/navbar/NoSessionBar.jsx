@@ -9,18 +9,18 @@ const NoSessionBar = () => (
       <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <Link className="nav-link" to="/">Home</Link>
+            <Link className="nav-link custom-a-tag" to="/">Home</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/login">Login</Link>
+            <Link className="nav-link custom-a-tag" to="/login">Login</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/signup">Sign Up</Link>
+            <Link className="nav-link custom-a-tag" to="/signup">Sign Up</Link>
           </li>
         </ul>
       </div>
       <div className="mx-auto order-0">
-        <a className="navbar-brand mx-auto" href="#">℞hyme Doctor</a>
+        <a className="navbar-brand mx-auto custom-a-tag" href="#">℞hyme Doctor</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
           <span className="navbar-toggler-icon" />
         </button>

@@ -27,21 +27,21 @@ const SessionBar = () => (
       <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <Link className="nav-link" to="/">Home</Link>
+            <Link className="nav-link custom-a-tag" to="/">Home</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/feed">Top/News Feed</Link>
+            <Link className="nav-link custom-a-tag" to="/feed">Top/News Feed</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/profile">Profile</Link>
+            <Link className="nav-link custom-a-tag" to="/profile">Profile</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/subscriptions">Subscriptions</Link>
+            <Link className="nav-link custom-a-tag" to="/subscriptions">Subscriptions</Link>
           </li>
         </ul>
       </div>
       <div className="mx-auto order-0">
-        <a className="navbar-brand mx-auto" href="#">Rhyme Doctor</a>
+        <a className="navbar-brand mx-auto custom-a-tag" href="#">Rhyme Doctor</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
           <span className="navbar-toggler-icon" />
         </button>
@@ -49,9 +49,9 @@ const SessionBar = () => (
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link className="nav-link" style={{ display: 'inline' }} to="/about">About</Link>
-            <Link className="nav-link" to="/" style={{ display: 'inline' }}>
-              <a onClick={logout} style={{ display: 'inline' }} className="nav-link" /* eslint-disable-line */ >Logout</a>
+            <Link className="nav-link custom-a-tag" style={{ display: 'inline' }} to="/about">About</Link>
+            <Link className="nav-link custom-a-tag" to="/" style={{ display: 'inline' }}>
+              <a onClick={logout} style={{ display: 'inline' }} className="nav-link custom-a-tag" /* eslint-disable-line */ >Logout</a>
             </Link>
           </li>
         </ul>
