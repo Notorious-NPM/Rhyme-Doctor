@@ -24,6 +24,7 @@ class Footer extends React.Component {
               {this.state.session && <li><a href="/profile">Profile</a></li>}
               {this.state.session && <li><a href="/">Subscriptions</a></li>}
               <li><a href="/about">About</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
             </ul>
           </nav>
         </footer>
