@@ -10,6 +10,7 @@ import Profile from './user/Profile';
 import Navbar from './navbar';
 import Home from './home';
 import About from './about/About';
+import Privacy from './privacy/Privacy';
 import FriendChatContainer from '../components/buttons/FriendChatContainer';
 import Footer from './footer';
 import './app.css';
@@ -59,6 +60,7 @@ class App extends React.Component {
           <Route path="/feed" component={RapPost} />
           <Route path="/subscriptions" render={() => <RapPost subscription={1} />} />
           <Route path="/about" component={About} />
+          <Route path="/privacy" component={Privacy} />
           <FriendChatContainer />
           <Footer />
         </div>
