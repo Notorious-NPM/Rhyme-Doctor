@@ -1,6 +1,9 @@
 # Rhyme Doctor
 Rhyme Doctor is an interactive web app that helps songwriters compose song lyrics with intricate rhyme schemes. It also helps songwriters connect with each other and share their work.
 
+![Home Page](about/home.png)
+![Composition UI](about/ui.png)
+
 ## Getting Started
 
 Once you've configured everything properly as per the Prerequisites section, run the following:
