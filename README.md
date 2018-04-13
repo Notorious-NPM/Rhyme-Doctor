@@ -15,10 +15,10 @@ Once you've configured everything properly as per the Prerequisites section, run
 
 ### Prerequisites
 
-Keep in mind that our master branch is configured for deployment on a remote server, so if you don't have a domain name, an SSL certificate, and an NGINX server, then perhaps you don't want to go through the trouble! (Our app is deployed here: https://rhymedoctor.fun)
+Keep in mind that our master branch is configured for deployment on a remote server, so if you don't have a domain name, an SSL certificate, and an NGINX server, then perhaps you don't want to go through the trouble! (Our app is deployed here: https://rhymedoctor.fun.)
 
 **MySQL**
-Create a database named `RhymeDoctor` and fill out the appropriate auth info in `server/src/database/config/config.js`
+Create a database named `RhymeDoctor` and fill out the appropriate auth info in `server/src/database/config/config.js`.
 
 **WordsAPI Key**
 This can be obtained from Mashape/RapidAPI, and fill out `ALTERNATE_KEY` or `API_KEY` in `rhyme-engine/src/config.js`, as well as `X-Mashape-Key` in `server/src/controllers/wordsapi/config.js`.
